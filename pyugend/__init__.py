@@ -1,5 +1,6 @@
-# -*- coding: utf-8 -*-
+__all__ = ['analysis', 'comparisons', 'models', 'test']
 
-__author__ = 'krishna bhogaonker'
-__email__ = 'cyclotomiq@gmail.com'
-__version__ = '0.1.0'
+import analysis
+import comparisons
+import models
+import tests
