@@ -1,5 +1,7 @@
-__all__ = ['Models']
+__all__ = ['Base_class']
 
-import Models
+from pyugend.Models import Base_model
+
+
 
 
