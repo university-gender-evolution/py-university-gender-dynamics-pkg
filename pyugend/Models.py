@@ -28,7 +28,7 @@ This is the base class for all model modules. This class does not contain an par
 
 
 __author__ = 'krishnab'
-
+__version__ = '0.1.0'
 
 
 
