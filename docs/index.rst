@@ -14,6 +14,7 @@ Contents:
    readme
    models
    installation
+   quickstart
    usage
    contributing
    authors

@@ -1,11 +1,13 @@
 import pytest
-from models.Models import Base_model
-from models.Basic_stochastic_model import Basic_stochastic_model
-from models.Stochastic_model_with_promotion import Stochastic_model_with_promotion
-from models.Replication_model import Replication_model
-from models.Stochastic_model_with_promotion_and_first_hiring import Stochastic_model_with_promotion_and_first_hiring
-from comparisons.Comparison import Comparison
-from models.Basic_stochastic_model_fixed_promotion import Basic_stochastic_model_fixed_promotion
+from pyugend.Models import Base_model
+from pyugend.Mod_Stoch_VSHP import Mod_Stoch_VSHP
+from pyugend.StochasticModelWithPromotion import Stochastic_model_with_promotion
+from pyugend.ReplicationModel import Replication_model
+from pyugend.StochasticModelWithPromotionAndFirstHiring import \
+    Stochastic_model_with_promotion_and_first_hiring
+from pyugend.Comparison import Comparison
+from pyugend.BasicStochasticModelFixedPromotion import \
+    Basic_stochastic_model_fixed_promotion
 import numpy as np
 import pandas as pd
 
@@ -59,12 +61,12 @@ def test_base_model_persistence(mock_data):
 
 
 def test_base_model_multiple_runs(mock_data):
-    t = Basic_stochastic_model(**mock_data)
+    t = Mod_Stoch_VSHP(**mock_data)
     assert (isinstance(t.run_multiple(10), int))
 
 
 def test_base_model_multiple_runs_persistent_state(mock_data):
-    t = Basic_stochastic_model(**mock_data)
+    t = Mod_Stoch_VSHP(**mock_data)
     t.run_multiple(10)
     assert (isinstance(t.mean_matrix, np.ndarray))
 
@@ -76,37 +78,37 @@ def test_base_model_parameter_sweep(mock_data):
 
 
 def test_base_model_plot_multiple_runs(mock_data):
-    t = Basic_stochastic_model(**mock_data)
+    t = Mod_Stoch_VSHP(**mock_data)
     t.run_multiple(10)
     t.plot_multiple_runs_detail()
 
 
 #
 # def test_base_model_multiple_runs_gender_prop(mock_data):
-#      t = Basic_stochastic_model(**mock_data)
+#      t = Mod_Stoch_VSHP(**mock_data)
 #      t.run_multiple(10)
 #      t.plot_multiple_runs_gender_prop()
 
 
 
 def test_basic_stochastic_model(mock_data):
-    assert (isinstance(Basic_stochastic_model(**mock_data),
-                       Basic_stochastic_model))
+    assert (isinstance(Mod_Stoch_VSHP(**mock_data),
+                       Mod_Stoch_VSHP))
 
 
 def test_basic_stochastic_model_run(mock_data):
-    t = Basic_stochastic_model(**mock_data).run_model()
+    t = Mod_Stoch_VSHP(**mock_data).run_model()
     assert isinstance(t, np.recarray)
 
 
 def test_basic_stochastic_model_run_with_saved_data(mock_data):
-    t = Basic_stochastic_model(**mock_data)
+    t = Mod_Stoch_VSHP(**mock_data)
     t.run_model()
     assert isinstance(t.run, np.recarray)
 
 
 def test_basic_stochastic_model_promotion_probability_recovery(mock_data):
-    t = Basic_stochastic_model(**mock_data)
+    t = Mod_Stoch_VSHP(**mock_data)
     assert (t.female_promotion_probability_2 == 0.188)
 
 
@@ -122,9 +124,9 @@ def test_replication_model(mock_data):
 #      t.plot_multiple_runs_gender_prop()
 
 # def test_excel_export(mock_data):
-#     t = Basic_stochastic_model(**mock_data)
+#     t = Mod_Stoch_VSHP(**mock_data)
 #     t.export_model_run()
-#     assert(isinstance(t,Basic_stochastic_model))
+#     assert(isinstance(t,Mod_Stoch_VSHP))
 
 def test_stochastic_model_with_hiring_first(mock_data):
     t = Stochastic_model_with_promotion_and_first_hiring(**mock_data)
@@ -140,7 +142,7 @@ def test_stochastic_model_with_hiring_first_multiple(mock_data):
 
 def test_comparison_model_plot_detail(mock_data):
     modlist = list([Replication_model(**mock_data),
-                    Basic_stochastic_model(**mock_data),
+                    Mod_Stoch_VSHP(**mock_data),
                     Stochastic_model_with_promotion_and_first_hiring(**mock_data)])
     c = Comparison(modlist)
     c.plot_comparison_detail(10)
@@ -148,7 +150,7 @@ def test_comparison_model_plot_detail(mock_data):
 
 def test_comparison_model_param_sweep(mock_data):
     modlist = list([Replication_model(**mock_data),
-                    Basic_stochastic_model(**mock_data),
+                    Mod_Stoch_VSHP(**mock_data),
                     Stochastic_model_with_promotion_and_first_hiring(**mock_data)])
     c = Comparison(modlist)
     c.plot_parameter_sweep_gender_proportion(10, 'female_promotion_probability_2', 0.1, 0.5, 8)
@@ -156,7 +158,7 @@ def test_comparison_model_param_sweep(mock_data):
 
 def test_comparison_model_param_sweep_detail(mock_data):
     modlist = list([Replication_model(**mock_data),
-                    Basic_stochastic_model(**mock_data),
+                    Mod_Stoch_VSHP(**mock_data),
                     Stochastic_model_with_promotion_and_first_hiring(**mock_data)])
     c = Comparison(modlist)
     c.plot_parameter_sweep_detail(10, 'female_promotion_probability_2', 0.1, 0.5, 8)
@@ -179,7 +181,7 @@ def test_base_model_probability_calc_detail_array(mock_data):
 #
 # def test_comparison_empirical_probability_detail_plot(mock_data):
 #     modlist = list([Replication_model(**mock_data),
-#                     Basic_stochastic_model(**mock_data),
+#                     Mod_Stoch_VSHP(**mock_data),
 #                     Stochastic_model_with_promotion_and_first_hiring(**mock_data)])
 #     c = Comparison(modlist)
 #     c.plot_comparison_empirical_probability_detail(10,
@@ -194,7 +196,7 @@ def test_base_model_probability_calc_detail_array(mock_data):
 
 # def test_plot_comparision_department_size(mock_data):
 #     modlist = list([Basic_stochastic_model_fixed_promotion(**mock_data),
-#                 Basic_stochastic_model(**mock_data),
+#                 Mod_Stoch_VSHP(**mock_data),
 #                 Stochastic_model_with_promotion_and_first_hiring(**mock_data)])
 #     c = Comparison(modlist)
 #     c.plot_comparison_department_size()
@@ -210,7 +212,7 @@ def test_multiple_runs_created_res_array(mock_data):
 
 
 def test_plot_comparision_empirical_probability_gender_proportion(mock_data):
-    modlist = list([Basic_stochastic_model(**mock_data),
+    modlist = list([Mod_Stoch_VSHP(**mock_data),
                     Basic_stochastic_model_fixed_promotion(**mock_data),
                     Stochastic_model_with_promotion_and_first_hiring(**mock_data)])
     c = Comparison(modlist)
@@ -218,9 +220,9 @@ def test_plot_comparision_empirical_probability_gender_proportion(mock_data):
 
 
 def test_basic_stochastic_with_random_dept_growth(mock_data):
-    t = Basic_stochastic_model(**mock_data)
+    t = Mod_Stoch_VSHP(**mock_data)
     assert (t.max_threshold, 0.1)
 
 def test_basic_stochastic_with_random_dept_growth(mock_data):
-    t = Basic_stochastic_model(**mock_data)
+    t = Mod_Stoch_VSHP(**mock_data)
     assert (t.max_threshold, 0.1)
