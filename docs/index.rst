@@ -18,6 +18,12 @@ Contents:
    authors
    history
 
+.. automodule:: Models
+
+.. autoclass:: Base_model
+    :members:
+
+
 Indices and tables
 ==================
 

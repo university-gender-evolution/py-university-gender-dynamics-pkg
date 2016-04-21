@@ -1,6 +1,10 @@
-"""This module
+"""
+This module provides a simulation of the original mathematical model. The values do not have integers.
+
 
 """
+
+
 
 __author__ = 'krishnab'
 
