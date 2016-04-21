@@ -1,10 +1,14 @@
+"""
+
+"""
+
 __author__ = 'krishnab'
 
 from operator import neg, truediv
 import numpy as np
 import pandas as pd
 from numpy.random import binomial
-from models.Models import Base_model
+from pyugend.Models import Base_model
 
 
 class Replication_model(Base_model):
