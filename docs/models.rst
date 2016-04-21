@@ -8,3 +8,4 @@ In this section, we summarize the structure of each model.
 
 .. automodule:: pyugend.ReplicationModel
 
+.. automodule:: pyugend.Mod_Stoch_VSHP

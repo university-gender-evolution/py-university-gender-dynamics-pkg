@@ -1,18 +1,46 @@
-__author__ = 'krishnab'
+"""
+Stochastic Model VSHP
+---------------------
+This is a stochastic model in that hiring,promotion, and attrition are
+stochastic processes. The model computes the evolution of gender balance
+based upon initial department data.
 
+**V: Variable promotion rate**
+The model uses a variable promotion rate, similar to that used in the
+original mathematical Replication model. After each timestep, the promotion
+rate for women at each professor level is set to the percent of women at that
+level in the department.
+
+**S: Shrinking department size over time**
+The original models did not account for variation in department size over
+time. Vacancies that were left unfilled by the end of the timestep were
+simply lost to future timesteps. Hence, the department experienced gradual
+shrinkage over time. The second genderation of models with the letter "D"
+instead of "S" represent a dynamic department size.
+
+**HP: Hiring and then promotion**
+
+This model assumes that hiring will happen before promotion in the
+department. Hence new vacancies are first filled by new hires. The remaining
+vacancies are filled by promotions from within the department.
+
+"""
+
+__author__ = 'krishnab'
+__version__ = '0.1.0'
 from operator import neg, truediv
 import numpy as np
 import pandas as pd
 from numpy.random import binomial
-from models.Models import Base_model
+from pyugend.Models import Base_model
 
 
-class Basic_stochastic_model(Base_model):
+class Mod_Stoch_VSHP(Base_model):
 
     def __init__(self, **kwds):
         Base_model.__init__(self, **kwds)
-        self.name = "Stochastic Model(sim_orig)"
-        self.label = "replication"
+        self.name = "Mod_Stoch_VSHP"
+        self.label = "Mod_Stoch_VSHP"
 
     def run_model(self):
 
