@@ -1,5 +1,9 @@
 """
-This module provides a simulation of the original mathematical model. The values do not have integers.
+Replication Module
+------------------
+This module simulates the original mathematical model from the paper [FILL
+IN]. This model is deterministic in that it does not assign individuals to
+promotion and hiring based upon a stochastic process.
 
 
 """

@@ -9,19 +9,19 @@ Welcome to pyugend's documentation!
 Contents:
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 3
 
    readme
+   models
    installation
    usage
    contributing
    authors
    history
 
-.. automodule:: Models
 
-.. autoclass:: Base_model
-    :members:
+
+
 
 
 Indices and tables
