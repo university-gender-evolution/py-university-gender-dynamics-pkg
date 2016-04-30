@@ -9,7 +9,18 @@ In this model, the promotion rate for women is fixed. Also, this is a hiring
 and then promotion model. Finally, this is a model where the department size
 gradually shrinks.
 
+**V: Variable promotion rate**
+The model uses a variable promotion rate, similar to that used in the
+original mathematical Replication model. After each timestep, the promotion
+rate for women at each professor level is set to the percent of women at that
+level in the department.
 
+**S: Shrinking department size over time**
+The original models did not account for variation in department size over
+time. Vacancies that were left unfilled by the end of the timestep were
+simply lost to future timesteps. Hence, the department experienced gradual
+shrinkage over time. The second genderation of models with the letter "D"
+instead of "S" represent a dynamic department size.
 """
 
 
