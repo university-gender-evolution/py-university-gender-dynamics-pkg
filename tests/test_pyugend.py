@@ -6,7 +6,7 @@ from pyugend.ReplicationModel import Replication_model
 from pyugend.StochasticModelWithPromotionAndFirstHiring import \
     Stochastic_model_with_promotion_and_first_hiring
 from pyugend.Comparison import Comparison
-from pyugend.BasicStochasticModelFixedPromotion import \
+from pyugend.Mod_Stoch_FSHP import \
     Basic_stochastic_model_fixed_promotion
 import numpy as np
 import pandas as pd

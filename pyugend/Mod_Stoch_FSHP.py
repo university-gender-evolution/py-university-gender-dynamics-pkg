@@ -15,12 +15,8 @@ gradually shrinks.
 
 
 
-
-
-
 __author__ = 'krishnab'
 __version__ = '0.1.0'
-
 
 
 
@@ -36,8 +32,8 @@ class Mod_Stoch_FSHP(Base_model):
 
     def __init__(self, **kwds):
         Base_model.__init__(self, **kwds)
-        self.name = "Stochastic Model(sim_ph)"
-        self.label = "sim_ph"
+        self.name = "Stochastic Model(sim_orig)"
+        self.label = "promote-hire"
     def run_model(self):
 
         ## initialize data structure
@@ -74,6 +70,8 @@ class Mod_Stoch_FSHP(Base_model):
         attrition_rate_male_level_3 = self.dm3
         probability_of_outside_hire_level_3 = self.phire3
         probability_of_outside_hire_level_2 = self.phire2
+        male_promotion_probability_1_2 = self.male_promotion_probability_1
+        male_promotion_probability_2_3 = self.male_promotion_probability_2
 
         for i in range(1, self.duration):
             # initialize variables for this iteration
@@ -89,8 +87,12 @@ class Mod_Stoch_FSHP(Base_model):
             prev_number_of_vacancies_level_3 = self.res[i - 1, 6]
             prev_number_of_vacancies_level_2 = self.res[i - 1, 7]
             prev_number_of_vacancies_level_1 = self.res[i - 1, 8]
-            prev_promotion_rate_female_level_1 = self.res[i - 1, 9]
-            prev_promotion_rate_female_level_2 = self.res[i - 1, 10]
+            prev_promotion_rate_female_level_1 = self.female_promotion_probability_1
+            prev_promotion_rate_female_level_2 = self.female_promotion_probability_2
+            if np.isnan(prev_promotion_rate_female_level_1):
+                prev_promotion_rate_female_level_1 = 0
+            if np.isnan(prev_promotion_rate_female_level_2):
+                prev_promotion_rate_female_level_2 = 0
             prev_gender_proportion_of_department = np.float32(
                 sum(list([prev_number_of_females_level_1,
                           prev_number_of_females_level_2,
@@ -118,7 +120,7 @@ class Mod_Stoch_FSHP(Base_model):
             # women are hired first and then men
             hiring_female_3 = binomial(total_vacancies_3,
                                        probability_of_outside_hire_level_3 * hiring_rate_female_level_3)
-            hiring_male_3 = binomial(total_vacancies_3,
+            hiring_male_3 = binomial(max(0, total_vacancies_3 - hiring_female_3),
                                      probability_of_outside_hire_level_3 * (
                                          1 - hiring_rate_female_level_3))
 
@@ -131,20 +133,17 @@ class Mod_Stoch_FSHP(Base_model):
 
             vacancies_remaining_after_hiring_3 = total_vacancies_3 - total_hiring_3
 
-            potential_promotions_after_hiring_a = max(0,
+            potential_promotions_after_hiring_3 = max(0,
                                                       vacancies_remaining_after_hiring_3)
-            potential_promotions_after_hiring_b = min(
-                potential_promotions_after_hiring_a, sum(list([
-                    prev_number_of_males_level_2,
-                    prev_number_of_females_level_2])))
+
             promotions_of_females_level_2_3 = binomial(min(
-                potential_promotions_after_hiring_b,
+                potential_promotions_after_hiring_3,
                 prev_number_of_females_level_2),
                 prev_promotion_rate_female_level_2)
-            promotions_of_males_level_2_3 = binomial(min(
-                potential_promotions_after_hiring_b,
-                prev_number_of_males_level_2),
-                1 - prev_promotion_rate_female_level_2)
+
+            promotions_of_males_level_2_3 = binomial(max(0,min(
+                potential_promotions_after_hiring_3-promotions_of_females_level_2_3,
+                prev_number_of_males_level_2)), male_promotion_probability_2_3)
 
             # attrition at level 2 - either people leave from attrition or promotion
 
@@ -163,10 +162,10 @@ class Mod_Stoch_FSHP(Base_model):
                                           promotions_of_females_level_2_3,
                                           promotions_of_males_level_2_3]))
 
-            hiring_female_2 = binomial(total_vacancies_2,
+            hiring_female_2 = binomial(max(0,total_vacancies_2),
                                        probability_of_outside_hire_level_2 * hiring_rate_female_level_2)
-            hiring_male_2 = binomial(total_vacancies_2,
-                                     probability_of_outside_hire_level_2 * hiring_rate_female_level_2)
+            hiring_male_2 = binomial(max(0,total_vacancies_2-hiring_female_2),
+                                     probability_of_outside_hire_level_2 * (1-hiring_rate_female_level_2))
 
             total_hiring_2 = hiring_female_2 + hiring_male_2
 
@@ -175,28 +174,29 @@ class Mod_Stoch_FSHP(Base_model):
             potential_promotions_after_hiring_2 = max(0,
                                                       vacancies_remaining_after_hiring_2)
 
-            promotions_of_females_level_1_2 = binomial(
-                potential_promotions_after_hiring_2,
+            promotions_of_females_level_1_2 = binomial(max(0,
+                min(potential_promotions_after_hiring_2, prev_number_of_females_level_1)),
                 prev_promotion_rate_female_level_1)
-            promotions_of_males_level_1_2 = binomial(
-                potential_promotions_after_hiring_2,
-                1 - prev_promotion_rate_female_level_1)
+            promotions_of_males_level_1_2 = binomial(max(0,min(
+                potential_promotions_after_hiring_2 - promotions_of_females_level_1_2, prev_number_of_males_level_1)),
+                male_promotion_probability_1_2)
+
 
             ## Level 1
 
-            female_attrition_level_1 = binomial(prev_number_of_females_level_1,
+            female_attrition_level_1 = binomial(max(0,prev_number_of_females_level_1-promotions_of_females_level_1_2),
                                                 attrition_rate_female_level_1)
 
-            male_attrition_level_1 = binomial(prev_number_of_males_level_1,
+            male_attrition_level_1 = binomial(max(0,prev_number_of_males_level_1-promotions_of_males_level_1_2),
                                               attrition_rate_male_level_1)
             total_vacancies_1 = sum(list([female_attrition_level_1,
                                           male_attrition_level_1,
                                           promotions_of_females_level_1_2,
                                           promotions_of_males_level_1_2]))
 
-            hiring_female_1 = binomial(total_vacancies_1,
+            hiring_female_1 = binomial(max(0,total_vacancies_1),
                                        hiring_rate_female_level_1)
-            hiring_male_1 = binomial(total_vacancies_1,
+            hiring_male_1 = binomial(max(0,total_vacancies_1 - hiring_female_1),
                                      1 - hiring_rate_female_level_1)
 
             # Write state variables to array and move to next iteration
@@ -206,6 +206,9 @@ class Mod_Stoch_FSHP(Base_model):
                       neg(female_attrition_level_1),
                       neg(promotions_of_females_level_1_2),
                       hiring_female_1]))
+
+            assert (number_of_females_level_1 >= 0), "negative number of females 1"
+
 
             self.res[i, 1] = number_of_females_level_2 = max(0, sum(
                 list([prev_number_of_females_level_2,
@@ -238,25 +241,25 @@ class Mod_Stoch_FSHP(Base_model):
                       promotions_of_males_level_2_3,
                       hiring_male_3]))
 
-            self.res[i, 6] = number_of_vacancies_level_3 = sum(list([
+            self.res[i, 6] = sum(list([
                 male_attrition_level_3,
                 female_attrition_level_3]))
 
-            self.res[i, 7] = number_of_vacancies_level_2 = sum(list([
+            self.res[i, 7] = sum(list([
                 male_attrition_level_2,
                 female_attrition_level_2,
                 promotions_of_females_level_2_3,
                 promotions_of_males_level_2_3]))
 
-            self.res[i, 8] = number_of_vacancies_level_1 = sum(list([
+            self.res[i, 8] = sum(list([
                 male_attrition_level_1,
                 female_attrition_level_1,
                 promotions_of_males_level_1_2,
                 promotions_of_females_level_1_2]))
 
-            self.res[i, 9] = promotion_rate_female_level_1 = self.female_promotion_probability_1
-            self.res[i, 10] = promotion_rate_women_level_2 = self.female_promotion_probability_2
-            self.res[i, 11] = gender_proportion_of_department = np.float32(
+            self.res[i, 9] = self.female_promotion_probability_1
+            self.res[i, 10] = self.female_promotion_probability_2
+            self.res[i, 11] = np.float32(
                 truediv(sum(list([number_of_females_level_1,
                                   number_of_females_level_2,
                                   number_of_females_level_3])), sum(list([
