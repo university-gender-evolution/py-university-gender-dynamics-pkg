@@ -9,6 +9,16 @@ In this model, the promotion rate for women is fixed. Also, this is a hiring
 and then promotion model. Finally, this is a model where the department size
 gradually shrinks.
 
+Fixed male and female promotion
+
+Shrinking
+
+Hire then promote
+
+
+
+
+
 """
 
 
