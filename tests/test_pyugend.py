@@ -1,7 +1,7 @@
 import pytest
 from pyugend.Models import Base_model
 from pyugend.Mod_Stoch_VSHP import Mod_Stoch_VSHP
-from pyugend.StochasticModelWithPromotion import Stochastic_model_with_promotion
+from pyugend.Mod_Stoch_FSHP import Mod_Stoch_FSHP
 from pyugend.ReplicationModel import Replication_model
 from pyugend.StochasticModelWithPromotionAndFirstHiring import \
     Stochastic_model_with_promotion_and_first_hiring
@@ -72,7 +72,7 @@ def test_base_model_multiple_runs_persistent_state(mock_data):
 
 
 def test_base_model_parameter_sweep(mock_data):
-    t = Stochastic_model_with_promotion(**mock_data)
+    t = Mod_Stoch_FSHP(**mock_data)
     v = t.run_parameter_sweep(12, 'female_pp_1', 0.1, 0.3, 2)
     assert (isinstance(v, int))
 

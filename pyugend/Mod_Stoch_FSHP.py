@@ -1,4 +1,29 @@
+"""
+Stochastic Model FSHP
+---------------------
+This is a stochastic model in that hiring,promotion, and attrition are
+stochastic processes. The model computes the evolution of gender balance
+based upon initial department data.
+
+In this model, the promotion rate for women is fixed. Also, this is a hiring
+and then promotion model. Finally, this is a model where the department size
+gradually shrinks.
+
+
+"""
+
+
+
+
+
+
+
 __author__ = 'krishnab'
+__version__ = '0.1.0'
+
+
+
+
 
 from operator import neg, truediv
 import numpy as np
@@ -7,7 +32,7 @@ from numpy.random import binomial
 from pyugend.Models import Base_model
 
 
-class Stochastic_model_with_promotion(Base_model):
+class Mod_Stoch_FSHP(Base_model):
 
     def __init__(self, **kwds):
         Base_model.__init__(self, **kwds)
@@ -64,16 +89,8 @@ class Stochastic_model_with_promotion(Base_model):
             prev_number_of_vacancies_level_3 = self.res[i - 1, 6]
             prev_number_of_vacancies_level_2 = self.res[i - 1, 7]
             prev_number_of_vacancies_level_1 = self.res[i - 1, 8]
-            prev_promotion_rate_female_level_1 = np.float32(
-                prev_number_of_females_level_1 / (
-                    prev_number_of_females_level_1 + prev_number_of_males_level_1))
-            prev_promotion_rate_female_level_2 = np.float32(
-                prev_number_of_females_level_2 / (
-                    prev_number_of_females_level_2 + prev_number_of_males_level_2))
-            if np.isnan(prev_promotion_rate_female_level_1):
-                prev_promotion_rate_female_level_1 = 0
-            if np.isnan(prev_promotion_rate_female_level_2):
-                prev_promotion_rate_female_level_2 = 0
+            prev_promotion_rate_female_level_1 = self.res[i - 1, 9]
+            prev_promotion_rate_female_level_2 = self.res[i - 1, 10]
             prev_gender_proportion_of_department = np.float32(
                 sum(list([prev_number_of_females_level_1,
                           prev_number_of_females_level_2,
