@@ -2,6 +2,7 @@ import pytest
 from pyugend.Models import Base_model
 from pyugend.Mod_Stoch_VSHP import Mod_Stoch_VSHP
 from pyugend.Mod_Stoch_FSHP import Mod_Stoch_FSHP
+from pyugend.Mod_Stoch_FSPH import Mod_Stoch_FSPH
 from pyugend.ReplicationModel import Replication_model
 from pyugend.Comparison import Comparison
 import numpy as np
@@ -125,13 +126,13 @@ def test_replication_model(mock_data):
 #     assert(isinstance(t,Mod_Stoch_VSHP))
 
 def test_stochastic_model_with_hiring_first(mock_data):
-    t = Stochastic_model_with_promotion_and_first_hiring(**mock_data)
+    t = Mod_Stoch_FSPH(**mock_data)
     t.run_model()
     assert (isinstance(t.run, np.ndarray))
 
 
 def test_stochastic_model_with_hiring_first_multiple(mock_data):
-    t = Stochastic_model_with_promotion_and_first_hiring(**mock_data)
+    t = Mod_Stoch_FSPH(**mock_data)
     t.run_multiple(10)
     assert (isinstance(t.mean_matrix, np.ndarray))
 
@@ -139,7 +140,7 @@ def test_stochastic_model_with_hiring_first_multiple(mock_data):
 def test_comparison_model_plot_detail(mock_data):
     modlist = list([Replication_model(**mock_data),
                     Mod_Stoch_VSHP(**mock_data),
-                    Stochastic_model_with_promotion_and_first_hiring(**mock_data)])
+                    Mod_Stoch_FSPH(**mock_data)])
     c = Comparison(modlist)
     c.plot_comparison_detail(10)
 
@@ -147,7 +148,7 @@ def test_comparison_model_plot_detail(mock_data):
 def test_comparison_model_param_sweep(mock_data):
     modlist = list([Replication_model(**mock_data),
                     Mod_Stoch_VSHP(**mock_data),
-                    Stochastic_model_with_promotion_and_first_hiring(**mock_data)])
+                    Mod_Stoch_FSPH(**mock_data)])
     c = Comparison(modlist)
     c.plot_parameter_sweep_gender_proportion(10, 'female_promotion_probability_2', 0.1, 0.5, 8)
 
@@ -155,13 +156,13 @@ def test_comparison_model_param_sweep(mock_data):
 def test_comparison_model_param_sweep_detail(mock_data):
     modlist = list([Replication_model(**mock_data),
                     Mod_Stoch_VSHP(**mock_data),
-                    Stochastic_model_with_promotion_and_first_hiring(**mock_data)])
+                    Mod_Stoch_FSPH(**mock_data)])
     c = Comparison(modlist)
     c.plot_parameter_sweep_detail(10, 'female_promotion_probability_2', 0.1, 0.5, 8)
 
 
 def test_base_model_probability_calc_detail_array(mock_data):
-    t = Stochastic_model_with_promotion_and_first_hiring(**mock_data)
+    t = Mod_Stoch_FSPH(**mock_data)
     res = t.run_probability_analysis_parameter_sweep_gender_detail(10,
                                                                    'female_promotion_probability_2',
                                                                    'm2', 0.1, 0.8, 8, 150)
@@ -170,7 +171,7 @@ def test_base_model_probability_calc_detail_array(mock_data):
 
 
 # def test_base_model_probability_calc_plot(mock_data):
-#      t = Stochastic_model_with_promotion_and_first_hiring(**mock_data)
+#      t = Mod_Stoch_FSPH(**mock_data)
 #      t.plot_empirical_probability_group_detail(10,
 #                                             'female_promotion_probability_2',
 #                                             'm2', 0.1, 0.8, 8, 150)
@@ -178,7 +179,7 @@ def test_base_model_probability_calc_detail_array(mock_data):
 # def test_comparison_empirical_probability_detail_plot(mock_data):
 #     modlist = list([Replication_model(**mock_data),
 #                     Mod_Stoch_VSHP(**mock_data),
-#                     Stochastic_model_with_promotion_and_first_hiring(**mock_data)])
+#                     Mod_Stoch_FSPH(**mock_data)])
 #     c = Comparison(modlist)
 #     c.plot_comparison_empirical_probability_detail(10,
 #                                                    'female_promotion_probability_2',
@@ -186,31 +187,31 @@ def test_base_model_probability_calc_detail_array(mock_data):
 
 
 # def test_plot_dept_size_over_time(mock_data):
-#     t = Stochastic_model_with_promotion_and_first_hiring(**mock_data)
+#     t = Mod_Stoch_FSPH(**mock_data)
 #     t.plot_department_size_over_time_multiple_runs(10)
 
 
 # def test_plot_comparision_department_size(mock_data):
-#     modlist = list([Basic_stochastic_model_fixed_promotion(**mock_data),
+#     modlist = list([Mod_Stoch_FSHP(**mock_data),
 #                 Mod_Stoch_VSHP(**mock_data),
-#                 Stochastic_model_with_promotion_and_first_hiring(**mock_data)])
+#                 Mod_Stoch_FSPH(**mock_data)])
 #     c = Comparison(modlist)
 #     c.plot_comparison_department_size()
 
 def test_multiple_runs_created_res_array(mock_data):
-    t = Stochastic_model_with_promotion_and_first_hiring(**mock_data)
+    t = Mod_Stoch_FSPH(**mock_data)
     t.run_multiple(10)
-    assert hasattr(t, 'probability_matrix')
+    assert hasattr(t, 'mean_matrix')
 #
 # def test_plot_empirical_probability_gender_proportion(mock_data):
-#     t = Stochastic_model_with_promotion_and_first_hiring(**mock_data)
+#     t = Mod_Stoch_FSPH(**mock_data)
 #     t.plot_empirical_probability_gender_proportion(100, 0.19)
 
 
 def test_plot_comparision_empirical_probability_gender_proportion(mock_data):
     modlist = list([Mod_Stoch_VSHP(**mock_data),
-                    Basic_stochastic_model_fixed_promotion(**mock_data),
-                    Stochastic_model_with_promotion_and_first_hiring(**mock_data)])
+                    Mod_Stoch_FSHP(**mock_data),
+                    Mod_Stoch_FSPH(**mock_data)])
     c = Comparison(modlist)
     c.plot_comparison_empirical_probability_gender_proportion(100, 0.19)
 

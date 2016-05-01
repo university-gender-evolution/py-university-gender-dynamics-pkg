@@ -109,12 +109,13 @@ class Mod_Stoch_FSPH(Base_model):
 
 
             promotions_of_females_level_2_3 = binomial(max(0,min(
-                total_vacancies_3, prev_number_of_females_level_2), female_promotion_probability_2_3))
+                total_vacancies_3, prev_number_of_females_level_2)),
+                                                           female_promotion_probability_2_3)
 
             promotions_of_males_level_2_3 = binomial(max(0, min(
                 total_vacancies_3 -
                 promotions_of_females_level_2_3,
-                prev_number_of_males_level_2), male_promotion_probability_2_3))
+                prev_number_of_males_level_2)), male_promotion_probability_2_3)
 
 
 
@@ -162,15 +163,15 @@ class Mod_Stoch_FSPH(Base_model):
 
             promotions_of_females_level_1_2 = binomial(max(0,min(
                                               total_vacancies_2,
-                                              prev_number_of_females_level_1),
-                                              female_promotion_probability_1_2))
+                                              prev_number_of_females_level_1)),
+                                              female_promotion_probability_1_2)
 
 
             promotions_of_males_level_1_2 = binomial(max(0, min(
                                             total_vacancies_2 -
                                             promotions_of_females_level_1_2,
-                                            prev_number_of_males_level_1),
-                                            male_promotion_probability_1_2))
+                                            prev_number_of_males_level_1)),
+                                            male_promotion_probability_1_2)
 
             vacancies_remaining_after_promotion_2 = max(0, total_vacancies_2 - \
                                                         promotions_of_females_level_1_2 - \
