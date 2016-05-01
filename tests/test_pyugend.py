@@ -36,8 +36,9 @@ def mock_data():
              'female_promotion_probability_2': 0.188,
              'male_promotion_probability_1': 0.19,
              'male_promotion_probability_2': 0.19,
-             'max_threshold': 0.1,
-             'prob_random_growth': 0.1,
+             'upperbound': 350,
+             'lowerbound': 330,
+             'variation_range': 5,
              'duration': 40})
 
 
@@ -218,8 +219,8 @@ def test_plot_comparision_empirical_probability_gender_proportion(mock_data):
 
 def test_basic_stochastic_with_random_dept_growth(mock_data):
     t = Mod_Stoch_VSHP(**mock_data)
-    assert (t.max_threshold, 0.1)
+    assert (t.upperbound, 350)
 
 def test_basic_stochastic_with_random_dept_growth(mock_data):
     t = Mod_Stoch_VSHP(**mock_data)
-    assert (t.max_threshold, 0.1)
+    assert (t.lowerbound, 330)

@@ -51,8 +51,9 @@ class Base_model():
                  female_promotion_probability_2,
                  male_promotion_probability_1,
                  male_promotion_probability_2,
-                 max_threshold,
-                 prob_random_growth):
+                 upperbound,
+                 lowerbound,
+                 variation_range):
         self.name = 'replication m'
         self.label = 'replication m'
         self.nf1 = number_of_females_1
@@ -80,8 +81,9 @@ class Base_model():
         self.female_promotion_probability_2 = female_promotion_probability_2
         self.male_promotion_probability_1 = male_promotion_probability_1
         self.male_promotion_probability_2 = male_promotion_probability_2
-        self.max_threshold = max_threshold
-        self.prob_random_growth = prob_random_growth
+        self.upperbound = upperbound
+        self.lowerbound = lowerbound
+        self.variation_range = variation_range
         self.run = 0
         self.runarray = 0
         self.mean_matrix = 0

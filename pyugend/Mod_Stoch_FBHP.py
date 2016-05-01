@@ -74,6 +74,10 @@ class Mod_Stoch_FBHP(Base_model):
         probability_of_outside_hire_level_2 = self.phire2
         male_promotion_probability_1_2 = self.male_promotion_probability_1
         male_promotion_probability_2_3 = self.male_promotion_probability_2
+        department_size_upper_bound = self.upperbound
+        department_size_lower_bound = self.lowerbound
+        variation_range = self.variation_range
+
 
         for i in range(1, self.duration):
             # initialize variables for this iteration
@@ -108,6 +112,25 @@ class Mod_Stoch_FBHP(Base_model):
 
             # Process Model
 
+            # Determine department size variation for this timestep
+
+
+            # this produces an array of values. Then I need to assign the
+            # values to levels. So if I have say a range of variation of 5. I
+            #  will get something like [-1,0,1,-1,0] or something. I need to
+            # turn this into something like [2,-1,0]. That means randomly
+            # assigning the values in the array to levels.
+            changes = np.random.choice([-1, 0, 1], variation_range)  # random
+            # growth/shrink
+
+            levels = np.random.choice([1, 2, 3],
+                                      variation_range)  # random level
+            # choice
+
+            change_to_level_3 = changes[np.where(levels == 3)[0]].sum()
+            change_to_level_2 = changes[np.where(levels == 2)[0]].sum()
+            change_to_level_1 = changes[np.where(levels == 1)[0]].sum()
+
             # first both female and males leave the department according to binomial probability.
 
             female_attrition_level_3 = binomial(prev_number_of_females_level_3,
@@ -117,10 +140,11 @@ class Mod_Stoch_FBHP(Base_model):
                                               attrition_rate_male_level_3)
 
             # the departures create a set of vacancies. These vacancies are the basis for new hiring
-            total_vacancies_3 = female_attrition_level_3 + male_attrition_level_3
+            total_vacancies_3 = female_attrition_level_3 + \
+                                male_attrition_level_3 + change_to_level_3
 
             # women are hired first and then men
-            hiring_female_3 = binomial(total_vacancies_3,
+            hiring_female_3 = binomial(max(0,total_vacancies_3),
                                        probability_of_outside_hire_level_3 * hiring_rate_female_level_3)
             hiring_male_3 = binomial(max(0, total_vacancies_3 - hiring_female_3),
                                      probability_of_outside_hire_level_3 * (
@@ -162,7 +186,8 @@ class Mod_Stoch_FBHP(Base_model):
             total_vacancies_2 = sum(list([female_attrition_level_2,
                                           male_attrition_level_2,
                                           promotions_of_females_level_2_3,
-                                          promotions_of_males_level_2_3]))
+                                          promotions_of_males_level_2_3,
+                                          change_to_level_2]))
 
             hiring_female_2 = binomial(max(0,total_vacancies_2),
                                        probability_of_outside_hire_level_2 * hiring_rate_female_level_2)
@@ -194,7 +219,8 @@ class Mod_Stoch_FBHP(Base_model):
             total_vacancies_1 = sum(list([female_attrition_level_1,
                                           male_attrition_level_1,
                                           promotions_of_females_level_1_2,
-                                          promotions_of_males_level_1_2]))
+                                          promotions_of_males_level_1_2,
+                                          change_to_level_1]))
 
             hiring_female_1 = binomial(max(0,total_vacancies_1),
                                        hiring_rate_female_level_1)

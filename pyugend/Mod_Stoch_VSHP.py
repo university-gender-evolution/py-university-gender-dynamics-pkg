@@ -80,9 +80,7 @@ class Mod_Stoch_VSHP(Base_model):
         probability_of_outside_hire_level_2 = self.phire2
         male_promotion_probability_1_2 = self.male_promotion_probability_1
         male_promotion_probability_2_3 = self.male_promotion_probability_2
-        total_dept_size = sum(list([self.nf1,self.nf2,self.nf3,self.nm1, self.nm2, self.nm3]))
-        dept_max_size = int(round((1+self.max_threshold)*total_dept_size,0))
-        dept_min_size = int(round((1-self.max_threshold)*total_dept_size,0))
+
         for i in range(1, self.duration):
             # initialize variables for this iteration
 
