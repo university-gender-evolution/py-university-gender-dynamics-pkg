@@ -1,6 +1,6 @@
 """
 Stochastic Model FSPH
-
+---------------------
 This model follows allows for the department to hire and then promote
 faculty. The department size still gradually shrinks over time.
 

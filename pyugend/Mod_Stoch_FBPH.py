@@ -1,5 +1,6 @@
 """
 Stochastic Model FBPH
+---------------------
 
 This model follows allows for the department to hire and then promote
 faculty.
