@@ -30,7 +30,7 @@ from pyugend.Models import Base_model
 
 
 
-class Mod_Stoch_FSPH(Base_model):
+class Mod_Stoch_FBHP(Base_model):
 
     def __init__(self, **kwds):
         Base_model.__init__(self, **kwds)

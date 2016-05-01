@@ -21,14 +21,8 @@ Hire then promote
 
 """
 
-
-
-
 __author__ = 'krishnab'
 __version__ = '0.1.0'
-
-
-
 
 from operator import neg, truediv
 import numpy as np
@@ -38,11 +32,11 @@ from pyugend.Models import Base_model
 
 
 class Mod_Stoch_FSHP(Base_model):
-
     def __init__(self, **kwds):
         Base_model.__init__(self, **kwds)
         self.name = "Stochastic Model(sim_orig)"
         self.label = "promote-hire"
+
     def run_model(self):
 
         ## initialize data structure
@@ -129,9 +123,10 @@ class Mod_Stoch_FSHP(Base_model):
             # women are hired first and then men
             hiring_female_3 = binomial(total_vacancies_3,
                                        probability_of_outside_hire_level_3 * hiring_rate_female_level_3)
-            hiring_male_3 = binomial(max(0, total_vacancies_3 - hiring_female_3),
-                                     probability_of_outside_hire_level_3 * (
-                                         1 - hiring_rate_female_level_3))
+            hiring_male_3 = binomial(
+                max(0, total_vacancies_3 - hiring_female_3),
+                probability_of_outside_hire_level_3 * (
+                    1 - hiring_rate_female_level_3))
 
             total_hiring_3 = hiring_female_3 + hiring_male_3
 
@@ -150,8 +145,8 @@ class Mod_Stoch_FSHP(Base_model):
                 prev_number_of_females_level_2),
                 prev_promotion_rate_female_level_2)
 
-            promotions_of_males_level_2_3 = binomial(max(0,min(
-                potential_promotions_after_hiring_3-promotions_of_females_level_2_3,
+            promotions_of_males_level_2_3 = binomial(max(0, min(
+                potential_promotions_after_hiring_3 - promotions_of_females_level_2_3,
                 prev_number_of_males_level_2)), male_promotion_probability_2_3)
 
             # attrition at level 2 - either people leave from attrition or promotion
@@ -171,10 +166,12 @@ class Mod_Stoch_FSHP(Base_model):
                                           promotions_of_females_level_2_3,
                                           promotions_of_males_level_2_3]))
 
-            hiring_female_2 = binomial(max(0,total_vacancies_2),
+            hiring_female_2 = binomial(max(0, total_vacancies_2),
                                        probability_of_outside_hire_level_2 * hiring_rate_female_level_2)
-            hiring_male_2 = binomial(max(0,total_vacancies_2-hiring_female_2),
-                                     probability_of_outside_hire_level_2 * (1-hiring_rate_female_level_2))
+            hiring_male_2 = binomial(
+                max(0, total_vacancies_2 - hiring_female_2),
+                probability_of_outside_hire_level_2 * (
+                1 - hiring_rate_female_level_2))
 
             total_hiring_2 = hiring_female_2 + hiring_male_2
 
@@ -184,29 +181,34 @@ class Mod_Stoch_FSHP(Base_model):
                                                       vacancies_remaining_after_hiring_2)
 
             promotions_of_females_level_1_2 = binomial(max(0,
-                min(potential_promotions_after_hiring_2, prev_number_of_females_level_1)),
-                prev_promotion_rate_female_level_1)
-            promotions_of_males_level_1_2 = binomial(max(0,min(
-                potential_promotions_after_hiring_2 - promotions_of_females_level_1_2, prev_number_of_males_level_1)),
-                male_promotion_probability_1_2)
-
+                                                           min(
+                                                               potential_promotions_after_hiring_2,
+                                                               prev_number_of_females_level_1)),
+                                                       prev_promotion_rate_female_level_1)
+            promotions_of_males_level_1_2 = binomial(max(0, min(
+                potential_promotions_after_hiring_2 - promotions_of_females_level_1_2,
+                prev_number_of_males_level_1)),
+                                                     male_promotion_probability_1_2)
 
             ## Level 1
 
-            female_attrition_level_1 = binomial(max(0,prev_number_of_females_level_1-promotions_of_females_level_1_2),
+            female_attrition_level_1 = binomial(max(0,
+                                                    prev_number_of_females_level_1 - promotions_of_females_level_1_2),
                                                 attrition_rate_female_level_1)
 
-            male_attrition_level_1 = binomial(max(0,prev_number_of_males_level_1-promotions_of_males_level_1_2),
+            male_attrition_level_1 = binomial(max(0,
+                                                  prev_number_of_males_level_1 - promotions_of_males_level_1_2),
                                               attrition_rate_male_level_1)
             total_vacancies_1 = sum(list([female_attrition_level_1,
                                           male_attrition_level_1,
                                           promotions_of_females_level_1_2,
                                           promotions_of_males_level_1_2]))
 
-            hiring_female_1 = binomial(max(0,total_vacancies_1),
+            hiring_female_1 = binomial(max(0, total_vacancies_1),
                                        hiring_rate_female_level_1)
-            hiring_male_1 = binomial(max(0,total_vacancies_1 - hiring_female_1),
-                                     1 - hiring_rate_female_level_1)
+            hiring_male_1 = binomial(
+                max(0, total_vacancies_1 - hiring_female_1),
+                1 - hiring_rate_female_level_1)
 
             # Write state variables to array and move to next iteration
 
@@ -216,8 +218,8 @@ class Mod_Stoch_FSHP(Base_model):
                       neg(promotions_of_females_level_1_2),
                       hiring_female_1]))
 
-            assert (number_of_females_level_1 >= 0), "negative number of females 1"
-
+            assert (
+            number_of_females_level_1 >= 0), "negative number of females 1"
 
             self.res[i, 1] = number_of_females_level_2 = max(0, sum(
                 list([prev_number_of_females_level_2,
