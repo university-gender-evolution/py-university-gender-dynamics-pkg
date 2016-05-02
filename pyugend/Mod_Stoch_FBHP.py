@@ -95,20 +95,8 @@ class Mod_Stoch_FBHP(Base_model):
             prev_number_of_vacancies_level_1 = self.res[i - 1, 8]
             prev_promotion_rate_female_level_1 = self.female_promotion_probability_1
             prev_promotion_rate_female_level_2 = self.female_promotion_probability_2
-            if np.isnan(prev_promotion_rate_female_level_1):
-                prev_promotion_rate_female_level_1 = 0
-            if np.isnan(prev_promotion_rate_female_level_2):
-                prev_promotion_rate_female_level_2 = 0
-            prev_gender_proportion_of_department = np.float32(
-                sum(list([prev_number_of_females_level_1,
-                          prev_number_of_females_level_2,
-                          prev_number_of_females_level_3])) / (
-                    sum(list([prev_number_of_females_level_1,
-                              prev_number_of_females_level_2,
-                              prev_number_of_females_level_3,
-                              prev_number_of_males_level_1,
-                              prev_number_of_males_level_2,
-                              prev_number_of_males_level_3]))))
+            department_size = self.res[i - 1, 0:6].sum()
+
 
             # Process Model
 
@@ -120,16 +108,24 @@ class Mod_Stoch_FBHP(Base_model):
             #  will get something like [-1,0,1,-1,0] or something. I need to
             # turn this into something like [2,-1,0]. That means randomly
             # assigning the values in the array to levels.
-            changes = np.random.choice([-1, 0, 1], variation_range)  # random
-            # growth/shrink
+            flag = False
+            while flag == False:
+                changes = np.random.choice([-1, 0, 1], variation_range)  # random
+                # growth/shrink
 
-            levels = np.random.choice([1, 2, 3],
-                                      variation_range)  # random level
-            # choice
+                levels = np.random.choice([1, 2, 3],
+                                          variation_range)  # random level
+                # choice
+                # need to test whether the candidate changes keep the
+                # department size within bounds.
 
-            change_to_level_3 = changes[np.where(levels == 3)[0]].sum()
-            change_to_level_2 = changes[np.where(levels == 2)[0]].sum()
-            change_to_level_1 = changes[np.where(levels == 1)[0]].sum()
+                if (department_size + changes.sum() <=
+                        department_size_upper_bound and department_size +
+                    changes.sum() >= department_size_lower_bound):
+                    change_to_level_3 = changes[np.where(levels == 3)[0]].sum()
+                    change_to_level_2 = changes[np.where(levels == 2)[0]].sum()
+                    change_to_level_1 = changes[np.where(levels == 1)[0]].sum()
+                    flag = True
 
             # first both female and males leave the department according to binomial probability.
 

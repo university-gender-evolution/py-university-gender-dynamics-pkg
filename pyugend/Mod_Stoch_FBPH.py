@@ -13,6 +13,17 @@ Notes:
 4/30/2016 - This model now follows the Mod_Stoch_FSPH skeleton. I have to
 include the functionality to allow variation of department size within a band.
 
+5/1/2016 -
+Okay, so the issue is that I am losing too many people in the model run, and so
+when I get to the next iteration of the model the number is already below the
+bound. And then no matter what I try and put in as candidates, it always gets
+
+so I can just add two breakpoints, one at the top and one at the bottom,
+
+5/1/2016 - okay, so the problem is that there is so much probability for
+people to leave and then not enough for them to be acquired. So I end up
+losing a lot of people each time, and even if I recycle the vacancies,
+I am still not hiring enough of them to recover. 
 """
 
 
@@ -82,11 +93,13 @@ class Mod_Stoch_FBPH(Base_model):
         department_size_upper_bound = self.upperbound
         department_size_lower_bound = self.lowerbound
         variation_range = self.variation_range
+        unfilled_vacanies = 0
+        change_to_level_1 = 0
+        change_to_level_2 = 0
+        change_to_level_3 = 0
 
         for i in range(1, self.duration):
             # initialize variables for this iteration
-
-
 
             prev_number_of_females_level_1 = self.res[i - 1, 0]
             prev_number_of_females_level_2 = self.res[i - 1, 1]
@@ -97,26 +110,13 @@ class Mod_Stoch_FBPH(Base_model):
             prev_number_of_vacancies_level_3 = self.res[i - 1, 6]
             prev_number_of_vacancies_level_2 = self.res[i - 1, 7]
             prev_number_of_vacancies_level_1 = self.res[i - 1, 8]
+            department_size = self.res[i - 1, 0:6].sum()
+
 
             # Process Model
 
             # Determine department size variation for this timestep
 
-
-            # this produces an array of values. Then I need to assign the
-            # values to levels. So if I have say a range of variation of 5. I
-            #  will get something like [-1,0,1,-1,0] or something. I need to
-            # turn this into something like [2,-1,0]. That means randomly
-            # assigning the values in the array to levels.
-            changes = np.random.choice([-1,0,1], variation_range)  # random
-            # growth/shrink
-
-            levels = np.random.choice([1,2,3], variation_range)  # random level
-            # choice
-
-            change_to_level_3 = changes[np.where(levels == 3)[0]].sum()
-            change_to_level_2 = changes[np.where(levels == 2)[0]].sum()
-            change_to_level_1 = changes[np.where(levels == 1)[0]].sum()
 
             # first both female and males leave the department according to binomial probability.
 
@@ -137,13 +137,13 @@ class Mod_Stoch_FBPH(Base_model):
 
 
             promotions_of_females_level_2_3 = binomial(max(0,min(
-                total_vacancies_3, prev_number_of_females_level_2),
-                female_promotion_probability_2_3))
+                total_vacancies_3, prev_number_of_females_level_2)),
+                female_promotion_probability_2_3)
 
             promotions_of_males_level_2_3 = binomial(max(0, min(
                 total_vacancies_3 -
                 promotions_of_females_level_2_3,
-                prev_number_of_males_level_2), male_promotion_probability_2_3))
+                prev_number_of_males_level_2)), male_promotion_probability_2_3)
 
 
 
@@ -192,15 +192,15 @@ class Mod_Stoch_FBPH(Base_model):
 
             promotions_of_females_level_1_2 = binomial(max(0,min(
                                               total_vacancies_2,
-                                              prev_number_of_females_level_1),
-                                              female_promotion_probability_1_2))
+                                              prev_number_of_females_level_1)),
+                                              female_promotion_probability_1_2)
 
 
             promotions_of_males_level_1_2 = binomial(max(0, min(
                                             total_vacancies_2 -
                                             promotions_of_females_level_1_2,
-                                            prev_number_of_males_level_1),
-                                            male_promotion_probability_1_2))
+                                            prev_number_of_males_level_1)),
+                                            male_promotion_probability_1_2)
 
             vacancies_remaining_after_promotion_2 = max(0, total_vacancies_2 - \
                                                         promotions_of_females_level_1_2 - \
@@ -314,8 +314,47 @@ class Mod_Stoch_FBPH(Base_model):
                     number_of_males_level_2,
                     number_of_males_level_3]))))
 
+            unfilled_vacanies = abs(department_size - self.res[i, 0:6].sum())
 
-            # print(self.res[i,:])
+            # this produces an array of values. Then I need to assign the
+            # values to levels. So if I have say a range of variation of 5. I
+            #  will get something like [-1,0,1,-1,0] or something. I need to
+            # turn this into something like [2,-1,0]. That means randomly
+            # assigning the values in the array to levels.
+            flag = False
+            while flag == False:
+                changes = np.append(np.random.choice([-1, 0, 1],
+                                                     variation_range),
+                                    np.ones(unfilled_vacanies*2))
+                # random
+                # growth/shrink
+
+                levels = np.random.choice([1, 2, 3],
+                                          variation_range + unfilled_vacanies)  #
+                # random level
+                # choice
+
+                # need to test whether the candidate changes keep the
+                # department size within bounds.
+                print(["old dept size:", department_size,
+                       "new dept size:", self.res[i, 0:6].sum(),
+                       "candidate:", department_size +
+                       changes.sum(),
+                       " added postions: ", changes.sum(),
+                       "unfilled ", unfilled_vacanies])
+                if (department_size + changes.sum() <
+                        department_size_upper_bound and department_size +
+                    changes.sum() > department_size_lower_bound):
+                    change_to_level_3 = np.int(changes[np.where(levels ==
+                                                                3)[0]].sum())
+                    change_to_level_2 = np.int(changes[np.where(levels ==
+                                                                2)[0]].sum())
+                    change_to_level_1 = np.int(changes[np.where(levels ==
+                                                                1)[0]].sum())
+                    flag = True
+
+            print(self.res[i,:])
+            print(self.res[i, 0:6].sum())
             ## Print Data matrix
 
         df_ = pd.DataFrame(self.res)

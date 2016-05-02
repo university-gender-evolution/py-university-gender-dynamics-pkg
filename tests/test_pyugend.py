@@ -3,6 +3,8 @@ from pyugend.Models import Base_model
 from pyugend.Mod_Stoch_VSHP import Mod_Stoch_VSHP
 from pyugend.Mod_Stoch_FSHP import Mod_Stoch_FSHP
 from pyugend.Mod_Stoch_FSPH import Mod_Stoch_FSPH
+from pyugend.Mod_Stoch_FBHP import Mod_Stoch_FBHP
+from pyugend.Mod_Stoch_FBPH import Mod_Stoch_FBPH
 from pyugend.ReplicationModel import Replication_model
 from pyugend.Comparison import Comparison
 import numpy as np
@@ -38,7 +40,7 @@ def mock_data():
              'male_promotion_probability_2': 0.19,
              'upperbound': 350,
              'lowerbound': 330,
-             'variation_range': 5,
+             'variation_range': 3,
              'duration': 40})
 
 
@@ -224,3 +226,8 @@ def test_basic_stochastic_with_random_dept_growth(mock_data):
 def test_basic_stochastic_with_random_dept_growth(mock_data):
     t = Mod_Stoch_VSHP(**mock_data)
     assert (t.lowerbound, 330)
+
+def test_FBPH_model_run(mock_data):
+    t = Mod_Stoch_FBPH(**mock_data)
+    t.run_model()
+    assert (isinstance(t.res, np.ndarray))
