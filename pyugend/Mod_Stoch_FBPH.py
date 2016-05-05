@@ -23,7 +23,7 @@ so I can just add two breakpoints, one at the top and one at the bottom,
 5/1/2016 - okay, so the problem is that there is so much probability for
 people to leave and then not enough for them to be acquired. So I end up
 losing a lot of people each time, and even if I recycle the vacancies,
-I am still not hiring enough of them to recover. 
+I am still not hiring enough of them to recover.
 """
 
 
@@ -321,30 +321,35 @@ class Mod_Stoch_FBPH(Base_model):
             #  will get something like [-1,0,1,-1,0] or something. I need to
             # turn this into something like [2,-1,0]. That means randomly
             # assigning the values in the array to levels.
+            department_size = self.res[i, 0:6].sum()
             flag = False
             while flag == False:
-                changes = np.append(np.random.choice([-1, 0, 1],
-                                                     variation_range),
-                                    np.ones(unfilled_vacanies*2))
+                # changes = np.append(np.random.choice([-1, 0, 1],
+                #                                      variation_range),
+                #                     np.ones(department_size_upper_bound -
+                #                             self.res[i,0:6].sum()))
+                changes = np.ones(department_size_upper_bound -
+                                            self.res[i,0:6].sum())
                 # random
                 # growth/shrink
 
                 levels = np.random.choice([1, 2, 3],
-                                          variation_range + unfilled_vacanies)  #
+                                          department_size_upper_bound -
+                                          self.res[i, 0:6].sum()
+                                          )  #
                 # random level
                 # choice
 
                 # need to test whether the candidate changes keep the
                 # department size within bounds.
-                print(["old dept size:", department_size,
-                       "new dept size:", self.res[i, 0:6].sum(),
-                       "candidate:", department_size +
-                       changes.sum(),
-                       " added postions: ", changes.sum(),
-                       "unfilled ", unfilled_vacanies])
-                if (department_size + changes.sum() <
-                        department_size_upper_bound and department_size +
-                    changes.sum() > department_size_lower_bound):
+                # print(["old dept size:", department_size,
+                #        "new dept size:", self.res[i, 0:6].sum(),
+                #        "candidate:", department_size +
+                #        changes.sum(),
+                #        " added postions: ", changes.sum(),
+                #        "unfilled ", unfilled_vacanies])
+                if (department_size <=
+                        department_size_upper_bound):
                     change_to_level_3 = np.int(changes[np.where(levels ==
                                                                 3)[0]].sum())
                     change_to_level_2 = np.int(changes[np.where(levels ==
@@ -353,8 +358,16 @@ class Mod_Stoch_FBPH(Base_model):
                                                                 1)[0]].sum())
                     flag = True
 
-            print(self.res[i,:])
-            print(self.res[i, 0:6].sum())
+                if (department_size > department_size_upper_bound):
+                    change_to_level_3 = 0
+                    change_to_level_2 = 0
+                    change_to_level_1 = 0
+
+                    flag = True
+
+
+            # print(self.res[i,:])
+            # print(self.res[i, 0:6].sum())
             ## Print Data matrix
 
         df_ = pd.DataFrame(self.res)
@@ -370,7 +383,8 @@ class Mod_Stoch_FBPH(Base_model):
                        'prom1',
                        'prom2',
                        'gendprop']
-        # print(df_)
+        #print(df_)
         recarray_results = df_.to_records(index=True)
         self.run = recarray_results
         return recarray_results
+

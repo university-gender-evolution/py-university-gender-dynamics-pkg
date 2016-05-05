@@ -189,10 +189,17 @@ def test_base_model_probability_calc_detail_array(mock_data):
 #                                                    'm2', 0.1, 0.8, 20, 150)
 
 
-# def test_plot_dept_size_over_time(mock_data):
-#     t = Mod_Stoch_FSPH(**mock_data)
-#     t.plot_department_size_over_time_multiple_runs(10)
+def test_plot_dept_size_over_time_shrinking(mock_data):
+    t = Mod_Stoch_FSPH(**mock_data)
+    t.plot_department_size_over_time_multiple_runs(10, 'Dept Size Shrinking '
+                                                       'Model', 'Years',
+                                                   'Department Size')
 
+def test_plot_dept_size_over_time_banded(mock_data):
+    t = Mod_Stoch_FBPH(**mock_data)
+    t.plot_department_size_over_time_multiple_runs(10, 'Dept Size Banded Model',
+                                                   'Years',
+                                                   'Department Size')
 
 # def test_plot_comparision_department_size(mock_data):
 #     modlist = list([Mod_Stoch_FSHP(**mock_data),
@@ -231,3 +238,16 @@ def test_FBPH_model_run(mock_data):
     t = Mod_Stoch_FBPH(**mock_data)
     t.run_model()
     assert (isinstance(t.res, np.ndarray))
+
+def test_FBPH_plot_dept_size(mock_data):
+    t = Mod_Stoch_FBPH(**mock_data)
+    t.plot_department_size_over_time_multiple_runs(300)
+
+def test_FBHP_model_run(mock_data):
+    t = Mod_Stoch_FBHP(**mock_data)
+    t.run_model()
+    assert (isinstance(t.res, np.ndarray))
+
+def test_FBHP_plot_dept_size(mock_data):
+    t = Mod_Stoch_FBHP(**mock_data)
+    t.plot_department_size_over_time_multiple_runs(200)

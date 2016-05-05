@@ -602,7 +602,9 @@ class Base_model():
         plt.show()
 
 
-    def plot_department_size_over_time_multiple_runs(self, num_runs):
+    def plot_department_size_over_time_multiple_runs(self, num_runs,
+                                                     title, xlable,
+                                                     ylabel):
 
         '''
         This function will calculate the average number of individuals in the department in each year and provide a chart forthe results.
@@ -618,6 +620,9 @@ class Base_model():
                             1.96*self.dept_size_matrix[
         'std'], self.dept_size_matrix['mean'] - 1.96*self.dept_size_matrix[
         'std'], alpha=0.5)
+        plt.xlabel(xlable)
+        plt.ylabel(ylabel)
+        plt.title(title)
         plt.show()
 
 

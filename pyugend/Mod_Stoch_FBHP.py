@@ -77,7 +77,10 @@ class Mod_Stoch_FBHP(Base_model):
         department_size_upper_bound = self.upperbound
         department_size_lower_bound = self.lowerbound
         variation_range = self.variation_range
-
+        unfilled_vacanies = 0
+        change_to_level_1 = 0
+        change_to_level_2 = 0
+        change_to_level_3 = 0
 
         for i in range(1, self.duration):
             # initialize variables for this iteration
@@ -102,30 +105,6 @@ class Mod_Stoch_FBHP(Base_model):
 
             # Determine department size variation for this timestep
 
-
-            # this produces an array of values. Then I need to assign the
-            # values to levels. So if I have say a range of variation of 5. I
-            #  will get something like [-1,0,1,-1,0] or something. I need to
-            # turn this into something like [2,-1,0]. That means randomly
-            # assigning the values in the array to levels.
-            flag = False
-            while flag == False:
-                changes = np.random.choice([-1, 0, 1], variation_range)  # random
-                # growth/shrink
-
-                levels = np.random.choice([1, 2, 3],
-                                          variation_range)  # random level
-                # choice
-                # need to test whether the candidate changes keep the
-                # department size within bounds.
-
-                if (department_size + changes.sum() <=
-                        department_size_upper_bound and department_size +
-                    changes.sum() >= department_size_lower_bound):
-                    change_to_level_3 = changes[np.where(levels == 3)[0]].sum()
-                    change_to_level_2 = changes[np.where(levels == 2)[0]].sum()
-                    change_to_level_1 = changes[np.where(levels == 1)[0]].sum()
-                    flag = True
 
             # first both female and males leave the department according to binomial probability.
 
@@ -294,7 +273,59 @@ class Mod_Stoch_FBHP(Base_model):
                     number_of_males_level_2,
                     number_of_males_level_3]))))
 
+            unfilled_vacanies = abs(department_size - self.res[i, 0:6].sum())
 
+            # this produces an array of values. Then I need to assign the
+            # values to levels. So if I have say a range of variation of 5. I
+            #  will get something like [-1,0,1,-1,0] or something. I need to
+            # turn this into something like [2,-1,0]. That means randomly
+            # assigning the values in the array to levels.
+            department_size = self.res[i, 0:6].sum()
+
+            flag = False
+            while flag == False:
+                # changes = np.append(np.random.choice([-1, 0, 1],
+                #                                      variation_range),
+                #                     np.ones(department_size_upper_bound -
+                #                             self.res[i,0:6].sum()))
+                changes = np.ones(department_size_upper_bound -
+                                  self.res[i, 0:6].sum())
+                # random
+                # growth/shrink
+
+                levels = np.random.choice([1, 2, 3],
+                                          department_size_upper_bound -
+                                          self.res[i, 0:6].sum()
+                                          )  #
+                # random level
+                # choice
+
+                # need to test whether the candidate changes keep the
+                # department size within bounds.
+                # print(["old dept size:", department_size,
+                #        "new dept size:", self.res[i, 0:6].sum(),
+                #        "candidate:", department_size +
+                #        changes.sum(),
+                #        " added postions: ", changes.sum(),
+                #        "unfilled ", unfilled_vacanies])
+                if (department_size <=
+                        department_size_upper_bound):
+                    change_to_level_3 = np.int(changes[np.where(levels ==
+                                                                3)[0]].sum())
+                    change_to_level_2 = np.int(changes[np.where(levels ==
+                                                                2)[0]].sum())
+                    change_to_level_1 = np.int(changes[np.where(levels ==
+                                                                1)[0]].sum())
+                    flag = True
+
+                if (department_size > department_size_upper_bound):
+                    change_to_level_3 = 0
+                    change_to_level_2 = 0
+                    change_to_level_1 = 0
+
+                    flag = True
+
+            #print(i)
             # print(self.res[i,:])
             ## Print Data matrix
 
