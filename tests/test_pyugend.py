@@ -1,5 +1,7 @@
 import pytest
 from pyugend.Models import Base_model
+from pyugend.Mod_Stoch_FBPH_alt import Mod_Stoch_FBPH_alt
+from pyugend.Mod_Stoch_FBHP_alt import Mod_Stoch_FBHP_alt
 from pyugend.Mod_Stoch_VSHP import Mod_Stoch_VSHP
 from pyugend.Mod_Stoch_FSHP import Mod_Stoch_FSHP
 from pyugend.Mod_Stoch_FSPH import Mod_Stoch_FSPH
@@ -226,14 +228,6 @@ def test_plot_comparision_empirical_probability_gender_proportion(mock_data):
     c.plot_comparison_empirical_probability_gender_proportion(100, 0.19)
 
 
-def test_basic_stochastic_with_random_dept_growth(mock_data):
-    t = Mod_Stoch_VSHP(**mock_data)
-    assert (t.upperbound, 350)
-
-def test_basic_stochastic_with_random_dept_growth(mock_data):
-    t = Mod_Stoch_VSHP(**mock_data)
-    assert (t.lowerbound, 330)
-
 def test_FBPH_model_run(mock_data):
     t = Mod_Stoch_FBPH(**mock_data)
     t.run_model()
@@ -250,4 +244,37 @@ def test_FBHP_model_run(mock_data):
 
 def test_FBHP_plot_dept_size(mock_data):
     t = Mod_Stoch_FBHP(**mock_data)
-    t.plot_department_size_over_time_multiple_runs(200)
+    t.plot_department_size_over_time_multiple_runs(20)
+
+def test_FBPH_alt_plot_dept_size(mock_data):
+    t = Mod_Stoch_FBPH_alt(**mock_data)
+    t.plot_department_size_over_time_multiple_runs(20, 'Dept Size Banded '
+                                                        'Model',
+                                                   'Years',
+                                                   'Department Size')
+
+def test_FBHP_alt_plot_dept_size(mock_data):
+    t = Mod_Stoch_FBHP_alt(**mock_data)
+    t.plot_department_size_over_time_multiple_runs(20, 'Dept Size Banded '
+                                                        'Model',
+                                                   'Years',
+                                                   'Department Size')
+
+def test_FBPH_alt_plot_unfilled(mock_data):
+    t = Mod_Stoch_FBPH_alt(**mock_data)
+    t.plot_unfilled_vacancies_over_time_multiple_runs(20, 'Dept Size Banded Model',
+                                                   'Years',
+                                                   'unfilled vacancies')
+
+
+def test_FBPH_alt_plot_gender_proportion(mock_data):
+    t = Mod_Stoch_FBPH_alt(**mock_data)
+    t.plot_multiple_runs_gender_prop(20)
+
+
+def test_plot_comparision_unfilled_vacancies(mock_data):
+    modlist = list([Mod_Stoch_FBPH_alt(**mock_data),
+                    Mod_Stoch_FBHP_alt(**mock_data)])
+    c = Comparison(modlist)
+    c.plot_comparison_spec_parameter('dept_size', 'department size',
+                                     'year', 'department size')

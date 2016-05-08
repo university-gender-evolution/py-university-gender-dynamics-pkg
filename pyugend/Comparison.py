@@ -45,6 +45,44 @@ class Comparison():
         plt.legend(loc='upper right', shadow=True)
         plt.show()
 
+    def plot_comparison_spec_parameter(self, parm, title,
+                                       xlabel, ylabel, number_of_runs=10):
+
+        ## This function will execute gender proportion comparisons for all models
+
+        ## Color list
+
+        line_colors = ['#7fc97f', '#beaed4', '#fdc086', '#386cb0', '#f0027f',
+                       '#ffff99']
+
+        for mod in self.mlist:
+            mod.run_multiple(number_of_runs)
+
+        ## Create plot array and execute plot
+
+        for k, v in enumerate(self.mlist):
+            plt.plot(range(self.mlist[k].duration),
+                     self.mlist[k].mean_matrix[parm],
+                     color=line_colors[k], label=self.mlist[k].label,
+                     linewidth=2.0)
+
+            plt.plot(range(self.mlist[k].duration),
+                     self.mlist[k].mean_matrix[parm])
+            plt.fill_between(range(self.mlist[k].duration),
+                             self.mlist[k].mean_matrix[
+                                 parm] +
+                             1.96 * self.mlist[k].std_matrix[
+                                 parm],
+                             self.mlist[k].mean_matrix[parm] - 1.96 *
+                             self.mlist[k].std_matrix[
+                                 parm], color=line_colors[k], alpha=0.5)
+
+        plt.title(title)
+        plt.xlabel(xlabel)
+        plt.ylabel(ylabel)
+        plt.legend(loc='upper right', shadow=True)
+        plt.show()
+
     def plot_comparison_department_size(self, number_of_runs=10):
 
         ## This function will execute gender proportion comparisons for all models
