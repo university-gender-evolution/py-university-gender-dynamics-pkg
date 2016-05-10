@@ -46,6 +46,38 @@ def mock_data():
              'duration': 40})
 
 
+@pytest.fixture
+def mgmt_data():
+    return ({'number_of_females_1': 3,
+             'number_of_females_2': 3,
+             'number_of_females_3': 2,
+             'number_of_males_1': 11,
+             'number_of_males_2': 12,
+             'number_of_males_3': 43,
+             'number_of_initial_vacancies_1': 5.303,
+             'number_of_initial_vacancies_2': 5.9,
+             'number_of_initial_vacancies_3': 8.31,
+             'hiring_rate_women_1': 0.172,
+             'hiring_rate_women_2': 0.4,
+             'hiring_rate_women_3': 0.167,
+             'attrition_rate_women_1': 0.056,
+             'attrition_rate_women_2': 0.00,
+             'attrition_rate_women_3': 0.074,
+             'attrition_rate_men_1': 0.069,
+             'attrition_rate_men_2': 0.057,
+             'attrition_rate_men_3': 0.040,
+             'probablity_of_outside_hire_1': 1,
+             'probability_of_outside_hire_2': 0.125,
+             'probability_of_outside_hire_3': 0.150,
+             'female_promotion_probability_1': 0.0555,
+             'female_promotion_probability_2': 0.1905,
+             'male_promotion_probability_1': 0.0635,
+             'male_promotion_probability_2': 0.1149,
+             'upperbound': 84,
+             'lowerbound': 64,
+             'variation_range': 3,
+             'duration': 40})
+
 
 def test_Base_model(mock_data):
     assert isinstance(Base_model(**mock_data), Base_model)
@@ -237,8 +269,8 @@ def test_FBPH_plot_dept_size(mock_data):
     t = Mod_Stoch_FBPH(**mock_data)
     t.plot_department_size_over_time_multiple_runs(300)
 
-def test_FBHP_model_run(mock_data):
-    t = Mod_Stoch_FBHP(**mock_data)
+def test_FBHP_model_run(mgmt_data):
+    t = Mod_Stoch_FBHP_alt(**mgmt_data)
     t.run_model()
     assert (isinstance(t.res, np.ndarray))
 
@@ -278,3 +310,7 @@ def test_plot_comparision_unfilled_vacancies(mock_data):
     c = Comparison(modlist)
     c.plot_comparison_spec_parameter('dept_size', 'department size',
                                      'year', 'department size')
+
+def test_FBHP_alt_plot_gend_proportion(mgmt_data):
+    t = Mod_Stoch_FBHP_alt(**mgmt_data)
+    t.plot_multiple_runs_gender_prop(20)

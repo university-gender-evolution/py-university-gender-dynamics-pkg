@@ -12,7 +12,7 @@ from pyugend.Mod_Stoch_FBHP import Mod_Stoch_FBHP
 from pyugend.Mod_Stoch_FBPH import Mod_Stoch_FBPH
 from pyugend.Mod_Stoch_FBHP_alt import Mod_Stoch_FBHP_alt
 from pyugend.Mod_Stoch_FBPH_alt import Mod_Stoch_FBPH_alt
-
+from pyugend.Comparison import Comparison
 
 
 
