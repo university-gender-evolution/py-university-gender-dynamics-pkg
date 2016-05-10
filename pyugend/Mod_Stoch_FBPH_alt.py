@@ -354,15 +354,29 @@ class Mod_Stoch_FBPH_alt(Base_model):
                                                                 1)[0]].sum())
                     flag = True
 
-                # if (department_size > department_size_upper_bound):
-                #     change_to_level_3 = 0
-                #     change_to_level_2 = 0
-                #     change_to_level_1 = 0
-                #
-                #     flag = True
+                if (department_size > department_size_upper_bound):
+                    change_to_level_3 = 0
+                    change_to_level_2 = 0
+                    change_to_level_1 = 0
+
+                    flag = True
+
+                if department_size < department_size_lower_bound:
+                    changes = np.ones(variation_range)
+                    change_to_level_3 = np.int(changes[np.where(levels ==
+                                                                3)[
+                        0]].sum())
+                    change_to_level_2 = np.int(changes[np.where(levels ==
+                                                                2)[
+                        0]].sum())
+                    change_to_level_1 = np.int(changes[np.where(levels ==
+                                                                1)[
+                        0]].sum())
+                    flag = True
 
 
-            # print(self.res[i,:])
+
+                        # print(self.res[i,:])
             # print(self.res[i, 0:6].sum())
             ## Print Data matrix
 
