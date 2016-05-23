@@ -10,20 +10,9 @@ faculty.
 
 Notes:
 
-4/30/2016 - This model now follows the Mod_Stoch_FSPH skeleton. I have to
-include the functionality to allow variation of department size within a band.
-
-5/1/2016 -
-Okay, so the issue is that I am losing too many people in the model run, and so
-when I get to the next iteration of the model the number is already below the
-bound. And then no matter what I try and put in as candidates, it always gets
-
-so I can just add two breakpoints, one at the top and one at the bottom,
-
-5/1/2016 - okay, so the problem is that there is so much probability for
-people to leave and then not enough for them to be acquired. So I end up
-losing a lot of people each time, and even if I recycle the vacancies,
-I am still not hiring enough of them to recover.
+5/7/2016 - This is an alternative model for the range models. It is based
+upon allowing the size of the department to vary but with greater probability
+for male hires. So I will see how that goes.
 """
 
 
@@ -45,8 +34,8 @@ class Mod_Stoch_FBPH(Base_model):
 
     def __init__(self, **kwds):
         Base_model.__init__(self, **kwds)
-        self.name = "Model 3b"
-        self.label = "Model 3b"
+        self.name = "Model 3b alt"
+        self.label = "Model 3b alt"
     def run_model(self):
 
         ## initialize data structure
@@ -89,8 +78,8 @@ class Mod_Stoch_FBPH(Base_model):
         attrition_rate_male_level_3 = self.dm3
         probability_of_outside_hire_level_3 = self.phire3
         probability_of_outside_hire_level_2 = self.phire2
-        male_promotion_probability_1_2 = self.male_promotion_probability_1
-        male_promotion_probability_2_3 = self.male_promotion_probability_2
+        prob_no_prom_2_3 = 0.0
+        prob_no_prom_1_2 = 0.0
         female_promotion_probability_1_2 = self.female_promotion_probability_1
         female_promotion_probability_2_3 = self.female_promotion_probability_2
         department_size_upper_bound = self.upperbound
@@ -143,10 +132,12 @@ class Mod_Stoch_FBPH(Base_model):
                 total_vacancies_3, prev_number_of_females_level_2)),
                 female_promotion_probability_2_3)
 
-            promotions_of_males_level_2_3 = binomial(max(0, min(
-                total_vacancies_3 -
-                promotions_of_females_level_2_3,
-                prev_number_of_males_level_2)), male_promotion_probability_2_3)
+            promotions_of_males_level_2_3 = binomial(max(0,
+                                           min(total_vacancies_3 - \
+                                           promotions_of_females_level_2_3,
+                                           prev_number_of_males_level_2)),
+                                           1 - female_promotion_probability_2_3)
+
 
 
 
@@ -159,11 +150,10 @@ class Mod_Stoch_FBPH(Base_model):
 
 
             hiring_female_3 = binomial(vacancies_remaining_after_promotion_3,
-                                       probability_of_outside_hire_level_3 * hiring_rate_female_level_3)
-            hiring_male_3 = binomial(max(0,
-                            vacancies_remaining_after_promotion_3 - hiring_female_3),
-                            probability_of_outside_hire_level_3 * (
-                            1 - hiring_rate_female_level_3))
+                                       hiring_rate_female_level_3)
+
+            hiring_male_3 = max(0,vacancies_remaining_after_promotion_3 - \
+                            hiring_female_3)
 
 
 
@@ -199,23 +189,18 @@ class Mod_Stoch_FBPH(Base_model):
                                               female_promotion_probability_1_2)
 
 
-            promotions_of_males_level_1_2 = binomial(max(0, min(
-                                            total_vacancies_2 -
-                                            promotions_of_females_level_1_2,
-                                            prev_number_of_males_level_1)),
-                                            male_promotion_probability_1_2)
+            promotions_of_males_level_1_2 = min(total_vacancies_2 - \
+                                           promotions_of_females_level_1_2,
+                                           prev_number_of_males_level_1)
 
             vacancies_remaining_after_promotion_2 = max(0, total_vacancies_2 - \
                                                         promotions_of_females_level_1_2 - \
                                                         promotions_of_males_level_1_2)
 
             hiring_female_2 = binomial(vacancies_remaining_after_promotion_2,
-                                       probability_of_outside_hire_level_2 *
                                        hiring_rate_female_level_2)
-            hiring_male_2 = binomial(max(0,
-                            vacancies_remaining_after_promotion_2 - hiring_female_2),
-                            probability_of_outside_hire_level_2 * (
-                            1 - hiring_rate_female_level_2))
+            hiring_male_2 = max(0, vacancies_remaining_after_promotion_2 - \
+                            hiring_female_2)
 
             ## Level 1
 
@@ -241,8 +226,7 @@ class Mod_Stoch_FBPH(Base_model):
             hiring_female_1 = binomial(max(0, total_vacancies_1),
                               hiring_rate_female_level_1)
 
-            hiring_male_1 = binomial(max(0,total_vacancies_1 - hiring_female_1),
-                            1 - hiring_rate_female_level_1)
+            hiring_male_1 = max(0, total_vacancies_1 - hiring_female_1)
 
             # Write state variables to array and move to next iteration
 
@@ -334,6 +318,7 @@ class Mod_Stoch_FBPH(Base_model):
             self.res[i, 24] = promotions_of_females_level_1_2
             self.res[i, 25] = promotions_of_males_level_1_2
 
+
             # this produces an array of values. Then I need to assign the
             # values to levels. So if I have say a range of variation of 5. I
             #  will get something like [-1,0,1,-1,0] or something. I need to
@@ -342,19 +327,11 @@ class Mod_Stoch_FBPH(Base_model):
 
             flag = False
             while flag == False:
-                # changes = np.append(np.random.choice([-1, 0, 1],
-                #                                      variation_range),
-                #                     np.ones(department_size_upper_bound -
-                #                             self.res[i,0:6].sum()))
-                changes = np.ones(department_size_upper_bound -
-                                            self.res[i,0:6].sum())
-                # random
-                # growth/shrink
 
-                levels = np.random.choice([1, 2, 3],
-                                          department_size_upper_bound -
-                                          self.res[i, 0:6].sum()
-                                          )  #
+                changes = np.random.choice([-1, 0, 1], variation_range)
+
+
+                levels = np.random.choice([1, 2, 3], variation_range)  #
                 # random level
                 # choice
 
@@ -366,8 +343,9 @@ class Mod_Stoch_FBPH(Base_model):
                 #        changes.sum(),
                 #        " added postions: ", changes.sum(),
                 #        "unfilled ", unfilled_vacanies])
-                if (department_size <=
-                        department_size_upper_bound):
+                if (department_size + changes.sum() <=
+                        department_size_upper_bound and department_size +
+                    changes.sum() >= department_size_lower_bound):
                     change_to_level_3 = np.int(changes[np.where(levels ==
                                                                 3)[0]].sum())
                     change_to_level_2 = np.int(changes[np.where(levels ==
@@ -383,8 +361,22 @@ class Mod_Stoch_FBPH(Base_model):
 
                     flag = True
 
+                if department_size < department_size_lower_bound:
+                    changes = np.ones(variation_range)
+                    change_to_level_3 = np.int(changes[np.where(levels ==
+                                                                3)[
+                        0]].sum())
+                    change_to_level_2 = np.int(changes[np.where(levels ==
+                                                                2)[
+                        0]].sum())
+                    change_to_level_1 = np.int(changes[np.where(levels ==
+                                                                1)[
+                        0]].sum())
+                    flag = True
 
-            # print(self.res[i,:])
+
+
+                        # print(self.res[i,:])
             # print(self.res[i, 0:6].sum())
             ## Print Data matrix
 
