@@ -530,7 +530,8 @@ class Base_model():
 
         plt.show()
 
-    def plot_multiple_runs_gender_prop(self, num_runs = 100):
+    def plot_multiple_runs_gender_prop(self, title, xlabel,
+                                        ylabel, num_runs = 100):
 
         if self.mean_matrix == 0:
             print("generating multiple runs data.")
@@ -544,13 +545,13 @@ class Base_model():
                              'gendprop'],
                          self.mean_matrix['gendprop'] - 1.96 * self.std_matrix[
                              'gendprop'], alpha=0.5)
-        plt.title('Gender Proportion over Time for Model: ' + self.name)
-        plt.xlabel('Years')
-        plt.ylabel('Percentage of the Department that is Women')
+        plt.title(title)
+        plt.xlabel(xlabel)
+        plt.ylabel(ylabel)
         plt.legend(loc='upper right', shadow=True)
         plt.show()
 
-    def plot_parameter_sweep(self):
+    def plot_parameter_sweep(self, title, xlabel, ylabel):
 
         if not hasattr(self, 'parameter_sweep_array'):
             print("please run parameter sweep function first.")
@@ -561,8 +562,9 @@ class Base_model():
                          1.96 * plot_array[:, 2], plot_array[:, 1] -
                          1.96 * plot_array[:, 2], alpha=0.5)
 
-        plt.xlabel('Parameter value')
-        plt.ylabel('Gender Proportion')
+        plt.xlabel(xlabel)
+        plt.ylabel(ylabel)
+        plt.title(title)
         plt.legend(loc='upper right', shadow=True)
         plt.show()
 
@@ -637,23 +639,31 @@ class Base_model():
 
         plt.show()
 
-    def plot_empirical_probability_gender_proportion(self, num_runs, target):
+    def plot_empirical_probability_gender_proportion(self, num_runs, target,
+                                                     title, xlabel, ylabel):
 
         self.run_probability_analysis_gender_proportion(num_runs, target)
 
         plt.plot(self.probability_matrix['Year'],
                  self.probability_matrix['Probability'])
+        plt.title(title)
+        plt.xlabel(xlabel)
+        plt.ylabel(ylabel)
         plt.show()
 
     def plot_empirical_probability_group_detail(self, number_of_runs, param,
                                                 prof_group, llim,
-                                                ulim, num_of_steps, target):
+                                                ulim, num_of_steps, target,
+                                                title, xlabel, ylabel):
 
         d = self.run_probability_analysis_parameter_sweep_gender_detail(
             number_of_runs, param, prof_group, llim,
             ulim, num_of_steps, target)
 
         plt.plot(d['param'], d['probability'])
+        plt.title(title)
+        plt.xlabel(xlabel)
+        plt.ylabel(ylabel)
         plt.show()
 
     def plot_department_size_over_time_multiple_runs(self, num_runs,
@@ -674,7 +684,7 @@ class Base_model():
                          1.96 * self.dept_size_matrix[
                              'std'], self.dept_size_matrix['mean'] - 1.96 *
                          self.dept_size_matrix[
-                             'std'], alpha=0.5)
+                             'std'], alpha=0.)
         plt.xlabel(xlable)
         plt.ylabel(ylabel)
         plt.title(title)
@@ -701,10 +711,6 @@ class Base_model():
         plt.ylabel(ylabel)
         plt.title(title)
         plt.show()
-
-
-    def plot_department_size_parameter_sweep(self):
-        pass
 
     def export_model_run(self):
 

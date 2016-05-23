@@ -112,7 +112,7 @@ def test_base_model_parameter_sweep(mock_data):
 
 
 def test_base_model_plot_multiple_runs(mock_data):
-    t = Mod_Stoch_VSHP(**mock_data)
+    t = Mod_Stoch_FBHP_alt(**mock_data)
     t.run_multiple(10)
     t.plot_multiple_runs_detail()
 
