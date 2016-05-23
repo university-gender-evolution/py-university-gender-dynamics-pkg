@@ -646,7 +646,7 @@ class Base_model():
 
         plt.plot(self.probability_matrix['Year'],
                  self.probability_matrix['Probability'])
-        plt.plot(self.probability_matrix['Year'], 0.5, color='red')
+        plt.axhline(y=0.5, color='r')
         plt.title(title)
         plt.xlabel(xlabel)
         plt.ylabel(ylabel)
