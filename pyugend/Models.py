@@ -646,6 +646,7 @@ class Base_model():
 
         plt.plot(self.probability_matrix['Year'],
                  self.probability_matrix['Probability'])
+        plt.plot(range(self.duration), 0.5, color='red')
         plt.title(title)
         plt.xlabel(xlabel)
         plt.ylabel(ylabel)
@@ -661,6 +662,7 @@ class Base_model():
             ulim, num_of_steps, target)
 
         plt.plot(d['param'], d['probability'])
+        plt.plot(range(self.duration), 0.5, color='red')
         plt.title(title)
         plt.xlabel(xlabel)
         plt.ylabel(ylabel)

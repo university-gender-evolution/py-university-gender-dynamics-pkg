@@ -34,8 +34,8 @@ class Mod_Stoch_FBPH(Base_model):
 
     def __init__(self, **kwds):
         Base_model.__init__(self, **kwds)
-        self.name = "Model 3b alt"
-        self.label = "Model 3b alt"
+        self.name = "Promote-Hire"
+        self.label = "Promote-Hire"
     def run_model(self):
 
         ## initialize data structure
