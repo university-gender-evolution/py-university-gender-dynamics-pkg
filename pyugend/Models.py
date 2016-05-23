@@ -474,7 +474,7 @@ class Base_model():
                                  1.96 * self.std_matrix[
                                      'f1'], self.mean_matrix['f1'] - 1.96 *
                                  self.std_matrix[
-                                     'f1'], alpha=0.5)
+                                     'f1'], alpha=0.25)
         axarr[0, 0].legend(loc='upper right', shadow=True)
 
         axarr[0, 1].plot(range(self.duration), self.mean_matrix['f2'])
@@ -485,7 +485,7 @@ class Base_model():
                                  1.96 * self.std_matrix[
                                      'f2'], self.mean_matrix['f2'] - 1.96 *
                                  self.std_matrix[
-                                     'f2'], alpha=0.5)
+                                     'f2'], alpha=0.25)
 
         axarr[0, 2].plot(range(self.duration), self.mean_matrix['f3'])
         axarr[0, 2].set_title('Female level 3')
@@ -496,7 +496,7 @@ class Base_model():
                                  1.96 * self.std_matrix[
                                      'f3'], self.mean_matrix['f3'] - 1.96 *
                                  self.std_matrix[
-                                     'f3'], alpha=0.5)
+                                     'f3'], alpha=0.25)
 
         axarr[1, 0].plot(range(self.duration), self.mean_matrix['m1'])
         axarr[1, 0].set_title('Male level 1')
@@ -506,7 +506,7 @@ class Base_model():
                                  1.96 * self.std_matrix[
                                      'm1'], self.mean_matrix['m1'] - 1.96 *
                                  self.std_matrix[
-                                     'm1'], alpha=0.5)
+                                     'm1'], alpha=0.25)
 
         axarr[1, 1].plot(range(self.duration), self.mean_matrix['m2'])
         axarr[1, 1].set_title('Male level 2')
@@ -516,7 +516,7 @@ class Base_model():
                                  1.96 * self.std_matrix[
                                      'm2'], self.mean_matrix['m2'] - 1.96 *
                                  self.std_matrix[
-                                     'm2'], alpha=0.5)
+                                     'm2'], alpha=0.25)
 
         axarr[1, 2].plot(range(self.duration), self.mean_matrix['m3'])
         axarr[1, 2].set_title('Male level 3')
@@ -526,7 +526,7 @@ class Base_model():
                                  1.96 * self.std_matrix[
                                      'm3'], self.mean_matrix['m3'] - 1.96 *
                                  self.std_matrix[
-                                     'm3'], alpha=0.5)
+                                     'm3'], alpha=0.25)
 
         plt.show()
 
@@ -544,7 +544,7 @@ class Base_model():
                          1.96 * self.std_matrix[
                              'gendprop'],
                          self.mean_matrix['gendprop'] - 1.96 * self.std_matrix[
-                             'gendprop'], alpha=0.5)
+                             'gendprop'], alpha=0.25)
         plt.title(title)
         plt.xlabel(xlabel)
         plt.ylabel(ylabel)
@@ -684,7 +684,7 @@ class Base_model():
                          1.96 * self.dept_size_matrix[
                              'std'], self.dept_size_matrix['mean'] - 1.96 *
                          self.dept_size_matrix[
-                             'std'], alpha=0.)
+                             'std'], alpha=0.25)
         plt.xlabel(xlable)
         plt.ylabel(ylabel)
         plt.title(title)
@@ -706,7 +706,7 @@ class Base_model():
                          1.96 * self.std_matrix[
                              'unfilled'], self.mean_matrix['unfilled'] - 1.96 *
                          self.std_matrix[
-                             'unfilled'], alpha=0.5)
+                             'unfilled'], alpha=0.25)
         plt.xlabel(xlable)
         plt.ylabel(ylabel)
         plt.title(title)
