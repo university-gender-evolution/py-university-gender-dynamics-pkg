@@ -310,26 +310,26 @@ class Comparison():
 
 
 
-    def plot_comparison_empirical_probability_gender_proportion(self, number_of_runs, param, prof_group, llim,
-                    ulim, num_of_steps, target):
-
-
-        for mod in self.mlist:
-            mod.run_probability_analysis_parameter_sweep_gender_detail(number_of_runs, param, prof_group, llim,
-                    ulim, num_of_steps, target)
-
-
-        for k,v in enumerate(self.mlist):
-
-            plot_array = self.mlist[k].last_empirical_probability_detail
-            plt.plot(plot_array['param'], plot_array['probability'], label = self.mlist[k].label)
-
-
-        plt.title('Probability plot for Parameter Sweep on ' + param + ' for ' + str(self.mlist[0].duration) + ' years')
-        plt.xlabel(param)
-        plt.ylabel('Probability of Target Value or Greater')
-        plt.legend(loc='upper right', shadow=True)
-        plt.show()
+    # def plot_comparison_empirical_probability_gender_proportion(self, number_of_runs, param, prof_group, llim,
+    #                 ulim, num_of_steps, target):
+    #
+    #
+    #     for mod in self.mlist:
+    #         mod.run_probability_analysis_parameter_sweep_gender_detail(number_of_runs, param, prof_group, llim,
+    #                 ulim, num_of_steps, target)
+    #
+    #
+    #     for k,v in enumerate(self.mlist):
+    #
+    #         plot_array = self.mlist[k].last_empirical_probability_detail
+    #         plt.plot(plot_array['param'], plot_array['probability'], label = self.mlist[k].label)
+    #
+    #
+    #     plt.title('Probability plot for Parameter Sweep on ' + param + ' for ' + str(self.mlist[0].duration) + ' years')
+    #     plt.xlabel(param)
+    #     plt.ylabel('Probability of Target Value or Greater')
+    #     plt.legend(loc='upper right', shadow=True)
+    #     plt.show()
 
 
     def plot_comparison_empirical_probability_gender_proportion(self, number_of_runs, target):

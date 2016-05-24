@@ -457,8 +457,12 @@ class Base_model():
 
         return (empirical_probability_param_sweep_df)
 
-    def plot_multiple_runs_detail(self):
+    def plot_multiple_runs_detail(self, num_runs):
 
+
+        if self.model_summary_stats == 0:
+            print("generating multiple runs data.")
+            self.run_multiple(num_runs)
         pd_stats_matrix = pd.DataFrame(self.model_summary_stats)
         tmp = pd_stats_matrix.select_dtypes(include=[np.number])
         pd_stats_matrix.loc[:, tmp.columns] = np.round(tmp, 2)
