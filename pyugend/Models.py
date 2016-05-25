@@ -468,7 +468,6 @@ class Base_model():
         pd_stats_matrix.loc[:, tmp.columns] = np.round(tmp, 2)
 
         f, axarr = plt.subplots(nrows=2, ncols=3)
-
         axarr[0, 0].plot(range(self.duration), self.mean_matrix['f1'],
                          label=self.label)
         axarr[0, 0].set_title('Female level 1')
