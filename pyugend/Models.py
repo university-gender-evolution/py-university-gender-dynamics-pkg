@@ -86,6 +86,7 @@ class Base_model():
         self.model_summary_stats = 0
         self.std_matrix = 0
         self.pd_last_row_data = 0
+        self.pct_female_matrix = 0
 
     def run_model(self):
 
@@ -138,6 +139,9 @@ class Base_model():
         self.std_matrix = np.empty_like(res_array['run'][0])
         self.dept_size_matrix = pd.DataFrame(np.zeros([self.duration, 3]))
         self.dept_size_matrix.columns = ['year', 'mean', 'std']
+        self.pct_female_matrix = pd.DataFrame(np.zeros([self.duration, 7]))
+        self.pct_female_matrix.columns = ['year','mpct_f1', 'mpct_f2', 'mpct_f3',
+                                          'spct_f1', 'spct_f2', 'spct_f3']
         ## Collect mean and standard deviations for each column/row across all
         # iterations of the model.
 
@@ -157,6 +161,23 @@ class Base_model():
             self.dept_size_matrix['year'][idx] = idx
             self.dept_size_matrix['mean'][idx] = _s.mean()
             self.dept_size_matrix['std'][idx] = _s.std()
+
+            _u = np.array([r['run']['f1'][idx]/(r['run']['f1'][idx] + r[
+                'run']['m1'][idx]) for r
+                in res_array])
+            self.pct_female_matrix['year'][idx] = idx
+            self.pct_female_matrix['mpct_f1'][idx] = _u.mean()
+            self.pct_female_matrix['spct_f1'][idx] = _u.std()
+
+            _u = np.array([r['run']['f2'][idx] / (r['run']['f2'][idx] + r[
+            'run']['m2'][idx]) for r in res_array])
+            self.pct_female_matrix['mpct_f2'][idx] = _u.mean()
+            self.pct_female_matrix['spct_f2'][idx] = _u.std()
+
+            _u = np.array([r['run']['f3'][idx] / (r['run']['f3'][idx] + r[
+            'run']['m3'][idx]) for r in res_array])
+            self.pct_female_matrix['mpct_f3'][idx] = _u.mean()
+            self.pct_female_matrix['spct_f3'][idx] = _u.std()
 
         # create matrix to hold data for the final iteration of the model. That data
         # holds the distributions of the data. The matrix that holds
@@ -457,7 +478,19 @@ class Base_model():
 
         return (empirical_probability_param_sweep_df)
 
-    def plot_multiple_runs_detail(self, num_runs):
+
+    def run_gender_percentages_by_level(self, num_runs):
+
+        ## This function will take the res_array and compute a new matrix
+        # with the average and standard deviations for the percentages.
+
+        ## Create a new array to hold the data. That will be the percentage
+    # of women by level. And also I need to standard deviation by level and
+    # year too.
+        pass
+
+
+    def plot_multiple_runs_detail(self, num_runs, group_title, target):
 
 
         if self.model_summary_stats == 0:
@@ -468,6 +501,7 @@ class Base_model():
         pd_stats_matrix.loc[:, tmp.columns] = np.round(tmp, 2)
 
         f, axarr = plt.subplots(nrows=2, ncols=3)
+        f.suptitle(group_title)
         axarr[0, 0].plot(range(self.duration), self.mean_matrix['f1'],
                          label=self.label)
         axarr[0, 0].set_title('Female level 1')
@@ -478,7 +512,87 @@ class Base_model():
                                      'f1'], self.mean_matrix['f1'] - 1.96 *
                                  self.std_matrix[
                                      'f1'], alpha=0.25)
-        axarr[0, 0].legend(loc='upper right', shadow=True)
+        axarr[0, 0].axhline(y=target, color='r')
+
+        axarr[0, 1].plot(range(self.duration), self.mean_matrix['f2'])
+        axarr[0, 1].set_title('Female level 2')
+        axarr[0, 1].set_xlabel('Years')
+        axarr[0, 1].set_ylabel('Number of Females')
+        axarr[0, 1].fill_between(range(self.duration), self.mean_matrix['f2'] +
+                                 1.96 * self.std_matrix[
+                                     'f2'], self.mean_matrix['f2'] - 1.96 *
+                                 self.std_matrix[
+                                     'f2'], alpha=0.25)
+
+        axarr[0, 2].plot(range(self.duration), self.mean_matrix['f3'])
+        axarr[0, 2].set_title('Female level 3')
+
+        axarr[0, 2].set_xlabel('Years')
+        axarr[0, 2].set_ylabel('Number of Females')
+        axarr[0, 2].fill_between(range(self.duration), self.mean_matrix['f3'] +
+                                 1.96 * self.std_matrix[
+                                     'f3'], self.mean_matrix['f3'] - 1.96 *
+                                 self.std_matrix[
+                                     'f3'], alpha=0.25)
+
+        axarr[1, 0].plot(range(self.duration), self.mean_matrix['m1'])
+        axarr[1, 0].set_title('Male level 1')
+        axarr[1, 0].set_xlabel('Years')
+        axarr[1, 0].set_ylabel('Number of Males')
+        axarr[1, 0].fill_between(range(self.duration), self.mean_matrix['m1'] +
+                                 1.96 * self.std_matrix[
+                                     'm1'], self.mean_matrix['m1'] - 1.96 *
+                                 self.std_matrix[
+                                     'm1'], alpha=0.25)
+
+        axarr[1, 1].plot(range(self.duration), self.mean_matrix['m2'])
+        axarr[1, 1].set_title('Male level 2')
+        axarr[1, 1].set_xlabel('Years')
+        axarr[1, 1].set_ylabel('Number of Males')
+        axarr[1, 1].fill_between(range(self.duration), self.mean_matrix['m2'] +
+                                 1.96 * self.std_matrix[
+                                     'm2'], self.mean_matrix['m2'] - 1.96 *
+                                 self.std_matrix[
+                                     'm2'], alpha=0.25)
+
+        axarr[1, 2].plot(range(self.duration), self.mean_matrix['m3'])
+        axarr[1, 2].set_title('Male level 3')
+        axarr[1, 2].set_xlabel('Years')
+        axarr[1, 2].set_ylabel('Number of Males')
+        axarr[1, 2].fill_between(range(self.duration), self.mean_matrix['m3'] +
+                                 1.96 * self.std_matrix[
+                                     'm3'], self.mean_matrix['m3'] - 1.96 *
+                                 self.std_matrix[
+                                     'm3'], alpha=0.25)
+
+        plt.show()
+
+
+    def plot_multiple_runs_detail_percentage(self, num_runs, group_title,
+                                            target):
+
+
+        if self.model_summary_stats == 0:
+            print("generating multiple runs data.")
+            self.run_multiple(num_runs)
+        pd_stats_matrix = pd.DataFrame(self.model_summary_stats)
+        tmp = pd_stats_matrix.select_dtypes(include=[np.number])
+        pd_stats_matrix.loc[:, tmp.columns] = np.round(tmp, 2)
+
+        f, axarr = plt.subplots(nrows=2, ncols=3)
+        f.suptitle(group_title)
+        axarr[0, 0].plot(range(self.duration), self.pct_female_matrix[
+            'mpct_f1'], label=self.label)
+        axarr[0, 0].set_title('Female level 1')
+        axarr[0, 0].set_xlabel('Years')
+        axarr[0, 0].set_ylabel('Percentage of Females')
+        axarr[0, 0].fill_between(range(self.duration),
+                                 self.pct_female_matrix['mpct_f1'] +
+                                 1.96 * self.pct_female_matrix[
+                                     'spct_f1'], self.pct_female_matrix[
+                                     'mpct_f1'] - 1.96 *self.pct_female_matrix[
+                                     'spct_f1'], alpha=0.25)
+        axarr[0, 0].axhline(y=target, color='r')
 
         axarr[0, 1].plot(range(self.duration), self.mean_matrix['f2'])
         axarr[0, 1].set_title('Female level 2')
@@ -534,7 +648,7 @@ class Base_model():
         plt.show()
 
     def plot_multiple_runs_gender_prop(self, title, xlabel,
-                                        ylabel, num_runs = 100):
+                                        ylabel, target, num_runs = 100):
 
         if self.mean_matrix == 0:
             print("generating multiple runs data.")
@@ -551,6 +665,7 @@ class Base_model():
         plt.title(title)
         plt.xlabel(xlabel)
         plt.ylabel(ylabel)
+        plt.axhline(y=target, color='r')
         plt.legend(loc='upper right', shadow=True)
         plt.show()
 

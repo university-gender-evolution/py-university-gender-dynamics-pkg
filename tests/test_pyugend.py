@@ -1,7 +1,5 @@
 import pytest
 from pyugend.Models import Base_model
-from pyugend.Mod_Stoch_FBPH import Mod_Stoch_FBPH_alt
-from pyugend.Mod_Stoch_FBHP import Mod_Stoch_FBHP_alt
 from pyugend.Mod_Stoch_VSHP import Mod_Stoch_VSHP
 from pyugend.Mod_Stoch_FSHP import Mod_Stoch_FSHP
 from pyugend.Mod_Stoch_FSPH import Mod_Stoch_FSPH
@@ -111,18 +109,21 @@ def test_base_model_parameter_sweep(mock_data):
     assert (isinstance(v, int))
 
 
-def test_base_model_plot_multiple_runs(mock_data):
-    t = Mod_Stoch_FBHP_alt(**mock_data)
+def test_base_model_plot_multiple_runs_detail(mock_data):
+    t = Mod_Stoch_FBHP(**mock_data)
     t.run_multiple(10)
-    t.plot_multiple_runs_detail()
+    t.plot_multiple_runs_detail(10,'Model 1: Hire-Promote', 5)
 
+def test_base_model_plot_multiple_runs_percentage(mock_data):
+    t = Mod_Stoch_FBHP(**mock_data)
+    t.run_multiple(10)
+    t.plot_multiple_runs_detail_percentage(10,'Model 1: Hire-Promote', 0.15)
 
 #
-# def test_base_model_multiple_runs_gender_prop(mock_data):
-#      t = Mod_Stoch_VSHP(**mock_data)
-#      t.run_multiple(10)
-#      t.plot_multiple_runs_gender_prop()
-
+def test_base_model_multiple_runs_gender_prop(mock_data):
+     t = Mod_Stoch_FBHP(**mock_data)
+     t.run_multiple(100)
+     print(t.pct_female_matrix)
 
 
 def test_basic_stochastic_model(mock_data):
@@ -270,7 +271,7 @@ def test_FBPH_plot_dept_size(mock_data):
     t.plot_department_size_over_time_multiple_runs(300)
 
 def test_FBHP_model_run(mgmt_data):
-    t = Mod_Stoch_FBHP_alt(**mgmt_data)
+    t = Mod_Stoch_FBHP(**mgmt_data)
     t.run_model()
     assert (isinstance(t.res, np.ndarray))
 
@@ -278,39 +279,44 @@ def test_FBHP_plot_dept_size(mock_data):
     t = Mod_Stoch_FBHP(**mock_data)
     t.plot_department_size_over_time_multiple_runs(20)
 
-def test_FBPH_alt_plot_dept_size(mock_data):
-    t = Mod_Stoch_FBPH_alt(**mock_data)
+def test_FBPH_plot_dept_size(mock_data):
+    t = Mod_Stoch_FBPH(**mock_data)
     t.plot_department_size_over_time_multiple_runs(20, 'Dept Size Banded '
                                                         'Model',
                                                    'Years',
                                                    'Department Size')
 
-def test_FBHP_alt_plot_dept_size(mock_data):
-    t = Mod_Stoch_FBHP_alt(**mock_data)
+def test_FBHP_plot_dept_size(mock_data):
+    t = Mod_Stoch_FBHP(**mock_data)
     t.plot_department_size_over_time_multiple_runs(20, 'Dept Size Banded '
                                                         'Model',
                                                    'Years',
                                                    'Department Size')
 
-def test_FBPH_alt_plot_unfilled(mock_data):
-    t = Mod_Stoch_FBPH_alt(**mock_data)
+def test_FBPH_plot_unfilled(mock_data):
+    t = Mod_Stoch_FBPH(**mock_data)
     t.plot_unfilled_vacancies_over_time_multiple_runs(20, 'Dept Size Banded Model',
                                                    'Years',
                                                    'unfilled vacancies')
 
 
-def test_FBPH_alt_plot_gender_proportion(mock_data):
-    t = Mod_Stoch_FBPH_alt(**mock_data)
-    t.plot_multiple_runs_gender_prop(20)
+def test_FBPH_plot_gender_proportion(mock_data):
+    t = Mod_Stoch_FBPH(**mock_data)
+    t.plot_multiple_runs_gender_prop('Title', 'years', '% women',0.3, 20 )
 
+def test_FBPH_plot_pct_gender_detail(mock_data):
+    t = Mod_Stoch_FBPH(**mock_data)
+    t.plot_multiple_runs_gender_prop('Title', 'years', '% women',0.3, 20 )
+
+    t.plot_multiple_runs_detail_percentage(20, 'pct', 0.15)
 
 def test_plot_comparision_unfilled_vacancies(mock_data):
-    modlist = list([Mod_Stoch_FBPH_alt(**mock_data),
-                    Mod_Stoch_FBHP_alt(**mock_data)])
+    modlist = list([Mod_Stoch_FBPH(**mock_data),
+                    Mod_Stoch_FBHP(**mock_data)])
     c = Comparison(modlist)
     c.plot_comparison_spec_parameter('dept_size', 'department size',
                                      'year', 'department size')
 
-def test_FBHP_alt_plot_gend_proportion(mgmt_data):
-    t = Mod_Stoch_FBHP_alt(**mgmt_data)
+def test_FBHP_plot_gend_proportion(mgmt_data):
+    t = Mod_Stoch_FBHP(**mgmt_data)
     t.plot_multiple_runs_gender_prop(20)
