@@ -586,64 +586,75 @@ class Base_model():
         axarr[0, 0].set_title('Female level 1')
         axarr[0, 0].set_xlabel('Years')
         axarr[0, 0].set_ylabel('Percentage of Females')
-        axarr[0, 0].fill_between(range(self.duration),
+        axarr[0, 0].fill_between(range(self.duration),np.minimum(1,
                                  self.pct_female_matrix['mpct_f1'] +
                                  1.96 * self.pct_female_matrix[
-                                     'spct_f1'], self.pct_female_matrix[
+                                     'spct_f1']), np.maximum(0,self.pct_female_matrix[
                                      'mpct_f1'] - 1.96 *self.pct_female_matrix[
-                                     'spct_f1'], alpha=0.25)
+                                     'spct_f1']), alpha=0.25)
         axarr[0, 0].axhline(y=target, color='r')
 
-        axarr[0, 1].plot(range(self.duration), self.mean_matrix['f2'])
+        axarr[0, 1].plot(range(self.duration), self.pct_female_matrix['mpct_f2'])
         axarr[0, 1].set_title('Female level 2')
         axarr[0, 1].set_xlabel('Years')
-        axarr[0, 1].set_ylabel('Number of Females')
-        axarr[0, 1].fill_between(range(self.duration), self.mean_matrix['f2'] +
-                                 1.96 * self.std_matrix[
-                                     'f2'], self.mean_matrix['f2'] - 1.96 *
-                                 self.std_matrix[
-                                     'f2'], alpha=0.25)
+        axarr[0, 1].set_ylabel('Percentage of Females')
+        axarr[0, 1].fill_between(range(self.duration), np.minimum(1,self.pct_female_matrix['mpct_f2'] +
+                                 1.96 * self.pct_female_matrix[
+                                     'spct_f2']), np.maximum(0,self.pct_female_matrix['mpct_f2'] - 1.96 *
+                                 self.pct_female_matrix[
+                                     'spct_f2']), alpha=0.25)
+        axarr[0, 1].axhline(y=target, color='r')
 
-        axarr[0, 2].plot(range(self.duration), self.mean_matrix['f3'])
+
+        axarr[0, 2].plot(range(self.duration), self.pct_female_matrix['mpct_f3'])
         axarr[0, 2].set_title('Female level 3')
 
         axarr[0, 2].set_xlabel('Years')
-        axarr[0, 2].set_ylabel('Number of Females')
-        axarr[0, 2].fill_between(range(self.duration), self.mean_matrix['f3'] +
-                                 1.96 * self.std_matrix[
-                                     'f3'], self.mean_matrix['f3'] - 1.96 *
-                                 self.std_matrix[
-                                     'f3'], alpha=0.25)
+        axarr[0, 2].set_ylabel('Percentage of Females')
+        axarr[0, 2].fill_between(range(self.duration), np.minimum(1,self.pct_female_matrix['mpct_f3'] +
+                                 1.96 * self.pct_female_matrix[
+                                     'spct_f3']), np.maximum(0,self.pct_female_matrix['mpct_f3'] - 1.96 *
+                                 self.pct_female_matrix[
+                                     'spct_f3']), alpha=0.25)
+        axarr[0, 2].axhline(y=target, color='r')
 
-        axarr[1, 0].plot(range(self.duration), self.mean_matrix['m1'])
+
+        axarr[1, 0].plot(range(self.duration), 1 - self.pct_female_matrix['mpct_f1'])
         axarr[1, 0].set_title('Male level 1')
         axarr[1, 0].set_xlabel('Years')
-        axarr[1, 0].set_ylabel('Number of Males')
-        axarr[1, 0].fill_between(range(self.duration), self.mean_matrix['m1'] +
-                                 1.96 * self.std_matrix[
-                                     'm1'], self.mean_matrix['m1'] - 1.96 *
-                                 self.std_matrix[
-                                     'm1'], alpha=0.25)
+        axarr[1, 0].set_ylabel('Percentage of Males')
+        axarr[1, 0].fill_between(range(self.duration), np.minimum(1,1 - self.pct_female_matrix['mpct_f1'] +
+                                 1.96 * self.pct_female_matrix[
+                                     'spct_f1']), np.maximum(0,self.pct_female_matrix['mpct_f1'] - 1.96 *
+                                 self.pct_female_matrix[
+                                     'spct_f1']), alpha=0.25)
+        axarr[1, 0].axhline(y=target, color='r')
 
-        axarr[1, 1].plot(range(self.duration), self.mean_matrix['m2'])
+
+        axarr[1, 1].plot(range(self.duration), 1 - self.pct_female_matrix['mpct_f2'])
         axarr[1, 1].set_title('Male level 2')
         axarr[1, 1].set_xlabel('Years')
-        axarr[1, 1].set_ylabel('Number of Males')
-        axarr[1, 1].fill_between(range(self.duration), self.mean_matrix['m2'] +
-                                 1.96 * self.std_matrix[
-                                     'm2'], self.mean_matrix['m2'] - 1.96 *
-                                 self.std_matrix[
-                                     'm2'], alpha=0.25)
+        axarr[1, 1].set_ylabel('Percentage of Males')
+        axarr[1, 1].fill_between(range(self.duration), np.minimum(1,1 - self.pct_female_matrix['mpct_f2'] +
+                                 1.96 * self.pct_female_matrix[
+                                     'spct_f2']), np.maximum(0,self.pct_female_matrix['mpct_f2'] - 1.96 *
+                                 self.pct_female_matrix[
+                                     'spct_f2']), alpha=0.25)
+        axarr[1, 1].axhline(y=target, color='r')
 
-        axarr[1, 2].plot(range(self.duration), self.mean_matrix['m3'])
+
+        axarr[1, 2].plot(range(self.duration), 1 - self.pct_female_matrix['mpct_f3'])
         axarr[1, 2].set_title('Male level 3')
         axarr[1, 2].set_xlabel('Years')
-        axarr[1, 2].set_ylabel('Number of Males')
-        axarr[1, 2].fill_between(range(self.duration), self.mean_matrix['m3'] +
-                                 1.96 * self.std_matrix[
-                                     'm3'], self.mean_matrix['m3'] - 1.96 *
-                                 self.std_matrix[
-                                     'm3'], alpha=0.25)
+        axarr[1, 2].set_ylabel('Percentage of Males')
+        axarr[1, 2].fill_between(range(self.duration), np.minimum(1,1 - self.pct_female_matrix['mpct_f3'] +
+                                 1.96 * self.pct_female_matrix[
+                                     'spct_f3']), np.maximum(0,1 - self.pct_female_matrix['mpct_f3'] - 1.96 *
+                                 self.pct_female_matrix[
+                                     'spct_f3']), alpha=0.25)
+
+        axarr[1, 2].axhline(y=target, color='r')
+
 
         plt.show()
 

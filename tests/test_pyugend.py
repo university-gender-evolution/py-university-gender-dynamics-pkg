@@ -170,7 +170,7 @@ def test_stochastic_model_with_hiring_first(mock_data):
 
 
 def test_stochastic_model_with_hiring_first_multiple(mock_data):
-    t = Mod_Stoch_FSPH(**mock_data)
+    t = Mod_Stoch_FBPH(**mock_data)
     t.run_multiple(10)
     assert (isinstance(t.mean_matrix, np.ndarray))
 
@@ -183,10 +183,13 @@ def test_comparison_model_plot_detail(mock_data):
     c.plot_comparison_detail(10)
 
 
+
+
+
 def test_comparison_model_param_sweep(mock_data):
     modlist = list([Replication_model(**mock_data),
-                    Mod_Stoch_VSHP(**mock_data),
-                    Mod_Stoch_FSPH(**mock_data)])
+                    Mod_Stoch_FBHP(**mock_data),
+                    Mod_Stoch_FBPH(**mock_data)])
     c = Comparison(modlist)
     c.plot_parameter_sweep_gender_proportion(10, 'female_promotion_probability_2', 0.1, 0.5, 8)
 
@@ -319,4 +322,8 @@ def test_plot_comparision_unfilled_vacancies(mock_data):
 
 def test_FBHP_plot_gend_proportion(mgmt_data):
     t = Mod_Stoch_FBHP(**mgmt_data)
-    t.plot_multiple_runs_gender_prop(20)
+    t.plot_multiple_runs_gender_prop('Gender Proportion', 'Year', 'Percentage Female', 0.2, 100)
+
+def test_FBHP_plot_gend_detail_percentage(mgmt_data):
+    t = Mod_Stoch_FBHP(**mgmt_data)
+    t.plot_multiple_runs_detail_percentage(100,'Detail Percentages',0.20)
