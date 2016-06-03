@@ -139,9 +139,11 @@ class Base_model():
         self.std_matrix = np.empty_like(res_array['run'][0])
         self.dept_size_matrix = pd.DataFrame(np.zeros([self.duration, 3]))
         self.dept_size_matrix.columns = ['year', 'mean', 'std']
-        self.pct_female_matrix = pd.DataFrame(np.zeros([self.duration, 7]))
+        self.pct_female_matrix = pd.DataFrame(np.zeros([self.duration, 13]))
         self.pct_female_matrix.columns = ['year','mpct_f1', 'mpct_f2', 'mpct_f3',
-                                          'spct_f1', 'spct_f2', 'spct_f3']
+                                          'spct_f1', 'spct_f2', 'spct_f3',
+                                          'mpct_m1', 'spct_m1', 'mpct_m2',
+                                          'spct_m2', 'mpct_m3', 'spct_m3']
         ## Collect mean and standard deviations for each column/row across all
         # iterations of the model.
 
@@ -173,11 +175,30 @@ class Base_model():
             'run']['m2'][idx]) for r in res_array])
             self.pct_female_matrix['mpct_f2'][idx] = _u.mean()
             self.pct_female_matrix['spct_f2'][idx] = _u.std()
+            assert (self.pct_female_matrix['mpct_f2'][idx] is not np.nan), 'Neg value in f2 mean'
 
             _u = np.array([r['run']['f3'][idx] / (r['run']['f3'][idx] + r[
             'run']['m3'][idx]) for r in res_array])
             self.pct_female_matrix['mpct_f3'][idx] = _u.mean()
             self.pct_female_matrix['spct_f3'][idx] = _u.std()
+
+            _u = np.array([r['run']['m1'][idx] / (r['run']['m1'][idx] + r[
+            'run']['f1'][idx]) for r in res_array])
+            self.pct_female_matrix['mpct_m1'][idx] = _u.mean()
+            self.pct_female_matrix['spct_m1'][idx] = _u.std()
+
+            _u = np.array([r['run']['m2'][idx] / (r['run']['m2'][idx] + r[
+            'run']['f2'][idx]) for r in res_array])
+            self.pct_female_matrix['mpct_m2'][idx] = _u.mean()
+            self.pct_female_matrix['spct_m2'][idx] = _u.std()
+
+            _u = np.array([r['run']['m3'][idx] / (r['run']['f3'][idx] + r[
+            'run']['m3'][idx]) for r in res_array])
+            self.pct_female_matrix['mpct_m3'][idx] = _u.mean()
+            self.pct_female_matrix['spct_m3'][idx] = _u.std()
+
+
+
 
         # create matrix to hold data for the final iteration of the model. That data
         # holds the distributions of the data. The matrix that holds
@@ -578,6 +599,8 @@ class Base_model():
         pd_stats_matrix = pd.DataFrame(self.model_summary_stats)
         tmp = pd_stats_matrix.select_dtypes(include=[np.number])
         pd_stats_matrix.loc[:, tmp.columns] = np.round(tmp, 2)
+        #self.pct_female_matrix.replace(np.inf, 1)
+        #self.pct_female_matrix = self.pct_female_matrix.fillna(0)
 
         f, axarr = plt.subplots(nrows=2, ncols=3)
         f.suptitle(group_title)
@@ -619,40 +642,39 @@ class Base_model():
         axarr[0, 2].axhline(y=target, color='r')
 
 
-        axarr[1, 0].plot(range(self.duration), 1 - self.pct_female_matrix['mpct_f1'])
+        axarr[1, 0].plot(range(self.duration), self.pct_female_matrix['mpct_m1'])
         axarr[1, 0].set_title('Male level 1')
         axarr[1, 0].set_xlabel('Years')
         axarr[1, 0].set_ylabel('Percentage of Males')
-        axarr[1, 0].fill_between(range(self.duration), np.minimum(1,1 - self.pct_female_matrix['mpct_f1'] +
+        axarr[1, 0].fill_between(range(self.duration), np.minimum(1,self.pct_female_matrix['mpct_m1'] +
                                  1.96 * self.pct_female_matrix[
-                                     'spct_f1']), np.maximum(0,self.pct_female_matrix['mpct_f1'] - 1.96 *
+                                     'spct_m1']), np.maximum(0,self.pct_female_matrix['mpct_m1'] - 1.96 *
                                  self.pct_female_matrix[
-                                     'spct_f1']), alpha=0.25)
+                                     'spct_m1']), alpha=0.25)
         axarr[1, 0].axhline(y=target, color='r')
 
 
-        axarr[1, 1].plot(range(self.duration), 1 - self.pct_female_matrix['mpct_f2'])
+        axarr[1, 1].plot(range(self.duration), self.pct_female_matrix['mpct_m2'])
         axarr[1, 1].set_title('Male level 2')
         axarr[1, 1].set_xlabel('Years')
         axarr[1, 1].set_ylabel('Percentage of Males')
-        axarr[1, 1].fill_between(range(self.duration), np.minimum(1,1 - self.pct_female_matrix['mpct_f2'] +
+        axarr[1, 1].fill_between(range(self.duration), np.minimum(1,self.pct_female_matrix['mpct_m2'] +
                                  1.96 * self.pct_female_matrix[
-                                     'spct_f2']), np.maximum(0,self.pct_female_matrix['mpct_f2'] - 1.96 *
+                                     'spct_m2']), np.maximum(0,self.pct_female_matrix['mpct_m2'] - 1.96 *
                                  self.pct_female_matrix[
-                                     'spct_f2']), alpha=0.25)
+                                     'spct_m2']), alpha=0.25)
         axarr[1, 1].axhline(y=target, color='r')
 
 
-        axarr[1, 2].plot(range(self.duration), 1 - self.pct_female_matrix['mpct_f3'])
+        axarr[1, 2].plot(range(self.duration), self.pct_female_matrix['mpct_m3'])
         axarr[1, 2].set_title('Male level 3')
         axarr[1, 2].set_xlabel('Years')
         axarr[1, 2].set_ylabel('Percentage of Males')
-        axarr[1, 2].fill_between(range(self.duration), np.minimum(1,1 - self.pct_female_matrix['mpct_f3'] +
+        axarr[1, 2].fill_between(range(self.duration), np.minimum(1,self.pct_female_matrix['mpct_m3'] +
                                  1.96 * self.pct_female_matrix[
-                                     'spct_f3']), np.maximum(0,1 - self.pct_female_matrix['mpct_f3'] - 1.96 *
+                                     'spct_m3']), np.maximum(0,self.pct_female_matrix['mpct_m3'] - 1.96 *
                                  self.pct_female_matrix[
-                                     'spct_f3']), alpha=0.25)
-
+                                     'spct_m3']), alpha=0.25)
         axarr[1, 2].axhline(y=target, color='r')
 
 
