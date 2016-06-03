@@ -326,4 +326,4 @@ def test_FBHP_plot_gend_proportion(mgmt_data):
 
 def test_FBHP_plot_gend_detail_percentage(mgmt_data):
     t = Mod_Stoch_FBHP(**mgmt_data)
-    t.plot_multiple_runs_detail_percentage(100,'Detail Percentages',0.40)
+    t.plot_multiple_runs_detail_percentage(100,'Detail Percentages',0.20)
