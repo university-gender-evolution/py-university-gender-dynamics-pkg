@@ -862,7 +862,7 @@ class Base_model():
 
 
     def plot_multiple_runs_detail_percentage(self, num_runs, group_title,
-                                            target):
+                                            target, txt):
 
 
         if self.model_summary_stats == 0:
@@ -948,7 +948,7 @@ class Base_model():
                                  self.pct_female_matrix[
                                      'spct_m3']), alpha=0.25)
         axarr[1, 2].axhline(y=target, color='r')
-
+        f.text(0.2, 0.2, txt)
 
 
         plt.show()
@@ -1066,7 +1066,8 @@ class Base_model():
         plt.show()
 
     def plot_empirical_probability_gender_proportion(self, num_runs, target,
-                                                     title, xlabel, ylabel):
+                                                     title, xlabel, ylabel,
+                                                     txt):
 
         self.run_probability_analysis_gender_proportion(num_runs, target)
 
@@ -1076,6 +1077,7 @@ class Base_model():
         plt.title(title)
         plt.xlabel(xlabel)
         plt.ylabel(ylabel)
+        plt.text(0.02,0.02, txt)
         plt.show()
 
     def plot_empirical_probability_group_detail(self, number_of_runs, param,

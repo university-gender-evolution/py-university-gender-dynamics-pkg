@@ -15,7 +15,7 @@ class Comparison():
         self.label = 'All Models'
         self.mlist = model_list
 
-    def plot_comparison_gender_proportion(self, number_of_runs=10):
+    def plot_comparison_gender_proportion(self, txt, number_of_runs=10):
 
         ## This function will execute gender proportion comparisons for all models
 
@@ -43,6 +43,7 @@ class Comparison():
         plt.xlabel('Years')
         plt.ylabel('Percentage of the Department that is Women')
         plt.legend(loc='upper right', shadow=True)
+        plt.text(0.2, 0.2, txt)
         plt.show()
 
     def plot_comparison_spec_parameter(self, parm, title,
@@ -332,7 +333,8 @@ class Comparison():
     #     plt.show()
 
 
-    def plot_comparison_empirical_probability_gender_proportion(self, number_of_runs, target):
+    def plot_comparison_empirical_probability_gender_proportion(self,
+                                                                number_of_runs, target, txt):
 
         ## This function will execute gender proportion comparisons for all models
 
@@ -355,4 +357,5 @@ class Comparison():
         plt.ylabel('Probability')
         plt.legend(loc='upper right', shadow=True)
         plt.axhline(0.5, color='r')
+        plt.text(0.2, 0.2, txt)
         plt.show()

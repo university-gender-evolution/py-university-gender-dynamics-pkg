@@ -311,9 +311,7 @@ def test_FBPH_plot_gender_proportion(mock_data):
 
 def test_FBPH_plot_pct_gender_detail(mock_data):
     t = Mod_Stoch_FBPH(**mock_data)
-    t.plot_multiple_runs_gender_prop('Title', 'years', '% women',0.3, 20 )
-
-    t.plot_multiple_runs_detail_percentage(20, 'pct', 0.15)
+    t.plot_multiple_runs_detail_percentage(20, 'pct', 0.15, 'text for caption')
 
 def test_plot_comparision_unfilled_vacancies(mock_data):
     modlist = list([Mod_Stoch_FBPH(**mock_data),
