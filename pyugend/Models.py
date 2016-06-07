@@ -88,7 +88,7 @@ class Base_model():
         self.pd_last_row_data = 0
         self.pct_female_matrix = 0
 
-    def load_data_mgmt(self):
+    def load_baseline_data_mgmt(self):
         '''
         This function will load the original management data to the object and remove any previous data.
         '''
@@ -122,7 +122,109 @@ class Base_model():
         self.lowerbound = 64
         self.variation_range = 3
 
-    def load_data_science(self):
+    def load_optimistic_data_mgmt(self):
+        '''
+        This function will load the original management data to the object and remove any previous data.
+        '''
+
+        self.nf1 = 3
+        self.nf2 = 3
+        self.nf3 = 2
+        self.nm1 = 11
+        self.nm2 = 12
+        self.nm3 = 43
+        self.vac3 = 8.31
+        self.vac2 = 5.9
+        self.vac1 = 5.303
+        self.bf1 = 0.300
+        self.bf2 = 0.4
+        self.bf3 = 0.300
+        self.df1 = 0.056
+        self.df2 = 0.00
+        self.df3 = 0.146
+        self.dm1 = 0.069
+        self.dm2 = 0.057
+        self.dm3 = 0.112
+        self.phire2 = 0.125
+        self.phire3 = 0.150
+        self.duration = 40
+        self.female_promotion_probability_1 = 0.0555
+        self.female_promotion_probability_2 = 0.1905
+        self.male_promotion_probability_1 = 0.0635
+        self.male_promotion_probability_2 = 0.1149
+        self.upperbound = 84
+        self.lowerbound = 64
+        self.variation_range = 3
+
+    def load_most_optimistic_data_mgmt(self):
+        '''
+        This function will load the original management data to the object and remove any previous data.
+        '''
+
+        self.nf1 = 3
+        self.nf2 = 3
+        self.nf3 = 2
+        self.nm1 = 11
+        self.nm2 = 12
+        self.nm3 = 43
+        self.vac3 = 8.31
+        self.vac2 = 5.9
+        self.vac1 = 5.303
+        self.bf1 = 0.400
+        self.bf2 = 0.400
+        self.bf3 = 0.300
+        self.df1 = 0.036
+        self.df2 = 0.00
+        self.df3 = 0.054
+        self.dm1 = 0.069
+        self.dm2 = 0.057
+        self.dm3 = 0.112
+        self.phire2 = 0.125
+        self.phire3 = 0.150
+        self.duration = 40
+        self.female_promotion_probability_1 = 0.0555
+        self.female_promotion_probability_2 = 0.1905
+        self.male_promotion_probability_1 = 0.0635
+        self.male_promotion_probability_2 = 0.1149
+        self.upperbound = 84
+        self.lowerbound = 64
+        self.variation_range = 3
+
+    def load_pessimistic_data_mgmt(self):
+        '''
+        This function will load the original management data to the object and remove any previous data.
+        '''
+
+        self.nf1 = 3
+        self.nf2 = 3
+        self.nf3 = 2
+        self.nm1 = 11
+        self.nm2 = 12
+        self.nm3 = 43
+        self.vac3 = 8.31
+        self.vac2 = 5.9
+        self.vac1 = 5.303
+        self.bf1 = 0.172
+        self.bf2 = 0.4
+        self.bf3 = 0.167
+        self.df1 = 0.106
+        self.df2 = 0.050
+        self.df3 = 0.124
+        self.dm1 = 0.069
+        self.dm2 = 0.057
+        self.dm3 = 0.076
+        self.phire2 = 0.125
+        self.phire3 = 0.150
+        self.duration = 40
+        self.female_promotion_probability_1 = 0.0555
+        self.female_promotion_probability_2 = 0.1905
+        self.male_promotion_probability_1 = 0.0635
+        self.male_promotion_probability_2 = 0.1149
+        self.upperbound = 84
+        self.lowerbound = 64
+        self.variation_range = 3
+
+    def load_baseline_data_science(self):
         '''
         This function will load the original management data to the object and remove any previous data.
         '''
@@ -145,6 +247,108 @@ class Base_model():
         self.dm1 = 0.009
         self.dm2 = 0.017
         self.dm3 = 0.033
+        self.phire2 = 0.158
+        self.phire3 = 0.339
+        self.duration = 40
+        self.female_promotion_probability_1 = 0.122
+        self.female_promotion_probability_2 = 0.188
+        self.male_promotion_probability_1 = 0.19
+        self.male_promotion_probability_2 = 0.19
+        self.upperbound = 350
+        self.lowerbound = 330
+        self.variation_range = 3
+
+    def load_optimistic_data_science(self):
+        '''
+        This function will load the original management data to the object and remove any previous data.
+        '''
+
+        self.nf1 = 14
+        self.nf2 = 13
+        self.nf3 = 9
+        self.nm1 = 37
+        self.nm2 = 28
+        self.nm3 = 239
+        self.vac3 = 8.31
+        self.vac2 = 5.9
+        self.vac1 = 5.303
+        self.bf1 = 0.310
+        self.bf2 = 0.322
+        self.bf3 = 0.050
+        self.df1 = 0.0
+        self.df2 = 0.0
+        self.df3 = 0.069
+        self.dm1 = 0.009
+        self.dm2 = 0.017
+        self.dm3 = 0.085
+        self.phire2 = 0.158
+        self.phire3 = 0.339
+        self.duration = 40
+        self.female_promotion_probability_1 = 0.122
+        self.female_promotion_probability_2 = 0.188
+        self.male_promotion_probability_1 = 0.19
+        self.male_promotion_probability_2 = 0.19
+        self.upperbound = 350
+        self.lowerbound = 330
+        self.variation_range = 3
+
+    def load_most_optimistic_data_science(self):
+        '''
+        This function will load the original management data to the object and remove any previous data.
+        '''
+
+        self.nf1 = 14
+        self.nf2 = 13
+        self.nf3 = 9
+        self.nm1 = 37
+        self.nm2 = 28
+        self.nm3 = 239
+        self.vac3 = 8.31
+        self.vac2 = 5.9
+        self.vac1 = 5.303
+        self.bf1 = 0.400
+        self.bf2 = 0.322
+        self.bf3 = 0.100
+        self.df1 = 0.0
+        self.df2 = 0.0
+        self.df3 = 0.0
+        self.dm1 = 0.009
+        self.dm2 = 0.017
+        self.dm3 = 0.085
+        self.phire2 = 0.158
+        self.phire3 = 0.339
+        self.duration = 40
+        self.female_promotion_probability_1 = 0.122
+        self.female_promotion_probability_2 = 0.188
+        self.male_promotion_probability_1 = 0.19
+        self.male_promotion_probability_2 = 0.19
+        self.upperbound = 350
+        self.lowerbound = 330
+        self.variation_range = 3
+
+    def load_pessimistic_data_science(self):
+        '''
+        This function will load the original management data to the object and remove any previous data.
+        '''
+
+        self.nf1 = 14
+        self.nf2 = 13
+        self.nf3 = 9
+        self.nm1 = 37
+        self.nm2 = 28
+        self.nm3 = 239
+        self.vac3 = 8.31
+        self.vac2 = 5.9
+        self.vac1 = 5.303
+        self.bf1 = 0.310
+        self.bf2 = 0.222
+        self.bf3 = 0.0
+        self.df1 = 0.050
+        self.df2 = 0.050
+        self.df3 = 0.043
+        self.dm1 = 0.009
+        self.dm2 = 0.017
+        self.dm3 = 0.059
         self.phire2 = 0.158
         self.phire3 = 0.339
         self.duration = 40
