@@ -973,7 +973,7 @@ class Base_model():
         plt.ylabel(ylabel)
         plt.axhline(y=target, color='r')
         plt.legend(loc='upper right', shadow=True)
-        plt.text(0.1,0.1, txt)
+        plt.text(0.02,0.02, txt)
 
         plt.show()
 
