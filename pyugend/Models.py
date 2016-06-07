@@ -950,10 +950,11 @@ class Base_model():
         axarr[1, 2].axhline(y=target, color='r')
 
 
+
         plt.show()
 
     def plot_multiple_runs_gender_prop(self, title, xlabel,
-                                        ylabel, target, num_runs = 100):
+                                        ylabel, target, txt, num_runs = 100):
 
         if self.mean_matrix == 0:
             print("generating multiple runs data.")
@@ -972,6 +973,8 @@ class Base_model():
         plt.ylabel(ylabel)
         plt.axhline(y=target, color='r')
         plt.legend(loc='upper right', shadow=True)
+        plt.text(0.1,0.1, txt)
+
         plt.show()
 
     def plot_parameter_sweep(self, title, xlabel, ylabel):
