@@ -15,7 +15,8 @@ class Comparison():
         self.label = 'All Models'
         self.mlist = model_list
 
-    def plot_comparison_gender_proportion(self, txt, number_of_runs=10):
+    def plot_comparison_gender_proportion(self, xlabel, ylabel, title, txt,
+                                          number_of_runs=10):
 
         ## This function will execute gender proportion comparisons for all models
 
@@ -39,9 +40,9 @@ class Comparison():
             'gendprop'], self.mlist[k].mean_matrix['gendprop'] - 1.96*self.mlist[k].std_matrix[
             'gendprop'], color = line_colors[k], alpha=0.5)
 
-        plt.title('Gender Proportion over Time for Model: ' + self.name)
-        plt.xlabel('Years')
-        plt.ylabel('Percentage of the Department that is Women')
+        plt.title(title)
+        plt.xlabel(xlabel)
+        plt.ylabel(ylabel)
         plt.legend(loc='upper right', shadow=True)
         plt.text(0.2, 0.2, txt)
         plt.show()
@@ -333,8 +334,12 @@ class Comparison():
     #     plt.show()
 
 
-    def plot_comparison_empirical_probability_gender_proportion(self,
-                                                                number_of_runs, target, txt):
+    def plot_comparison_empirical_probability_gender_proportion(self,xlabel,
+                                                                ylabel,
+                                                                title,
+                                                                txt,
+                                                                target,
+                                                                number_of_runs):
 
         ## This function will execute gender proportion comparisons for all models
 
@@ -352,9 +357,9 @@ class Comparison():
             plt.plot(self.mlist[k].probability_matrix['Year'], self.mlist[k].probability_matrix['Probability'], color=line_colors[k],label = self.mlist[k].label, linewidth=2.0)
 
 
-        plt.title('Probability of Reaching Gender Proportion Target ')
-        plt.xlabel('Years')
-        plt.ylabel('Probability')
+        plt.title(title)
+        plt.xlabel(xlabel)
+        plt.ylabel(ylabel)
         plt.legend(loc='upper right', shadow=True)
         plt.axhline(0.5, color='r')
         plt.text(0.2, 0.2, txt)

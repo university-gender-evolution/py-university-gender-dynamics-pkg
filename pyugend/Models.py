@@ -923,7 +923,7 @@ class Base_model():
                                      'spct_m1']), np.maximum(0,self.pct_female_matrix['mpct_m1'] - 1.96 *
                                  self.pct_female_matrix[
                                      'spct_m1']), alpha=0.25)
-        axarr[1, 0].axhline(y=target, color='r')
+        axarr[1, 0].axhline(y=1 - target, color='r')
 
 
         axarr[1, 1].plot(range(self.duration), self.pct_female_matrix['mpct_m2'])
@@ -935,7 +935,7 @@ class Base_model():
                                      'spct_m2']), np.maximum(0,self.pct_female_matrix['mpct_m2'] - 1.96 *
                                  self.pct_female_matrix[
                                      'spct_m2']), alpha=0.25)
-        axarr[1, 1].axhline(y=target, color='r')
+        axarr[1, 1].axhline(y= 1 - target, color='r')
 
 
         axarr[1, 2].plot(range(self.duration), self.pct_female_matrix['mpct_m3'])
@@ -947,9 +947,8 @@ class Base_model():
                                      'spct_m3']), np.maximum(0,self.pct_female_matrix['mpct_m3'] - 1.96 *
                                  self.pct_female_matrix[
                                      'spct_m3']), alpha=0.25)
-        axarr[1, 2].axhline(y=target, color='r')
+        axarr[1, 2].axhline(y=1 - target, color='r')
         f.text(0.2, 0.2, txt)
-
 
         plt.show()
 
