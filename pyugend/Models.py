@@ -1141,6 +1141,42 @@ class Base_model():
         plt.title(title)
         plt.show()
 
+    def plot_male_female_total_numbers(self, xlabel, ylabel, title, txt, target,
+                                       num_runs):
+
+        if self.mean_matrix == 0:
+            print("generating multiple runs data.")
+            self.run_multiple(num_runs)
+
+        plt.plot(range(self.duration), sum(list([self.mean_matrix['f1'],
+                                                 self.mean_matrix['f2'],
+                                                 self.mean_matrix['f3']])),
+                 color = 'b', label= 'Women')
+        plt.plot(range(self.duration), sum(list([self.mean_matrix['m1'],
+                                                 self.mean_matrix['m2'],
+                                                 self.mean_matrix['m3']])),
+                 color = 'k', label='Men')
+
+        total_faculty = self.mean_matrix['f1'] \
+                      + self.mean_matrix['f2'] \
+                      + self.mean_matrix['f3'] \
+                        + self.mean_matrix['m1'] \
+                        + self.mean_matrix['m2'] \
+                        + self.mean_matrix['m3']
+
+
+        plt.plot(range(self.duration), np.round(target*total_faculty) ,
+                 color = 'r', label = 'Target')
+
+        plt.title(title)
+        plt.text(0.02, 0.02,txt)
+        plt.xlabel(xlabel)
+        plt.ylabel(ylabel)
+        plt.legend(loc='upper right', shadow=True)
+        plt.show()
+
+
+
     def export_model_run(self):
 
         if not hasattr(self, 'res'):

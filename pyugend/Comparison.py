@@ -364,3 +364,56 @@ class Comparison():
         plt.axhline(0.5, color='r')
         plt.text(0.2, 0.2, txt)
         plt.show()
+
+    def plot_comparison_female_male_numbers(self, xlabel, ylabel, title, txt,
+                                          target, number_of_runs=10):
+
+
+        ## This function will execute gender proportion comparisons for all models
+
+        ## Color list
+
+        colors_women = ['#7fc97f', '#beaed4', '#fdc086']
+
+        colors_men = ['#386cb0', '#f0027f', '#ffff99']
+
+
+
+        for mod in self.mlist:
+            mod.run_multiple(number_of_runs)
+
+        ## Create plot array and execute plot
+
+        for k, v in enumerate(self.mlist):
+            total_faculty = 0
+            plt.plot(range(self.mlist[k].duration),
+                     sum(list([self.mlist[k].mean_matrix['f1'],
+                               self.mlist[k].mean_matrix['f2'],
+                               self.mlist[k].mean_matrix['f3']])),
+                     color= colors_women[k], label = self.mlist[k].label +
+                                                     ' female')
+
+            plt.plot(range(self.mlist[k].duration),
+                     sum(list([self.mlist[k].mean_matrix['m1'],
+                               self.mlist[k].mean_matrix['m2'],
+                               self.mlist[k].mean_matrix['m3']])),
+                     color=colors_men[k], label = self.mlist[k].label +
+                                                     ' male')
+
+            total_faculty = self.mlist[k].mean_matrix['f1'] \
+                            + self.mlist[k].mean_matrix['f2'] \
+                            + self.mlist[k].mean_matrix['f3'] \
+                            + self.mlist[k].mean_matrix['m1'] \
+                            + self.mlist[k].mean_matrix['m2'] \
+                            + self.mlist[k].mean_matrix['m3']
+
+        plt.plot(range(self.mlist[1].duration), np.round(target *
+                                                         total_faculty),
+                 color='r', label='Target')
+
+        plt.title(title)
+        plt.xlabel(xlabel)
+        plt.ylabel(ylabel)
+        plt.legend(loc='upper left', shadow=True)
+        plt.text(0.2, 0.2, txt)
+        plt.show()

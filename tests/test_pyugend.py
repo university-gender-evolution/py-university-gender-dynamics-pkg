@@ -327,3 +327,26 @@ def test_FBHP_plot_gend_proportion(mgmt_data):
 def test_FBHP_plot_gend_detail_percentage(mgmt_data):
     t = Mod_Stoch_FBHP(**mgmt_data)
     t.plot_multiple_runs_detail_percentage(100,'Detail Percentages',0.20)
+
+def test_FBHP_plot_male_female_numbers(mgmt_data):
+
+    t = Mod_Stoch_FBHP(**mgmt_data)
+    t.plot_male_female_total_numbers('Years', 'Numbers',
+                                     'Number of Men and Women in a Department',
+                                     'caption',
+                                     0.30,
+                                     10)
+
+def test_FBHP_plot_comparison_male_female_numbers(mgmt_data):
+
+    modlist = list([Mod_Stoch_FBPH(**mgmt_data),
+                    Mod_Stoch_FBHP(**mgmt_data)])
+
+    c = Comparison(modlist)
+    c.plot_comparison_female_male_numbers('Years',
+                                          'Faculty Number',
+                                          'Comparison of Faculty Numbers for '
+                                          'each Model',
+                                          'caption',
+                                          0.20,
+                                          100)
