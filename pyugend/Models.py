@@ -437,8 +437,7 @@ class Base_model():
             self.dept_size_matrix['std'][idx] = _s.std()
 
             _u = np.array([r['run']['f1'][idx]/(r['run']['f1'][idx] + r[
-                'run']['m1'][idx]) for r
-                in res_array])
+                'run']['m1'][idx]) for r in res_array])
             self.pct_female_matrix['year'][idx] = idx
             self.pct_female_matrix['mpct_f1'][idx] = _u.mean()
             self.pct_female_matrix['spct_f1'][idx] = _u.std()
