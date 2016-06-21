@@ -883,8 +883,8 @@ class Base_model():
 
         f, axarr = plt.subplots(nrows=2, ncols=3)
         f.suptitle(group_title)
-        axarr[0, 0].plot(range(self.duration), self.pct_female_matrix[
-            'mpct_f1'], label=self.label)
+        axarr[0, 0].plot(range(self.duration), np.minimum(1, np.maximum(0,self.pct_female_matrix[
+            'mpct_f1'])), label=self.label)
         axarr[0, 0].set_title('Female level 1')
         axarr[0, 0].set_xlabel('Years')
         axarr[0, 0].set_ylabel('Percentage of Females')
@@ -896,7 +896,7 @@ class Base_model():
                                      'spct_f1']), alpha=0.25)
         axarr[0, 0].axhline(y=target, color='r')
 
-        axarr[0, 1].plot(range(self.duration), self.pct_female_matrix['mpct_f2'])
+        axarr[0, 1].plot(range(self.duration), np.minimum(1, np.maximum(0,self.pct_female_matrix['mpct_f2'])))
         axarr[0, 1].set_title('Female level 2')
         axarr[0, 1].set_xlabel('Years')
         axarr[0, 1].set_ylabel('Percentage of Females')
@@ -908,7 +908,7 @@ class Base_model():
         axarr[0, 1].axhline(y=target, color='r')
 
 
-        axarr[0, 2].plot(range(self.duration), self.pct_female_matrix['mpct_f3'])
+        axarr[0, 2].plot(range(self.duration), np.minimum(1,np.maximum(0,self.pct_female_matrix['mpct_f3'])))
         axarr[0, 2].set_title('Female level 3')
 
         axarr[0, 2].set_xlabel('Years')
@@ -921,7 +921,7 @@ class Base_model():
         axarr[0, 2].axhline(y=target, color='r')
 
 
-        axarr[1, 0].plot(range(self.duration), self.pct_female_matrix['mpct_m1'])
+        axarr[1, 0].plot(range(self.duration), np.minimum(1, np.maximum(0,self.pct_female_matrix['mpct_m1'])))
         axarr[1, 0].set_title('Male level 1')
         axarr[1, 0].set_xlabel('Years')
         axarr[1, 0].set_ylabel('Percentage of Males')
@@ -933,7 +933,7 @@ class Base_model():
         axarr[1, 0].axhline(y=1 - target, color='r')
 
 
-        axarr[1, 1].plot(range(self.duration), self.pct_female_matrix['mpct_m2'])
+        axarr[1, 1].plot(range(self.duration), np.minimum(1, np.maximum(0,self.pct_female_matrix['mpct_m2'])))
         axarr[1, 1].set_title('Male level 2')
         axarr[1, 1].set_xlabel('Years')
         axarr[1, 1].set_ylabel('Percentage of Males')
@@ -945,7 +945,7 @@ class Base_model():
         axarr[1, 1].axhline(y= 1 - target, color='r')
 
 
-        axarr[1, 2].plot(range(self.duration), self.pct_female_matrix['mpct_m3'])
+        axarr[1, 2].plot(range(self.duration), np.minimum(1, np.maximum(0,self.pct_female_matrix['mpct_m3'])))
         axarr[1, 2].set_title('Male level 3')
         axarr[1, 2].set_xlabel('Years')
         axarr[1, 2].set_ylabel('Percentage of Males')
