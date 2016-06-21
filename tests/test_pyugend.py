@@ -337,6 +337,21 @@ def test_FBHP_plot_male_female_numbers(mgmt_data):
                                      0.30,
                                      10)
 
+
+def test_plot_comparison_gender_proportion(mgmt_data):
+
+    modlist = list([Mod_Stoch_FBPH(**mgmt_data)])
+
+    c = Comparison(modlist)
+    c.plot_comparison_gender_proportion('Years',
+                                          '% Female',
+                                          'Comparison of Faculty Percentage',
+                                          '',
+                                          0.20,
+                                          100)
+
+
+
 def test_FBHP_plot_comparison_male_female_numbers(mgmt_data):
 
     modlist = list([Mod_Stoch_FBPH(**mgmt_data),

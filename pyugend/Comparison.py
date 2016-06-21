@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 
 # CONSTANTS
 
-line_colors = ['#7fc97f', '#beaed4', '#fdc086','#386cb0','#f0027f','#ffff99']
+#line_colors = ['#7fc97f', '#beaed4', '#fdc086','#386cb0','#f0027f','#ffff99']
 
 class Comparison():
 
@@ -32,7 +32,7 @@ class Comparison():
 
         for k,v in enumerate(self.mlist):
 
-            plt.plot(range(self.mlist[k].duration), self.mlist[k].mean_matrix['gendprop'], color=line_colors[k],label = self.mlist[k].label, linewidth=2.0)
+            plt.plot(range(self.mlist[k].duration), self.mlist[k].mean_matrix['gendprop'],label = self.mlist[k].label, linewidth=2.0, color=line_colors[k])
 
             plt.plot(range(self.mlist[k].duration), self.mlist[k].mean_matrix['gendprop'])
             plt.fill_between(range(self.mlist[k].duration), self.mlist[k].mean_matrix[
@@ -377,7 +377,7 @@ class Comparison():
 
         colors_women = ['#7fc97f', '#beaed4', '#fdc086']
 
-        colors_men = ['#386cb0', '#f0027f', '#ffff99']
+        colors_men = ['#386cb0', '#f69967', '#ffff99']
 
 
 
@@ -411,7 +411,7 @@ class Comparison():
 
         plt.plot(range(self.mlist[1].duration), np.round(target *
                                                          total_faculty),
-                 color='r', label='Target', linewidth=3)
+                 color='r', label='Target for women', linewidth=3)
 
         plt.title(title)
         plt.xlabel(xlabel)
