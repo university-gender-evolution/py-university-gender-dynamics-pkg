@@ -16,6 +16,7 @@ class Comparison():
         self.mlist = model_list
 
     def plot_comparison_gender_proportion(self, xlabel, ylabel, title, txt,
+                                          target,
                                           number_of_runs=10):
 
         ## This function will execute gender proportion comparisons for all models
@@ -43,6 +44,7 @@ class Comparison():
         plt.title(title)
         plt.xlabel(xlabel)
         plt.ylabel(ylabel)
+        plt.axhline(target, color='r')
         plt.legend(loc='upper right', shadow=True)
         plt.text(0.2, 0.2, txt)
         plt.show()
@@ -391,14 +393,14 @@ class Comparison():
                                self.mlist[k].mean_matrix['f2'],
                                self.mlist[k].mean_matrix['f3']])),
                      color= colors_women[k], label = self.mlist[k].label +
-                                                     ' female')
+                     ' female', linewidth=3)
 
             plt.plot(range(self.mlist[k].duration),
                      sum(list([self.mlist[k].mean_matrix['m1'],
                                self.mlist[k].mean_matrix['m2'],
                                self.mlist[k].mean_matrix['m3']])),
                      color=colors_men[k], label = self.mlist[k].label +
-                                                     ' male')
+                     ' male', linewidth=3)
 
             total_faculty = self.mlist[k].mean_matrix['f1'] \
                             + self.mlist[k].mean_matrix['f2'] \
@@ -409,7 +411,7 @@ class Comparison():
 
         plt.plot(range(self.mlist[1].duration), np.round(target *
                                                          total_faculty),
-                 color='r', label='Target')
+                 color='r', label='Target', linewidth=3)
 
         plt.title(title)
         plt.xlabel(xlabel)

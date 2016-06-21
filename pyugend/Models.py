@@ -816,6 +816,7 @@ class Base_model():
                                      'f2'], self.mean_matrix['f2'] - 1.96 *
                                  self.std_matrix[
                                      'f2'], alpha=0.25)
+        axarr[0, 1].axhline(y=target, color='r')
 
         axarr[0, 2].plot(range(self.duration), self.mean_matrix['f3'])
         axarr[0, 2].set_title('Female level 3')
@@ -827,6 +828,8 @@ class Base_model():
                                      'f3'], self.mean_matrix['f3'] - 1.96 *
                                  self.std_matrix[
                                      'f3'], alpha=0.25)
+        axarr[0, 2].axhline(y=target, color='r')
+
 
         axarr[1, 0].plot(range(self.duration), self.mean_matrix['m1'])
         axarr[1, 0].set_title('Male level 1')
@@ -837,6 +840,8 @@ class Base_model():
                                      'm1'], self.mean_matrix['m1'] - 1.96 *
                                  self.std_matrix[
                                      'm1'], alpha=0.25)
+        axarr[1, 0].axhline(y=target, color='r')
+
 
         axarr[1, 1].plot(range(self.duration), self.mean_matrix['m2'])
         axarr[1, 1].set_title('Male level 2')
@@ -847,6 +852,7 @@ class Base_model():
                                      'm2'], self.mean_matrix['m2'] - 1.96 *
                                  self.std_matrix[
                                      'm2'], alpha=0.25)
+        axarr[1, 1].axhline(y=target, color='r')
 
         axarr[1, 2].plot(range(self.duration), self.mean_matrix['m3'])
         axarr[1, 2].set_title('Male level 3')
@@ -857,6 +863,7 @@ class Base_model():
                                      'm3'], self.mean_matrix['m3'] - 1.96 *
                                  self.std_matrix[
                                      'm3'], alpha=0.25)
+        axarr[1, 2].axhline(y=target, color='r')
 
         plt.show()
 
