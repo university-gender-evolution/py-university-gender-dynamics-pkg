@@ -16,8 +16,7 @@ class Comparison():
         self.mlist = model_list
 
     def plot_comparison_gender_proportion(self, xlabel, ylabel, title, txt,
-                                          target,
-                                          number_of_runs=10):
+                                          target, number_of_runs):
 
         ## This function will execute gender proportion comparisons for all models
 
