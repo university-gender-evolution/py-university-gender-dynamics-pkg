@@ -250,10 +250,13 @@ def test_multiple_runs_created_res_array(mock_data):
     t = Mod_Stoch_FSPH(**mock_data)
     t.run_multiple(10)
     assert hasattr(t, 'mean_matrix')
-#
-# def test_plot_empirical_probability_gender_proportion(mock_data):
-#     t = Mod_Stoch_FSPH(**mock_data)
-#     t.plot_empirical_probability_gender_proportion(100, 0.19)
+
+
+def test_plot_empirical_probability_gender_proportion(mock_data):
+
+    t = Mod_Stoch_FBPH(**mock_data)
+    t.plot_empirical_probability_gender_proportion(100, 0.19, 'title',
+                                                   'xlabel','ylabel', '')
 
 
 def test_plot_comparision_empirical_probability_gender_proportion(mock_data):

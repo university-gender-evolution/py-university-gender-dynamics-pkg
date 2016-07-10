@@ -438,35 +438,34 @@ class Base_model():
 
             _u = np.array([r['run']['f1'][idx]/(r['run']['f1'][idx] + r[
                 'run']['m1'][idx]) for r in res_array])
-            self.pct_female_matrix['year'][idx] = idx
-            self.pct_female_matrix['mpct_f1'][idx] = _u.mean()
-            self.pct_female_matrix['spct_f1'][idx] = _u.std()
+            self.pct_female_matrix.loc[idx,'year']= idx
+            self.pct_female_matrix.loc[idx,'mpct_f1'] = _u.mean()
+            self.pct_female_matrix.loc[idx,'spct_f1'] = _u.std()
 
             _u = np.array([r['run']['f2'][idx] / (r['run']['f2'][idx] + r[
             'run']['m2'][idx]) for r in res_array])
-            self.pct_female_matrix['mpct_f2'][idx] = _u.mean()
-            self.pct_female_matrix['spct_f2'][idx] = _u.std()
-            assert (self.pct_female_matrix['mpct_f2'][idx] is not np.nan), 'Neg value in f2 mean'
+            self.pct_female_matrix.loc[idx,'mpct_f2'] = _u.mean()
+            self.pct_female_matrix.loc[idx,'spct_f2'] = _u.std()
 
             _u = np.array([r['run']['f3'][idx] / (r['run']['f3'][idx] + r[
             'run']['m3'][idx]) for r in res_array])
-            self.pct_female_matrix['mpct_f3'][idx] = _u.mean()
-            self.pct_female_matrix['spct_f3'][idx] = _u.std()
+            self.pct_female_matrix.loc[idx,'mpct_f3'] = _u.mean()
+            self.pct_female_matrix.loc[idx,'spct_f3'] = _u.std()
 
             _u = np.array([r['run']['m1'][idx] / (r['run']['m1'][idx] + r[
             'run']['f1'][idx]) for r in res_array])
-            self.pct_female_matrix['mpct_m1'][idx] = _u.mean()
-            self.pct_female_matrix['spct_m1'][idx] = _u.std()
+            self.pct_female_matrix.loc[idx,'mpct_m1'] = _u.mean()
+            self.pct_female_matrix.loc[idx,'spct_m1'] = _u.std()
 
             _u = np.array([r['run']['m2'][idx] / (r['run']['m2'][idx] + r[
             'run']['f2'][idx]) for r in res_array])
-            self.pct_female_matrix['mpct_m2'][idx] = _u.mean()
-            self.pct_female_matrix['spct_m2'][idx] = _u.std()
+            self.pct_female_matrix.loc[idx,'mpct_m2'] = _u.mean()
+            self.pct_female_matrix.loc[idx,'spct_m2'] = _u.std()
 
             _u = np.array([r['run']['m3'][idx] / (r['run']['f3'][idx] + r[
             'run']['m3'][idx]) for r in res_array])
-            self.pct_female_matrix['mpct_m3'][idx] = _u.mean()
-            self.pct_female_matrix['spct_m3'][idx] = _u.std()
+            self.pct_female_matrix.loc[idx,'mpct_m3'] = _u.mean()
+            self.pct_female_matrix.loc[idx,'spct_m3'] = _u.std()
 
 
 
@@ -704,11 +703,11 @@ class Base_model():
                       r['run']['m1'][idx],
                       r['run']['m2'][idx],
                       r['run']['m3'][idx]])) for r in self.res_array])
-            probability_matrix['Probability'][
-                idx] = calculate_empirical_probability_of_value(target, _s)
-            probability_matrix['Mean'][idx] = _s.mean()
-            probability_matrix['Min'][idx] = _s.min()
-            probability_matrix['Max'][idx] = _s.max()
+            probability_matrix.loc[idx,'Probability'] = \
+                calculate_empirical_probability_of_value(target, _s)
+            probability_matrix.loc[idx, 'Mean'] = _s.mean()
+            probability_matrix.loc[idx, 'Min'] = _s.min()
+            probability_matrix.loc[idx, 'Max'] = _s.max()
 
         self.probability_matrix = probability_matrix
 
