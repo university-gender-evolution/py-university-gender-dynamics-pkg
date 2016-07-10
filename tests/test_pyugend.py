@@ -365,3 +365,15 @@ def test_FBHP_plot_comparison_male_female_numbers(mgmt_data):
                                           'caption',
                                           0.20,
                                           100)
+
+def test_run_probability_by_level_data(mgmt_data):
+    t = Mod_Stoch_FBPH(**mgmt_data)
+    val = t.run_probability_analysis_gender_by_level(10, 0.15)
+    assert (isinstance(val, pd.DataFrame))
+
+def test_plot_empirical_probability_analysis_by_level(mgmt_data):
+    t = Mod_Stoch_FBPH(**mgmt_data)
+    t.plot_multiple_runs_detail_percentage(100, 'stuff', 0.10, '')
+    t.plot_empirical_probability_analysis_by_level(0.10,
+                                                   100)
+

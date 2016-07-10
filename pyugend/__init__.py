@@ -14,4 +14,3 @@ from pyugend.Comparison import Comparison
 
 
 
-

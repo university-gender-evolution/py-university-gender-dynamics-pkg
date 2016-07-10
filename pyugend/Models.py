@@ -712,9 +712,49 @@ class Base_model():
 
         self.probability_matrix = probability_matrix
 
-    def run_probability_analysis_gender_detail(self):
+    def run_probability_analysis_gender_by_level(self, num_runs, target):
 
-        pass
+        ## First run the model multiple times to generate the mean and standard deviation matrices. This will also create the res_array attribute for the stored simulation data.
+
+        self.run_multiple(num_runs)
+
+        probability_by_level_data = pd.DataFrame(np.zeros([self.duration, 7]))
+        probability_by_level_data.columns = ['year','pf1', 'pf2', 'pf3', 'pm1',
+                                             'pm2','pm3']
+
+
+        for idx in range(self.duration):
+            _u1 = np.array([r['run']['f1'][idx] / (r['run']['f1'][idx] + r[
+            'run']['m1'][idx]) for r in self.res_array])
+
+            _u2 = np.array([r['run']['f2'][idx] / (r['run']['f2'][idx] + r[
+            'run']['m2'][idx]) for r in self.res_array])
+
+            _u3 = np.array([r['run']['f3'][idx] / (r['run']['f3'][idx] + r[
+            'run']['m3'][idx]) for r in self.res_array])
+
+            probability_by_level_data['year'] = idx
+
+            probability_by_level_data.loc[idx, 'pf1'] = \
+                calculate_empirical_probability_of_value(target, _u1)
+
+            probability_by_level_data.loc[idx, 'pf2'] = \
+                calculate_empirical_probability_of_value(target, _u2)
+
+            probability_by_level_data.loc[idx, 'pf3'] = \
+                calculate_empirical_probability_of_value(target, _u3)
+
+            probability_by_level_data.loc[idx, 'pm1'] = \
+                1 - probability_by_level_data['pf1'][idx]
+
+            probability_by_level_data.loc[idx, 'pm2'] = \
+                1 - probability_by_level_data['pf2'][idx]
+
+            probability_by_level_data.loc[idx, 'pm3'] = \
+                1 - probability_by_level_data['pf3'][idx]
+
+        return(probability_by_level_data)
+
 
     def run_probability_analysis_parameter_sweep_gender_proportion(self,
                                                                    number_of_runs,
@@ -770,16 +810,6 @@ class Base_model():
 
         return (empirical_probability_param_sweep_df)
 
-
-    def run_gender_percentages_by_level(self, num_runs):
-
-        ## This function will take the res_array and compute a new matrix
-        # with the average and standard deviations for the percentages.
-
-        ## Create a new array to hold the data. That will be the percentage
-    # of women by level. And also I need to standard deviation by level and
-    # year too.
-        pass
 
 
     def plot_multiple_runs_detail(self, num_runs, group_title, target):
@@ -1084,6 +1114,88 @@ class Base_model():
         plt.ylabel(ylabel)
         plt.text(0.02,0.02, txt)
         plt.show()
+
+    def plot_empirical_probability_analysis_by_level(self,
+                                                     target,
+                                                     number_of_runs,
+                                                     xlabelf1 = '',
+                                                     xlabelf2 = '',
+                                                     xlabelf3 = '',
+                                                     xlabelm1 = '',
+                                                     xlabelm2 = '',
+                                                     xlabelm3 = '',
+                                                     ylabelf1 = '',
+                                                     ylabelf2 = '',
+                                                     ylabelf3 = '',
+                                                     ylabelm1 = '',
+                                                     ylabelm2 = '',
+                                                     ylabelm3 = '',
+                                                     group_title = '',
+                                                     titlef1 = '',
+                                                     titlef2 = '',
+                                                     titlef3 = '',
+                                                     titlem1 = '',
+                                                     titlem2 = '',
+                                                     titlem3 = '',
+                                                     caption = ''):
+
+        d = self.run_probability_analysis_gender_by_level(number_of_runs,
+                                                          target)
+
+
+        f, axarr = plt.subplots(nrows=2, ncols=3)
+        f.suptitle(group_title)
+        axarr[0, 0].plot(range(self.duration), d['pf1'], label=self.label)
+        axarr[0, 0].set_title(titlef1)
+        axarr[0, 0].set_xlabel(xlabelf1)
+        axarr[0, 0].set_ylabel(ylabelf1)
+        axarr[0, 0].axhline(y=0.5, color='r')
+
+
+        axarr[0, 1].plot(range(self.duration), d['pf2'], label=self.label)
+        axarr[0, 1].set_title(titlef2)
+        axarr[0, 1].set_xlabel(xlabelf2)
+        axarr[0, 1].set_ylabel(ylabelf2)
+        axarr[0, 1].axhline(y=0.5, color='r')
+
+
+
+        axarr[0, 2].plot(range(self.duration), d['pf3'], label=self.label)
+        axarr[0, 2].set_title(titlef3)
+        axarr[0, 2].set_xlabel(xlabelf3)
+        axarr[0, 2].set_ylabel(ylabelf3)
+        axarr[0, 2].axhline(y=0.5, color='r')
+
+
+
+        axarr[1, 0].plot(range(self.duration), d['pm1'], label=self.label)
+        axarr[1, 0].set_title(titlem1)
+        axarr[1, 0].set_xlabel(xlabelm1)
+        axarr[1, 0].set_ylabel(ylabelm1)
+        axarr[1, 0].axhline(y=0.5, color='r')
+
+
+
+        axarr[1, 1].plot(range(self.duration), d['pm2'], label=self.label)
+        axarr[1, 1].set_title(titlem2)
+        axarr[1, 1].set_xlabel(xlabelm2)
+        axarr[1, 1].set_ylabel(ylabelm2)
+        axarr[1, 1].axhline(y=0.5, color='r')
+
+
+
+        axarr[1, 2].plot(range(self.duration), d['pm3'], label=self.label)
+        axarr[1, 2].set_title(titlem3)
+        axarr[1, 2].set_xlabel(xlabelm3)
+        axarr[1, 2].set_ylabel(ylabelm3)
+        axarr[1, 2].axhline(y=0.5, color='r')
+
+
+        plt.show()
+
+
+
+
 
     def plot_empirical_probability_group_detail(self, number_of_runs, param,
                                                 prof_group, llim,
