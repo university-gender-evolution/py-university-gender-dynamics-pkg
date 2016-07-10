@@ -1175,7 +1175,6 @@ class Base_model():
         axarr[1, 0].axhline(y=0.5, color='r')
 
 
-
         axarr[1, 1].plot(range(self.duration), d['pm2'], label=self.label)
         axarr[1, 1].set_title(titlem2)
         axarr[1, 1].set_xlabel(xlabelm2)
