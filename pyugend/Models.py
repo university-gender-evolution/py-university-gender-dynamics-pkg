@@ -896,8 +896,29 @@ class Base_model():
         plt.show()
 
 
-    def plot_multiple_runs_detail_percentage(self, num_runs, group_title,
-                                            target, txt):
+    def plot_multiple_runs_detail_percentage(self,
+                                             target,
+                                             number_of_runs = 100,
+                                             caption = '',
+                                             xlabelf1 = '',
+                                             xlabelf2 = '',
+                                             xlabelf3 = '',
+                                             xlabelm1 = '',
+                                             xlabelm2 = '',
+                                             xlabelm3 = '',
+                                             ylabelf1 = '',
+                                             ylabelf2 = '',
+                                             ylabelf3 = '',
+                                             ylabelm1 = '',
+                                             ylabelm2 = '',
+                                             ylabelm3 = '',
+                                             group_title = '',
+                                             titlef1 = '',
+                                             titlef2 = '',
+                                             titlef3 = '',
+                                             titlem1 = '',
+                                             titlem2 = '',
+                                             titlem3 = ''):
 
 
         if self.model_summary_stats == 0:
@@ -913,9 +934,9 @@ class Base_model():
         f.suptitle(group_title)
         axarr[0, 0].plot(range(self.duration), np.minimum(1, np.maximum(0,self.pct_female_matrix[
             'mpct_f1'])), label=self.label)
-        axarr[0, 0].set_title('Female level 1')
-        axarr[0, 0].set_xlabel('Years')
-        axarr[0, 0].set_ylabel('Percentage of Females')
+        axarr[0, 0].set_title(titlef1)
+        axarr[0, 0].set_xlabel(xlabelf1)
+        axarr[0, 0].set_ylabel(ylabelf1)
         axarr[0, 0].fill_between(range(self.duration),np.minimum(1,
                                  self.pct_female_matrix['mpct_f1'] +
                                  1.96 * self.pct_female_matrix[
@@ -925,9 +946,9 @@ class Base_model():
         axarr[0, 0].axhline(y=target, color='r')
 
         axarr[0, 1].plot(range(self.duration), np.minimum(1, np.maximum(0,self.pct_female_matrix['mpct_f2'])))
-        axarr[0, 1].set_title('Female level 2')
-        axarr[0, 1].set_xlabel('Years')
-        axarr[0, 1].set_ylabel('Percentage of Females')
+        axarr[0, 1].set_title(titlef2)
+        axarr[0, 1].set_xlabel(xlabelf2)
+        axarr[0, 1].set_ylabel(ylabelf2)
         axarr[0, 1].fill_between(range(self.duration), np.minimum(1,self.pct_female_matrix['mpct_f2'] +
                                  1.96 * self.pct_female_matrix[
                                      'spct_f2']), np.maximum(0,self.pct_female_matrix['mpct_f2'] - 1.96 *
@@ -937,10 +958,10 @@ class Base_model():
 
 
         axarr[0, 2].plot(range(self.duration), np.minimum(1,np.maximum(0,self.pct_female_matrix['mpct_f3'])))
-        axarr[0, 2].set_title('Female level 3')
+        axarr[0, 2].set_title(titlef3)
 
-        axarr[0, 2].set_xlabel('Years')
-        axarr[0, 2].set_ylabel('Percentage of Females')
+        axarr[0, 2].set_xlabel(xlabelf3)
+        axarr[0, 2].set_ylabel(ylabelf3)
         axarr[0, 2].fill_between(range(self.duration), np.minimum(1,self.pct_female_matrix['mpct_f3'] +
                                  1.96 * self.pct_female_matrix[
                                      'spct_f3']), np.maximum(0,self.pct_female_matrix['mpct_f3'] - 1.96 *
@@ -950,9 +971,9 @@ class Base_model():
 
 
         axarr[1, 0].plot(range(self.duration), np.minimum(1, np.maximum(0,self.pct_female_matrix['mpct_m1'])))
-        axarr[1, 0].set_title('Male level 1')
-        axarr[1, 0].set_xlabel('Years')
-        axarr[1, 0].set_ylabel('Percentage of Males')
+        axarr[1, 0].set_title(titlem1)
+        axarr[1, 0].set_xlabel(xlabelm1)
+        axarr[1, 0].set_ylabel(ylabelm1)
         axarr[1, 0].fill_between(range(self.duration), np.minimum(1,self.pct_female_matrix['mpct_m1'] +
                                  1.96 * self.pct_female_matrix[
                                      'spct_m1']), np.maximum(0,self.pct_female_matrix['mpct_m1'] - 1.96 *
@@ -962,9 +983,9 @@ class Base_model():
 
 
         axarr[1, 1].plot(range(self.duration), np.minimum(1, np.maximum(0,self.pct_female_matrix['mpct_m2'])))
-        axarr[1, 1].set_title('Male level 2')
-        axarr[1, 1].set_xlabel('Years')
-        axarr[1, 1].set_ylabel('Percentage of Males')
+        axarr[1, 1].set_title(titlem2)
+        axarr[1, 1].set_xlabel(xlabelm2)
+        axarr[1, 1].set_ylabel(ylabelm2)
         axarr[1, 1].fill_between(range(self.duration), np.minimum(1,self.pct_female_matrix['mpct_m2'] +
                                  1.96 * self.pct_female_matrix[
                                      'spct_m2']), np.maximum(0,self.pct_female_matrix['mpct_m2'] - 1.96 *
@@ -974,16 +995,16 @@ class Base_model():
 
 
         axarr[1, 2].plot(range(self.duration), np.minimum(1, np.maximum(0,self.pct_female_matrix['mpct_m3'])))
-        axarr[1, 2].set_title('Male level 3')
-        axarr[1, 2].set_xlabel('Years')
-        axarr[1, 2].set_ylabel('Percentage of Males')
+        axarr[1, 2].set_title(titlem3)
+        axarr[1, 2].set_xlabel(xlabelm3)
+        axarr[1, 2].set_ylabel(ylabelm3)
         axarr[1, 2].fill_between(range(self.duration), np.minimum(1,self.pct_female_matrix['mpct_m3'] +
                                  1.96 * self.pct_female_matrix[
                                      'spct_m3']), np.maximum(0,self.pct_female_matrix['mpct_m3'] - 1.96 *
                                  self.pct_female_matrix[
                                      'spct_m3']), alpha=0.25)
         axarr[1, 2].axhline(y=1 - target, color='r')
-        f.text(0.2, 0.2, txt)
+        f.text(0.2, 0.2, caption)
 
         plt.show()
 

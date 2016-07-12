@@ -117,7 +117,7 @@ def test_base_model_plot_multiple_runs_detail(mock_data):
 def test_base_model_plot_multiple_runs_percentage(mock_data):
     t = Mod_Stoch_FBHP(**mock_data)
     t.run_multiple(10)
-    t.plot_multiple_runs_detail_percentage(10,'Model 1: Hire-Promote', 0.15)
+    t.plot_multiple_runs_detail_percentage(0.25,100)
 
 #
 def test_base_model_multiple_runs_gender_prop(mock_data):
