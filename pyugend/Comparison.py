@@ -118,14 +118,34 @@ class Comparison():
 
 
 
-    def plot_comparison_detail(self, number_of_runs):
+    def plot_comparison_detail(self,
+                               number_of_runs,
+                               xlabelf1='',
+                               xlabelf2='',
+                               xlabelf3='',
+                               xlabelm1='',
+                               xlabelm2='',
+                               xlabelm3='',
+                               ylabelf1='',
+                               ylabelf2='',
+                               ylabelf3='',
+                               ylabelm1='',
+                               ylabelm2='',
+                               ylabelm3='',
+                               group_title='',
+                               titlef1='',
+                               titlef2='',
+                               titlef3='',
+                               titlem1='',
+                               titlem2='',
+                               titlem3='',
+                               caption=''):
 
 
         # create color list
 
         line_colors = ['#7fc97f', '#beaed4', '#fdc086','#386cb0','#f0027f','#ffff99']
-        plot_titles = ['extra', 'Female Level 1', 'Female level 2', 'Female level 3', 'Male level 1', 'Male level 2', 'Male level 3']
-        plot_y_axis_titles = ['extra', 'Number of Females', 'Number of Females', 'Number of Females', 'Number of Males', 'Number of Males', 'Number of Males']
+
 
         # run all models and generate result matrices. I run each model so I can guarantee that they all have the same duration.
 
@@ -135,14 +155,14 @@ class Comparison():
 
 
         f, axarr = plt.subplots(nrows = 2, ncols=3)
-        f.suptitle("Department Male/Female Counts by Level")
+        f.suptitle(group_title)
 
         for k,v in enumerate(self.mlist):
 
             axarr[0,0].plot(range(self.mlist[k].duration), self.mlist[k].mean_matrix['f1'], color=line_colors[k], label = self.mlist[k].label, linewidth=2.0)
-            axarr[0,0].set_title('Female level 1')
-            axarr[0,0].set_xlabel('Years')
-            axarr[0,0].set_ylabel('Number of Females')
+            axarr[0,0].set_title(titlef1)
+            axarr[0,0].set_xlabel(xlabelf1)
+            axarr[0,0].set_ylabel(ylabelf1)
             axarr[0,0].fill_between(range(self.mlist[k].duration), self.mlist[k].mean_matrix['f1'] +
                                     1.96*self.mlist[k].std_matrix[
                 'f1'], self.mlist[k].mean_matrix['f1'] - 1.96*self.mlist[k].std_matrix[
@@ -151,46 +171,46 @@ class Comparison():
 
 
             axarr[0,1].plot(range(self.mlist[k].duration), self.mlist[k].mean_matrix['f2'], color=line_colors[k])
-            axarr[0,1].set_title('Female level 2')
-            axarr[0,1].set_xlabel('Years')
-            axarr[0,1].set_ylabel('Number of Females')
+            axarr[0,1].set_title(titlef2)
+            axarr[0,1].set_xlabel(xlabelf2)
+            axarr[0,1].set_ylabel(ylabelf2)
             axarr[0,1].fill_between(range(self.mlist[k].duration), self.mlist[k].mean_matrix['f2'] +
                                     1.96*self.mlist[k].std_matrix[
                 'f2'], self.mlist[k].mean_matrix['f2'] - 1.96*self.mlist[k].std_matrix[
                 'f2'], alpha=0.5, color = line_colors[k], facecolor= line_colors[k] )
 
             axarr[0,2].plot(range(self.mlist[k].duration), self.mlist[k].mean_matrix['f3'], color=line_colors[k])
-            axarr[0,2].set_title('Female level 3')
+            axarr[0,2].set_title(titlef3)
 
-            axarr[0,2].set_xlabel('Years')
-            axarr[0,2].set_ylabel('Number of Females')
+            axarr[0,2].set_xlabel(xlabelf3)
+            axarr[0,2].set_ylabel(ylabelf3)
             axarr[0,2].fill_between(range(self.mlist[k].duration), self.mlist[k].mean_matrix['f3'] +
                                     1.96*self.mlist[k].std_matrix[
                 'f3'], self.mlist[k].mean_matrix['f3'] - 1.96*self.mlist[k].std_matrix[
                 'f3'], alpha=0.5,  color = line_colors[k], facecolor= line_colors[k])
 
             axarr[1,0].plot(range(self.mlist[k].duration), self.mlist[k].mean_matrix['m1'],color=line_colors[k])
-            axarr[1,0].set_title('Male level 1')
-            axarr[1,0].set_xlabel('Years')
-            axarr[1,0].set_ylabel('Number of Males')
+            axarr[1,0].set_title(titlem1)
+            axarr[1,0].set_xlabel(xlabelm1)
+            axarr[1,0].set_ylabel(ylabelm1)
             axarr[1,0].fill_between(range(self.mlist[k].duration), self.mlist[k].mean_matrix['m1'] +
                                     1.96*self.mlist[k].std_matrix[
                 'm1'], self.mlist[k].mean_matrix['m1'] - 1.96*self.mlist[k].std_matrix[
                 'm1'], alpha=0.5, color = line_colors[k], facecolor= line_colors[k])
 
             axarr[1,1].plot(range(self.mlist[k].duration), self.mlist[k].mean_matrix['m2'], color=line_colors[k])
-            axarr[1,1].set_title('Male level 2')
-            axarr[1,1].set_xlabel('Years')
-            axarr[1,1].set_ylabel('Number of Males')
+            axarr[1,1].set_title(titlem2)
+            axarr[1,1].set_xlabel(xlabelm2)
+            axarr[1,1].set_ylabel(ylabelm2)
             axarr[1,1].fill_between(range(self.mlist[k].duration), self.mlist[k].mean_matrix['m2'] +
                                     1.96*self.mlist[k].std_matrix[
                 'm2'], self.mlist[k].mean_matrix['m2'] - 1.96*self.mlist[k].std_matrix[
                 'm2'], alpha=0.5,  color = line_colors[k], facecolor= line_colors[k] )
 
             axarr[1,2].plot(range(self.mlist[k].duration), self.mlist[k].mean_matrix['m3'], color=line_colors[k])
-            axarr[1,2].set_title('Male level 3')
-            axarr[1,2].set_xlabel('Years')
-            axarr[1,2].set_ylabel('Number of Males')
+            axarr[1,2].set_title(titlem3)
+            axarr[1,2].set_xlabel(xlabelm3)
+            axarr[1,2].set_ylabel(ylabelm3)
             axarr[1,2].fill_between(range(self.mlist[k].duration), self.mlist[k].mean_matrix['m3'] +
                                     1.96*self.mlist[k].std_matrix[
                 'm3'], self.mlist[k].mean_matrix['m3'] - 1.96*self.mlist[k].std_matrix[
