@@ -923,7 +923,7 @@ class Base_model():
 
         if self.model_summary_stats == 0:
             print("generating multiple runs data.")
-            self.run_multiple(num_runs)
+            self.run_multiple(number_of_runs)
         pd_stats_matrix = pd.DataFrame(self.model_summary_stats)
         tmp = pd_stats_matrix.select_dtypes(include=[np.number])
         pd_stats_matrix.loc[:, tmp.columns] = np.round(tmp, 2)
