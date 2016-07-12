@@ -1136,7 +1136,7 @@ class Base_model():
                                                      titlef3 = '',
                                                      titlem1 = '',
                                                      titlem2 = '',
-                                                     titlem3 = '',):
+                                                     titlem3 = ''):
 
         d = self.run_probability_analysis_gender_by_level(number_of_runs,
                                                           target)
