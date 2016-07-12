@@ -120,6 +120,7 @@ class Comparison():
 
     def plot_comparison_detail(self,
                                number_of_runs,
+                               caption = '',
                                xlabelf1='',
                                xlabelf2='',
                                xlabelf3='',
@@ -138,8 +139,7 @@ class Comparison():
                                titlef3='',
                                titlem1='',
                                titlem2='',
-                               titlem3='',
-                               caption=''):
+                               titlem3=''):
 
 
         # create color list
