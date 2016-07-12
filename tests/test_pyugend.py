@@ -176,9 +176,8 @@ def test_stochastic_model_with_hiring_first_multiple(mock_data):
 
 
 def test_comparison_model_plot_detail(mock_data):
-    modlist = list([Replication_model(**mock_data),
-                    Mod_Stoch_VSHP(**mock_data),
-                    Mod_Stoch_FSPH(**mock_data)])
+    modlist = list([Mod_Stoch_FBHP(**mock_data),
+                    Mod_Stoch_FBPH(**mock_data)])
     c = Comparison(modlist)
     c.plot_comparison_detail(10)
 

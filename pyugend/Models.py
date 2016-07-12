@@ -1117,6 +1117,7 @@ class Base_model():
     def plot_empirical_probability_analysis_by_level(self,
                                                      target,
                                                      number_of_runs,
+                                                     caption = '',
                                                      xlabelf1 = '',
                                                      xlabelf2 = '',
                                                      xlabelf3 = '',
@@ -1135,8 +1136,7 @@ class Base_model():
                                                      titlef3 = '',
                                                      titlem1 = '',
                                                      titlem2 = '',
-                                                     titlem3 = '',
-                                                     caption = ''):
+                                                     titlem3 = '',):
 
         d = self.run_probability_analysis_gender_by_level(number_of_runs,
                                                           target)
