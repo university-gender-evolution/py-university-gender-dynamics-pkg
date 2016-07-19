@@ -182,7 +182,11 @@ def test_comparison_model_plot_detail(mock_data):
     c.plot_comparison_detail(10)
 
 
-
+def test_comparison_plot_percentage_women_by_level(mock_data):
+    modlist = list([Mod_Stoch_FBHP(**mock_data),
+                    Mod_Stoch_FBPH(**mock_data)])
+    c = Comparison(modlist)
+    c.plot_comparison_percentage_women_by_level(0.25,10)
 
 
 def test_comparison_model_param_sweep(mock_data):
