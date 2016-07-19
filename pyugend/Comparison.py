@@ -590,26 +590,7 @@ class Comparison():
         plt.subplots_adjust(top=0.85)
         plt.show()
 
-    # def plot_comparison_empirical_probability_gender_proportion(self, number_of_runs, param, prof_group, llim,
-    #                 ulim, num_of_steps, target):
-    #
-    #
-    #     for mod in self.mlist:
-    #         mod.run_probability_analysis_parameter_sweep_gender_detail(number_of_runs, param, prof_group, llim,
-    #                 ulim, num_of_steps, target)
-    #
-    #
-    #     for k,v in enumerate(self.mlist):
-    #
-    #         plot_array = self.mlist[k].last_empirical_probability_detail
-    #         plt.plot(plot_array['param'], plot_array['probability'], label = self.mlist[k].label)
-    #
-    #
-    #     plt.title('Probability plot for Parameter Sweep on ' + param + ' for ' + str(self.mlist[0].duration) + ' years')
-    #     plt.xlabel(param)
-    #     plt.ylabel('Probability of Target Value or Greater')
-    #     plt.legend(loc='upper right', shadow=True)
-    #     plt.show()
+
 
 
     def plot_comparison_empirical_probability_gender_proportion(self, xlabel,
@@ -645,6 +626,114 @@ class Comparison():
         plt.axhline(0.5, color='r')
         plt.text(0.2, 0.2, txt)
         plt.show()
+
+    def plot_comparison_empirical_probability_proportion_by_level(self,
+                                                      target,
+                                                      number_of_runs,
+                                                      caption='',
+                                                      xlabelf1='',
+                                                      xlabelf2='',
+                                                      xlabelf3='',
+                                                      xlabelm1='',
+                                                      xlabelm2='',
+                                                      xlabelm3='',
+                                                      ylabelf1='',
+                                                      ylabelf2='',
+                                                      ylabelf3='',
+                                                      ylabelm1='',
+                                                      ylabelm2='',
+                                                      ylabelm3='',
+                                                      group_title='',
+                                                      titlef1='',
+                                                      titlef2='',
+                                                      titlef3='',
+                                                      titlem1='',
+                                                      titlem2='',
+                                                      titlem3=''):
+
+        # create color list
+
+        line_colors = ['#7fc97f', '#beaed4', '#fdc086', '#386cb0', '#f0027f',
+                       '#ffff99']
+
+        # run all models and generate result matrices. I run each model so I can guarantee that they all have the same duration.
+
+        mods =[mod.run_probability_analysis_gender_by_level(
+            number_of_runs,target) for mod in self.mlist]
+
+
+
+
+        f, axarr = plt.subplots(nrows=2, ncols=3)
+        f.suptitle(group_title)
+
+        for k, v in enumerate(self.mlist):
+            axarr[0, 0].plot(range(self.mlist[k].duration),
+                             np.minimum(1, np.maximum(0, mods[k]['pf1'])),
+                             color=line_colors[k],
+                             label=self.mlist[k].label, linewidth=2.0)
+            axarr[0, 0].set_title(titlef1)
+            axarr[0, 0].set_xlabel(xlabelf1)
+            axarr[0, 0].set_ylabel(ylabelf1)
+            axarr[0, 0].legend(loc='upper right', shadow=True)
+            axarr[0, 0].axhline(y=0.5, color='r')
+
+            axarr[0, 1].plot(range(self.mlist[k].duration),
+                             np.minimum(1, np.maximum(0, mods[k]['pf2'])),
+                             color=line_colors[k],
+                             label=self.mlist[k].label, linewidth=2.0)
+            axarr[0, 1].set_title(titlef2)
+            axarr[0, 1].set_xlabel(xlabelf2)
+            axarr[0, 1].set_ylabel(ylabelf2)
+            axarr[0, 1].axhline(y=0.5, color='r')
+
+            axarr[0, 2].plot(range(self.mlist[k].duration),
+                             np.minimum(1, np.maximum(0, mods[k]['pf3'])),
+                             color=line_colors[k],
+                             label=self.mlist[k].label, linewidth=2.0)
+            axarr[0, 2].set_title(titlef3)
+            axarr[0, 2].set_xlabel(xlabelf3)
+            axarr[0, 2].set_ylabel(ylabelf3)
+            axarr[0, 2].axhline(y=0.5, color='r')
+
+            axarr[1, 0].plot(range(self.mlist[k].duration),
+                             np.minimum(1, np.maximum(0, mods[k]['pm1'])),
+                             color=line_colors[k],
+                             label=self.mlist[k].label, linewidth=2.0)
+            axarr[1, 0].set_title(titlem1)
+            axarr[1, 0].set_xlabel(xlabelm1)
+            axarr[1, 0].set_ylabel(ylabelm1)
+            axarr[1, 0].axhline(y=0.5, color='r')
+
+            axarr[1, 1].plot(range(self.mlist[k].duration),
+                             np.minimum(1, np.maximum(0, mods[k]['pm2'])),
+                             color=line_colors[k],
+                             label=self.mlist[k].label, linewidth=2.0)
+            axarr[1, 1].set_title(titlem2)
+            axarr[1, 1].set_xlabel(xlabelm2)
+            axarr[1, 1].set_ylabel(ylabelm2)
+            axarr[1, 1].axhline(y=0.5, color='r')
+
+            axarr[1, 2].plot(range(self.mlist[k].duration),
+                             np.minimum(1, np.maximum(0, mods[k]['pm3'])),
+                             color=line_colors[k],
+                             label=self.mlist[k].label, linewidth=2.0)
+            axarr[1, 2].set_title(titlem3)
+            axarr[1, 2].set_xlabel(xlabelm3)
+            axarr[1, 2].set_ylabel(ylabelm3)
+            axarr[1, 2].axhline(y=0.5, color='r')
+
+        plt.tight_layout()
+        plt.subplots_adjust(top=0.85)
+
+        plt.show()
+
+
+
+
+
+
+
 
     def plot_comparison_female_male_numbers(self, xlabel, ylabel, title, txt,
                                             target, number_of_runs=10):

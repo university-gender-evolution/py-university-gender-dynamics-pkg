@@ -383,3 +383,8 @@ def test_plot_empirical_probability_analysis_by_level(mgmt_data):
     t.plot_empirical_probability_analysis_by_level(0.10,
                                                    100)
 
+def test_plot_comparison_empirical_probability_proportion_by_level(mock_data):
+    modlist = list([Mod_Stoch_FBHP(**mock_data),
+                    Mod_Stoch_FBPH(**mock_data)])
+    c = Comparison(modlist)
+    c.plot_comparison_empirical_probability_proportion_by_level(0.15,100)
