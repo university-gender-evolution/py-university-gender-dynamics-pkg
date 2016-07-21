@@ -379,12 +379,11 @@ def test_run_probability_by_level_data(mgmt_data):
 
 def test_plot_empirical_probability_analysis_by_level(mgmt_data):
     t = Mod_Stoch_FBPH(**mgmt_data)
-    t.plot_multiple_runs_detail_percentage(100, 'stuff', 0.10, '')
-    t.plot_empirical_probability_analysis_by_level(0.10,
-                                                   100)
+    t.plot_multiple_runs_detail_percentage(0.25,10)
+
 
 def test_plot_comparison_empirical_probability_proportion_by_level(mock_data):
     modlist = list([Mod_Stoch_FBHP(**mock_data),
                     Mod_Stoch_FBPH(**mock_data)])
     c = Comparison(modlist)
-    c.plot_comparison_empirical_probability_proportion_by_level(0.15,100)
+    c.plot_comparison_empirical_probability_proportion_by_level(0.25,10)
