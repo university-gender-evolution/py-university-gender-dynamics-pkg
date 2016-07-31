@@ -158,10 +158,10 @@ def test_replication_model(mock_data):
 #      t.run_multiple(10)
 #      t.plot_multiple_runs_gender_prop()
 
-# def test_excel_export(mock_data):
-#     t = Mod_Stoch_VSHP(**mock_data)
-#     t.export_model_run()
-#     assert(isinstance(t,Mod_Stoch_VSHP))
+def test_excel_export(mock_data):
+    t = Mod_Stoch_FBPH(**mock_data)
+    t.export_model_run(4)
+
 
 def test_stochastic_model_with_hiring_first(mock_data):
     t = Mod_Stoch_FSPH(**mock_data)
@@ -386,4 +386,4 @@ def test_plot_comparison_empirical_probability_proportion_by_level(mock_data):
     modlist = list([Mod_Stoch_FBHP(**mock_data),
                     Mod_Stoch_FBPH(**mock_data)])
     c = Comparison(modlist)
-    c.plot_comparison_empirical_probability_proportion_by_level(0.25,10)
+    c.plot_comparison_empirical_probability_proportion_by_level(0.25,100)

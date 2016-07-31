@@ -561,7 +561,7 @@ class Base_model():
         self.res_array = res_array
 
         # return(list((self.mean_matrix,self.std_matrix, self.model_summary_stats, self.pd_last_row_data)))
-        return (0)
+
 
     def run_parameter_sweep(self, number_of_runs, param, llim,
                             ulim, num_of_steps):
@@ -1314,28 +1314,70 @@ class Base_model():
 
 
 
-    def export_model_run(self):
+    def export_model_run(self, number_of_runs):
 
         if not hasattr(self, 'res'):
-            self.run_model()
+            self.run_multiple(number_of_runs)
 
-        df = pd.DataFrame(self.res)
-        df.columns = ['f1_n',
-                      'f2_n',
-                      'f3_n',
-                      'm1_n',
-                      'm2_n',
-                      'm3_n',
-                      't3_n',
-                      't2_n',
-                      't1_n',
-                      'prom1_avg',
-                      'prom2_avg',
-                      'gender_prop']
-        # work with barbara to craft the filename
-        # model_label + 160114_HH:MM(24hour) +
-        filename = self.label + ".xls"
-        df.to_excel(filename, header=True)
+
+        # first I will allocate the memory by creating an empty dataframe.
+        # then I will iterate over the res_array matrix and write to the
+        # correct rows of the dataframe. This is more memory efficient compared
+        # to appending to a dataframe.
+
+        #print(pd.DataFrame(self.res_array['run'][3]))
+
+        print_df = pd.DataFrame(np.zeros([self.duration * number_of_runs - 4,
+                                          27]))
+
+        print_df.columns = ['run',
+                            'f1',
+                            'f2',
+                            'f3',
+                            'm1',
+                            'm2',
+                            'm3',
+                            'vac_3',
+                            'vac_2',
+                            'vac_1',
+                            'prom1',
+                            'prom2',
+                            'gendprop',
+                            'unfilled',
+                            'dept_size',
+                            'f_hire_3',
+                            'm_hire_3',
+                            'f_hire_2',
+                            'm_hire_2',
+                            'f_hire_1',
+                            'm_hire_1',
+                            'f_prom_3',
+                            'm_prom_3',
+                            'f_prom_2',
+                            'm_prom_2',
+                            'f_prom_1',
+                            'm_prom_1']
+
+        for idx in range(number_of_runs):
+
+            print_df.ix[idx*self.duration:idx*self.duration + self.duration
+                                            - 1
+            , 'run'] =\
+                idx
+            print_df.ix[idx*self.duration:idx*self.duration + self.duration -1
+            , 'f1': ] = pd.DataFrame(
+                self.res_array['run'][idx])
+            print(pd.DataFrame(self.res_array['run'][idx]))
+            print(print_df.ix[idx*self.duration:idx*self.duration +
+                                                 self.duration - 1,'f1': ])
+            print('did it')
+
+        print(print_df)
+
+        # # # work with barbara to craft the filename
+        # # # model_label + 160114_HH:MM(24hour) +
+        # filename = self.label + ".xls"
+        # df.to_excel(filename)
 
         #
 

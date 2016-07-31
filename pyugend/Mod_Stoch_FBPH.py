@@ -236,8 +236,6 @@ class Mod_Stoch_FBPH(Base_model):
                       neg(promotions_of_females_level_1_2),
                       hiring_female_1]))
 
-            assert (number_of_females_level_1 >= 0), "negative number of females 1"
-
 
             self.res[i, 1] = number_of_females_level_2 = max(0, sum(
                 list([prev_number_of_females_level_2,
@@ -318,6 +316,7 @@ class Mod_Stoch_FBPH(Base_model):
             self.res[i, 24] = promotions_of_females_level_1_2
             self.res[i, 25] = promotions_of_males_level_1_2
 
+            #assert (np.isnan(self.res[i,0]) == True), 'NaN detected'
 
             # this produces an array of values. Then I need to assign the
             # values to levels. So if I have say a range of variation of 5. I
