@@ -412,7 +412,8 @@ class Base_model():
         self.dept_size_matrix = pd.DataFrame(np.zeros([self.duration, 3]))
         self.dept_size_matrix.columns = ['year', 'mean', 'std']
         self.pct_female_matrix = pd.DataFrame(np.zeros([self.duration, 13]))
-        self.pct_female_matrix.columns = ['year','mpct_f1', 'mpct_f2', 'mpct_f3',
+        self.pct_female_matrix.columns = ['year', 'mpct_f1', 'mpct_f2',
+                                          'mpct_f3',
                                           'spct_f1', 'spct_f2', 'spct_f3',
                                           'mpct_m1', 'spct_m1', 'mpct_m2',
                                           'spct_m2', 'mpct_m3', 'spct_m3']
@@ -436,39 +437,36 @@ class Base_model():
             self.dept_size_matrix['mean'][idx] = _s.mean()
             self.dept_size_matrix['std'][idx] = _s.std()
 
-            _u = np.array([r['run']['f1'][idx]/(r['run']['f1'][idx] + r[
+            _u = np.array([r['run']['f1'][idx] / (r['run']['f1'][idx] + r[
                 'run']['m1'][idx]) for r in res_array])
-            self.pct_female_matrix.loc[idx,'year']= idx
-            self.pct_female_matrix.loc[idx,'mpct_f1'] = _u.mean()
-            self.pct_female_matrix.loc[idx,'spct_f1'] = _u.std()
+            self.pct_female_matrix.loc[idx, 'year'] = idx
+            self.pct_female_matrix.loc[idx, 'mpct_f1'] = _u.mean()
+            self.pct_female_matrix.loc[idx, 'spct_f1'] = _u.std()
 
             _u = np.array([r['run']['f2'][idx] / (r['run']['f2'][idx] + r[
-            'run']['m2'][idx]) for r in res_array])
-            self.pct_female_matrix.loc[idx,'mpct_f2'] = _u.mean()
-            self.pct_female_matrix.loc[idx,'spct_f2'] = _u.std()
+                'run']['m2'][idx]) for r in res_array])
+            self.pct_female_matrix.loc[idx, 'mpct_f2'] = _u.mean()
+            self.pct_female_matrix.loc[idx, 'spct_f2'] = _u.std()
 
             _u = np.array([r['run']['f3'][idx] / (r['run']['f3'][idx] + r[
-            'run']['m3'][idx]) for r in res_array])
-            self.pct_female_matrix.loc[idx,'mpct_f3'] = _u.mean()
-            self.pct_female_matrix.loc[idx,'spct_f3'] = _u.std()
+                'run']['m3'][idx]) for r in res_array])
+            self.pct_female_matrix.loc[idx, 'mpct_f3'] = _u.mean()
+            self.pct_female_matrix.loc[idx, 'spct_f3'] = _u.std()
 
             _u = np.array([r['run']['m1'][idx] / (r['run']['m1'][idx] + r[
-            'run']['f1'][idx]) for r in res_array])
-            self.pct_female_matrix.loc[idx,'mpct_m1'] = _u.mean()
-            self.pct_female_matrix.loc[idx,'spct_m1'] = _u.std()
+                'run']['f1'][idx]) for r in res_array])
+            self.pct_female_matrix.loc[idx, 'mpct_m1'] = _u.mean()
+            self.pct_female_matrix.loc[idx, 'spct_m1'] = _u.std()
 
             _u = np.array([r['run']['m2'][idx] / (r['run']['m2'][idx] + r[
-            'run']['f2'][idx]) for r in res_array])
-            self.pct_female_matrix.loc[idx,'mpct_m2'] = _u.mean()
-            self.pct_female_matrix.loc[idx,'spct_m2'] = _u.std()
+                'run']['f2'][idx]) for r in res_array])
+            self.pct_female_matrix.loc[idx, 'mpct_m2'] = _u.mean()
+            self.pct_female_matrix.loc[idx, 'spct_m2'] = _u.std()
 
             _u = np.array([r['run']['m3'][idx] / (r['run']['f3'][idx] + r[
-            'run']['m3'][idx]) for r in res_array])
-            self.pct_female_matrix.loc[idx,'mpct_m3'] = _u.mean()
-            self.pct_female_matrix.loc[idx,'spct_m3'] = _u.std()
-
-
-
+                'run']['m3'][idx]) for r in res_array])
+            self.pct_female_matrix.loc[idx, 'mpct_m3'] = _u.mean()
+            self.pct_female_matrix.loc[idx, 'spct_m3'] = _u.std()
 
         # create matrix to hold data for the final iteration of the model. That data
         # holds the distributions of the data. The matrix that holds
@@ -561,7 +559,6 @@ class Base_model():
         self.res_array = res_array
 
         # return(list((self.mean_matrix,self.std_matrix, self.model_summary_stats, self.pd_last_row_data)))
-
 
     def run_parameter_sweep(self, number_of_runs, param, llim,
                             ulim, num_of_steps):
@@ -703,7 +700,7 @@ class Base_model():
                       r['run']['m1'][idx],
                       r['run']['m2'][idx],
                       r['run']['m3'][idx]])) for r in self.res_array])
-            probability_matrix.loc[idx,'Probability'] = \
+            probability_matrix.loc[idx, 'Probability'] = \
                 calculate_empirical_probability_of_value(target, _s)
             probability_matrix.loc[idx, 'Mean'] = _s.mean()
             probability_matrix.loc[idx, 'Min'] = _s.min()
@@ -718,19 +715,18 @@ class Base_model():
         self.run_multiple(num_runs)
 
         probability_by_level_data = pd.DataFrame(np.zeros([self.duration, 7]))
-        probability_by_level_data.columns = ['year','pf1', 'pf2', 'pf3', 'pm1',
-                                             'pm2','pm3']
-
+        probability_by_level_data.columns = ['year', 'pf1', 'pf2', 'pf3', 'pm1',
+                                             'pm2', 'pm3']
 
         for idx in range(self.duration):
             _u1 = np.array([r['run']['f1'][idx] / (r['run']['f1'][idx] + r[
-            'run']['m1'][idx]) for r in self.res_array])
+                'run']['m1'][idx]) for r in self.res_array])
 
             _u2 = np.array([r['run']['f2'][idx] / (r['run']['f2'][idx] + r[
-            'run']['m2'][idx]) for r in self.res_array])
+                'run']['m2'][idx]) for r in self.res_array])
 
             _u3 = np.array([r['run']['f3'][idx] / (r['run']['f3'][idx] + r[
-            'run']['m3'][idx]) for r in self.res_array])
+                'run']['m3'][idx]) for r in self.res_array])
 
             probability_by_level_data['year'] = idx
 
@@ -752,8 +748,7 @@ class Base_model():
             probability_by_level_data.loc[idx, 'pm3'] = \
                 1 - probability_by_level_data['pf3'][idx]
 
-        return(probability_by_level_data)
-
+        return (probability_by_level_data)
 
     def run_probability_analysis_parameter_sweep_gender_proportion(self,
                                                                    number_of_runs,
@@ -798,7 +793,7 @@ class Base_model():
             empirical_probability_param_sweep_df['param'][i] = val
 
             empirical_probability_param_sweep_df['prof_group_mean'][i] = \
-            model_final_year_results[prof_group].mean()
+                model_final_year_results[prof_group].mean()
 
             empirical_probability_param_sweep_df['probability'][
                 i] = calculate_empirical_probability_of_value(target,
@@ -809,10 +804,7 @@ class Base_model():
 
         return (empirical_probability_param_sweep_df)
 
-
-
     def plot_multiple_runs_detail(self, num_runs, group_title, target):
-
 
         if self.model_summary_stats == 0:
             print("generating multiple runs data.")
@@ -858,7 +850,6 @@ class Base_model():
                                      'f3'], alpha=0.25)
         axarr[0, 2].axhline(y=target, color='r')
 
-
         axarr[1, 0].plot(range(self.duration), self.mean_matrix['m1'])
         axarr[1, 0].set_title('Male level 1')
         axarr[1, 0].set_xlabel('Years')
@@ -869,7 +860,6 @@ class Base_model():
                                  self.std_matrix[
                                      'm1'], alpha=0.25)
         axarr[1, 0].axhline(y=target, color='r')
-
 
         axarr[1, 1].plot(range(self.duration), self.mean_matrix['m2'])
         axarr[1, 1].set_title('Male level 2')
@@ -895,31 +885,29 @@ class Base_model():
 
         plt.show()
 
-
     def plot_multiple_runs_detail_percentage(self,
                                              target,
-                                             number_of_runs = 100,
-                                             caption = '',
-                                             xlabelf1 = '',
-                                             xlabelf2 = '',
-                                             xlabelf3 = '',
-                                             xlabelm1 = '',
-                                             xlabelm2 = '',
-                                             xlabelm3 = '',
-                                             ylabelf1 = '',
-                                             ylabelf2 = '',
-                                             ylabelf3 = '',
-                                             ylabelm1 = '',
-                                             ylabelm2 = '',
-                                             ylabelm3 = '',
-                                             group_title = '',
-                                             titlef1 = '',
-                                             titlef2 = '',
-                                             titlef3 = '',
-                                             titlem1 = '',
-                                             titlem2 = '',
-                                             titlem3 = ''):
-
+                                             number_of_runs=100,
+                                             caption='',
+                                             xlabelf1='',
+                                             xlabelf2='',
+                                             xlabelf3='',
+                                             xlabelm1='',
+                                             xlabelm2='',
+                                             xlabelm3='',
+                                             ylabelf1='',
+                                             ylabelf2='',
+                                             ylabelf3='',
+                                             ylabelm1='',
+                                             ylabelm2='',
+                                             ylabelm3='',
+                                             group_title='',
+                                             titlef1='',
+                                             titlef2='',
+                                             titlef3='',
+                                             titlem1='',
+                                             titlem2='',
+                                             titlem3=''):
 
         if self.model_summary_stats == 0:
             print("generating multiple runs data.")
@@ -927,89 +915,124 @@ class Base_model():
         pd_stats_matrix = pd.DataFrame(self.model_summary_stats)
         tmp = pd_stats_matrix.select_dtypes(include=[np.number])
         pd_stats_matrix.loc[:, tmp.columns] = np.round(tmp, 2)
-        #self.pct_female_matrix.replace(np.inf, 1)
-        #self.pct_female_matrix = self.pct_female_matrix.fillna(0)
+        # self.pct_female_matrix.replace(np.inf, 1)
+        # self.pct_female_matrix = self.pct_female_matrix.fillna(0)
 
         f, axarr = plt.subplots(nrows=2, ncols=3)
         f.suptitle(group_title)
-        axarr[0, 0].plot(range(self.duration), np.minimum(1, np.maximum(0,self.pct_female_matrix[
-            'mpct_f1'])), label=self.label)
+        axarr[0, 0].plot(range(self.duration),
+                         np.minimum(1, np.maximum(0, self.pct_female_matrix[
+                             'mpct_f1'])), label=self.label)
         axarr[0, 0].set_title(titlef1)
         axarr[0, 0].set_xlabel(xlabelf1)
         axarr[0, 0].set_ylabel(ylabelf1)
-        axarr[0, 0].fill_between(range(self.duration),np.minimum(1,
-                                 self.pct_female_matrix['mpct_f1'] +
-                                 1.96 * self.pct_female_matrix[
-                                     'spct_f1']), np.maximum(0,self.pct_female_matrix[
-                                     'mpct_f1'] - 1.96 *self.pct_female_matrix[
-                                     'spct_f1']), alpha=0.25)
+        axarr[0, 0].fill_between(range(self.duration), np.minimum(1,
+                                                                  self.pct_female_matrix[
+                                                                      'mpct_f1'] +
+                                                                  1.96 *
+                                                                  self.pct_female_matrix[
+                                                                      'spct_f1']),
+                                 np.maximum(0, self.pct_female_matrix[
+                                     'mpct_f1'] - 1.96 * self.pct_female_matrix[
+                                                'spct_f1']), alpha=0.25)
         axarr[0, 0].axhline(y=target, color='r')
 
-        axarr[0, 1].plot(range(self.duration), np.minimum(1, np.maximum(0,self.pct_female_matrix['mpct_f2'])))
+        axarr[0, 1].plot(range(self.duration), np.minimum(1, np.maximum(0,
+                                                                        self.pct_female_matrix[
+                                                                            'mpct_f2'])))
         axarr[0, 1].set_title(titlef2)
         axarr[0, 1].set_xlabel(xlabelf2)
         axarr[0, 1].set_ylabel(ylabelf2)
-        axarr[0, 1].fill_between(range(self.duration), np.minimum(1,self.pct_female_matrix['mpct_f2'] +
-                                 1.96 * self.pct_female_matrix[
-                                     'spct_f2']), np.maximum(0,self.pct_female_matrix['mpct_f2'] - 1.96 *
-                                 self.pct_female_matrix[
-                                     'spct_f2']), alpha=0.25)
+        axarr[0, 1].fill_between(range(self.duration), np.minimum(1,
+                                                                  self.pct_female_matrix[
+                                                                      'mpct_f2'] +
+                                                                  1.96 *
+                                                                  self.pct_female_matrix[
+                                                                      'spct_f2']),
+                                 np.maximum(0, self.pct_female_matrix[
+                                     'mpct_f2'] - 1.96 *
+                                            self.pct_female_matrix[
+                                                'spct_f2']), alpha=0.25)
         axarr[0, 1].axhline(y=target, color='r')
 
-
-        axarr[0, 2].plot(range(self.duration), np.minimum(1,np.maximum(0,self.pct_female_matrix['mpct_f3'])))
+        axarr[0, 2].plot(range(self.duration), np.minimum(1, np.maximum(0,
+                                                                        self.pct_female_matrix[
+                                                                            'mpct_f3'])))
         axarr[0, 2].set_title(titlef3)
 
         axarr[0, 2].set_xlabel(xlabelf3)
         axarr[0, 2].set_ylabel(ylabelf3)
-        axarr[0, 2].fill_between(range(self.duration), np.minimum(1,self.pct_female_matrix['mpct_f3'] +
-                                 1.96 * self.pct_female_matrix[
-                                     'spct_f3']), np.maximum(0,self.pct_female_matrix['mpct_f3'] - 1.96 *
-                                 self.pct_female_matrix[
-                                     'spct_f3']), alpha=0.25)
+        axarr[0, 2].fill_between(range(self.duration), np.minimum(1,
+                                                                  self.pct_female_matrix[
+                                                                      'mpct_f3'] +
+                                                                  1.96 *
+                                                                  self.pct_female_matrix[
+                                                                      'spct_f3']),
+                                 np.maximum(0, self.pct_female_matrix[
+                                     'mpct_f3'] - 1.96 *
+                                            self.pct_female_matrix[
+                                                'spct_f3']), alpha=0.25)
         axarr[0, 2].axhline(y=target, color='r')
 
-
-        axarr[1, 0].plot(range(self.duration), np.minimum(1, np.maximum(0,self.pct_female_matrix['mpct_m1'])))
+        axarr[1, 0].plot(range(self.duration), np.minimum(1, np.maximum(0,
+                                                                        self.pct_female_matrix[
+                                                                            'mpct_m1'])))
         axarr[1, 0].set_title(titlem1)
         axarr[1, 0].set_xlabel(xlabelm1)
         axarr[1, 0].set_ylabel(ylabelm1)
-        axarr[1, 0].fill_between(range(self.duration), np.minimum(1,self.pct_female_matrix['mpct_m1'] +
-                                 1.96 * self.pct_female_matrix[
-                                     'spct_m1']), np.maximum(0,self.pct_female_matrix['mpct_m1'] - 1.96 *
-                                 self.pct_female_matrix[
-                                     'spct_m1']), alpha=0.25)
+        axarr[1, 0].fill_between(range(self.duration), np.minimum(1,
+                                                                  self.pct_female_matrix[
+                                                                      'mpct_m1'] +
+                                                                  1.96 *
+                                                                  self.pct_female_matrix[
+                                                                      'spct_m1']),
+                                 np.maximum(0, self.pct_female_matrix[
+                                     'mpct_m1'] - 1.96 *
+                                            self.pct_female_matrix[
+                                                'spct_m1']), alpha=0.25)
         axarr[1, 0].axhline(y=1 - target, color='r')
 
-
-        axarr[1, 1].plot(range(self.duration), np.minimum(1, np.maximum(0,self.pct_female_matrix['mpct_m2'])))
+        axarr[1, 1].plot(range(self.duration), np.minimum(1, np.maximum(0,
+                                                                        self.pct_female_matrix[
+                                                                            'mpct_m2'])))
         axarr[1, 1].set_title(titlem2)
         axarr[1, 1].set_xlabel(xlabelm2)
         axarr[1, 1].set_ylabel(ylabelm2)
-        axarr[1, 1].fill_between(range(self.duration), np.minimum(1,self.pct_female_matrix['mpct_m2'] +
-                                 1.96 * self.pct_female_matrix[
-                                     'spct_m2']), np.maximum(0,self.pct_female_matrix['mpct_m2'] - 1.96 *
-                                 self.pct_female_matrix[
-                                     'spct_m2']), alpha=0.25)
-        axarr[1, 1].axhline(y= 1 - target, color='r')
+        axarr[1, 1].fill_between(range(self.duration), np.minimum(1,
+                                                                  self.pct_female_matrix[
+                                                                      'mpct_m2'] +
+                                                                  1.96 *
+                                                                  self.pct_female_matrix[
+                                                                      'spct_m2']),
+                                 np.maximum(0, self.pct_female_matrix[
+                                     'mpct_m2'] - 1.96 *
+                                            self.pct_female_matrix[
+                                                'spct_m2']), alpha=0.25)
+        axarr[1, 1].axhline(y=1 - target, color='r')
 
-
-        axarr[1, 2].plot(range(self.duration), np.minimum(1, np.maximum(0,self.pct_female_matrix['mpct_m3'])))
+        axarr[1, 2].plot(range(self.duration), np.minimum(1, np.maximum(0,
+                                                                        self.pct_female_matrix[
+                                                                            'mpct_m3'])))
         axarr[1, 2].set_title(titlem3)
         axarr[1, 2].set_xlabel(xlabelm3)
         axarr[1, 2].set_ylabel(ylabelm3)
-        axarr[1, 2].fill_between(range(self.duration), np.minimum(1,self.pct_female_matrix['mpct_m3'] +
-                                 1.96 * self.pct_female_matrix[
-                                     'spct_m3']), np.maximum(0,self.pct_female_matrix['mpct_m3'] - 1.96 *
-                                 self.pct_female_matrix[
-                                     'spct_m3']), alpha=0.25)
+        axarr[1, 2].fill_between(range(self.duration), np.minimum(1,
+                                                                  self.pct_female_matrix[
+                                                                      'mpct_m3'] +
+                                                                  1.96 *
+                                                                  self.pct_female_matrix[
+                                                                      'spct_m3']),
+                                 np.maximum(0, self.pct_female_matrix[
+                                     'mpct_m3'] - 1.96 *
+                                            self.pct_female_matrix[
+                                                'spct_m3']), alpha=0.25)
         axarr[1, 2].axhline(y=1 - target, color='r')
         f.text(0.2, 0.2, caption)
 
         plt.show()
 
     def plot_multiple_runs_gender_prop(self, title, xlabel,
-                                        ylabel, target, txt, num_runs = 100):
+                                       ylabel, target, txt, num_runs=100):
 
         if self.mean_matrix == 0:
             print("generating multiple runs data.")
@@ -1028,7 +1051,7 @@ class Base_model():
         plt.ylabel(ylabel)
         plt.axhline(y=target, color='r')
         plt.legend(loc='upper right', shadow=True)
-        plt.text(0.02,0.02, txt)
+        plt.text(0.02, 0.02, txt)
 
         plt.show()
 
@@ -1132,36 +1155,35 @@ class Base_model():
         plt.title(title)
         plt.xlabel(xlabel)
         plt.ylabel(ylabel)
-        plt.text(0.02,0.02, txt)
+        plt.text(0.02, 0.02, txt)
         plt.show()
 
     def plot_empirical_probability_analysis_by_level(self,
                                                      target,
                                                      number_of_runs,
-                                                     caption = '',
-                                                     xlabelf1 = '',
-                                                     xlabelf2 = '',
-                                                     xlabelf3 = '',
-                                                     xlabelm1 = '',
-                                                     xlabelm2 = '',
-                                                     xlabelm3 = '',
-                                                     ylabelf1 = '',
-                                                     ylabelf2 = '',
-                                                     ylabelf3 = '',
-                                                     ylabelm1 = '',
-                                                     ylabelm2 = '',
-                                                     ylabelm3 = '',
-                                                     group_title = '',
-                                                     titlef1 = '',
-                                                     titlef2 = '',
-                                                     titlef3 = '',
-                                                     titlem1 = '',
-                                                     titlem2 = '',
-                                                     titlem3 = ''):
+                                                     caption='',
+                                                     xlabelf1='',
+                                                     xlabelf2='',
+                                                     xlabelf3='',
+                                                     xlabelm1='',
+                                                     xlabelm2='',
+                                                     xlabelm3='',
+                                                     ylabelf1='',
+                                                     ylabelf2='',
+                                                     ylabelf3='',
+                                                     ylabelm1='',
+                                                     ylabelm2='',
+                                                     ylabelm3='',
+                                                     group_title='',
+                                                     titlef1='',
+                                                     titlef2='',
+                                                     titlef3='',
+                                                     titlem1='',
+                                                     titlem2='',
+                                                     titlem3=''):
 
         d = self.run_probability_analysis_gender_by_level(number_of_runs,
                                                           target)
-
 
         f, axarr = plt.subplots(nrows=2, ncols=3)
         f.suptitle(group_title)
@@ -1171,14 +1193,11 @@ class Base_model():
         axarr[0, 0].set_ylabel(ylabelf1)
         axarr[0, 0].axhline(y=0.5, color='r')
 
-
         axarr[0, 1].plot(range(self.duration), d['pf2'], label=self.label)
         axarr[0, 1].set_title(titlef2)
         axarr[0, 1].set_xlabel(xlabelf2)
         axarr[0, 1].set_ylabel(ylabelf2)
         axarr[0, 1].axhline(y=0.5, color='r')
-
-
 
         axarr[0, 2].plot(range(self.duration), d['pf3'], label=self.label)
         axarr[0, 2].set_title(titlef3)
@@ -1186,14 +1205,11 @@ class Base_model():
         axarr[0, 2].set_ylabel(ylabelf3)
         axarr[0, 2].axhline(y=0.5, color='r')
 
-
-
         axarr[1, 0].plot(range(self.duration), d['pm1'], label=self.label)
         axarr[1, 0].set_title(titlem1)
         axarr[1, 0].set_xlabel(xlabelm1)
         axarr[1, 0].set_ylabel(ylabelm1)
         axarr[1, 0].axhline(y=0.5, color='r')
-
 
         axarr[1, 1].plot(range(self.duration), d['pm2'], label=self.label)
         axarr[1, 1].set_title(titlem2)
@@ -1201,20 +1217,13 @@ class Base_model():
         axarr[1, 1].set_ylabel(ylabelm2)
         axarr[1, 1].axhline(y=0.5, color='r')
 
-
-
         axarr[1, 2].plot(range(self.duration), d['pm3'], label=self.label)
         axarr[1, 2].set_title(titlem3)
         axarr[1, 2].set_xlabel(xlabelm3)
         axarr[1, 2].set_ylabel(ylabelm3)
         axarr[1, 2].axhline(y=0.5, color='r')
 
-
         plt.show()
-
-
-
-
 
     def plot_empirical_probability_group_detail(self, number_of_runs, param,
                                                 prof_group, llim,
@@ -1257,8 +1266,8 @@ class Base_model():
         plt.show()
 
     def plot_unfilled_vacancies_over_time_multiple_runs(self, num_runs,
-                                                         title, xlable,
-                                                         ylabel):
+                                                        title, xlable,
+                                                        ylabel):
         '''
         This function will calculate the average number of individuals in the department in each year and provide
         chart forthe results.
@@ -1288,49 +1297,46 @@ class Base_model():
         plt.plot(range(self.duration), sum(list([self.mean_matrix['f1'],
                                                  self.mean_matrix['f2'],
                                                  self.mean_matrix['f3']])),
-                 color = 'b', label= 'Women')
+                 color='b', label='Women')
         plt.plot(range(self.duration), sum(list([self.mean_matrix['m1'],
                                                  self.mean_matrix['m2'],
                                                  self.mean_matrix['m3']])),
-                 color = 'k', label='Men')
+                 color='k', label='Men')
 
         total_faculty = self.mean_matrix['f1'] \
-                      + self.mean_matrix['f2'] \
-                      + self.mean_matrix['f3'] \
+                        + self.mean_matrix['f2'] \
+                        + self.mean_matrix['f3'] \
                         + self.mean_matrix['m1'] \
                         + self.mean_matrix['m2'] \
                         + self.mean_matrix['m3']
 
-
-        plt.plot(range(self.duration), np.round(target*total_faculty) ,
-                 color = 'r', label = 'Target')
+        plt.plot(range(self.duration), np.round(target * total_faculty),
+                 color='r', label='Target')
 
         plt.title(title)
-        plt.text(0.02, 0.02,txt)
+        plt.text(0.02, 0.02, txt)
         plt.xlabel(xlabel)
         plt.ylabel(ylabel)
         plt.legend(loc='upper right', shadow=True)
         plt.show()
-
-
 
     def export_model_run(self, number_of_runs):
 
         if not hasattr(self, 'res'):
             self.run_multiple(number_of_runs)
 
-
         # first I will allocate the memory by creating an empty dataframe.
         # then I will iterate over the res_array matrix and write to the
         # correct rows of the dataframe. This is more memory efficient compared
         # to appending to a dataframe.
 
-        #print(pd.DataFrame(self.res_array['run'][3]))
+        # print(pd.DataFrame(self.res_array['run'][3]))
 
         print_df = pd.DataFrame(np.zeros([self.duration * number_of_runs - 4,
-                                          27]))
+                                          28]))
 
         print_df.columns = ['run',
+                            'year',
                             'f1',
                             'f2',
                             'f3',
@@ -1359,17 +1365,50 @@ class Base_model():
                             'm_prom_1']
 
         for idx in range(number_of_runs):
+            print(idx * self.duration)
+            print(idx * self.duration + self.duration)
+            tv = pd.DataFrame(self.res_array['run'][idx], dtype='float64')
+            tv.columns = ['year',
+                            'f1',
+                            'f2',
+                            'f3',
+                            'm1',
+                            'm2',
+                            'm3',
+                            'vac_3',
+                            'vac_2',
+                            'vac_1',
+                            'prom1',
+                            'prom2',
+                            'gendprop',
+                            'unfilled',
+                            'dept_size',
+                            'f_hire_3',
+                            'm_hire_3',
+                            'f_hire_2',
+                            'm_hire_2',
+                            'f_hire_1',
+                            'm_hire_1',
+                            'f_prom_3',
+                            'm_prom_3',
+                            'f_prom_2',
+                            'm_prom_2',
+                            'f_prom_1',
+                            'm_prom_1']
+            #print_df.ix[40:80, 1:] = tv.ix[:,:]
+            print_df.ix[(idx * self.duration):(idx * self.duration +
+                                              self.duration - 1), 'run'] = idx
+            print_df.ix[(idx * self.duration):(idx * self.duration +
+                                             self.duration - 1), 'year'] = \
+                tv.ix[(idx * self.duration):(idx * self.duration +
+                                             self.duration - 1),'year']
+            print_df.ix[(idx * self.duration):(idx * self.duration +
+                                             self.duration - 1), 'f1'] = \
+                tv.ix[(idx * self.duration):(idx * self.duration +
+                                             self.duration - 1),'f1']
 
-            print_df.ix[idx*self.duration:idx*self.duration + self.duration
-                                            - 1
-            , 'run'] =\
-                idx
-            print_df.ix[idx*self.duration:idx*self.duration + self.duration -1
-            , 'f1': ] = pd.DataFrame(
-                self.res_array['run'][idx])
-            print(pd.DataFrame(self.res_array['run'][idx]))
-            print(print_df.ix[idx*self.duration:idx*self.duration +
-                                                 self.duration - 1,'f1': ])
+            # print(print_df.ix[(idx * self.duration):(idx * self.duration +
+            #                                  self.duration), 'f1'])
             print('did it')
 
         print(print_df)
