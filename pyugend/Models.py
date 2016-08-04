@@ -1332,80 +1332,75 @@ class Base_model():
 
         # print(pd.DataFrame(self.res_array['run'][3]))
 
-        print_df = pd.DataFrame(np.zeros([self.duration * number_of_runs - 4,
-                                          28]))
+        print_array = np.zeros([self.duration * number_of_runs - 4,
+                                          28])
 
-        print_df.columns = ['run',
-                            'year',
-                            'f1',
-                            'f2',
-                            'f3',
-                            'm1',
-                            'm2',
-                            'm3',
-                            'vac_3',
-                            'vac_2',
-                            'vac_1',
-                            'prom1',
-                            'prom2',
-                            'gendprop',
-                            'unfilled',
-                            'dept_size',
-                            'f_hire_3',
-                            'm_hire_3',
-                            'f_hire_2',
-                            'm_hire_2',
-                            'f_hire_1',
-                            'm_hire_1',
-                            'f_prom_3',
-                            'm_prom_3',
-                            'f_prom_2',
-                            'm_prom_2',
-                            'f_prom_1',
-                            'm_prom_1']
+        # print_array.dtype = ['run',
+        #                     'year',
+        #                     'f1',
+        #                     'f2',
+        #                     'f3',
+        #                     'm1',
+        #                     'm2',
+        #                     'm3',
+        #                     'vac_3',
+        #                     'vac_2',
+        #                     'vac_1',
+        #                     'prom1',
+        #                     'prom2',
+        #                     'gendprop',
+        #                     'unfilled',
+        #                     'dept_size',
+        #                     'f_hire_3',
+        #                     'm_hire_3',
+        #                     'f_hire_2',
+        #                     'm_hire_2',
+        #                     'f_hire_1',
+        #                     'm_hire_1',
+        #                     'f_prom_3',
+        #                     'm_prom_3',
+        #                     'f_prom_2',
+        #                     'm_prom_2',
+        #                     'f_prom_1',
+        #                     'm_prom_1']
 
         for idx in range(number_of_runs):
             print(idx * self.duration)
             print(idx * self.duration + self.duration)
-            tv = pd.DataFrame(self.res_array['run'][idx], dtype='float64')
-            tv.columns = ['year',
-                            'f1',
-                            'f2',
-                            'f3',
-                            'm1',
-                            'm2',
-                            'm3',
-                            'vac_3',
-                            'vac_2',
-                            'vac_1',
-                            'prom1',
-                            'prom2',
-                            'gendprop',
-                            'unfilled',
-                            'dept_size',
-                            'f_hire_3',
-                            'm_hire_3',
-                            'f_hire_2',
-                            'm_hire_2',
-                            'f_hire_1',
-                            'm_hire_1',
-                            'f_prom_3',
-                            'm_prom_3',
-                            'f_prom_2',
-                            'm_prom_2',
-                            'f_prom_1',
-                            'm_prom_1']
+            # tv.columns = ['year',
+            #                 'f1',
+            #                 'f2',
+            #                 'f3',
+            #                 'm1',
+            #                 'm2',
+            #                 'm3',
+            #                 'vac_3',
+            #                 'vac_2',
+            #                 'vac_1',
+            #                 'prom1',
+            #                 'prom2',
+            #                 'gendprop',
+            #                 'unfilled',
+            #                 'dept_size',
+            #                 'f_hire_3',
+            #                 'm_hire_3',
+            #                 'f_hire_2',
+            #                 'm_hire_2',
+            #                 'f_hire_1',
+            #                 'm_hire_1',
+            #                 'f_prom_3',
+            #                 'm_prom_3',
+            #                 'f_prom_2',
+            #                 'm_prom_2',
+            #                 'f_prom_1',
+            #                 'm_prom_1']
             #print_df.ix[40:80, 1:] = tv.ix[:,:]
-            print_df.ix[(idx * self.duration):(idx * self.duration +
-                                              self.duration - 1), 'run'] = idx
-            print_df.ix[(idx * self.duration):(idx * self.duration +
-                                             self.duration - 1), 'year'] = \
-                tv.ix[(idx * self.duration):(idx * self.duration +
-                                             self.duration - 1),'year']
-            print_df.ix[(idx * self.duration):(idx * self.duration +
-                                             self.duration - 1), 'f1'] = \
-                tv.ix[(idx * self.duration):(idx * self.duration +
-                                             self.duration - 1),'f1']
+            # print_array[(idx * self.duration):(idx * self.duration +
+            #                                   self.duration - 1), 0] = idx
+            # print_array[(idx * self.duration):(idx * self.duration +
+            #                                  self.duration - 1),
+            # 1:] = self.res_array['run'][idx].view()
+
 
             # print(print_df.ix[(idx * self.duration):(idx * self.duration +
             #                                  self.duration), 'f1'])

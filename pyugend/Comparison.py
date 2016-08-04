@@ -459,7 +459,8 @@ class Comparison():
 
         ## Color list
 
-
+        line_colors = ['#7fc97f', '#beaed4', '#fdc086', '#386cb0', '#f0027f',
+                       '#ffff99']
         for mod in self.mlist:
             mod.run_parameter_sweep(number_of_runs, param, llim, ulim,
                                     number_of_steps)
