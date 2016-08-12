@@ -160,7 +160,7 @@ def test_replication_model(mock_data):
 
 def test_excel_export(mock_data):
     t = Mod_Stoch_FBPH(**mock_data)
-    t.export_model_run(4)
+    t.export_model_run(10)
 
 
 def test_stochastic_model_with_hiring_first(mock_data):

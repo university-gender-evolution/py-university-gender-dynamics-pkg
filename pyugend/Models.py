@@ -12,6 +12,9 @@ __version__ = '0.1.0'
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
+import os
+import datetime
+
 
 ## Initialize Constants
 
@@ -815,7 +818,7 @@ class Base_model():
 
         f, axarr = plt.subplots(nrows=2, ncols=3)
         f.suptitle(group_title)
-        axarr[0, 0].plot(range(self.duration), self.mean_matrix['f1'],
+        axarr[0, 0].plot(range(self.duration), self.mean_matrix['f1'], 2,
                          label=self.label)
         axarr[0, 0].set_title('Female level 1')
         axarr[0, 0].set_xlabel('Years')
@@ -1332,88 +1335,49 @@ class Base_model():
 
         # print(pd.DataFrame(self.res_array['run'][3]))
 
-        print_array = np.zeros([self.duration * number_of_runs - 4,
-                                          28])
-
-        # print_array.dtype = ['run',
-        #                     'year',
-        #                     'f1',
-        #                     'f2',
-        #                     'f3',
-        #                     'm1',
-        #                     'm2',
-        #                     'm3',
-        #                     'vac_3',
-        #                     'vac_2',
-        #                     'vac_1',
-        #                     'prom1',
-        #                     'prom2',
-        #                     'gendprop',
-        #                     'unfilled',
-        #                     'dept_size',
-        #                     'f_hire_3',
-        #                     'm_hire_3',
-        #                     'f_hire_2',
-        #                     'm_hire_2',
-        #                     'f_hire_1',
-        #                     'm_hire_1',
-        #                     'f_prom_3',
-        #                     'm_prom_3',
-        #                     'f_prom_2',
-        #                     'm_prom_2',
-        #                     'f_prom_1',
-        #                     'm_prom_1']
+        print_array = np.zeros([self.duration * number_of_runs,
+                                28])
 
         for idx in range(number_of_runs):
-            print(idx * self.duration)
-            print(idx * self.duration + self.duration)
-            # tv.columns = ['year',
-            #                 'f1',
-            #                 'f2',
-            #                 'f3',
-            #                 'm1',
-            #                 'm2',
-            #                 'm3',
-            #                 'vac_3',
-            #                 'vac_2',
-            #                 'vac_1',
-            #                 'prom1',
-            #                 'prom2',
-            #                 'gendprop',
-            #                 'unfilled',
-            #                 'dept_size',
-            #                 'f_hire_3',
-            #                 'm_hire_3',
-            #                 'f_hire_2',
-            #                 'm_hire_2',
-            #                 'f_hire_1',
-            #                 'm_hire_1',
-            #                 'f_prom_3',
-            #                 'm_prom_3',
-            #                 'f_prom_2',
-            #                 'm_prom_2',
-            #                 'f_prom_1',
-            #                 'm_prom_1']
-            #print_df.ix[40:80, 1:] = tv.ix[:,:]
-            # print_array[(idx * self.duration):(idx * self.duration +
-            #                                   self.duration - 1), 0] = idx
-            # print_array[(idx * self.duration):(idx * self.duration +
-            #                                  self.duration - 1),
-            # 1:] = self.res_array['run'][idx].view()
+            print_array[(idx * self.duration):(idx * self.duration +
+                                               self.duration), 0] = idx
 
+            print_array[(idx * self.duration):(idx * self.duration +
+                                               self.duration),
+            1:] = np.array(pd.DataFrame(self.res_array['run'][idx]))
 
-            # print(print_df.ix[(idx * self.duration):(idx * self.duration +
-            #                                  self.duration), 'f1'])
-            print('did it')
-
-        print(print_df)
-
-        # # # work with barbara to craft the filename
-        # # # model_label + 160114_HH:MM(24hour) +
-        # filename = self.label + ".xls"
-        # df.to_excel(filename)
-
-        #
+        # work with barbara to craft the filename
+        # model_label + 160114_HH:MM(24hour) +
+        filename = self.label + "_" + str(datetime.datetime.now()) + "_iter" \
+                   + str(number_of_runs) + ".xls"
+        pd.DataFrame(print_array, columns=['run',
+                                           'year',
+                                           'women_1',
+                                           'women_2',
+                                           'women_3',
+                                           'men_1',
+                                           'men_2',
+                                           'men_3',
+                                           'vacancies_3',
+                                           'vacancies_2',
+                                           'vacancies_1',
+                                           'women_promotion_rate_1',
+                                           'women_promotion_rate_2',
+                                           'gender_proportion_overall',
+                                           'unfilled_vacancies',
+                                           'department_size',
+                                           'women_hires_3',
+                                           'men_hired_3',
+                                           'women_hired_2',
+                                           'men_hired_2',
+                                           'women_hired_1',
+                                           'men_hired_1',
+                                           'women_promoted_3',
+                                           'men_promoted_3',
+                                           'women_promoted_2',
+                                           'men_promoted_2',
+                                           'women_promoted_1',
+                                           'men_promoted_1']).to_excel(filename)
 
 
 ## Supplementary/Helper functions
