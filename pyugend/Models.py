@@ -90,6 +90,7 @@ class Base_model():
         self.std_matrix = 0
         self.pd_last_row_data = 0
         self.pct_female_matrix = 0
+        self.probability_matrix = 0
 
     def load_baseline_data_mgmt(self):
         '''
@@ -1344,7 +1345,7 @@ class Base_model():
 
             print_array[(idx * self.duration):(idx * self.duration +
                                                self.duration),
-            1:] = np.array(pd.DataFrame(self.res_array['run'][idx]))
+            1:] = pd.DataFrame(self.res_array['run'][idx])
 
         # work with barbara to craft the filename
         # model_label + 160114_HH:MM(24hour) +
@@ -1358,9 +1359,9 @@ class Base_model():
                                            'men_1',
                                            'men_2',
                                            'men_3',
-                                           'vacancies_3',
-                                           'vacancies_2',
-                                           'vacancies_1',
+                                           'attrition_3',
+                                           'attrition_2',
+                                           'attrition_1',
                                            'women_promotion_rate_1',
                                            'women_promotion_rate_2',
                                            'gender_proportion_overall',
@@ -1378,6 +1379,312 @@ class Base_model():
                                            'men_promoted_2',
                                            'women_promoted_1',
                                            'men_promoted_1']).to_excel(filename)
+
+
+    def plot_overall_chart(self,
+                           plottype,
+                           number_of_runs,
+                           target,
+                           caption,
+                           xlabel,
+                           ylabel,
+                           title,
+                           line_width,
+                           xmin,
+                           ymin,
+                           xmax,
+                           ymax,
+                           alpha_val,
+                           marker_val,
+                           color_val,
+                           target_plot,
+                           legend_location
+                           ):
+
+
+
+        # generate data for the plot.
+        self.run_multiple(number_of_runs)
+
+        # set default plot parameters. The xaxis is generally duration,
+        # though I have the option--depending on the plot, to put in a
+        # different x-axis.
+
+        xval = self.duration
+
+        if plottype == 'probability proportion':
+
+            self.run_probability_analysis_gender_proportion(number_of_runs, target)
+
+            yval = self.probability_matrix['unfilled']
+            fill_matrix = 0
+
+        if plottype == 'gender proportion':
+
+            yval = self.mean_matrix['gendprop']
+            fill_matrix = self.std_matrix['gendprop']
+
+        if plottype == 'unfilled vacancies':
+
+            yval = self.mean_matrix['unfilled']
+            fill_matrix = self.std_matrix['unfilled']
+
+        if plottype == 'department size':
+
+            yval = self.dept_size_matrix['mean']
+            fill_matrix = self.dept_size_matrix['std']
+
+
+        plt.plot(range(xval), yval, linewidth=line_width,
+                 marker = marker_val, color = color_val)
+
+        plt.fill_between(range(xval),
+                         yval + 1.96*fill_matrix,
+                         yval - 1.96*fill_matrix,
+                         alpha=alpha_val)
+
+        if target_plot == True:
+            plt.axhline(target, color = color_target)
+
+
+        plt.xlim(xmin, xmax)
+        plt.ylim(ymin, ymax)
+        plt.xlabel(xlable)
+        plt.ylabel(ylabel)
+        plt.title(title)
+        plt.legend(loc=legend_location, shadow=True)
+        plt.show()
+
+
+    def plot_level_chart(self,
+                           plottype,
+                           number_of_runs,
+                           target,
+                           caption,
+                           xlabel,
+                           ylabel,
+                           title,
+                           line_width,
+                           xmin,
+                           ymin,
+                           xmax,
+                           ymax,
+                           alpha_val,
+                           marker_val,
+                           color_val,
+                           color_target,
+                           target_plot,
+                           legend_location,
+                           legend_label
+                           ):
+
+
+
+        # generate data for the plot.
+
+        self.run_multiple(number_of_runs)
+
+        # set default plot parameters. The xaxis is generally duration,
+        # though I have the option--depending on the plot, to put in a
+        # different x-axis.
+
+        xval = self.duration
+
+        if plottype == 'probability proportion':
+
+            self.run_probability_analysis_gender_proportion(number_of_runs, target)
+
+            yval = self.probability_matrix['unfilled']
+            fill_matrix = 0
+
+        if plottype == 'gender proportion':
+
+            pd_stats_matrix = pd.DataFrame(self.model_summary_stats)
+            tmp = pd_stats_matrix.select_dtypes(include=[np.number])
+            pd_stats_matrix.loc[:, tmp.columns] = np.round(tmp, 2)
+
+            yval_f1 = self.pct_female_matrix['mpct_f1']
+            yval_f2 = self.pct_female_matrix['mpct_f2']
+            yval_f3 = self.pct_female_matrix['mpct_f3']
+            yval_m1 = self.pct_female_matrix['mpct_m1']
+            yval_m2 = self.pct_female_matrix['mpct_m2']
+            yval_m3 = self.pct_female_matrix['mpct_m3']
+
+            fill_f1 = self.pct_female_matrix['spct_f1']
+            fill_f2 = self.pct_female_matrix['spct_f2']
+            fill_f3 = self.pct_female_matrix['spct_f3']
+            fill_m1 = self.pct_female_matrix['spct_m1']
+            fill_m2 = self.pct_female_matrix['spct_m2']
+            fill_m3 = self.pct_female_matrix['spct_m3']
+
+        if plottype == 'gender number':
+            yval =
+
+
+
+        f, axarr = plt.subplots(nrows=2, ncols=3)
+        f.suptitle(group_title)
+        axarr[0, 0].plot(range(xval),
+                         np.minimum(1,
+                         np.maximum(0,
+                         yval_f1)),
+                         label=legend_label,
+                         linewidth = line_width,
+                         color = color_val,
+                         marker = marker_val)
+        axarr[0, 0].set_xlim([xlim_min_f1, xlim_max_f1])
+        axarr[0, 0].set_ylim([ylim_min_f1, ylim_max_f1])
+        axarr[0, 0].set_title(titlef1)
+        axarr[0, 0].set_xlabel(xlabelf1)
+        axarr[0, 0].set_ylabel(ylabelf1)
+        axarr[0, 0].fill_between(range(xval),
+                                 np.minimum(1,
+                                 yval_f1 + 1.96 *fill_f1),
+                                 np.maximum(0,
+                                 yval_f1 - 1.96 *fill_f1),
+                                 alpha=alpha_val,
+                                 facecolor = color_val)
+        axarr[0, 0].legend(loc=legend_location, shadow=True)
+
+        axarr[0, 1].plot(range(xval),
+                         np.minimum(1,
+                         np.maximum(0,
+                         yval_f1)),
+                         label=self.label,
+                         linewidth=line_width,
+                         color=color_val,
+                         marker=marker_val
+                         )
+        axarr[0, 0].set_xlim([xlim_min_f2, xlim_max_f2])
+        axarr[0, 0].set_ylim([ylim_min_f2, ylim_max_f2])
+        axarr[0, 1].set_title(titlef2)
+        axarr[0, 1].set_xlabel(xlabelf2)
+        axarr[0, 1].set_ylabel(ylabelf2)
+        axarr[0, 1].fill_between(range(xval),
+                                 np.minimum(1,
+                                 yval_f2 + 1.96 *fill_f2),
+                                 np.maximum(0,
+                                 yval_f2 - 1.96 * fill_f2),
+                                 alpha=alpha_val,
+                                 facecolor=color_val)
+
+
+
+
+        axarr[0, 2].plot(range(xval),
+                         np.minimum(1,
+                         np.maximum(0,
+                         yval_f3)),
+                         label=self.label,
+                         linewidth=line_width,
+                         color=color_val,
+                         marker=marker_val
+                         )
+        axarr[0, 0].set_xlim([xlim_min_f3, xlim_max_f3])
+        axarr[0, 0].set_ylim([ylim_min_f3, ylim_max_f3])
+        axarr[0, 2].set_title(titlef3)
+        axarr[0, 2].set_xlabel(xlabelf3)
+        axarr[0, 2].set_ylabel(ylabelf3)
+        axarr[0, 2].fill_between(range(xval),
+                                 np.minimum(1,
+                                 yval_f3 + 1.96 *fill_f3),
+                                 np.maximum(0,
+                                 yval_f3 - 1.96 * fill_f3),
+                                 alpha=alpha_val,
+                                 facecolor=color_val)
+
+
+        axarr[1, 0].plot(range(xval),
+                         np.minimum(1,
+                         np.maximum(0,
+                         yval_m1)),
+                         label=self.label,
+                         linewidth=line_width,
+                         color=color_val,
+                         marker=marker_val
+                         )
+        axarr[0, 0].set_xlim([xlim_min_m1, xlim_max_m1])
+        axarr[0, 0].set_ylim([ylim_min_m1, ylim_max_m1])
+        axarr[1, 0].set_title(titlem1)
+        axarr[1, 0].set_xlabel(xlabelm1)
+        axarr[1, 0].set_ylabel(ylabelm1)
+        axarr[1, 0].fill_between(range(xval),
+                                 np.minimum(1,
+                                 yval_m1 + 1.96 *fill_m1),
+                                 np.maximum(0,
+                                 yval_m1 - 1.96 * fill_m1),
+                                 alpha=alpha_val,
+                                 facecolor=color_val)
+
+
+        axarr[1, 1].plot(range(xval),
+                         np.minimum(1,
+                         np.maximum(0,
+                         yval_m2)),
+                         label=self.label,
+                         linewidth=line_width,
+                         color=color_val,
+                         marker=marker_val
+                         )
+        axarr[0, 0].set_xlim([xlim_min_m2, xlim_max_m2])
+        axarr[0, 0].set_ylim([ylim_min_m2, ylim_max_m2])
+        axarr[1, 1].set_title(titlem2)
+        axarr[1, 1].set_xlabel(xlabelm2)
+        axarr[1, 1].set_ylabel(ylabelm2)
+        axarr[1, 1].fill_between(range(xval),
+                                 np.minimum(1,
+                                 yval_m2 + 1.96 *fill_m2),
+                                 np.maximum(0,
+                                 yval_m2 - 1.96 * fill_m2),
+                                 alpha=alpha_val,
+                                 facecolor=color_val)
+
+
+        axarr[1, 2].plot(range(xval),
+                         np.minimum(1,
+                         np.maximum(0,
+                         yval_f1)),
+                         label=self.label,
+                         linewidth=line_width,
+                         color=color_val,
+                         marker=marker_val
+                         )
+        axarr[0, 0].set_xlim([xlim_min_m3, xlim_max_m3])
+        axarr[0, 0].set_ylim([ylim_min_m3, ylim_max_m3])
+        axarr[1, 2].set_title(titlem3)
+        axarr[1, 2].set_xlabel(xlabelf1)
+        axarr[1, 2].set_ylabel(ylabelf1)
+        axarr[1, 2].fill_between(range(xval),
+                                 np.minimum(1,
+                                 yval_f1 + 1.96 *fill_f1),
+                                 np.maximum(0,
+                                 yval_f1 - 1.96 * fill_f1),
+                                 alpha=alpha_val,
+                                 facecolor=color_val)
+
+        if target_plot == True:
+
+            axarr[0, 0].axhline(y=target, color= color_target)
+            axarr[0, 1].axhline(y=target, color=color_target
+            axarr[0, 2].axhline(y=target, color=color_target)
+            axarr[1, 0].axhline(y=1 - target, color=color_target)
+            axarr[1, 1].axhline(y=1 - target, color=color_target)
+            axarr[1, 2].axhline(y=1 - target, color=color_target)
+
+
+
+
+
+
+
+
+        plt.xlim(xmin, xmax)
+        plt.ylim(ymin, ymax)
+        plt.show()
+
+
+
+
 
 
 ## Supplementary/Helper functions
