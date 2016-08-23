@@ -1666,7 +1666,7 @@ class Base_model():
         if target_plot == True:
 
             axarr[0, 0].axhline(y=target, color= color_target)
-            axarr[0, 1].axhline(y=target, color=color_target
+            axarr[0, 1].axhline(y=target, color=color_target)
             axarr[0, 2].axhline(y=target, color=color_target)
             axarr[1, 0].axhline(y=1 - target, color=color_target)
             axarr[1, 1].axhline(y=1 - target, color=color_target)
