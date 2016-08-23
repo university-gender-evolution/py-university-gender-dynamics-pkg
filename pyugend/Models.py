@@ -1398,7 +1398,8 @@ class Base_model():
                            marker_val,
                            color_val,
                            target_plot,
-                           legend_location
+                           legend_location,
+                           color_target
                            ):
 
 
@@ -1416,7 +1417,7 @@ class Base_model():
 
             self.run_probability_analysis_gender_proportion(number_of_runs, target)
 
-            yval = self.probability_matrix['unfilled']
+            yval = self.probability_matrix['Probability']
             fill_matrix = 0
 
         if plottype == 'gender proportion':
@@ -1449,7 +1450,7 @@ class Base_model():
 
         plt.xlim(xmin, xmax)
         plt.ylim(ymin, ymax)
-        plt.xlabel(xlable)
+        plt.xlabel(xlabel)
         plt.ylabel(ylabel)
         plt.title(title)
         plt.legend(loc=legend_location, shadow=True)
@@ -1518,7 +1519,7 @@ class Base_model():
             fill_m3 = self.pct_female_matrix['spct_m3']
 
         if plottype == 'gender number':
-            yval =
+            pass
 
 
 
@@ -1643,7 +1644,7 @@ class Base_model():
         axarr[1, 2].plot(range(xval),
                          np.minimum(1,
                          np.maximum(0,
-                         yval_f1)),
+                         yval_m3)),
                          label=self.label,
                          linewidth=line_width,
                          color=color_val,
@@ -1656,9 +1657,9 @@ class Base_model():
         axarr[1, 2].set_ylabel(ylabelf1)
         axarr[1, 2].fill_between(range(xval),
                                  np.minimum(1,
-                                 yval_f1 + 1.96 *fill_f1),
+                                 yval_f1 + 1.96 *fill_m3),
                                  np.maximum(0,
-                                 yval_f1 - 1.96 * fill_f1),
+                                 yval_f1 - 1.96 * fill_m3),
                                  alpha=alpha_val,
                                  facecolor=color_val)
 
@@ -1678,8 +1679,6 @@ class Base_model():
 
 
 
-        plt.xlim(xmin, xmax)
-        plt.ylim(ymin, ymax)
         plt.show()
 
 

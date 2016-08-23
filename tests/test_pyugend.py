@@ -384,3 +384,97 @@ def test_plot_comparison_empirical_probability_proportion_by_level(mock_data):
                     Mod_Stoch_FBPH(**mock_data)])
     c = Comparison(modlist)
     c.plot_comparison_empirical_probability_proportion_by_level(0.25,100)
+
+def test_plot_overall_probability_proportion(mgmt_data):
+    t = Mod_Stoch_FBPH(**mgmt_data)
+    d = {'plottype': 'probability proportion',
+         'number_of_runs': 10,
+         'target': 0.15,
+         'caption': '',
+         'xlabel':'test x',
+         'ylabel': 'test y',
+         'title': 'test title',
+         'line_width': 2,
+         'xmin': 0,
+         'ymin': 0,
+         'xmax': 40,
+         'ymax': 0.1,
+         'alpha_val': 0.25,
+         'marker_val': None,
+         'color_val': 'g',
+         'target_plot': True,
+         'legend_location': 'upper right',
+         'color_target': 'r'
+         }
+    t.plot_overall_chart(**d)
+
+
+def test_plot_overall_gender_proportion(mgmt_data):
+    t = Mod_Stoch_FBPH(**mgmt_data)
+    d = {'plottype': 'gender proportion',
+         'number_of_runs': 10,
+         'target': 0.25,
+         'caption': '',
+         'xlabel':'test x',
+         'ylabel': 'test y',
+         'title': 'test title',
+         'line_width': 2,
+         'xmin': 0,
+         'ymin': 0,
+         'xmax': 40,
+         'ymax': 1.0,
+         'alpha_val': 0.25,
+         'marker_val': None,
+         'color_val': 'g',
+         'target_plot': True,
+         'legend_location': 'upper right',
+         'color_target': 'r'
+         }
+    t.plot_overall_chart(**d)
+
+def test_plot_overall_unfilled_vacancies(mgmt_data):
+    t = Mod_Stoch_FBPH(**mgmt_data)
+    d = {'plottype': 'unfilled vacancies',
+         'number_of_runs': 10,
+         'target': 0.25,
+         'caption': '',
+         'xlabel':'test x',
+         'ylabel': 'test y',
+         'title': 'test title',
+         'line_width': 2,
+         'xmin': 0,
+         'ymin': 0,
+         'xmax': 40,
+         'ymax': 10,
+         'alpha_val': 0.25,
+         'marker_val': None,
+         'color_val': 'g',
+         'target_plot': False,
+         'legend_location': 'upper right',
+         'color_target': 'r'
+         }
+    t.plot_overall_chart(**d)
+
+
+def test_plot_overall_department_size(mgmt_data):
+    t = Mod_Stoch_FBPH(**mgmt_data)
+    d = {'plottype': 'department size',
+         'number_of_runs': 10,
+         'target': 0.25,
+         'caption': '',
+         'xlabel':'test x',
+         'ylabel': 'test y',
+         'title': 'test title',
+         'line_width': 2,
+         'xmin': 0,
+         'ymin': 0,
+         'xmax': 40,
+         'ymax': 100,
+         'alpha_val': 0.25,
+         'marker_val': None,
+         'color_val': 'g',
+         'target_plot': False,
+         'legend_location': 'upper right',
+         'color_target': 'r'
+         }
+    t.plot_overall_chart(**d)
