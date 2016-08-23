@@ -404,7 +404,9 @@ def test_plot_overall_probability_proportion(mgmt_data):
          'color_val': 'g',
          'target_plot': True,
          'legend_location': 'upper right',
-         'color_target': 'r'
+         'color_target': 'r',
+         'fifty_percent_plot': False,
+         'color_fifty_percent': 'r'
          }
     t.plot_overall_chart(**d)
 
@@ -428,7 +430,9 @@ def test_plot_overall_gender_proportion(mgmt_data):
          'color_val': 'g',
          'target_plot': True,
          'legend_location': 'upper right',
-         'color_target': 'r'
+         'color_target': 'r',
+         'fifty_percent_plot': False,
+         'color_fifty_percent': 'r'
          }
     t.plot_overall_chart(**d)
 
@@ -451,7 +455,9 @@ def test_plot_overall_unfilled_vacancies(mgmt_data):
          'color_val': 'g',
          'target_plot': False,
          'legend_location': 'upper right',
-         'color_target': 'r'
+         'color_target': 'r',
+         'fifty_percent_plot': False,
+         'color_fifty_percent': 'r'
          }
     t.plot_overall_chart(**d)
 
@@ -475,6 +481,8 @@ def test_plot_overall_department_size(mgmt_data):
          'color_val': 'g',
          'target_plot': False,
          'legend_location': 'upper right',
-         'color_target': 'r'
+         'color_target': 'r',
+         'fifty_percent_plot': False,
+         'color_fifty_percent': 'r'
          }
     t.plot_overall_chart(**d)
