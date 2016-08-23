@@ -406,9 +406,14 @@ def test_plot_overall_probability_proportion(mgmt_data):
          'legend_location': 'upper right',
          'color_target': 'r',
          'fifty_percent_plot': True,
-         'color_fifty_percent': 'r',
+         'color_fifty_percent': 'k',
          'target_plot_line_style': '--',
-         'fifty_percent_line_style': '-.'
+         'fifty_percent_line_style': '-.',
+         'target_plot_linewidth': 2,
+         'fifty_percent_linewidth': 2,
+         'model_legend_label':'model',
+         'target_plot_legend_label':'target',
+         'fifty_percent_legend_label': '50%'
          }
     t.plot_overall_chart(**d)
 

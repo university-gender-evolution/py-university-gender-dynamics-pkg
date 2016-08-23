@@ -1403,7 +1403,12 @@ class Base_model():
                            fifty_percent_plot,
                            color_fifty_percent,
                            target_plot_line_style,
-                           fifty_percent_line_style
+                           fifty_percent_line_style,
+                           target_plot_linewidth,
+                           fifty_percent_linewidth,
+                           model_legend_label,
+                           target_plot_legend_label,
+                           fifty_percent_legend_label
                            ):
 
 
@@ -1440,8 +1445,12 @@ class Base_model():
             fill_matrix = self.dept_size_matrix['std']
 
 
-        plt.plot(range(xval), yval, linewidth=line_width,
-                 marker = marker_val, color = color_val, label = self.label)
+        plt.plot(range(xval),
+                 yval,
+                 linewidth=line_width,
+                 marker = marker_val,
+                 color = color_val,
+                 label = model_legend_label)
 
         plt.fill_between(range(xval),
                          yval + 1.96*fill_matrix,
@@ -1449,10 +1458,18 @@ class Base_model():
                          alpha=alpha_val)
 
         if target_plot == True:
-            plt.axhline(target, color = color_target, linestyle = target_plot_line_style, label = 'Target percentage')
+            plt.axhline(target,
+                        color = color_target,
+                        linestyle = target_plot_line_style,
+                        label = target_plot_legend_label,
+                        linewidth = target_plot_linewidth)
 
         if fifty_percent_plot == True:
-            plt.axhline(y = 0.5, color = color_fifty_percent, linestyle = fifty_percent_line_style, label = '50% line')
+            plt.axhline(y = 0.5,
+                        color = color_fifty_percent,
+                        linestyle = fifty_percent_line_style,
+                        label = fifty_percent_legend_label,
+                        linewidth = fifty_percent_linewidth)
 
         plt.xlim(xmin, xmax)
         plt.ylim(ymin, ymax)
