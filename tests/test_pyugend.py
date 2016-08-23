@@ -398,15 +398,17 @@ def test_plot_overall_probability_proportion(mgmt_data):
          'xmin': 0,
          'ymin': 0,
          'xmax': 40,
-         'ymax': 0.1,
+         'ymax': 1.0,
          'alpha_val': 0.25,
          'marker_val': None,
          'color_val': 'g',
          'target_plot': True,
          'legend_location': 'upper right',
          'color_target': 'r',
-         'fifty_percent_plot': False,
-         'color_fifty_percent': 'r'
+         'fifty_percent_plot': True,
+         'color_fifty_percent': 'r',
+         'target_plot_line_style': '--',
+         'fifty_percent_line_style': '-.'
          }
     t.plot_overall_chart(**d)
 
@@ -479,10 +481,12 @@ def test_plot_overall_department_size(mgmt_data):
          'alpha_val': 0.25,
          'marker_val': None,
          'color_val': 'g',
-         'target_plot': False,
+         'target_plot': True,
          'legend_location': 'upper right',
          'color_target': 'r',
          'fifty_percent_plot': False,
-         'color_fifty_percent': 'r'
+         'color_fifty_percent': 'r',
+         'target_plot_line_style': '--',
+         'fifty__percent_line_style': '-.'
          }
     t.plot_overall_chart(**d)

@@ -1401,7 +1401,9 @@ class Base_model():
                            legend_location,
                            color_target,
                            fifty_percent_plot,
-                           color_fifty_percent
+                           color_fifty_percent,
+                           target_plot_line_style,
+                           fifty_percent_line_style
                            ):
 
 
@@ -1447,10 +1449,10 @@ class Base_model():
                          alpha=alpha_val)
 
         if target_plot == True:
-            plt.axhline(target, color = color_target)
+            plt.axhline(target, color = color_target, linestyle = target_plot_line_style)
 
         if fifty_percent_plot == True:
-            plt.axhline(y = 0.5, color = color_fifty_percent)
+            plt.axhline(y = 0.5, color = color_fifty_percent, linestyle = fifty_percent_line_style)
 
         plt.xlim(xmin, xmax)
         plt.ylim(ymin, ymax)
