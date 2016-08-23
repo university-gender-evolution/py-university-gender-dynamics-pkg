@@ -1441,7 +1441,7 @@ class Base_model():
 
 
         plt.plot(range(xval), yval, linewidth=line_width,
-                 marker = marker_val, color = color_val)
+                 marker = marker_val, color = color_val, label = self.label)
 
         plt.fill_between(range(xval),
                          yval + 1.96*fill_matrix,
@@ -1449,10 +1449,10 @@ class Base_model():
                          alpha=alpha_val)
 
         if target_plot == True:
-            plt.axhline(target, color = color_target, linestyle = target_plot_line_style)
+            plt.axhline(target, color = color_target, linestyle = target_plot_line_style, label = 'Target percentage')
 
         if fifty_percent_plot == True:
-            plt.axhline(y = 0.5, color = color_fifty_percent, linestyle = fifty_percent_line_style)
+            plt.axhline(y = 0.5, color = color_fifty_percent, linestyle = fifty_percent_line_style, label = '50% line')
 
         plt.xlim(xmin, xmax)
         plt.ylim(ymin, ymax)
