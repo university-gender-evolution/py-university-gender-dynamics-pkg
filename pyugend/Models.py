@@ -1394,21 +1394,22 @@ class Base_model():
                            ymin,
                            xmax,
                            ymax,
-                           alpha_val,
-                           marker_val,
-                           color_val,
+                           transparency,
+                           marker_shape,
+                           linecolor,
                            target_plot,
                            legend_location,
                            color_target,
-                           fifty_percent_plot,
-                           color_fifty_percent,
+                           percent_line_plot,
+                           percent_line_value,
+                           color_percent_line,
                            target_plot_line_style,
-                           fifty_percent_line_style,
+                           percent_line_style,
                            target_plot_linewidth,
-                           fifty_percent_linewidth,
+                           percent_linewidth,
                            model_legend_label,
                            target_plot_legend_label,
-                           fifty_percent_legend_label
+                           percent_legend_label
                            ):
 
 
@@ -1448,14 +1449,15 @@ class Base_model():
         plt.plot(range(xval),
                  yval,
                  linewidth=line_width,
-                 marker = marker_val,
-                 color = color_val,
+                 marker = marker_shape,
+                 color = linecolor,
                  label = model_legend_label)
 
         plt.fill_between(range(xval),
                          yval + 1.96*fill_matrix,
                          yval - 1.96*fill_matrix,
-                         alpha=alpha_val)
+                         alpha=transparency,
+                         facecolor = linecolor)
 
         if target_plot == True:
             plt.axhline(target,
@@ -1464,12 +1466,12 @@ class Base_model():
                         label = target_plot_legend_label,
                         linewidth = target_plot_linewidth)
 
-        if fifty_percent_plot == True:
-            plt.axhline(y = 0.5,
-                        color = color_fifty_percent,
-                        linestyle = fifty_percent_line_style,
-                        label = fifty_percent_legend_label,
-                        linewidth = fifty_percent_linewidth)
+        if percent_line_plot == True:
+            plt.axhline(y = percent_line_value,
+                        color = color_percent_line,
+                        linestyle = percent_line_style,
+                        label = percent_legend_label,
+                        linewidth = percent_linewidth)
 
         plt.xlim(xmin, xmax)
         plt.ylim(ymin, ymax)

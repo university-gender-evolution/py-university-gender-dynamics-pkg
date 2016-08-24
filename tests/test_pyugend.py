@@ -399,21 +399,22 @@ def test_plot_overall_probability_proportion(mgmt_data):
          'ymin': 0,
          'xmax': 40,
          'ymax': 1.0,
-         'alpha_val': 0.25,
-         'marker_val': None,
-         'color_val': 'g',
+         'transparency': 0.25,
+         'marker_shape': None,
+         'linecolor': 'g',
          'target_plot': True,
          'legend_location': 'upper right',
          'color_target': 'r',
-         'fifty_percent_plot': True,
-         'color_fifty_percent': 'k',
+         'percent_line_plot': True,
+         'percent_line_value':0.5,
+         'color_percent_line': 'k',
          'target_plot_line_style': '--',
-         'fifty_percent_line_style': '-.',
+         'percent_line_style': '-.',
          'target_plot_linewidth': 2,
-         'fifty_percent_linewidth': 2,
+         'percent_linewidth': 2,
          'model_legend_label':'model',
          'target_plot_legend_label':'target',
-         'fifty_percent_legend_label': '50%'
+         'percent_legend_label': '50%'
          }
     t.plot_overall_chart(**d)
 
