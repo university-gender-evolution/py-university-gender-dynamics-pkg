@@ -1411,10 +1411,14 @@ class Base_model():
                            target_plot_legend_label = 'target',
                            percent_legend_label = 'percent',
                            male_female_numbers_plot = False,
-                           color_male = 'k',
-                           color_target_mf = 'r',
-                           label_male = 'Male',
-                           label_target = 'Target'
+                           mf_male_color= 'k',
+                           mf_target_color = 'r',
+                           mf_male_label = 'Male',
+                           mf_target_label = 'Target',
+                           mf_male_linestyle = None,
+                           mf_target_linestyle = None,
+                           mf_male_linewidth = 2,
+                           mf_target_linewidth = 2
                            ):
 
 
@@ -1500,11 +1504,19 @@ class Base_model():
                         linewidth = percent_linewidth)
 
         if male_female_numbers_plot:
-            plt.plot(range(xval), yval2,
-                     color=color_male, label= label_male)
+            plt.plot(range(xval),
+                     yval2,
+                     color=mf_male_color,
+                     label= mf_male_label,
+                     linestyle = mf_male_linestyle,
+                     linewidth = mf_male_linewidth)
 
-            plt.plot(range(xval), yval3,
-                     color=color_target_mf, label=label_target)
+            plt.plot(range(xval),
+                     yval3,
+                     color=mf_target_color,
+                     label=mf_target_label,
+                     linestyle = mf_target_linestyle,
+                     linewidth = mf_target_linewidth)
 
         plt.xlim(xmin, xmax)
         plt.ylim(ymin, ymax)

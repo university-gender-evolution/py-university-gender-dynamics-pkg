@@ -450,10 +450,14 @@ def test_plot_overall_male_female_numbers(mgmt_data):
          'target_plot_legend_label':'target',
          'percent_legend_label': '50%',
          'male_female_numbers_plot': True,
-         'color_male' : 'k',
-         'color_target_mf' : 'r',
-         'label_male' : 'Male',
-         'label_target': 'Target'
+         'mf_male_color' : 'k',
+         'mf_target_color' : 'r',
+         'mf_male_label' : 'Male',
+         'mf_target_label': 'Target',
+         'mf_male_linestyle' : '-',
+         'mf_target_linestyle': '-',
+         'mf_male_linewidth' :2,
+         'mf_target_linewidth' : 2
          }
     t.plot_overall_chart(**d)
 
