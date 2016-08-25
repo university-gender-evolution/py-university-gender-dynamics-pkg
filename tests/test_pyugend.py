@@ -419,6 +419,45 @@ def test_plot_overall_probability_proportion(mgmt_data):
     t.plot_overall_chart(**d)
 
 
+def test_plot_overall_male_female_numbers(mgmt_data):
+    t = Mod_Stoch_FBPH(**mgmt_data)
+    d = {'plottype': 'male female numbers',
+         'number_of_runs': 10,
+         'target': 0.15,
+         'caption': '',
+         'xlabel':'test x',
+         'ylabel': 'test y',
+         'title': 'test title',
+         'line_width': 2,
+         'xmin': 0,
+         'ymin': 0,
+         'xmax': 40,
+         'ymax': 100,
+         'transparency': 0.25,
+         'marker_shape': None,
+         'linecolor': 'g',
+         'target_plot': False,
+         'legend_location': 'upper right',
+         'color_target': 'r',
+         'percent_line_plot': False,
+         'percent_line_value':0.5,
+         'color_percent_line': 'k',
+         'target_plot_line_style': '--',
+         'percent_line_style': '-.',
+         'target_plot_linewidth': 2,
+         'percent_linewidth': 2,
+         'model_legend_label':'model',
+         'target_plot_legend_label':'target',
+         'percent_legend_label': '50%',
+         'male_female_numbers_plot': True,
+         'color_male' : 'k',
+         'color_target_mf' : 'r',
+         'label_male' : 'Male',
+         'label_target': 'Target'
+         }
+    t.plot_overall_chart(**d)
+
+
 def test_plot_overall_gender_proportion(mgmt_data):
     t = Mod_Stoch_FBPH(**mgmt_data)
     d = {'plottype': 'gender proportion',

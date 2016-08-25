@@ -1397,7 +1397,7 @@ class Base_model():
                            transparency,
                            marker_shape = None,
                            linecolor = 'g',
-                           target_plot False,
+                           target_plot = False,
                            legend_location = 'upper right',
                            color_target = 'r',
                            percent_line_plot = False,
@@ -1485,25 +1485,25 @@ class Base_model():
                          alpha=transparency,
                          facecolor = linecolor)
 
-        if target_plot == True:
+        if target_plot:
             plt.axhline(target,
                         color = color_target,
                         linestyle = target_plot_line_style,
                         label = target_plot_legend_label,
                         linewidth = target_plot_linewidth)
 
-        if percent_line_plot == True:
+        if percent_line_plot:
             plt.axhline(y = percent_line_value,
                         color = color_percent_line,
                         linestyle = percent_line_style,
                         label = percent_legend_label,
                         linewidth = percent_linewidth)
 
-        if male_female_numbers_plot == True:
-            plt.plot(xval, yval2,
+        if male_female_numbers_plot:
+            plt.plot(range(xval), yval2,
                      color=color_male, label= label_male)
 
-            plt.plot(xval, yval3,
+            plt.plot(range(xval), yval3,
                      color=color_target_mf, label=label_target)
 
         plt.xlim(xmin, xmax)
