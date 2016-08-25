@@ -1395,21 +1395,26 @@ class Base_model():
                            xmax,
                            ymax,
                            transparency,
-                           marker_shape,
-                           linecolor,
-                           target_plot,
-                           legend_location,
-                           color_target,
-                           percent_line_plot,
-                           percent_line_value,
-                           color_percent_line,
-                           target_plot_line_style,
-                           percent_line_style,
-                           target_plot_linewidth,
-                           percent_linewidth,
-                           model_legend_label,
-                           target_plot_legend_label,
-                           percent_legend_label
+                           marker_shape = None,
+                           linecolor = 'g',
+                           target_plot False,
+                           legend_location = 'upper right',
+                           color_target = 'r',
+                           percent_line_plot = False,
+                           percent_line_value = 0.5,
+                           color_percent_line = 'r',
+                           target_plot_line_style = '--',
+                           percent_line_style = '-.',
+                           target_plot_linewidth = 2,
+                           percent_linewidth = 2,
+                           model_legend_label = 'model',
+                           target_plot_legend_label = 'target',
+                           percent_legend_label = 'percent',
+                           male_female_numbers_plot = False,
+                           color_male = 'k',
+                           color_target_mf = 'r',
+                           label_male = 'Male',
+                           label_target = 'Target'
                            ):
 
 
@@ -1446,6 +1451,27 @@ class Base_model():
             fill_matrix = self.dept_size_matrix['std']
 
 
+        if plottype == 'male female numbers':
+            yval = sum(list([self.mean_matrix['f1'],
+                             self.mean_matrix['f2'],
+                             self.mean_matrix['f3']]))
+
+            fill_matrix = 0
+
+            yval2 = sum(list([self.mean_matrix['m1'],
+                              self.mean_matrix['m2'],
+                              self.mean_matrix['m3']]))
+
+            total_faculty = sum(list([self.mean_matrix['f1'],
+                                      self.mean_matrix['f2'],
+                                      self.mean_matrix['f3'],
+                                      self.mean_matrix['m1'],
+                                      self.mean_matrix['m2'],
+                                      self.mean_matrix['m3']]))
+
+            yval3 = np.round(target * total_faculty)
+
+
         plt.plot(range(xval),
                  yval,
                  linewidth=line_width,
@@ -1472,6 +1498,13 @@ class Base_model():
                         linestyle = percent_line_style,
                         label = percent_legend_label,
                         linewidth = percent_linewidth)
+
+        if male_female_numbers_plot == True:
+            plt.plot(xval, yval2,
+                     color=color_male, label= label_male)
+
+            plt.plot(xval, yval3,
+                     color=color_target_mf, label=label_target)
 
         plt.xlim(xmin, xmax)
         plt.ylim(ymin, ymax)
