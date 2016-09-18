@@ -397,7 +397,7 @@ def test_plot_overall_department_size(mgmt_data):
 
 def test_plot_bylevel_percentage(mgmt_data):
     t = Mod_Stoch_FBPH(**mgmt_data)
-    d = {'plottype' : 'gender proportion',
+    d = {'plottype' : 'probability proportion',
          'number_of_runs': 20,
          'target' : 0.25,
          'caption' : '',
@@ -413,6 +413,7 @@ def test_plot_bylevel_percentage(mgmt_data):
          'ylabel_m2':'range m2',
          'xlabel_m3':'label m3',
          'ylabel_m3':'range m3',
+         'group_title': 'group title',
          'title_f1':'title f1',
          'title_f2':'title f2',
          'title_f3':'title f3',
@@ -427,7 +428,7 @@ def test_plot_bylevel_percentage(mgmt_data):
          'xmin_f2':0,
          'ymin_f2':0,
          'xmax_f2':40,
-         'ymax_f2':1,
+         'ymax_f2':0.4,
          'xmin_f3':0,
          'ymin_f3':0,
          'xmax_f3':40,
@@ -454,10 +455,11 @@ def test_plot_bylevel_percentage(mgmt_data):
          'target_plot_line_style' : '--',
          'target_plot_linewidth' : 2,
          'target_plot_legend_label' : 'target',
-         'percent_line_plot' : False,
+         'percent_line_plot' : True,
          'percent_line_value': 0.5,
          'color_percent_line':'r',
          'percent_line_style':'-.',
          'percent_linewidth':2,
          'percent_legend_label':'percent'}
+
     t.plot_level_chart(**d)

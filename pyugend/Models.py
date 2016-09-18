@@ -1534,6 +1534,7 @@ class Base_model():
                          ylabel_m2,
                          xlabel_m3,
                          ylabel_m3,
+                         group_title,
                          title_f1,
                          title_f2,
                          title_f3,
@@ -1567,7 +1568,7 @@ class Base_model():
                          ymax_m3,
                          legend_location='upper right',
                          model_legend_label='model',
-                         transparency,
+                         transparency = 0.25,
                          marker_shape=None,
                          linecolor='g',
                          target_plot=False,
@@ -1593,7 +1594,7 @@ class Base_model():
         xval = self.duration
 
         if plottype == 'probability proportion':
-            d = self.run_probability_analysis_gender_proportion(number_of_runs,
+            d = self.run_probability_analysis_gender_by_level(number_of_runs,
                                                                 target)
 
             yval_f1 = d['pf1']
@@ -1760,9 +1761,9 @@ class Base_model():
         axarr[1, 2].set_ylabel(ylabel_m3)
         axarr[1, 2].fill_between(range(xval),
                                  np.minimum(1,
-                                            yval_f1 + 1.96 * fill_m3),
+                                            yval_m3 + 1.96 * fill_m3),
                                  np.maximum(0,
-                                            yval_f1 - 1.96 * fill_m3),
+                                            yval_m3 - 1.96 * fill_m3),
                                  alpha=transparency,
                                  facecolor=linecolor)
 
@@ -1772,6 +1773,8 @@ class Base_model():
                                 linestyle = target_plot_line_style,
                                 linewidth = target_plot_linewidth,
                                 label = target_plot_legend_label)
+            axarr[0, 0].legend(loc=legend_location, shadow=True)
+
             axarr[0, 1].axhline(y=target,
                                 color=target_color,
                                 linestyle = target_plot_line_style,
@@ -1804,6 +1807,8 @@ class Base_model():
                                 linestyle = percent_line_style,
                                 linewidth = percent_linewidth,
                                 label = percent_legend_label)
+            axarr[0, 0].legend(loc=legend_location, shadow=True)
+
             axarr[0, 1].axhline(y=percent_line_value,
                                 color=color_percent_line,
                                 linestyle=percent_line_style,
