@@ -104,22 +104,10 @@ def test_base_model_multiple_runs_persistent_state(mock_data):
 
 
 def test_base_model_parameter_sweep(mock_data):
-    t = Mod_Stoch_FSHP(**mock_data)
+    t = Mod_Stoch_FBHP(**mock_data)
     v = t.run_parameter_sweep(12, 'female_pp_1', 0.1, 0.3, 2)
     assert (isinstance(v, int))
 
-
-def test_base_model_plot_multiple_runs_detail(mock_data):
-    t = Mod_Stoch_FBHP(**mock_data)
-    t.run_multiple(10)
-    t.plot_multiple_runs_detail(10,'Model 1: Hire-Promote', 5)
-
-def test_base_model_plot_multiple_runs_percentage(mock_data):
-    t = Mod_Stoch_FBHP(**mock_data)
-    t.run_multiple(10)
-    t.plot_multiple_runs_detail_percentage(0.25,100)
-
-#
 def test_base_model_multiple_runs_gender_prop(mock_data):
      t = Mod_Stoch_FBHP(**mock_data)
      t.run_multiple(100)
@@ -152,28 +140,9 @@ def test_replication_model(mock_data):
     t.run_model()
     assert (isinstance(t.run, np.ndarray))
 
-
-# def test_base_model_multiple_runs_gender_prop(mock_data):
-#      t = Replication_model(**mock_data)
-#      t.run_multiple(10)
-#      t.plot_multiple_runs_gender_prop()
-
 def test_excel_export(mock_data):
     t = Mod_Stoch_FBPH(**mock_data)
     t.export_model_run(10)
-
-
-def test_stochastic_model_with_hiring_first(mock_data):
-    t = Mod_Stoch_FSPH(**mock_data)
-    t.run_model()
-    assert (isinstance(t.run, np.ndarray))
-
-
-def test_stochastic_model_with_hiring_first_multiple(mock_data):
-    t = Mod_Stoch_FBPH(**mock_data)
-    t.run_multiple(10)
-    assert (isinstance(t.mean_matrix, np.ndarray))
-
 
 def test_comparison_model_plot_detail(mock_data):
     modlist = list([Mod_Stoch_FBHP(**mock_data),
@@ -212,52 +181,11 @@ def test_base_model_probability_calc_detail_array(mock_data):
     assert (isinstance(res, pd.DataFrame))
 
 
-# def test_base_model_probability_calc_plot(mock_data):
-#      t = Mod_Stoch_FSPH(**mock_data)
-#      t.plot_empirical_probability_group_detail(10,
-#                                             'female_promotion_probability_2',
-#                                             'm2', 0.1, 0.8, 8, 150)
-#
-# def test_comparison_empirical_probability_detail_plot(mock_data):
-#     modlist = list([Replication_model(**mock_data),
-#                     Mod_Stoch_FBHP(**mock_data),
-#                     Mod_Stoch_FSPH(**mock_data)])
-#     c = Comparison(modlist)
-#     c.plot_comparison_empirical_probability_detail(10,
-#                                                    'female_promotion_probability_2',
-#                                                    'm2', 0.1, 0.8, 20, 150)
-
-
-def test_plot_dept_size_over_time_shrinking(mock_data):
-    t = Mod_Stoch_FSPH(**mock_data)
-    t.plot_department_size_over_time_multiple_runs(10, 'Dept Size Shrinking '
-                                                       'Model', 'Years',
-                                                   'Department Size')
-
-def test_plot_dept_size_over_time_banded(mock_data):
-    t = Mod_Stoch_FBPH(**mock_data)
-    t.plot_department_size_over_time_multiple_runs(10, 'Dept Size Banded Model',
-                                                   'Years',
-                                                   'Department Size')
-
-# def test_plot_comparision_department_size(mock_data):
-#     modlist = list([Mod_Stoch_FSHP(**mock_data),
-#                 Mod_Stoch_FBHP(**mock_data),
-#                 Mod_Stoch_FSPH(**mock_data)])
-#     c = Comparison(modlist)
-#     c.plot_comparison_department_size()
-
 def test_multiple_runs_created_res_array(mock_data):
     t = Mod_Stoch_FSPH(**mock_data)
     t.run_multiple(10)
     assert hasattr(t, 'mean_matrix')
 
-
-def test_plot_empirical_probability_gender_proportion(mock_data):
-
-    t = Mod_Stoch_FBPH(**mock_data)
-    t.plot_empirical_probability_gender_proportion(100, 0.19, 'title',
-                                                   'xlabel','ylabel', '')
 
 
 def test_plot_comparision_empirical_probability_gender_proportion(mock_data):
@@ -266,80 +194,12 @@ def test_plot_comparision_empirical_probability_gender_proportion(mock_data):
     c = Comparison(modlist)
     c.plot_comparison_empirical_probability_gender_proportion(100, 0.19)
 
-
-def test_FBPH_model_run(mock_data):
-    t = Mod_Stoch_FBPH(**mock_data)
-    t.run_model()
-    assert (isinstance(t.res, np.ndarray))
-
-def test_FBPH_plot_dept_size(mock_data):
-    t = Mod_Stoch_FBPH(**mock_data)
-    t.plot_department_size_over_time_multiple_runs(300)
-
-def test_FBHP_model_run(mgmt_data):
-    t = Mod_Stoch_FBHP(**mgmt_data)
-    t.run_model()
-    assert (isinstance(t.res, np.ndarray))
-
-def test_FBHP_plot_dept_size(mock_data):
-    t = Mod_Stoch_FBHP(**mock_data)
-    t.plot_department_size_over_time_multiple_runs(20)
-
-def test_FBPH_plot_dept_size(mock_data):
-    t = Mod_Stoch_FBPH(**mock_data)
-    t.plot_department_size_over_time_multiple_runs(20, 'Dept Size Banded '
-                                                        'Model',
-                                                   'Years',
-                                                   'Department Size')
-
-def test_FBHP_plot_dept_size(mock_data):
-    t = Mod_Stoch_FBHP(**mock_data)
-    t.plot_department_size_over_time_multiple_runs(20, 'Dept Size Banded '
-                                                        'Model',
-                                                   'Years',
-                                                   'Department Size')
-
-def test_FBPH_plot_unfilled(mock_data):
-    t = Mod_Stoch_FBPH(**mock_data)
-    t.plot_unfilled_vacancies_over_time_multiple_runs(20, 'Dept Size Banded Model',
-                                                   'Years',
-                                                   'unfilled vacancies')
-
-
-def test_FBPH_plot_gender_proportion(mock_data):
-    t = Mod_Stoch_FBPH(**mock_data)
-    t.plot_multiple_runs_gender_prop('Title', 'years', '% women',0.3,
-                                     'This is a test of the caption '
-                                     'functionality',20 )
-
-def test_FBPH_plot_pct_gender_detail(mock_data):
-    t = Mod_Stoch_FBPH(**mock_data)
-    t.plot_multiple_runs_detail_percentage(20, 'pct', 0.15, 'text for caption')
-
 def test_plot_comparision_unfilled_vacancies(mock_data):
     modlist = list([Mod_Stoch_FBPH(**mock_data),
                     Mod_Stoch_FBHP(**mock_data)])
     c = Comparison(modlist)
     c.plot_comparison_spec_parameter('dept_size', 'department size',
                                      'year', 'department size')
-
-def test_FBHP_plot_gend_proportion(mgmt_data):
-    t = Mod_Stoch_FBHP(**mgmt_data)
-    t.plot_multiple_runs_gender_prop('Gender Proportion', 'Year', 'Percentage Female', 0.2, 100)
-
-def test_FBHP_plot_gend_detail_percentage(mgmt_data):
-    t = Mod_Stoch_FBHP(**mgmt_data)
-    t.plot_multiple_runs_detail_percentage(100,'Detail Percentages',0.20,'')
-
-def test_FBHP_plot_male_female_numbers(mgmt_data):
-
-    t = Mod_Stoch_FBHP(**mgmt_data)
-    t.plot_male_female_total_numbers('Years', 'Numbers',
-                                     'Number of Men and Women in a Department',
-                                     'caption',
-                                     0.30,
-                                     10)
-
 
 def test_plot_comparison_gender_proportion(mgmt_data):
 
@@ -352,7 +212,6 @@ def test_plot_comparison_gender_proportion(mgmt_data):
                                           '',
                                           0.20,
                                           100)
-
 
 
 def test_FBHP_plot_comparison_male_female_numbers(mgmt_data):
@@ -373,10 +232,6 @@ def test_run_probability_by_level_data(mgmt_data):
     t = Mod_Stoch_FBPH(**mgmt_data)
     val = t.run_probability_analysis_gender_by_level(10, 0.15)
     assert (isinstance(val, pd.DataFrame))
-
-def test_plot_empirical_probability_analysis_by_level(mgmt_data):
-    t = Mod_Stoch_FBPH(**mgmt_data)
-    t.plot_multiple_runs_detail_percentage(0.25,10)
 
 
 def test_plot_comparison_empirical_probability_proportion_by_level(mock_data):
@@ -539,3 +394,70 @@ def test_plot_overall_department_size(mgmt_data):
          'fifty__percent_line_style': '-.'
          }
     t.plot_overall_chart(**d)
+
+def test_plot_bylevel_percentage(mgmt_data):
+    t = Mod_Stoch_FBPH(**mgmt_data)
+    d = {'plottype' : 'gender proportion',
+         'number_of_runs': 20,
+         'target' : 0.25,
+         'caption' : '',
+         'xlabel_f1': 'label f1',
+         'ylabel_f1': 'range f1',
+         'xlabel_f2': 'label f2',
+         'ylabel_f2': 'range f2',
+         'xlabel_f3': 'label f3',
+         'ylabel_f3': 'range f3',
+         'xlabel_m1':'label m1',
+         'ylabel_m1':'range m1',
+         'xlabel_m2':'label m2',
+         'ylabel_m2':'range m2',
+         'xlabel_m3':'label m3',
+         'ylabel_m3':'range m3',
+         'title_f1':'title f1',
+         'title_f2':'title f2',
+         'title_f3':'title f3',
+         'title_m1':'title m1',
+         'title_m2':'title m2',
+         'title_m3':'title m3',
+         'line_width': 2,
+         'xmin_f1':0,
+         'ymin_f1':0,
+         'xmax_f1':40,
+         'ymax_f1':1,
+         'xmin_f2':0,
+         'ymin_f2':0,
+         'xmax_f2':40,
+         'ymax_f2':1,
+         'xmin_f3':0,
+         'ymin_f3':0,
+         'xmax_f3':40,
+         'ymax_f3':1,
+         'xmin_m1':0,
+         'ymin_m1':0,
+         'xmax_m1':40,
+         'ymax_m1':1,
+         'xmin_m2':0,
+         'ymin_m2':0,
+         'xmax_m2':40,
+         'ymax_m2':1,
+         'xmin_m3':0,
+         'ymin_m3':0,
+         'xmax_m3':40,
+         'ymax_m3':1,
+         'legend_location':'upper right',
+         'model_legend_label':'model',
+         'transparency': 0.25,
+         'marker_shape': None,
+         'linecolor' : 'g',
+         'target_plot' : False,
+         'target_color' : 'r',
+         'target_plot_line_style' : '--',
+         'target_plot_linewidth' : 2,
+         'target_plot_legend_label' : 'target',
+         'percent_line_plot' : False,
+         'percent_line_value': 0.5,
+         'color_percent_line':'r',
+         'percent_line_style':'-.',
+         'percent_linewidth':2,
+         'percent_legend_label':'percent'}
+    t.plot_level_chart(**d)
