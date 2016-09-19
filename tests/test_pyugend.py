@@ -397,7 +397,7 @@ def test_plot_overall_department_size(mgmt_data):
 
 def test_plot_bylevel_percentage(mgmt_data):
     t = Mod_Stoch_FBPH(**mgmt_data)
-    d = {'plottype' : 'probability proportion',
+    d = {'plottype' : 'gender proportion',
          'number_of_runs': 20,
          'target' : 0.25,
          'caption' : '',

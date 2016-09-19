@@ -1631,7 +1631,21 @@ class Base_model():
             fill_m3 = self.pct_female_matrix['spct_m3']
 
         if plottype == 'gender number':
-            pass
+
+            yval_f1 = self.mean_matrix['f1']
+            yval_f2 = self.mean_matrix['f2']
+            yval_f3 = self.mean_matrix['f3']
+            yval_m1 = self.mean_matrix['m1']
+            yval_m2 = self.mean_matrix['m2']
+            yval_m3 = self.mean_matrix['m3']
+
+            fill_f1 = self.std_matrix['f1']
+            fill_f2 = self.std_matrix['f2']
+            fill_f3 = self.std_matrix['f3']
+            fill_m1 = self.std_matrix['m1']
+            fill_m2 = self.std_matrix['m2']
+            fill_m3 = self.std_matrix['m3']
+
 
         f, axarr = plt.subplots(nrows=2, ncols=3)
         f.suptitle(group_title)
