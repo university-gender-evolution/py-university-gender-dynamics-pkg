@@ -1631,6 +1631,8 @@ class Base_model():
             fill_m3 = self.pct_female_matrix['spct_m3']
 
         if plottype == 'gender number':
+            if self.model_summary_stats == 0:
+                self.run_multiple(number_of_runs)
 
             yval_f1 = self.mean_matrix['f1']
             yval_f2 = self.mean_matrix['f2']
