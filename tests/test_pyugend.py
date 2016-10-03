@@ -1,9 +1,6 @@
 import pytest
 from pyugend.Models import Base_model
 from pyugend.Mod_Stoch_FBHP import Mod_Stoch_FBHP
-from pyugend.Mod_Stoch_FSHP import Mod_Stoch_FSHP
-from pyugend.Mod_Stoch_FSPH import Mod_Stoch_FSPH
-from pyugend.Mod_Stoch_FBHP import Mod_Stoch_FBHP
 from pyugend.Mod_Stoch_FBPH import Mod_Stoch_FBPH
 from pyugend.ReplicationModel import Replication_model
 from pyugend.Comparison import Comparison
@@ -463,3 +460,10 @@ def test_plot_bylevel_percentage(mgmt_data):
          'percent_legend_label':'percent'}
 
     t.plot_level_chart(**d)
+
+
+def test_comparision_duration(mgmt_data):
+    modlist = list([Mod_Stoch_FBHP(**mgmt_data),
+                    Mod_Stoch_FBPH(**mgmt_data)])
+    c = Comparison(modlist)
+    print(c.testfunc())

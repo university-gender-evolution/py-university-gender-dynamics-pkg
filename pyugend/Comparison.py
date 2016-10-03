@@ -785,3 +785,161 @@ class Comparison():
         plt.legend(loc='upper left', shadow=True)
         plt.text(0.2, 0.2, txt)
         plt.show()
+
+
+    def plot_comparision_overall_chart(self,
+                           plottype,
+                           number_of_runs,
+                           target,
+                           caption,
+                           xlabel,
+                           ylabel,
+                           title,
+                           line_width,
+                           xmin,
+                           ymin,
+                           xmax,
+                           ymax,
+                           transparency,
+                           marker_shape=None,
+                           linecolor='g',
+                           target_plot=False,
+                           legend_location='upper right',
+                           color_target='r',
+                           percent_line_plot=False,
+                           percent_line_value=0.5,
+                           color_percent_line='r',
+                           target_plot_line_style='--',
+                           percent_line_style='-.',
+                           target_plot_linewidth=2,
+                           percent_linewidth=2,
+                           model_legend_label='model',
+                           target_plot_legend_label='target',
+                           percent_legend_label='percent',
+                           male_female_numbers_plot=False,
+                           mf_male_color='k',
+                           mf_target_color='r',
+                           mf_male_label='Male',
+                           mf_target_label='Target',
+                           mf_male_linestyle=None,
+                           mf_target_linestyle=None,
+                           mf_male_linewidth=2,
+                           mf_target_linewidth=2
+                           ):
+        # generate data for the plot.
+
+        for mod in self.mlist:
+            mod.run_multiple(number_of_runs)
+
+        # set default plot parameters. The xaxis is generally duration,
+        # though I have the option--depending on the plot, to put in a
+        # different x-axis.
+
+        xval = min([m.duration for m in self.mlist])
+
+        if plottype == 'probability proportion':
+            self.run_probability_analysis_gender_proportion(number_of_runs,
+                                                            target)
+
+            yval = self.probability_matrix['Probability']
+            fill_matrix = 0
+
+        if plottype == 'gender proportion':
+
+            # I need the reference to a list with all of the mean/std matrices across all models.
+            yval = [m.mean_matrix['gendprop'] for m in self.mlist]
+
+            fill_matrix = [m.self.std_matrix['gendprop'] for m in self.mlist]
+
+        if plottype == 'unfilled vacancies':
+            yval = self.mean_matrix['unfilled']
+            fill_matrix = self.std_matrix['unfilled']
+
+        if plottype == 'department size':
+            yval = self.dept_size_matrix['mean']
+            fill_matrix = self.dept_size_matrix['std']
+
+        if plottype == 'male female numbers':
+            yval = sum(list([self.mean_matrix['f1'],
+                             self.mean_matrix['f2'],
+                             self.mean_matrix['f3']]))
+
+            fill_matrix = 0
+
+            yval2 = sum(list([self.mean_matrix['m1'],
+                              self.mean_matrix['m2'],
+                              self.mean_matrix['m3']]))
+
+            total_faculty = sum(list([self.mean_matrix['f1'],
+                                      self.mean_matrix['f2'],
+                                      self.mean_matrix['f3'],
+                                      self.mean_matrix['m1'],
+                                      self.mean_matrix['m2'],
+                                      self.mean_matrix['m3']]))
+
+            yval3 = np.round(target * total_faculty)
+
+        # Execute plots
+
+        for k,v in enumerate(self.mlist):
+            plt.plot(range(xval),
+                     yval[k],
+                     linewidth=line_width,
+                     marker=marker_shape[k],
+                     color=linecolor[k],
+                     label=model_legend_label[k])
+
+            plt.fill_between(range(xval),
+                             yval[k] + 1.96 * fill_matrix[k],
+                             yval[k] - 1.96 * fill_matrix[k],
+                             alpha=transparency[k],
+                             facecolor=linecolor[k])
+
+        if target_plot:
+            plt.axhline(target,
+                        color=color_target,
+                        linestyle=target_plot_line_style,
+                        label=target_plot_legend_label,
+                        linewidth=target_plot_linewidth)
+
+        if percent_line_plot:
+            plt.axhline(y=percent_line_value,
+                        color=color_percent_line,
+                        linestyle=percent_line_style,
+                        label=percent_legend_label,
+                        linewidth=percent_linewidth)
+
+        if male_female_numbers_plot:
+            plt.plot(range(xval),
+                     yval2,
+                     color=mf_male_color,
+                     label=mf_male_label,
+                     linestyle=mf_male_linestyle,
+                     linewidth=mf_male_linewidth)
+
+            plt.plot(range(xval),
+                     yval3,
+                     color=mf_target_color,
+                     label=mf_target_label,
+                     linestyle=mf_target_linestyle,
+                     linewidth=mf_target_linewidth)
+
+        plt.xlim(xmin, xmax)
+        plt.ylim(ymin, ymax)
+        plt.xlabel(xlabel)
+        plt.ylabel(ylabel)
+        plt.title(title)
+        plt.legend(loc=legend_location, shadow=True)
+        plt.show()
+
+
+    def testfunc(self):
+
+        for mod in self.mlist:
+            mod.run_multiple(5)
+
+        yval = [m.mean_matrix['gendprop'] for m in self.mlist]
+        return(yval)
+
+
+
