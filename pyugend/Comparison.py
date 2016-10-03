@@ -838,10 +838,12 @@ class Comparison():
         xval = min([m.duration for m in self.mlist])
 
         if plottype == 'probability proportion':
-            self.run_probability_analysis_gender_proportion(number_of_runs,
+
+            for mod in self.mlist:
+                mod.run_probability_analysis_gender_proportion(number_of_runs,
                                                             target)
 
-            yval = self.probability_matrix['Probability']
+            yval = [m.probability_matrix['Probability'] for m in self.mlist]
             fill_matrix = 0
 
         if plottype == 'gender proportion':
@@ -852,12 +854,16 @@ class Comparison():
             fill_matrix = [m.self.std_matrix['gendprop'] for m in self.mlist]
 
         if plottype == 'unfilled vacancies':
-            yval = self.mean_matrix['unfilled']
-            fill_matrix = self.std_matrix['unfilled']
+            yval = [m.mean_matrix['unfilled'] for m in self.mlist]
+
+            fill_matrix = [m.self.std_matrix['unfilled'] for m in self.mlist]
+
 
         if plottype == 'department size':
-            yval = self.dept_size_matrix['mean']
-            fill_matrix = self.dept_size_matrix['std']
+            yval = [m.dept_size_matrix['mean'] for m in self.mlist]
+
+            fill_matrix = [m.dept_size_matrix['std'] for m in self.mlist]
+
 
         if plottype == 'male female numbers':
             yval = sum(list([self.mean_matrix['f1'],
@@ -895,6 +901,21 @@ class Comparison():
                              alpha=transparency[k],
                              facecolor=linecolor[k])
 
+            if male_female_numbers_plot:
+                plt.plot(range(xval),
+                         yval2,
+                         color=mf_male_color,
+                         label=mf_male_label,
+                         linestyle=mf_male_linestyle,
+                         linewidth=mf_male_linewidth)
+
+                plt.plot(range(xval),
+                         yval3,
+                         color=mf_target_color,
+                         label=mf_target_label,
+                         linestyle=mf_target_linestyle,
+                         linewidth=mf_target_linewidth)
+
         if target_plot:
             plt.axhline(target,
                         color=color_target,
@@ -909,20 +930,7 @@ class Comparison():
                         label=percent_legend_label,
                         linewidth=percent_linewidth)
 
-        if male_female_numbers_plot:
-            plt.plot(range(xval),
-                     yval2,
-                     color=mf_male_color,
-                     label=mf_male_label,
-                     linestyle=mf_male_linestyle,
-                     linewidth=mf_male_linewidth)
 
-            plt.plot(range(xval),
-                     yval3,
-                     color=mf_target_color,
-                     label=mf_target_label,
-                     linestyle=mf_target_linestyle,
-                     linewidth=mf_target_linewidth)
 
         plt.xlim(xmin, xmax)
         plt.ylim(ymin, ymax)
