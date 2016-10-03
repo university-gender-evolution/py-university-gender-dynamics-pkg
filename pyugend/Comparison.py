@@ -866,24 +866,30 @@ class Comparison():
 
 
         if plottype == 'male female numbers':
-            yval = sum(list([self.mean_matrix['f1'],
-                             self.mean_matrix['f2'],
-                             self.mean_matrix['f3']]))
+
+
+            yval = [sum(list([m.mean_matrix['f1'],
+                             m.mean_matrix['f2'],
+                             m.mean_matrix['f3']])) for m in self.mlist]
 
             fill_matrix = 0
 
-            yval2 = sum(list([self.mean_matrix['m1'],
-                              self.mean_matrix['m2'],
-                              self.mean_matrix['m3']]))
 
-            total_faculty = sum(list([self.mean_matrix['f1'],
-                                      self.mean_matrix['f2'],
-                                      self.mean_matrix['f3'],
-                                      self.mean_matrix['m1'],
-                                      self.mean_matrix['m2'],
-                                      self.mean_matrix['m3']]))
+            yval2 = [sum(list([m.mean_matrix['m1'],
+                             m.mean_matrix['m2'],
+                             m.mean_matrix['m3']])) for m in self.mlist]
 
-            yval3 = np.round(target * total_faculty)
+
+
+
+            total_faculty = [sum(list([m.mean_matrix['m1'],
+                             m.mean_matrix['m2'],
+                             m.mean_matrix['m3'],
+                             m.mean_matrix['f1'],
+                             m.mean_matrix['f2'],
+                             m.mean_matrix['f3']])) for m in self.mlist]
+
+            yval3 = [np.round(target * dept) for dept in total_faculty]
 
         # Execute plots
 
