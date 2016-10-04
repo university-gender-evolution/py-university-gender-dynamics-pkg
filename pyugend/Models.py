@@ -90,6 +90,7 @@ class Base_model():
         self.pd_last_row_data = 0
         self.pct_female_matrix = 0
         self.probability_matrix = 0
+        self.probability_by_level = 0
 
     def load_baseline_data_mgmt(self):
         '''
@@ -750,6 +751,8 @@ class Base_model():
 
             probability_by_level_data.loc[idx, 'pm3'] = \
                 1 - probability_by_level_data['pf3'][idx]
+
+        self.probability_by_level = probability_by_level_data
 
         return (probability_by_level_data)
 
