@@ -462,6 +462,59 @@ def test_plot_bylevel_percentage(mgmt_data):
     t.plot_level_chart(**d)
 
 
+def test_comparison_plot_overall(mgmt_data):
+
+    modlist = list([Mod_Stoch_FBHP(**mgmt_data),
+                    Mod_Stoch_FBPH(**mgmt_data)])
+    c = Comparison(modlist)
+    plot_settings = {'plottype': 'male female numbers',
+            'number_of_runs': 10,  # number simulations to average over
+            'target': 0.25,  # target percentage of women in the department
+            'caption': '',
+            # Main plot settings
+            'xlabel':'Years',
+            'ylabel': 'Probability of Achieving Target Proportion',
+            'title': 'Figure 4.1.1b: Probability of Achieving 25% Women, Model 1 (Hire-Promote)',
+            'line_width': 2,
+            'xmin': 0,
+            'ymin': 0,
+            'xmax': 40,
+            'ymax': 100,
+            'transparency': [0.25,0.25],
+            'marker_shape': [None,None],
+            'linecolor': ['g','b'],
+            'model_legend_label': ['Female 1', 'Female 2'],
+            'legend_location': 'upper right',
+
+            # Optional Settings
+            # Target value plot settings
+            'target_plot': False,
+            'color_target': 'r',
+            'color_percent_line': 'r',
+            'target_plot_line_style': '--',
+            'target_plot_linewidth': 2,
+            'target_plot_legend_label': 'Target percentage',
+
+            # Percent plot settings
+            'percent_line_plot': False,
+            'percent_line_value': 0.5,
+            'percent_line_style': '-.',
+            'percent_linewidth': 2,
+            'percent_legend_label': 'Reference Line',
+
+            # Male Female numbers plot settings
+            'male_female_numbers_plot': True,
+            'mf_male_color': ['k','m'],
+            'mf_target_color': 'r',
+            'mf_male_label': ['Male 1', 'Male 2'],
+            'mf_target_label': ['Target 1','Target 2'],
+            'mf_male_linestyle': '-',
+            'mf_target_linestyle': ['-','-.'],
+            'mf_male_linewidth':2,
+            'mf_target_linewidth': 2
+            }
+    c.plot_comparision_overall_chart(**plot_settings)
+
 def test_comparision_duration(mgmt_data):
     modlist = list([Mod_Stoch_FBHP(**mgmt_data),
                     Mod_Stoch_FBPH(**mgmt_data)])

@@ -329,6 +329,11 @@ class Mod_Stoch_FBPH(Base_model):
 
                 changes = np.random.choice([-1, 0, 1], variation_range)
 
+                # [-1, -1, 0] gains/losses -- where to apply these?
+                # levels {1,2,3}, pick randomly from this set
+                # [1,1,2]
+                # matching wise [(-1, 1), (-1, 1), (0, 2)]
+
 
                 levels = np.random.choice([1, 2, 3], variation_range)  #
                 # random level

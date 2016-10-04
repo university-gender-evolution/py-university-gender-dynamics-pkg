@@ -21,8 +21,8 @@ class Comparison():
 
         ## Color list
 
-        line_colors = ['#7fc97f', '#beaed4', '#fdc086', '#386cb0', '#f0027f',
-                       '#ffff99']
+        #line_colors = ['#7fc97f', '#beaed4', '#fdc086', '#386cb0', '#f0027f',
+        #               '#ffff99']
 
         for mod in self.mlist:
             mod.run_multiple(number_of_runs)
@@ -844,42 +844,35 @@ class Comparison():
                                                             target)
 
             yval = [m.probability_matrix['Probability'] for m in self.mlist]
-            fill_matrix = 0
+            fill_matrix = np.zeros(len(yval)).tolist()
 
         if plottype == 'gender proportion':
 
-            # I need the reference to a list with all of the mean/std matrices across all models.
             yval = [m.mean_matrix['gendprop'] for m in self.mlist]
 
-            fill_matrix = [m.self.std_matrix['gendprop'] for m in self.mlist]
+            fill_matrix = [m.std_matrix['gendprop'] for m in self.mlist]
 
         if plottype == 'unfilled vacancies':
             yval = [m.mean_matrix['unfilled'] for m in self.mlist]
 
-            fill_matrix = [m.self.std_matrix['unfilled'] for m in self.mlist]
-
+            fill_matrix = [m.std_matrix['unfilled'] for m in self.mlist]
 
         if plottype == 'department size':
             yval = [m.dept_size_matrix['mean'] for m in self.mlist]
 
             fill_matrix = [m.dept_size_matrix['std'] for m in self.mlist]
 
-
         if plottype == 'male female numbers':
-
 
             yval = [sum(list([m.mean_matrix['f1'],
                              m.mean_matrix['f2'],
                              m.mean_matrix['f3']])) for m in self.mlist]
 
-            fill_matrix = 0
-
+            fill_matrix = np.zeros(len(yval)).tolist()
 
             yval2 = [sum(list([m.mean_matrix['m1'],
                              m.mean_matrix['m2'],
                              m.mean_matrix['m3']])) for m in self.mlist]
-
-
 
 
             total_faculty = [sum(list([m.mean_matrix['m1'],
@@ -909,17 +902,17 @@ class Comparison():
 
             if male_female_numbers_plot:
                 plt.plot(range(xval),
-                         yval2,
-                         color=mf_male_color,
-                         label=mf_male_label,
+                         yval2[k],
+                         color=mf_male_color[k],
+                         label=mf_male_label[k],
                          linestyle=mf_male_linestyle,
                          linewidth=mf_male_linewidth)
 
                 plt.plot(range(xval),
-                         yval3,
+                         yval3[k],
                          color=mf_target_color,
-                         label=mf_target_label,
-                         linestyle=mf_target_linestyle,
+                         label=mf_target_label[k],
+                         linestyle=mf_target_linestyle[k],
                          linewidth=mf_target_linewidth)
 
         if target_plot:
