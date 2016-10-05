@@ -258,6 +258,9 @@ class Comparison():
 
             fill_matrix = [m.std_matrix['gendprop'] for m in self.mlist]
 
+        if plottype == 'gender numbers':
+            pass
+
         if plottype == 'unfilled vacancies':
             yval = [m.mean_matrix['unfilled'] for m in self.mlist]
 
