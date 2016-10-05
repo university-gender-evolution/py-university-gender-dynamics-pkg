@@ -193,7 +193,7 @@ class Comparison():
         plt.show()
 
 
-    def plot_comparision_overall_chart(self,
+    def plot_comparison_overall_chart(self,
                            plottype,
                            number_of_runs,
                            target,
