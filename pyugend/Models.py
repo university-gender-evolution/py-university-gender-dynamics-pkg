@@ -902,7 +902,7 @@ class Base_model():
 
 
 
-    def export_model_run(self, number_of_runs):
+    def export_model_run(self, model_label, number_of_runs):
 
         if not hasattr(self, 'res'):
             self.run_multiple(number_of_runs)
@@ -927,7 +927,7 @@ class Base_model():
 
         # work with barbara to craft the filename
         # model_label + 160114_HH:MM(24hour) +
-        filename = self.label + "_" + str(datetime.datetime.now()) + "_iter" \
+        filename = model_label + "_" + str(datetime.datetime.now()) + "_iter" \
                    + str(number_of_runs) + ".csv"
         pd.DataFrame(print_array, columns=['run',
                                            'year',
