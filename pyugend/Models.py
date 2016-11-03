@@ -928,7 +928,7 @@ class Base_model():
         # work with barbara to craft the filename
         # model_label + 160114_HH:MM(24hour) +
         filename = self.label + "_" + str(datetime.datetime.now()) + "_iter" \
-                   + str(number_of_runs) + ".xls"
+                   + str(number_of_runs) + ".csv"
         pd.DataFrame(print_array, columns=['run',
                                            'year',
                                            'women_1',
