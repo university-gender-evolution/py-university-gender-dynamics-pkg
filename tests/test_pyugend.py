@@ -462,6 +462,142 @@ def test_plot_bylevel_percentage(mgmt_data):
     t.plot_level_chart(**d)
 
 
+def test_comparison_plot_overall(mgmt_data):
+
+    modlist = list([Mod_Stoch_FBHP(**mgmt_data),
+                    Mod_Stoch_FBPH(**mgmt_data)])
+    c = Comparison(modlist)
+    plot_settings = {'plottype': 'male female numbers',
+            'number_of_runs': 10,  # number simulations to average over
+            'target': 0.25,  # target percentage of women in the department
+            'caption': '',
+            # Main plot settings
+            'xlabel':'Years',
+            'ylabel': 'Probability of Achieving Target Proportion',
+            'title': 'Figure 4.1.1b: Probability of Achieving 25% Women, Model 1 (Hire-Promote)',
+            'line_width': 2,
+            'xmin': 0,
+            'ymin': 0,
+            'xmax': 40,
+            'ymax': 100,
+            'transparency': [0.25,0.25],
+            'marker_shape': [None,None],
+            'linecolor': ['g','b'],
+            'model_legend_label': ['Female 1', 'Female 2'],
+            'legend_location': 'upper right',
+
+            # Optional Settings
+            # Target value plot settings
+            'target_plot': False,
+            'color_target': 'r',
+            'color_percent_line': 'r',
+            'target_plot_line_style': '--',
+            'target_plot_linewidth': 2,
+            'target_plot_legend_label': 'Target percentage',
+
+            # Percent plot settings
+            'percent_line_plot': False,
+            'percent_line_value': 0.5,
+            'percent_line_style': '-.',
+            'percent_linewidth': 2,
+            'percent_legend_label': 'Reference Line',
+
+            # Male Female numbers plot settings
+            'male_female_numbers_plot': True,
+            'mf_male_color': ['k','m'],
+            'mf_target_color': 'r',
+            'mf_male_label': ['Male 1', 'Male 2'],
+            'mf_target_label': ['Target 1','Target 2'],
+            'mf_male_linestyle': '-',
+            'mf_target_linestyle': ['-','-.'],
+            'mf_male_linewidth':2,
+            'mf_target_linewidth': 2
+            }
+    c.plot_comparision_overall_chart(**plot_settings)
+
+def test_comparison_plot_bylevel(mgmt_data):
+    modlist = list([Mod_Stoch_FBHP(**mgmt_data),
+                    Mod_Stoch_FBPH(**mgmt_data)])
+    c = Comparison(modlist)
+
+    plot_settings = {'plottype': 'probability proportion',
+                 'group_title': 'Figure 4.2.1a:  Change in Proportion Women by Level, Model 1 (Hire-Promote)',
+                 'number_of_runs': 10,
+                 'target': 0.25,
+                 'caption': '',
+                 'line_width': 2,
+                 'model_legend_label': ['model 1', 'model2'],
+                 'transparency': [0.25,0.25],
+                 'marker_shape': [None,None],
+                 'linecolor': ['g', 'b'],
+                 'legend_location': 'upper right',
+
+                 # main plot axis labels
+                 'xlabel_f1': 'Years',
+                 'ylabel_f1': 'Proportion Women',
+                 'xlabel_f2': 'Years',
+                 'ylabel_f2': 'Proportion Women',
+                 'xlabel_f3': 'Years',
+                 'ylabel_f3': 'Proportion Women',
+                 'xlabel_m1': 'Years',
+                 'ylabel_m1': 'Proportion Men',
+                 'xlabel_m2': 'Years',
+                 'ylabel_m2': 'Proportion Men',
+                 'xlabel_m3': 'Years',
+                 'ylabel_m3': 'Proportion Men',
+
+                 # main plot titles
+                 'title_f1': 'W - Assistant Professor',
+                 'title_f2': 'W - Associate Professor',
+                 'title_f3': 'W - Full Professor',
+                 'title_m1': 'M - Assistant Professor',
+                 'title_m2': 'M - Associate Professor',
+                 'title_m3': 'M - Full Professor',
+
+                 # main plot axis ranges
+                 'xmin_f1': 0,
+                 'ymin_f1': 0,
+                 'xmax_f1': 40,
+                 'ymax_f1': 1,
+                 'xmin_f2': 0,
+                 'ymin_f2': 0,
+                 'xmax_f2': 40,
+                 'ymax_f2': 1,
+                 'xmin_f3': 0,
+                 'ymin_f3': 0,
+                 'xmax_f3': 40,
+                 'ymax_f3': 0.1,
+                 'xmin_m1': 0,
+                 'ymin_m1': 0,
+                 'xmax_m1': 40,
+                 'ymax_m1': 1,
+                 'xmin_m2': 0,
+                 'ymin_m2': 0,
+                 'xmax_m2': 40,
+                 'ymax_m2': 1,
+                 'xmin_m3': 0,
+                 'ymin_m3': 0,
+                 'xmax_m3': 40,
+                 'ymax_m3': 1.0,
+
+                 # target plot settings
+                 'target_plot': True,
+                 'target_color': 'r',
+                 'target_plot_line_style': '--',
+                 'target_plot_linewidth': 2,
+                 'target_plot_legend_label': 'target',
+
+                 # percent plot settings
+                 'percent_line_plot': True,
+                 'percent_line_value': 0.5,
+                 'color_percent_line': 'r',
+                 'percent_line_style': '-.',
+                 'percent_linewidth': 2,
+                 'percent_legend_label': 'Reference Line'}
+
+    c.plot_comparison_level_chart(**plot_settings)
+
+
 def test_comparision_duration(mgmt_data):
     modlist = list([Mod_Stoch_FBHP(**mgmt_data),
                     Mod_Stoch_FBPH(**mgmt_data)])
