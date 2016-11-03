@@ -953,7 +953,7 @@ class Base_model():
                                            'women_promoted_2',
                                            'men_promoted_2',
                                            'women_promoted_1',
-                                           'men_promoted_1']).to_excel(filename)
+                                           'men_promoted_1']).to_csv(filename)
 
     def plot_overall_chart(self,
                            plottype,
