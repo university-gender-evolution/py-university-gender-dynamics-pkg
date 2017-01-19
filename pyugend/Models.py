@@ -1436,6 +1436,343 @@ class Base_model():
 
 
 
+    def plot_bokeh_level_chart(self,
+                         plottype,
+                         number_of_runs,
+                         target,
+                         caption,
+                         xlabel_f1,
+                         ylabel_f1,
+                         xlabel_f2,
+                         ylabel_f2,
+                         xlabel_f3,
+                         ylabel_f3,
+                         xlabel_m1,
+                         ylabel_m1,
+                         xlabel_m2,
+                         ylabel_m2,
+                         xlabel_m3,
+                         ylabel_m3,
+                         group_title,
+                         title_f1,
+                         title_f2,
+                         title_f3,
+                         title_m1,
+                         title_m2,
+                         title_m3,
+                         line_width,
+                         xmin_f1,
+                         ymin_f1,
+                         xmax_f1,
+                         ymax_f1,
+                         xmin_f2,
+                         ymin_f2,
+                         xmax_f2,
+                         ymax_f2,
+                         xmin_f3,
+                         ymin_f3,
+                         xmax_f3,
+                         ymax_f3,
+                         xmin_m1,
+                         ymin_m1,
+                         xmax_m1,
+                         ymax_m1,
+                         xmin_m2,
+                         ymin_m2,
+                         xmax_m2,
+                         ymax_m2,
+                         xmin_m3,
+                         ymin_m3,
+                         xmax_m3,
+                         ymax_m3,
+                         legend_location='upper right',
+                         model_legend_label='model',
+                         transparency = 0.25,
+                         marker_shape=None,
+                         linecolor='g',
+                         target_plot=False,
+                         target_color='r',
+                         target_plot_line_style='--',
+                         target_plot_linewidth=2,
+                         target_plot_legend_label='target',
+                         percent_line_plot=False,
+                         percent_line_value=0.5,
+                         color_percent_line='r',
+                         percent_line_style='-.',
+                         percent_linewidth=2,
+                         percent_legend_label='percent'):
+
+        # generate data for the plot.
+
+        self.run_multiple(number_of_runs)
+
+        # set default plot parameters. The xaxis is generally duration,
+        # though I have the option--depending on the plot, to put in a
+        # different x-axis.
+
+        xval = self.duration
+
+        if plottype == 'probability proportion':
+            d = self.run_probability_analysis_gender_by_level(number_of_runs,
+                                                                target)
+
+            yval_f1 = d['pf1']
+            yval_f2 = d['pf2']
+            yval_f3 = d['pf3']
+            yval_m1 = d['pm1']
+            yval_m2 = d['pm2']
+            yval_m3 = d['pm3']
+
+            fill_f1 = 0
+            fill_f2 = 0
+            fill_f3 = 0
+            fill_m1 = 0
+            fill_m2 = 0
+            fill_m3 = 0
+
+        if plottype == 'gender proportion':
+            pd_stats_matrix = pd.DataFrame(self.model_summary_stats)
+            tmp = pd_stats_matrix.select_dtypes(include=[np.number])
+            pd_stats_matrix.loc[:, tmp.columns] = np.round(tmp, 2)
+
+            yval_f1 = self.pct_female_matrix['mpct_f1']
+            yval_f2 = self.pct_female_matrix['mpct_f2']
+            yval_f3 = self.pct_female_matrix['mpct_f3']
+            yval_m1 = self.pct_female_matrix['mpct_m1']
+            yval_m2 = self.pct_female_matrix['mpct_m2']
+            yval_m3 = self.pct_female_matrix['mpct_m3']
+
+            fill_f1 = self.pct_female_matrix['spct_f1']
+            fill_f2 = self.pct_female_matrix['spct_f2']
+            fill_f3 = self.pct_female_matrix['spct_f3']
+            fill_m1 = self.pct_female_matrix['spct_m1']
+            fill_m2 = self.pct_female_matrix['spct_m2']
+            fill_m3 = self.pct_female_matrix['spct_m3']
+
+        if plottype == 'gender number':
+            if self.model_summary_stats == 0:
+                self.run_multiple(number_of_runs)
+
+            yval_f1 = self.mean_matrix['f1']
+            yval_f2 = self.mean_matrix['f2']
+            yval_f3 = self.mean_matrix['f3']
+            yval_m1 = self.mean_matrix['m1']
+            yval_m2 = self.mean_matrix['m2']
+            yval_m3 = self.mean_matrix['m3']
+
+            fill_f1 = self.std_matrix['f1']
+            fill_f2 = self.std_matrix['f2']
+            fill_f3 = self.std_matrix['f3']
+            fill_m1 = self.std_matrix['m1']
+            fill_m2 = self.std_matrix['m2']
+            fill_m3 = self.std_matrix['m3']
+
+
+        f, axarr = plt.subplots(nrows=2, ncols=3)
+        f.suptitle(group_title)
+        axarr[0, 0].plot(range(xval),
+                         np.minimum(1,
+                                    np.maximum(0,
+                                               yval_f1)),
+                         label=model_legend_label,
+                         linewidth=line_width,
+                         color=linecolor,
+                         marker=marker_shape)
+        axarr[0, 0].set_xlim([xmin_f1, xmax_f1])
+        axarr[0, 0].set_ylim([ymin_f1, ymax_f1])
+        axarr[0, 0].set_title(title_f1)
+        axarr[0, 0].set_xlabel(xlabel_f1)
+        axarr[0, 0].set_ylabel(ylabel_f1)
+        axarr[0, 0].fill_between(range(xval),
+                                 np.minimum(1,
+                                            yval_f1 + 1.96 * fill_f1),
+                                 np.maximum(0,
+                                            yval_f1 - 1.96 * fill_f1),
+                                 alpha=transparency,
+                                 facecolor=linecolor)
+        axarr[0, 0].legend(loc=legend_location, shadow=True)
+
+        axarr[0, 1].plot(range(xval),
+                         np.minimum(1,
+                                    np.maximum(0,
+                                               yval_f2)),
+                         label=model_legend_label,
+                         linewidth=line_width,
+                         color=linecolor,
+                         marker=marker_shape
+                         )
+        axarr[0, 1].set_xlim([xmin_f2, xmax_f2])
+        axarr[0, 1].set_ylim([ymin_f2, ymax_f2])
+        axarr[0, 1].set_title(title_f2)
+        axarr[0, 1].set_xlabel(xlabel_f2)
+        axarr[0, 1].set_ylabel(ylabel_f2)
+        axarr[0, 1].fill_between(range(xval),
+                                 np.minimum(1,
+                                            yval_f2 + 1.96 * fill_f2),
+                                 np.maximum(0,
+                                            yval_f2 - 1.96 * fill_f2),
+                                 alpha=transparency,
+                                 facecolor=linecolor)
+
+        axarr[0, 2].plot(range(xval),
+                         np.minimum(1,
+                                    np.maximum(0,
+                                               yval_f3)),
+                         label=model_legend_label,
+                         linewidth=line_width,
+                         color=linecolor,
+                         marker=marker_shape
+                         )
+        axarr[0, 2].set_xlim([xmin_f3, xmax_f3])
+        axarr[0, 2].set_ylim([ymin_f3, ymax_f3])
+        axarr[0, 2].set_title(title_f3)
+        axarr[0, 2].set_xlabel(xlabel_f3)
+        axarr[0, 2].set_ylabel(ylabel_f3)
+        axarr[0, 2].fill_between(range(xval),
+                                 np.minimum(1,
+                                            yval_f3 + 1.96 * fill_f3),
+                                 np.maximum(0,
+                                            yval_f3 - 1.96 * fill_f3),
+                                 alpha=transparency,
+                                 facecolor=linecolor)
+
+        axarr[1, 0].plot(range(xval),
+                         np.minimum(1,
+                                    np.maximum(0,
+                                               yval_m1)),
+                         label=self.label,
+                         linewidth=line_width,
+                         color=linecolor,
+                         marker=marker_shape
+                         )
+        axarr[1, 0].set_xlim([xmin_m1, xmax_m1])
+        axarr[1, 0].set_ylim([ymin_m1, ymax_m1])
+        axarr[1, 0].set_title(title_m1)
+        axarr[1, 0].set_xlabel(xlabel_m1)
+        axarr[1, 0].set_ylabel(ylabel_m1)
+        axarr[1, 0].fill_between(range(xval),
+                                 np.minimum(1,
+                                            yval_m1 + 1.96 * fill_m1),
+                                 np.maximum(0,
+                                            yval_m1 - 1.96 * fill_m1),
+                                 alpha=transparency,
+                                 facecolor=linecolor)
+
+        axarr[1, 1].plot(range(xval),
+                         np.minimum(1,
+                                    np.maximum(0,
+                                               yval_m2)),
+                         label=self.label,
+                         linewidth=line_width,
+                         color=linecolor,
+                         marker=marker_shape
+                         )
+        axarr[1, 1].set_xlim([xmin_m2, xmax_m2])
+        axarr[1, 1].set_ylim([ymin_m2, ymax_m2])
+        axarr[1, 1].set_title(title_m2)
+        axarr[1, 1].set_xlabel(xlabel_m2)
+        axarr[1, 1].set_ylabel(ylabel_m2)
+        axarr[1, 1].fill_between(range(xval),
+                                 np.minimum(1,
+                                            yval_m2 + 1.96 * fill_m2),
+                                 np.maximum(0,
+                                            yval_m2 - 1.96 * fill_m2),
+                                 alpha=transparency,
+                                 facecolor=linecolor)
+
+        axarr[1, 2].plot(range(xval),
+                         np.minimum(1,
+                                    np.maximum(0,
+                                               yval_m3)),
+                         label=self.label,
+                         linewidth=line_width,
+                         color=linecolor,
+                         marker=marker_shape
+                         )
+        axarr[1, 2].set_xlim([xmin_m3, xmax_m3])
+        axarr[1, 2].set_ylim([ymin_m3, ymax_m3])
+        axarr[1, 2].set_title(title_m3)
+        axarr[1, 2].set_xlabel(xlabel_m3)
+        axarr[1, 2].set_ylabel(ylabel_m3)
+        axarr[1, 2].fill_between(range(xval),
+                                 np.minimum(1,
+                                            yval_m3 + 1.96 * fill_m3),
+                                 np.maximum(0,
+                                            yval_m3 - 1.96 * fill_m3),
+                                 alpha=transparency,
+                                 facecolor=linecolor)
+
+        if target_plot == True:
+            axarr[0, 0].axhline(y=target,
+                                color=target_color,
+                                linestyle = target_plot_line_style,
+                                linewidth = target_plot_linewidth,
+                                label = target_plot_legend_label)
+            axarr[0, 0].legend(loc=legend_location, shadow=True)
+
+            axarr[0, 1].axhline(y=target,
+                                color=target_color,
+                                linestyle = target_plot_line_style,
+                                linewidth = target_plot_linewidth,
+                                label = target_plot_legend_label)
+            axarr[0, 2].axhline(y=target,
+                                color=target_color,
+                                linestyle = target_plot_line_style,
+                                linewidth = target_plot_linewidth,
+                                label = target_plot_legend_label)
+            axarr[1, 0].axhline(y=1 - target,
+                                color=target_color,
+                                linestyle = target_plot_line_style,
+                                linewidth = target_plot_linewidth,
+                                label = target_plot_legend_label)
+            axarr[1, 1].axhline(y=1 - target,
+                                color=target_color,
+                                linestyle = target_plot_line_style,
+                                linewidth = target_plot_linewidth,
+                                label = target_plot_legend_label)
+            axarr[1, 2].axhline(y=1 - target,
+                                color=target_color,
+                                linestyle = target_plot_line_style,
+                                linewidth = target_plot_linewidth,
+                                label = target_plot_legend_label)
+
+        if percent_line_plot == True:
+            axarr[0, 0].axhline(y=percent_line_value,
+                                color=color_percent_line,
+                                linestyle = percent_line_style,
+                                linewidth = percent_linewidth,
+                                label = percent_legend_label)
+            axarr[0, 0].legend(loc=legend_location, shadow=True)
+
+            axarr[0, 1].axhline(y=percent_line_value,
+                                color=color_percent_line,
+                                linestyle=percent_line_style,
+                                linewidth=percent_linewidth,
+                                label=percent_legend_label)
+            axarr[0, 2].axhline(y=percent_line_value,
+                                color=color_percent_line,
+                                linestyle=percent_line_style,
+                                linewidth=percent_linewidth,
+                                label=percent_legend_label)
+            axarr[1, 0].axhline(y=percent_line_value,
+                                color=color_percent_line,
+                                linestyle=percent_line_style,
+                                linewidth=percent_linewidth,
+                                label=percent_legend_label)
+            axarr[1, 1].axhline(y=percent_line_value,
+                                color=color_percent_line,
+                                linestyle=percent_line_style,
+                                linewidth=percent_linewidth,
+                                label=percent_legend_label)
+            axarr[1, 2].axhline(y=percent_line_value,
+                                color=color_percent_line,
+                                linestyle=percent_line_style,
+                                linewidth=percent_linewidth,
+                                label=percent_legend_label)
+
+
+        plt.show()
+
 
 
 ## Supplementary/Helper functions
