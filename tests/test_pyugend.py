@@ -610,7 +610,7 @@ def test_plot_bokeh_bylevel_percentage(mgmt_data):
     output_file('plot_bokeh_detail.html')
     t = Mod_Stoch_FBPH(**mgmt_data)
     d = {'plottype' : 'gender proportion',
-         'number_of_runs': 20,
+         'number_of_runs': 100,
          'target' : 0.25,
          'caption' : '',
          'xlabel_f1': 'label f1',

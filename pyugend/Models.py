@@ -1598,7 +1598,7 @@ class Base_model():
 
             upper_band = np.minimum(1, yvals[i] + 1.96 * fills[i])
             lower_band = np.maximum(0, yvals[i] - 1.96 * fills[i])
-            band_y = np.append(lower_band, upper_band)
+            band_y = np.append(lower_band, upper_band[::-1])
 
             if i == 0:
                 print(band_y)
