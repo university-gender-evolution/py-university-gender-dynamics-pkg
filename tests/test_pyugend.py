@@ -6,7 +6,7 @@ from pyugend.ReplicationModel import Replication_model
 from pyugend.Comparison import Comparison
 import numpy as np
 import pandas as pd
-
+from bokeh.plotting import figure, output_file, show
 
 @pytest.fixture
 def mock_data():
@@ -607,8 +607,9 @@ def test_comparision_duration(mgmt_data):
 
 
 def test_plot_bokeh_bylevel_percentage(mgmt_data):
+    output_file('plot_bokeh_detail.html')
     t = Mod_Stoch_FBPH(**mgmt_data)
-    d = {'plottype' : 'gender number',
+    d = {'plottype' : 'gender proportion',
          'number_of_runs': 20,
          'target' : 0.25,
          'caption' : '',

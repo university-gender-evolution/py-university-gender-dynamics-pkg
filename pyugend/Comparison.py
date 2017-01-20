@@ -2,7 +2,7 @@ __author__ = 'krishnab'
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
-
+from bokeh.plotting import figure, output_file, show
 
 # CONSTANTS
 

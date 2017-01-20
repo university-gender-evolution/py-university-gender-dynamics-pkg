@@ -14,6 +14,11 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import os
 import datetime
+from bokeh.io import output_file, show
+from bokeh.layouts import gridplot
+from bokeh.palettes import Viridis3
+from bokeh.plotting import figure
+
 
 ## Initialize Constants
 
@@ -1568,210 +1573,248 @@ class Base_model():
             fill_m3 = self.std_matrix['m3']
 
 
-        f, axarr = plt.subplots(nrows=2, ncols=3)
-        f.suptitle(group_title)
-        axarr[0, 0].plot(range(xval),
-                         np.minimum(1,
+
+
+        #TODO set levels to configurable parameter. This is just for test.
+        levels = ['f1', 'f2', 'f3', 'm1', 'm2', 'm3']
+        yvals = [yval_f1, yval_f2, yval_f3, yval_m1, yval_m2, yval_m3]
+        fills = [fill_f1, fill_f2, fill_f3, fill_m1, fill_m2, fill_m3]
+
+        plots = []
+
+        x_data = np.arange(0, xval)
+        band_x = np.append(x_data, x_data[::-1])
+        print(band_x)
+        print(len(band_x))
+        for key, val in enumerate(levels):
+
+            plots.append(figure(title=val, x_axis_label='year',
+                              y_axis_label = 'percentage female'))
+
+        for i, p in enumerate(plots):
+            p.line(range(xval), np.minimum(1,
                                     np.maximum(0,
-                                               yval_f1)),
-                         label=model_legend_label,
-                         linewidth=line_width,
-                         color=linecolor,
-                         marker=marker_shape)
-        axarr[0, 0].set_xlim([xmin_f1, xmax_f1])
-        axarr[0, 0].set_ylim([ymin_f1, ymax_f1])
-        axarr[0, 0].set_title(title_f1)
-        axarr[0, 0].set_xlabel(xlabel_f1)
-        axarr[0, 0].set_ylabel(ylabel_f1)
-        axarr[0, 0].fill_between(range(xval),
-                                 np.minimum(1,
-                                            yval_f1 + 1.96 * fill_f1),
-                                 np.maximum(0,
-                                            yval_f1 - 1.96 * fill_f1),
-                                 alpha=transparency,
-                                 facecolor=linecolor)
-        axarr[0, 0].legend(loc=legend_location, shadow=True)
+                                               yvals[i])))
 
-        axarr[0, 1].plot(range(xval),
-                         np.minimum(1,
-                                    np.maximum(0,
-                                               yval_f2)),
-                         label=model_legend_label,
-                         linewidth=line_width,
-                         color=linecolor,
-                         marker=marker_shape
-                         )
-        axarr[0, 1].set_xlim([xmin_f2, xmax_f2])
-        axarr[0, 1].set_ylim([ymin_f2, ymax_f2])
-        axarr[0, 1].set_title(title_f2)
-        axarr[0, 1].set_xlabel(xlabel_f2)
-        axarr[0, 1].set_ylabel(ylabel_f2)
-        axarr[0, 1].fill_between(range(xval),
-                                 np.minimum(1,
-                                            yval_f2 + 1.96 * fill_f2),
-                                 np.maximum(0,
-                                            yval_f2 - 1.96 * fill_f2),
-                                 alpha=transparency,
-                                 facecolor=linecolor)
+            upper_band = np.minimum(1, yvals[i] + 1.96 * fills[i])
+            lower_band = np.maximum(0, yvals[i] - 1.96 * fills[i])
+            band_y = np.append(lower_band, upper_band)
 
-        axarr[0, 2].plot(range(xval),
-                         np.minimum(1,
-                                    np.maximum(0,
-                                               yval_f3)),
-                         label=model_legend_label,
-                         linewidth=line_width,
-                         color=linecolor,
-                         marker=marker_shape
-                         )
-        axarr[0, 2].set_xlim([xmin_f3, xmax_f3])
-        axarr[0, 2].set_ylim([ymin_f3, ymax_f3])
-        axarr[0, 2].set_title(title_f3)
-        axarr[0, 2].set_xlabel(xlabel_f3)
-        axarr[0, 2].set_ylabel(ylabel_f3)
-        axarr[0, 2].fill_between(range(xval),
-                                 np.minimum(1,
-                                            yval_f3 + 1.96 * fill_f3),
-                                 np.maximum(0,
-                                            yval_f3 - 1.96 * fill_f3),
-                                 alpha=transparency,
-                                 facecolor=linecolor)
+            if i == 0:
+                print(band_y)
+                print(len(band_y))
+            p.patch(band_x,
+                    band_y,
+                    color = 'red',
+                    fill_alpha=0.2)
 
-        axarr[1, 0].plot(range(xval),
-                         np.minimum(1,
-                                    np.maximum(0,
-                                               yval_m1)),
-                         label=self.label,
-                         linewidth=line_width,
-                         color=linecolor,
-                         marker=marker_shape
-                         )
-        axarr[1, 0].set_xlim([xmin_m1, xmax_m1])
-        axarr[1, 0].set_ylim([ymin_m1, ymax_m1])
-        axarr[1, 0].set_title(title_m1)
-        axarr[1, 0].set_xlabel(xlabel_m1)
-        axarr[1, 0].set_ylabel(ylabel_m1)
-        axarr[1, 0].fill_between(range(xval),
-                                 np.minimum(1,
-                                            yval_m1 + 1.96 * fill_m1),
-                                 np.maximum(0,
-                                            yval_m1 - 1.96 * fill_m1),
-                                 alpha=transparency,
-                                 facecolor=linecolor)
+        grid = gridplot([[plots[0], plots[1], plots[2]],
+                         [plots[3], plots[4], plots[5]]])
 
-        axarr[1, 1].plot(range(xval),
-                         np.minimum(1,
-                                    np.maximum(0,
-                                               yval_m2)),
-                         label=self.label,
-                         linewidth=line_width,
-                         color=linecolor,
-                         marker=marker_shape
-                         )
-        axarr[1, 1].set_xlim([xmin_m2, xmax_m2])
-        axarr[1, 1].set_ylim([ymin_m2, ymax_m2])
-        axarr[1, 1].set_title(title_m2)
-        axarr[1, 1].set_xlabel(xlabel_m2)
-        axarr[1, 1].set_ylabel(ylabel_m2)
-        axarr[1, 1].fill_between(range(xval),
-                                 np.minimum(1,
-                                            yval_m2 + 1.96 * fill_m2),
-                                 np.maximum(0,
-                                            yval_m2 - 1.96 * fill_m2),
-                                 alpha=transparency,
-                                 facecolor=linecolor)
+        show(grid)
 
-        axarr[1, 2].plot(range(xval),
-                         np.minimum(1,
-                                    np.maximum(0,
-                                               yval_m3)),
-                         label=self.label,
-                         linewidth=line_width,
-                         color=linecolor,
-                         marker=marker_shape
-                         )
-        axarr[1, 2].set_xlim([xmin_m3, xmax_m3])
-        axarr[1, 2].set_ylim([ymin_m3, ymax_m3])
-        axarr[1, 2].set_title(title_m3)
-        axarr[1, 2].set_xlabel(xlabel_m3)
-        axarr[1, 2].set_ylabel(ylabel_m3)
-        axarr[1, 2].fill_between(range(xval),
-                                 np.minimum(1,
-                                            yval_m3 + 1.96 * fill_m3),
-                                 np.maximum(0,
-                                            yval_m3 - 1.96 * fill_m3),
-                                 alpha=transparency,
-                                 facecolor=linecolor)
+        # axarr[0, 0].plot(range(xval),
+        #                  np.minimum(1,
+        #                             np.maximum(0,
+        #                                        yval_f1)),
+        #                  label=model_legend_label,
+        #                  linewidth=line_width,
+        #                  color=linecolor,
+        #                  marker=marker_shape)
+        # axarr[0, 0].set_xlim([xmin_f1, xmax_f1])
+        # axarr[0, 0].set_ylim([ymin_f1, ymax_f1])
+        # axarr[0, 0].set_title(title_f1)
+        # axarr[0, 0].set_xlabel(xlabel_f1)
+        # axarr[0, 0].set_ylabel(ylabel_f1)
+        # axarr[0, 0].fill_between(range(xval),
+        #                          np.minimum(1,
+        #                                     yval_f1 + 1.96 * fill_f1),
+        #                          np.maximum(0,
+        #                                     yval_f1 - 1.96 * fill_f1),
+        #                          alpha=transparency,
+        #                          facecolor=linecolor)
+        # axarr[0, 0].legend(loc=legend_location, shadow=True)
+        #
+        # axarr[0, 1].plot(range(xval),
+        #                  np.minimum(1,
+        #                             np.maximum(0,
+        #                                        yval_f2)),
+        #                  label=model_legend_label,
+        #                  linewidth=line_width,
+        #                  color=linecolor,
+        #                  marker=marker_shape
+        #                  )
+        # axarr[0, 1].set_xlim([xmin_f2, xmax_f2])
+        # axarr[0, 1].set_ylim([ymin_f2, ymax_f2])
+        # axarr[0, 1].set_title(title_f2)
+        # axarr[0, 1].set_xlabel(xlabel_f2)
+        # axarr[0, 1].set_ylabel(ylabel_f2)
+        # axarr[0, 1].fill_between(range(xval),
+        #                          np.minimum(1,
+        #                                     yval_f2 + 1.96 * fill_f2),
+        #                          np.maximum(0,
+        #                                     yval_f2 - 1.96 * fill_f2),
+        #                          alpha=transparency,
+        #                          facecolor=linecolor)
+        #
+        # axarr[0, 2].plot(range(xval),
+        #                  np.minimum(1,
+        #                             np.maximum(0,
+        #                                        yval_f3)),
+        #                  label=model_legend_label,
+        #                  linewidth=line_width,
+        #                  color=linecolor,
+        #                  marker=marker_shape
+        #                  )
+        # axarr[0, 2].set_xlim([xmin_f3, xmax_f3])
+        # axarr[0, 2].set_ylim([ymin_f3, ymax_f3])
+        # axarr[0, 2].set_title(title_f3)
+        # axarr[0, 2].set_xlabel(xlabel_f3)
+        # axarr[0, 2].set_ylabel(ylabel_f3)
+        # axarr[0, 2].fill_between(range(xval),
+        #                          np.minimum(1,
+        #                                     yval_f3 + 1.96 * fill_f3),
+        #                          np.maximum(0,
+        #                                     yval_f3 - 1.96 * fill_f3),
+        #                          alpha=transparency,
+        #                          facecolor=linecolor)
+        #
+        # axarr[1, 0].plot(range(xval),
+        #                  np.minimum(1,
+        #                             np.maximum(0,
+        #                                        yval_m1)),
+        #                  label=self.label,
+        #                  linewidth=line_width,
+        #                  color=linecolor,
+        #                  marker=marker_shape
+        #                  )
+        # axarr[1, 0].set_xlim([xmin_m1, xmax_m1])
+        # axarr[1, 0].set_ylim([ymin_m1, ymax_m1])
+        # axarr[1, 0].set_title(title_m1)
+        # axarr[1, 0].set_xlabel(xlabel_m1)
+        # axarr[1, 0].set_ylabel(ylabel_m1)
+        # axarr[1, 0].fill_between(range(xval),
+        #                          np.minimum(1,
+        #                                     yval_m1 + 1.96 * fill_m1),
+        #                          np.maximum(0,
+        #                                     yval_m1 - 1.96 * fill_m1),
+        #                          alpha=transparency,
+        #                          facecolor=linecolor)
+        #
+        # axarr[1, 1].plot(range(xval),
+        #                  np.minimum(1,
+        #                             np.maximum(0,
+        #                                        yval_m2)),
+        #                  label=self.label,
+        #                  linewidth=line_width,
+        #                  color=linecolor,
+        #                  marker=marker_shape
+        #                  )
+        # axarr[1, 1].set_xlim([xmin_m2, xmax_m2])
+        # axarr[1, 1].set_ylim([ymin_m2, ymax_m2])
+        # axarr[1, 1].set_title(title_m2)
+        # axarr[1, 1].set_xlabel(xlabel_m2)
+        # axarr[1, 1].set_ylabel(ylabel_m2)
+        # axarr[1, 1].fill_between(range(xval),
+        #                          np.minimum(1,
+        #                                     yval_m2 + 1.96 * fill_m2),
+        #                          np.maximum(0,
+        #                                     yval_m2 - 1.96 * fill_m2),
+        #                          alpha=transparency,
+        #                          facecolor=linecolor)
+        #
+        # axarr[1, 2].plot(range(xval),
+        #                  np.minimum(1,
+        #                             np.maximum(0,
+        #                                        yval_m3)),
+        #                  label=self.label,
+        #                  linewidth=line_width,
+        #                  color=linecolor,
+        #                  marker=marker_shape
+        #                  )
+        # axarr[1, 2].set_xlim([xmin_m3, xmax_m3])
+        # axarr[1, 2].set_ylim([ymin_m3, ymax_m3])
+        # axarr[1, 2].set_title(title_m3)
+        # axarr[1, 2].set_xlabel(xlabel_m3)
+        # axarr[1, 2].set_ylabel(ylabel_m3)
+        # axarr[1, 2].fill_between(range(xval),
+        #                          np.minimum(1,
+        #                                     yval_m3 + 1.96 * fill_m3),
+        #                          np.maximum(0,
+        #                                     yval_m3 - 1.96 * fill_m3),
+        #                          alpha=transparency,
+        #                          facecolor=linecolor)
+        #
+        # if target_plot == True:
+        #     axarr[0, 0].axhline(y=target,
+        #                         color=target_color,
+        #                         linestyle = target_plot_line_style,
+        #                         linewidth = target_plot_linewidth,
+        #                         label = target_plot_legend_label)
+        #     axarr[0, 0].legend(loc=legend_location, shadow=True)
+        #
+        #     axarr[0, 1].axhline(y=target,
+        #                         color=target_color,
+        #                         linestyle = target_plot_line_style,
+        #                         linewidth = target_plot_linewidth,
+        #                         label = target_plot_legend_label)
+        #     axarr[0, 2].axhline(y=target,
+        #                         color=target_color,
+        #                         linestyle = target_plot_line_style,
+        #                         linewidth = target_plot_linewidth,
+        #                         label = target_plot_legend_label)
+        #     axarr[1, 0].axhline(y=1 - target,
+        #                         color=target_color,
+        #                         linestyle = target_plot_line_style,
+        #                         linewidth = target_plot_linewidth,
+        #                         label = target_plot_legend_label)
+        #     axarr[1, 1].axhline(y=1 - target,
+        #                         color=target_color,
+        #                         linestyle = target_plot_line_style,
+        #                         linewidth = target_plot_linewidth,
+        #                         label = target_plot_legend_label)
+        #     axarr[1, 2].axhline(y=1 - target,
+        #                         color=target_color,
+        #                         linestyle = target_plot_line_style,
+        #                         linewidth = target_plot_linewidth,
+        #                         label = target_plot_legend_label)
+        #
+        # if percent_line_plot == True:
+        #     axarr[0, 0].axhline(y=percent_line_value,
+        #                         color=color_percent_line,
+        #                         linestyle = percent_line_style,
+        #                         linewidth = percent_linewidth,
+        #                         label = percent_legend_label)
+        #     axarr[0, 0].legend(loc=legend_location, shadow=True)
+        #
+        #     axarr[0, 1].axhline(y=percent_line_value,
+        #                         color=color_percent_line,
+        #                         linestyle=percent_line_style,
+        #                         linewidth=percent_linewidth,
+        #                         label=percent_legend_label)
+        #     axarr[0, 2].axhline(y=percent_line_value,
+        #                         color=color_percent_line,
+        #                         linestyle=percent_line_style,
+        #                         linewidth=percent_linewidth,
+        #                         label=percent_legend_label)
+        #     axarr[1, 0].axhline(y=percent_line_value,
+        #                         color=color_percent_line,
+        #                         linestyle=percent_line_style,
+        #                         linewidth=percent_linewidth,
+        #                         label=percent_legend_label)
+        #     axarr[1, 1].axhline(y=percent_line_value,
+        #                         color=color_percent_line,
+        #                         linestyle=percent_line_style,
+        #                         linewidth=percent_linewidth,
+        #                         label=percent_legend_label)
+        #     axarr[1, 2].axhline(y=percent_line_value,
+        #                         color=color_percent_line,
+        #                         linestyle=percent_line_style,
+        #                         linewidth=percent_linewidth,
+        #                         label=percent_legend_label)
+        #
 
-        if target_plot == True:
-            axarr[0, 0].axhline(y=target,
-                                color=target_color,
-                                linestyle = target_plot_line_style,
-                                linewidth = target_plot_linewidth,
-                                label = target_plot_legend_label)
-            axarr[0, 0].legend(loc=legend_location, shadow=True)
-
-            axarr[0, 1].axhline(y=target,
-                                color=target_color,
-                                linestyle = target_plot_line_style,
-                                linewidth = target_plot_linewidth,
-                                label = target_plot_legend_label)
-            axarr[0, 2].axhline(y=target,
-                                color=target_color,
-                                linestyle = target_plot_line_style,
-                                linewidth = target_plot_linewidth,
-                                label = target_plot_legend_label)
-            axarr[1, 0].axhline(y=1 - target,
-                                color=target_color,
-                                linestyle = target_plot_line_style,
-                                linewidth = target_plot_linewidth,
-                                label = target_plot_legend_label)
-            axarr[1, 1].axhline(y=1 - target,
-                                color=target_color,
-                                linestyle = target_plot_line_style,
-                                linewidth = target_plot_linewidth,
-                                label = target_plot_legend_label)
-            axarr[1, 2].axhline(y=1 - target,
-                                color=target_color,
-                                linestyle = target_plot_line_style,
-                                linewidth = target_plot_linewidth,
-                                label = target_plot_legend_label)
-
-        if percent_line_plot == True:
-            axarr[0, 0].axhline(y=percent_line_value,
-                                color=color_percent_line,
-                                linestyle = percent_line_style,
-                                linewidth = percent_linewidth,
-                                label = percent_legend_label)
-            axarr[0, 0].legend(loc=legend_location, shadow=True)
-
-            axarr[0, 1].axhline(y=percent_line_value,
-                                color=color_percent_line,
-                                linestyle=percent_line_style,
-                                linewidth=percent_linewidth,
-                                label=percent_legend_label)
-            axarr[0, 2].axhline(y=percent_line_value,
-                                color=color_percent_line,
-                                linestyle=percent_line_style,
-                                linewidth=percent_linewidth,
-                                label=percent_legend_label)
-            axarr[1, 0].axhline(y=percent_line_value,
-                                color=color_percent_line,
-                                linestyle=percent_line_style,
-                                linewidth=percent_linewidth,
-                                label=percent_legend_label)
-            axarr[1, 1].axhline(y=percent_line_value,
-                                color=color_percent_line,
-                                linestyle=percent_line_style,
-                                linewidth=percent_linewidth,
-                                label=percent_legend_label)
-            axarr[1, 2].axhline(y=percent_line_value,
-                                color=color_percent_line,
-                                linestyle=percent_line_style,
-                                linewidth=percent_linewidth,
-                                label=percent_legend_label)
-
-
-        plt.show()
+        # plt.show()
 
 
 
