@@ -1584,8 +1584,7 @@ class Base_model():
 
         x_data = np.arange(0, xval)
         band_x = np.append(x_data, x_data[::-1])
-        print(band_x)
-        print(len(band_x))
+
         for key, val in enumerate(levels):
 
             plots.append(figure(title=val, x_axis_label='year',
@@ -1600,9 +1599,6 @@ class Base_model():
             lower_band = np.maximum(0, yvals[i] - 1.96 * fills[i])
             band_y = np.append(lower_band, upper_band[::-1])
 
-            if i == 0:
-                print(band_y)
-                print(len(band_y))
             p.patch(band_x,
                     band_y,
                     color = 'red',
