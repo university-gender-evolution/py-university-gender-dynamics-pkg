@@ -662,7 +662,7 @@ def test_plot_bokeh_bylevel_percentage(mgmt_data):
          'transparency': 0.25,
          'marker_shape': None,
          'linecolor' : 'g',
-         'target_plot' : False,
+         'target_plot' : True,
          'target_color' : 'r',
          'target_plot_line_style' : '--',
          'target_plot_linewidth' : 2,
