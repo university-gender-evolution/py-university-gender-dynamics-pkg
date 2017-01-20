@@ -1587,8 +1587,11 @@ class Base_model():
 
         for key, val in enumerate(levels):
 
-            plots.append(figure(title=val, x_axis_label='year',
-                              y_axis_label = 'percentage female'))
+            plots.append(figure(title=val,
+                                x_axis_label='year',
+                                y_axis_label = 'percentage female',
+                                width=250,
+                                height=250))
 
         for i, p in enumerate(plots):
             p.line(range(xval), np.minimum(1,
