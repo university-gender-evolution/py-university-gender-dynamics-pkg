@@ -150,10 +150,12 @@ class Mod_Stoch_FBPH(Base_model):
 
 
             hiring_female_3 = binomial(vacancies_remaining_after_promotion_3,
-                                       hiring_rate_female_level_3)
+                                       probability_of_outside_hire_level_3*hiring_rate_female_level_3)
 
-            hiring_male_3 = max(0,vacancies_remaining_after_promotion_3 - \
-                            hiring_female_3)
+            hiring_male_3 = binomial(max(0,vacancies_remaining_after_promotion_3 - \
+                            hiring_female_3),
+                            probability_of_outside_hire_level_3*(
+                                         1 - hiring_rate_female_level_3))
 
 
 
@@ -189,18 +191,27 @@ class Mod_Stoch_FBPH(Base_model):
                                               female_promotion_probability_1_2)
 
 
-            promotions_of_males_level_1_2 = min(total_vacancies_2 - \
+            # print(min(total_vacancies_2 - \
+            #                                promotions_of_females_level_1_2,
+            #                                prev_number_of_males_level_1))
+
+            promotions_of_males_level_1_2 = binomial(max(0,
+                                                         min(total_vacancies_2 - \
                                            promotions_of_females_level_1_2,
-                                           prev_number_of_males_level_1)
+                                           prev_number_of_males_level_1)),
+                                           1 - female_promotion_probability_1_2)
 
             vacancies_remaining_after_promotion_2 = max(0, total_vacancies_2 - \
                                                         promotions_of_females_level_1_2 - \
                                                         promotions_of_males_level_1_2)
 
             hiring_female_2 = binomial(vacancies_remaining_after_promotion_2,
-                                       hiring_rate_female_level_2)
-            hiring_male_2 = max(0, vacancies_remaining_after_promotion_2 - \
-                            hiring_female_2)
+                                       probability_of_outside_hire_level_2*hiring_rate_female_level_2)
+            hiring_male_2 = binomial(max(0,
+                            vacancies_remaining_after_promotion_2 - \
+                            hiring_female_2),
+                            probability_of_outside_hire_level_2*(
+                            1 - hiring_rate_female_level_2))
 
             ## Level 1
 
@@ -226,7 +237,9 @@ class Mod_Stoch_FBPH(Base_model):
             hiring_female_1 = binomial(max(0, total_vacancies_1),
                               hiring_rate_female_level_1)
 
-            hiring_male_1 = max(0, total_vacancies_1 - hiring_female_1)
+            hiring_male_1 = binomial(max(0, total_vacancies_1 -
+                                         hiring_female_1),
+                                     1 - hiring_rate_female_level_1)
 
             # Write state variables to array and move to next iteration
 

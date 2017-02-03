@@ -89,9 +89,10 @@ def test_base_model_persistence(mock_data):
     assert (t.nf1 == 14)
 
 
-def test_base_model_multiple_runs(mock_data):
-    t = Mod_Stoch_FBHP(**mock_data)
-    assert (isinstance(t.run_multiple(10), int))
+def test_base_model_multiple_runs(mgmt_data):
+    t = Mod_Stoch_FBHP(**mgmt_data)
+    t.run_multiple(100)
+    assert (hasattr(t, 'res_array'))
 
 
 def test_base_model_multiple_runs_persistent_state(mock_data):
@@ -100,9 +101,9 @@ def test_base_model_multiple_runs_persistent_state(mock_data):
     assert (isinstance(t.mean_matrix, np.ndarray))
 
 
-def test_base_model_parameter_sweep(mock_data):
-    t = Mod_Stoch_FBHP(**mock_data)
-    v = t.run_parameter_sweep(12, 'female_pp_1', 0.1, 0.3, 2)
+def test_base_model_parameter_sweep(mgmt_data):
+    t = Mod_Stoch_FBHP(**mgmt_data)
+    v = t.run_parameter_sweep(10, 'female_pp_1', 0.1, 0.9, 15)
     assert (isinstance(v, int))
 
 def test_base_model_multiple_runs_gender_prop(mock_data):
@@ -179,7 +180,7 @@ def test_base_model_probability_calc_detail_array(mock_data):
 
 
 def test_multiple_runs_created_res_array(mock_data):
-    t = Mod_Stoch_FSPH(**mock_data)
+    t = Mod_Stoch_FBPH(**mock_data)
     t.run_multiple(10)
     assert hasattr(t, 'mean_matrix')
 
@@ -329,8 +330,8 @@ def test_plot_overall_gender_proportion(mgmt_data):
          'xmax': 40,
          'ymax': 1.0,
          'alpha_val': 0.25,
-         'marker_val': None,
-         'color_val': 'g',
+         'marker_shape': None,
+         'linecolor': 'g',
          'target_plot': True,
          'legend_location': 'upper right',
          'color_target': 'r',
@@ -608,7 +609,7 @@ def test_comparision_duration(mgmt_data):
 
 def test_plot_bokeh_bylevel_percentage(mgmt_data):
     output_file('plot_bokeh_detail.html')
-    t = Mod_Stoch_FBPH(**mgmt_data)
+    t = Mod_Stoch_FBHP(**mgmt_data)
     d = {'plottype' : 'gender proportion',
          'number_of_runs': 100,
          'target' : 0.25,

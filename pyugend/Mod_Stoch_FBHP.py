@@ -149,10 +149,11 @@ class Mod_Stoch_FBHP(Base_model):
                 prev_number_of_females_level_2),
                 female_promotion_probability_2_3)
 
-            promotions_of_males_level_2_3 = min(
+            promotions_of_males_level_2_3 = binomial(max(0,min(
                 vacancies_remaining_after_hiring_3
                 -promotions_of_females_level_2_3,
-                prev_number_of_males_level_2)
+                prev_number_of_males_level_2)),
+                1 - female_promotion_probability_2_3)
 
             # attrition at level 2 - either people leave from attrition or promotion
 
@@ -189,10 +190,11 @@ class Mod_Stoch_FBHP(Base_model):
                 min(potential_promotions_after_hiring_2, prev_number_of_females_level_1)),
                 female_promotion_probability_1_2)
 
-            promotions_of_males_level_1_2 = min(
+            promotions_of_males_level_1_2 = binomial(max(0,min(
                 vacancies_remaining_after_hiring_2 -
                 promotions_of_females_level_1_2,
-                prev_number_of_females_level_1)
+                prev_number_of_females_level_1)),
+                probability_of_outside_hire_level_2*(1 - female_promotion_probability_1_2))
 
 
             ## Level 1
@@ -212,7 +214,8 @@ class Mod_Stoch_FBHP(Base_model):
             hiring_female_1 = binomial(max(0,total_vacancies_1),
                                        hiring_rate_female_level_1)
 
-            hiring_male_1 = max(0,total_vacancies_1 - hiring_female_1)
+            hiring_male_1 = binomial(max(0,total_vacancies_1 - hiring_female_1),
+                                     1 - hiring_rate_female_level_1)
 
             # Write state variables to array and move to next iteration
 

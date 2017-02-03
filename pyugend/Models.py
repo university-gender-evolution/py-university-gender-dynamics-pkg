@@ -608,7 +608,9 @@ class Base_model():
 
         for i, val in enumerate(parameter_sweep_increments):
             setattr(self, param, val)
+            #setattr(self, 'duration', 20)
             self.run_multiple(number_of_runs)
+            #print(getattr(self, param))
             model_final_year_results = self.pd_last_row_data
 
             paramater_sweep_plot_array[i, 0] = val
@@ -681,6 +683,9 @@ class Base_model():
                                            paramater_sweep_plot_array_m3,
                                            param])
 
+        #print(paramater_sweep_plot_array_f1)
+        #print(paramater_sweep_plot_array_f2)
+        #print(model_final_year_results['f2'])
         if hasattr(self, 'parameter_sweep_array'):
             return (0)
 
