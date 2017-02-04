@@ -605,7 +605,49 @@ def test_comparision_duration(mgmt_data):
     c = Comparison(modlist)
     print(c.testfunc())
 
+def test_plot_bokeh_overall(mgmt_data):
+    output_file('plot_bokeh_detail.html')
+    t = Mod_Stoch_FBHP(**mgmt_data)
 
+    plot_settings = {'plottype': 'gender proportion',
+                     'number_of_runs': 10,
+                     # number simulations to average over
+                     'target': 0.25,
+                     # target percentage of women in the department
+                     'caption': 'The red line shows a goal of .25 women',
+
+                     # Main plot settings
+                     'xlabel': 'Years',
+                     'ylabel': 'Probability of Achieving Target',
+                     'title': 'Figure 4.1.2b:  Probability of Achieving 25% Women, Model 2 (Promote-Hire)',
+                     'line_width': 2,
+                     'xmin': 0,
+                     'ymin': 0,
+                     'xmax': t.duration,
+                     'ymax': 0.55,
+                     'transparency': 0.25,
+                     'marker_shape': None,
+                     'linecolor': 'g',
+                     'model_legend_label': 'Average Probability',
+                     'legend_location': 'upper right',
+
+                     # Target value plot settings
+                     'target_plot': False,
+                     'color_target': 'r',
+                     'color_percent_line': 'r',
+                     'target_plot_line_style': '--',
+                     'target_plot_linewidth': 2,
+                     'target_plot_legend_label': 'Target',
+
+                     # Percent plot settings
+                     'percent_line_plot': True,
+                     'percent_line_value': 0.5,
+                     'percent_line_style': '-.',
+                     'percent_linewidth': 2,
+                     'percent_legend_label': 'Reference Line'
+                     }
+
+    t.plot_bokeh_overall_chart(**plot_settings)
 
 def test_plot_bokeh_bylevel_percentage(mgmt_data):
     output_file('plot_bokeh_detail.html')
