@@ -627,14 +627,14 @@ def test_plot_bokeh_overall(mgmt_data):
                      'ymax': 0.55,
                      'transparency': 0.25,
                      'marker_shape': None,
-                     'linecolor': 'g',
+                     'linecolor': 'green',
                      'model_legend_label': 'Average Probability',
                      'legend_location': 'upper right',
 
                      # Target value plot settings
-                     'target_plot': False,
-                     'color_target': 'r',
-                     'color_percent_line': 'r',
+                     'target_plot': True,
+                     'color_target': 'red',
+                     'color_percent_line': 'blue',
                      'target_plot_line_style': '--',
                      'target_plot_linewidth': 2,
                      'target_plot_legend_label': 'Target',

@@ -1460,13 +1460,13 @@ class Base_model():
                            ymax,
                            transparency,
                            marker_shape=None,
-                           linecolor='g',
+                           linecolor='green',
                            target_plot=False,
                            legend_location='upper right',
-                           color_target='r',
+                           color_target='red',
                            percent_line_plot=False,
                            percent_line_value=0.5,
-                           color_percent_line='r',
+                           color_percent_line='red',
                            target_plot_line_style='--',
                            percent_line_style='-.',
                            target_plot_linewidth=2,
@@ -1475,8 +1475,8 @@ class Base_model():
                            target_plot_legend_label='target',
                            percent_legend_label='percent',
                            male_female_numbers_plot=False,
-                           mf_male_color='k',
-                           mf_target_color='r',
+                           mf_male_color='black',
+                           mf_target_color='red',
                            mf_male_label='Male',
                            mf_target_label='Target',
                            mf_male_linestyle=None,
@@ -1493,6 +1493,12 @@ class Base_model():
         # different x-axis.
 
         xval = self.duration
+
+        p = figure(title=title,
+               x_axis_label=xlabel,
+               y_axis_label=ylabel,
+               width=400,
+               height=400)
 
         if plottype == 'probability proportion':
             self.run_probability_analysis_gender_proportion(number_of_runs,
@@ -1533,13 +1539,12 @@ class Base_model():
 
             yval3 = np.round(target * total_faculty)
 
-        p = figure(title=title,
-               x_axis_label=xlabel,
-               y_axis_label=ylabel,
-               width=400,
-               height=400)
 
-        p.line(range(xval), yval)
+
+        p.line(range(xval), yval,
+               line_width=line_width,
+               line_color = linecolor)
+        p.circle(range(xval), yval, size=3)
 
         # plt.plot(range(xval),
         #          yval,
@@ -1556,8 +1561,8 @@ class Base_model():
 
         p.patch(band_x,
                 band_y,
-                color='red',
-                fill_alpha=0.2)
+                color=linecolor,
+                fill_alpha=transparency)
 
 
         # plt.fill_between(range(xval),
@@ -1568,17 +1573,21 @@ class Base_model():
 
         if target_plot:
 
-            p.line(range(xval), target)
+            p.line(range(xval),
+                   target,
+                   line_color = color_target,
+                   line_width = target_plot_linewidth,
+                   line_dash = [4, 4])
 
-            # plt.axhline(target,
-            #             color=color_target,
-            #             linestyle=target_plot_line_style,
-            #             label=target_plot_legend_label,
-            #             linewidth=target_plot_linewidth)
 
         if percent_line_plot:
 
-            p.line(range(xval), percent_line_value)
+            p.line(range(xval),
+                   percent_line_value,
+                   line_color = color_percent_line,
+                   line_width = percent_linewidth,
+                   line_dash = [2,2])
+
 
             # plt.axhline(y=percent_line_value,
             #             color=color_percent_line,
