@@ -1630,7 +1630,7 @@ class Base_model():
 
 
 
-    def plot_bokeh_level_chart(self,
+    def plot_level_chart(self,
                          plottype,
                          number_of_runs,
                          target,
