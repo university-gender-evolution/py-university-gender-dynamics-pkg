@@ -968,7 +968,7 @@ class Base_model():
                                            'women_promoted_1',
                                            'men_promoted_1']).to_csv(filename)
 
-    def plot_overall_chart(self,
+    def deprecated_plot_overall_chart(self,
                            plottype,
                            number_of_runs,
                            target,
@@ -1445,7 +1445,7 @@ class Base_model():
         plt.show()
 
 
-    def plot_bokeh_overall_chart(self,
+    def plot_overall_chart(self,
                            plottype,
                            number_of_runs,
                            target,
@@ -1597,8 +1597,16 @@ class Base_model():
 
         if male_female_numbers_plot:
 
-            p.line(range(xval), yval2)
-            p.line(range(xval), yval3)
+            p.line(range(xval),
+                   yval2,
+                   line_color = mf_male_color,
+                   line_width = mf_male_linewidth)
+
+
+            p.line(range(xval),
+                   yval3,
+                   line_color = mf_target_color,
+                   line_width = mf_target_linewidth)
 
 
             #
@@ -1617,7 +1625,7 @@ class Base_model():
             #          linewidth=mf_target_linewidth)
 
 
-        plt.legend(loc=legend_location, shadow=True)
+        #plt.legend(loc=legend_location, shadow=True)
         show(p)
 
 
@@ -1675,15 +1683,15 @@ class Base_model():
                          model_legend_label='model',
                          transparency = 0.25,
                          marker_shape=None,
-                         linecolor='g',
+                         linecolor='green',
                          target_plot=False,
-                         target_color='r',
+                         target_color='red',
                          target_plot_line_style='--',
                          target_plot_linewidth=2,
                          target_plot_legend_label='target',
                          percent_line_plot=False,
                          percent_line_value=0.5,
-                         color_percent_line='r',
+                         color_percent_line='red',
                          percent_line_style='-.',
                          percent_linewidth=2,
                          percent_legend_label='percent'):
@@ -1777,7 +1785,9 @@ class Base_model():
         for i, p in enumerate(plots):
             p.line(range(xval), np.minimum(1,
                                     np.maximum(0,
-                                               yvals[i])))
+                                               yvals[i]))
+                   line_width = line_width,
+                   line_color = linecolor)
 
             upper_band = np.minimum(1, yvals[i] + 1.96 * fills[i])
             lower_band = np.maximum(0, yvals[i] - 1.96 * fills[i])
@@ -1785,8 +1795,8 @@ class Base_model():
 
             p.patch(band_x,
                     band_y,
-                    color = 'red',
-                    fill_alpha=0.2)
+                    color = linecolor,
+                    fill_alpha=transparency)
 
 
 
@@ -1819,7 +1829,11 @@ class Base_model():
         if target_plot == True:
 
             for i, p in enumerate(plots):
-                p.line(range(xval), target)
+                p.line(range(xval),
+                       target,
+                       line_color = target_color,
+                       line_width = target_plot_linewidth)
+
         #     axarr[0, 0].axhline(y=target,
         #                         color=target_color,
         #                         linestyle = target_plot_line_style,
@@ -1830,7 +1844,10 @@ class Base_model():
         if percent_line_plot == True:
 
             for i, p in enumerate(plots):
-                p.line(range(xval), percent_line_value)
+                p.line(range(xval),
+                       percent_line_value,
+                       line_color = target_color,
+                       line_width = target_plot_linewidth)
 
         #     axarr[0, 0].axhline(y=percent_line_value,
         #                         color=color_percent_line,
