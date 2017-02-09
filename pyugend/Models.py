@@ -1785,7 +1785,7 @@ class Base_model():
         for i, p in enumerate(plots):
             p.line(range(xval), np.minimum(1,
                                     np.maximum(0,
-                                               yvals[i]))
+                                               yvals[i])),
                    line_width = line_width,
                    line_color = linecolor)
 
