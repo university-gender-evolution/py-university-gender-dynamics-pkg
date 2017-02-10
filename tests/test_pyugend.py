@@ -158,8 +158,8 @@ def test_plot_bokeh_overall(mgmt_data):
                      'line_width': 2,
                      'xmin': 0,
                      'ymin': 0,
-                     'xmax': t.duration,
-                     'ymax': 0.55,
+                     # 'xmax': None,
+                     # 'ymax': None,
                      'transparency': 0.25,
                      'marker_shape': None,
                      'linecolor': 'green',
@@ -179,10 +179,13 @@ def test_plot_bokeh_overall(mgmt_data):
                      'percent_line_value': 0.5,
                      'percent_line_style': '-.',
                      'percent_linewidth': 2,
-                     'percent_legend_label': 'Reference Line'
-                     }
+                     'percent_legend_label': 'Reference Line',
 
-    t.plot_bokeh_overall_chart(**plot_settings)
+                     # Male Female Numbers Plot
+                     'male_female_numbers_plot' : False
+                    }
+
+    t.plot_overall_chart(**plot_settings)
 
 def test_plot_bokeh_bylevel_percentage(mgmt_data):
     output_file('plot_bokeh_detail.html')
@@ -213,46 +216,46 @@ def test_plot_bokeh_bylevel_percentage(mgmt_data):
          'line_width': 2,
          'xmin_f1':0,
          'ymin_f1':0,
-         'xmax_f1':40,
-         'ymax_f1':15,
+         # 'xmax_f1':40,
+         # 'ymax_f1':15,
          'xmin_f2':0,
          'ymin_f2':0,
-         'xmax_f2':40,
-         'ymax_f2':5,
+         # 'xmax_f2':40,
+         # 'ymax_f2':5,
          'xmin_f3':0,
          'ymin_f3':0,
-         'xmax_f3':40,
-         'ymax_f3':8,
+         # 'xmax_f3':40,
+         # 'ymax_f3':8,
          'xmin_m1':0,
          'ymin_m1':0,
-         'xmax_m1':40,
-         'ymax_m1':20,
+         # 'xmax_m1':40,
+         # 'ymax_m1':20,
          'xmin_m2':0,
          'ymin_m2':0,
-         'xmax_m2':40,
-         'ymax_m2':25,
+         # 'xmax_m2':40,
+         # 'ymax_m2':25,
          'xmin_m3':0,
          'ymin_m3':0,
-         'xmax_m3':40,
-         'ymax_m3':60,
+         # 'xmax_m3':40,
+         # 'ymax_m3':60,
          'legend_location':'upper right',
          'model_legend_label':'model',
          'transparency': 0.25,
          'marker_shape': None,
-         'linecolor' : 'g',
+         'linecolor' : 'green',
          'target_plot' : True,
-         'target_color' : 'r',
+         'target_color' : 'red',
          'target_plot_line_style' : '--',
          'target_plot_linewidth' : 2,
          'target_plot_legend_label' : 'target',
-         'percent_line_plot' : False,
+         'percent_line_plot' : True,
          'percent_line_value': 0.5,
-         'color_percent_line':'r',
+         'color_percent_line':'blue',
          'percent_line_style':'-.',
          'percent_linewidth':2,
          'percent_legend_label':'percent'}
 
-    t.plot_bokeh_level_chart(**d)
+    t.plot_level_chart(**d)
 
 def test_bokeh_comparison_plot_bylevel(mgmt_data):
     modlist = list([Mod_Stoch_FBHP(**mgmt_data),

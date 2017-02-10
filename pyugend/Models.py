@@ -20,12 +20,14 @@ from bokeh.palettes import Viridis3
 from bokeh.plotting import figure
 from bokeh.charts import defaults
 
+
 ## Initialize Constants
 
 PROFESSOR_LEVEL_NAMES = list(['f1n', 'f2n', 'f3n', 'm1n', 'm2n', 'm3n'])
 PROBABILITY_ARRAY_COLUMN_NAMES = list(
     ['param', 'prof_group_mean', 'probability'])
-
+defaults.width = 400
+defaults.height = 400
 
 class Base_model():
     def __init__(self, number_of_females_1,
@@ -1458,7 +1460,7 @@ class Base_model():
                            ymin,
                            xmax=defaults.width,
                            ymax=defaults.height,
-                           transparency,
+                           transparency=0.25,
                            marker_shape=None,
                            linecolor='green',
                            target_plot=False,
@@ -1577,7 +1579,7 @@ class Base_model():
                    target,
                    line_color = color_target,
                    line_width = target_plot_linewidth,
-                   line_dash = [4, 4])
+                   line_dash = [6, 6])
 
 
         if percent_line_plot:
@@ -1589,11 +1591,6 @@ class Base_model():
                    line_dash = [2,2])
 
 
-            # plt.axhline(y=percent_line_value,
-            #             color=color_percent_line,
-            #             linestyle=percent_line_style,
-            #             label=percent_legend_label,
-            #             linewidth=percent_linewidth)
 
         if male_female_numbers_plot:
 
@@ -1608,24 +1605,6 @@ class Base_model():
                    line_color = mf_target_color,
                    line_width = mf_target_linewidth)
 
-
-            #
-            # plt.plot(range(xval),
-            #          yval2,
-            #          color=mf_male_color,
-            #          label=mf_male_label,
-            #          linestyle=mf_male_linestyle,
-            #          linewidth=mf_male_linewidth)
-            #
-            # plt.plot(range(xval),
-            #          yval3,
-            #          color=mf_target_color,
-            #          label=mf_target_label,
-            #          linestyle=mf_target_linestyle,
-            #          linewidth=mf_target_linewidth)
-
-
-        #plt.legend(loc=legend_location, shadow=True)
         show(p)
 
 
@@ -1659,26 +1638,26 @@ class Base_model():
                          ymin_f1,
                          xmax_f1=defaults.width,
                          ymax_f1=defaults.height,
-                         xmin_f2,
-                         ymin_f2,
-                         xmax_f2,
-                         ymax_f2,
-                         xmin_f3,
-                         ymin_f3,
-                         xmax_f3,
-                         ymax_f3,
-                         xmin_m1,
-                         ymin_m1,
-                         xmax_m1,
-                         ymax_m1,
-                         xmin_m2,
-                         ymin_m2,
-                         xmax_m2,
-                         ymax_m2,
-                         xmin_m3,
-                         ymin_m3,
-                         xmax_m3,
-                         ymax_m3,
+                         xmin_f2=0,
+                         ymin_f2=0,
+                         xmax_f2=defaults.width,
+                         ymax_f2=defaults.height,
+                         xmin_f3=0,
+                         ymin_f3=0,
+                         xmax_f3=defaults.width,
+                         ymax_f3=defaults.height,
+                         xmin_m1=0,
+                         ymin_m1=0,
+                         xmax_m1=defaults.width,
+                         ymax_m1=defaults.height,
+                         xmin_m2=0,
+                         ymin_m2=0,
+                         xmax_m2=defaults.width,
+                         ymax_m2=defaults.height,
+                         xmin_m3=0,
+                         ymin_m3=0,
+                         xmax_m3=defaults.width,
+                         ymax_m3=defaults.height,
                          legend_location='upper right',
                          model_legend_label='model',
                          transparency = 0.25,
@@ -1761,8 +1740,8 @@ class Base_model():
             fill_m2 = self.std_matrix['m2']
             fill_m3 = self.std_matrix['m3']
 
-
-
+        print(fill_f2)
+        print(fill_m2)
 
         #TODO set levels to configurable parameter. This is just for test.
         levels = ['f1', 'f2', 'f3', 'm1', 'm2', 'm3']
@@ -1799,63 +1778,25 @@ class Base_model():
                     fill_alpha=transparency)
 
 
-
-
-
-        # axarr[0, 0].plot(range(xval),
-        #                  np.minimum(1,
-        #                             np.maximum(0,
-        #                                        yval_f1)),
-        #                  label=model_legend_label,
-        #                  linewidth=line_width,
-        #                  color=linecolor,
-        #                  marker=marker_shape)
-        # axarr[0, 0].set_xlim([xmin_f1, xmax_f1])
-        # axarr[0, 0].set_ylim([ymin_f1, ymax_f1])
-        # axarr[0, 0].set_title(title_f1)
-        # axarr[0, 0].set_xlabel(xlabel_f1)
-        # axarr[0, 0].set_ylabel(ylabel_f1)
-        # axarr[0, 0].fill_between(range(xval),
-        #                          np.minimum(1,
-        #                                     yval_f1 + 1.96 * fill_f1),
-        #                          np.maximum(0,
-        #                                     yval_f1 - 1.96 * fill_f1),
-        #                          alpha=transparency,
-        #                          facecolor=linecolor)
-        # axarr[0, 0].legend(loc=legend_location, shadow=True)
-        #
-
-        #
         if target_plot == True:
 
             for i, p in enumerate(plots):
                 p.line(range(xval),
                        target,
                        line_color = target_color,
-                       line_width = target_plot_linewidth)
+                       line_width = target_plot_linewidth,
+                       line_dash=[6, 6])
 
-        #     axarr[0, 0].axhline(y=target,
-        #                         color=target_color,
-        #                         linestyle = target_plot_line_style,
-        #                         linewidth = target_plot_linewidth,
-        #                         label = target_plot_legend_label)
-        #     axarr[0, 0].legend(loc=legend_location, shadow=True)
-        #
+
         if percent_line_plot == True:
 
             for i, p in enumerate(plots):
                 p.line(range(xval),
                        percent_line_value,
-                       line_color = target_color,
-                       line_width = target_plot_linewidth)
+                       line_color = color_percent_line,
+                       line_width = percent_linewidth,
+                       line_dash=[2, 2])
 
-        #     axarr[0, 0].axhline(y=percent_line_value,
-        #                         color=color_percent_line,
-        #                         linestyle = percent_line_style,
-        #                         linewidth = percent_linewidth,
-        #                         label = percent_legend_label)
-        #     axarr[0, 0].legend(loc=legend_location, shadow=True)
-        #
 
         grid = gridplot([[plots[0], plots[1], plots[2]],
                          [plots[3], plots[4], plots[5]]])
