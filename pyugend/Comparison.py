@@ -4,7 +4,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 from bokeh.plotting import figure, output_file, show
 from bokeh.charts import defaults
-
+from bokeh.layouts import gridplot
 
 # CONSTANTS
 
@@ -518,34 +518,34 @@ class Comparison():
                                 height=ymax_f1))
 
 
-        for v in self.mlist:
+        for k,v in enumerate(self.mlist):
 
             for i, p in enumerate(plots):
                 p.line(range(xval), np.minimum(1,
                                                np.maximum(0,
-                                                          v.yvals[i])),
-                       line_width=v.line_width,
-                       line_color=v.linecolor)
+                                                          yvals[i][k])),
+                       line_width=line_width,
+                       line_color=linecolor[k])
 
-                upper_band = np.minimum(1, v.yvals[i] + 1.96 * v.fills[i])
-                lower_band = np.maximum(0, v.yvals[i] - 1.96 * v.fills[i])
+                upper_band = np.minimum(1, yvals[i][k] + 1.96 * fills[i][k])
+                lower_band = np.maximum(0, yvals[i][k] - 1.96 * fills[i][k])
                 band_y = np.append(lower_band, upper_band[::-1])
 
                 p.patch(band_x,
                         band_y,
-                        color=v.linecolor,
-                        fill_alpha=v.transparency)
-
-
+                        color=linecolor[k],
+                        fill_alpha=transparency[k])
 
         if target_plot == True:
 
             for i, p in enumerate(plots):
 
-                p.line(range(xval), target,
-                                line_color=target_color,
-                                line_width = target_plot_linewidth,
-                                label = target_plot_legend_label)
+                p.line(range(xval),
+                       target,
+                       line_color=target_color,
+                       line_width = target_plot_linewidth,
+             #          label = target_plot_legend_label,
+                       line_dash = [6,6])
 
         if percent_line_plot == True:
 
@@ -553,7 +553,8 @@ class Comparison():
                 p.line(range(xval), percent_line_value,
                        line_color=color_percent_line,
                        line_width=percent_linewidth,
-                       label=percent_legend_label)
+                       line_dash = [2,2])
+ #                      label=percent_legend_label)
 
         grid = gridplot([[plots[0], plots[1], plots[2]],
                          [plots[3], plots[4], plots[5]]])

@@ -271,7 +271,7 @@ def test_bokeh_comparison_plot_bylevel(mgmt_data):
                  'model_legend_label': ['model 1', 'model2'],
                  'transparency': [0.25,0.25],
                  'marker_shape': [None,None],
-                 'linecolor': ['g', 'b'],
+                 'linecolor': ['green', 'blue'],
                  'legend_location': 'upper right',
 
                  # main plot axis labels
@@ -299,32 +299,32 @@ def test_bokeh_comparison_plot_bylevel(mgmt_data):
                  # main plot axis ranges
                  'xmin_f1': 0,
                  'ymin_f1': 0,
-                 'xmax_f1': 40,
-                 'ymax_f1': 1,
+                 # 'xmax_f1': 40,
+                 # 'ymax_f1': 1,
                  'xmin_f2': 0,
                  'ymin_f2': 0,
-                 'xmax_f2': 40,
-                 'ymax_f2': 1,
+                 # 'xmax_f2': 40,
+                 # 'ymax_f2': 1,
                  'xmin_f3': 0,
                  'ymin_f3': 0,
-                 'xmax_f3': 40,
-                 'ymax_f3': 0.1,
+                 # 'xmax_f3': 40,
+                 # 'ymax_f3': 0.1,
                  'xmin_m1': 0,
                  'ymin_m1': 0,
-                 'xmax_m1': 40,
-                 'ymax_m1': 1,
+                 # 'xmax_m1': 40,
+                 # 'ymax_m1': 1,
                  'xmin_m2': 0,
                  'ymin_m2': 0,
-                 'xmax_m2': 40,
-                 'ymax_m2': 1,
+                 # 'xmax_m2': 40,
+                 # 'ymax_m2': 1,
                  'xmin_m3': 0,
                  'ymin_m3': 0,
-                 'xmax_m3': 40,
-                 'ymax_m3': 1.0,
+                 # 'xmax_m3': 40,
+                 # 'ymax_m3': 1.0,
 
                  # target plot settings
                  'target_plot': True,
-                 'target_color': 'r',
+                 'target_color': 'red',
                  'target_plot_line_style': '--',
                  'target_plot_linewidth': 2,
                  'target_plot_legend_label': 'target',
@@ -332,9 +332,10 @@ def test_bokeh_comparison_plot_bylevel(mgmt_data):
                  # percent plot settings
                  'percent_line_plot': True,
                  'percent_line_value': 0.5,
-                 'color_percent_line': 'r',
+                 'color_percent_line': 'red',
                  'percent_line_style': '-.',
                  'percent_linewidth': 2,
-                 'percent_legend_label': 'Reference Line'}
+                 'percent_legend_label': 'Reference Line'
+                     }
 
-    c.plot_bokeh_comparison_level_chart(**plot_settings)
+    c.plot_comparison_level_chart(**plot_settings)
