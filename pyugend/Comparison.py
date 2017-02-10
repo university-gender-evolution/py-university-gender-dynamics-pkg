@@ -340,25 +340,25 @@ class Comparison():
                 p.line(range(xval),
                          yval2[k],
                          line_color=mf_male_color[k],
-                         label=mf_male_label[k],
+            #             label=mf_male_label[k],
                          line_width=mf_male_linewidth[k])
 
                 p.line(range(xval),
                          yval3[k],
                          line_color=mf_target_color[k],
-                         label=mf_target_label[k],
+             #            label=mf_target_label[k],
                          line_width=mf_target_linewidth[k])
 
         if target_plot:
             p.line(range(xval),target,
                         line_color=color_target,
-                        label=target_plot_legend_label,
+            #            label=target_plot_legend_label,
                         line_width=target_plot_linewidth)
 
         if percent_line_plot:
             p.line(range(xval), percent_line_value,
                         line_color=color_percent_line,
-                        label=percent_legend_label,
+            #            label=percent_legend_label,
                         line_width=percent_linewidth)
 
         show(p)

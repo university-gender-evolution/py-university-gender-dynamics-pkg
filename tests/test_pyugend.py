@@ -257,6 +257,61 @@ def test_plot_bokeh_bylevel_percentage(mgmt_data):
 
     t.plot_level_chart(**d)
 
+
+
+def test_bokeh_comparison_plot_overall(mgmt_data):
+    modlist = list([Mod_Stoch_FBHP(**mgmt_data),
+                    Mod_Stoch_FBPH(**mgmt_data)])
+    c = Comparison(modlist)
+
+    plot_settings = {'plottype': 'department size',
+            'number_of_runs': 10,  # number simulations to average over
+            'target': 0.25,  # target percentage of women in the department
+            'caption': '',
+            # Main plot settings
+            'xlabel':'Years',
+            'ylabel': 'Proportion Women' ,
+            'title': 'Figure 4.1.3a: Change in Proportion Women, Compare Models 1 and 2' ,
+            'line_width': 2,
+            'xmin': 0,
+            'ymin': 0,
+            # 'xmax': 40,
+            # 'ymax': 1,
+            'transparency': [0.25,0.25],
+            'marker_shape': [None,None],
+            'linecolor': ['green','blue'],
+            'model_legend_label': ['Model 1, Hire-Promote', 'Model 2, Promote-Hire'],
+            'legend_location': 'upper right',
+
+            # Optional Settings
+            # Target value plot settings
+            'target_plot': True,
+            'color_target': 'red',
+            'color_percent_line': 'red',
+            'target_plot_line_style': '--',
+            'target_plot_linewidth': 2,
+            'target_plot_legend_label': 'Target Proportion',
+
+            # Percent plot settings
+            'percent_line_plot': True,
+            'percent_line_value': 0.5,
+            'percent_line_style': '-.',
+            'percent_linewidth': 2,
+            'percent_legend_label': 'Reference Line',
+
+            # Male Female numbers plot settings
+            'male_female_numbers_plot': False,
+            'mf_male_color': ['black','magenta'],
+            'mf_target_color': 'red',
+            'mf_male_label': ['Male 1', 'Male 2'],
+            'mf_target_label': ['Target 1','Target 2'],
+            'mf_male_linestyle': '-',
+            'mf_target_linestyle': ['-','-.'],
+            'mf_male_linewidth':2,
+            'mf_target_linewidth': 2
+            }
+    c.plot_comparison_overall_chart(**plot_settings)
+
 def test_bokeh_comparison_plot_bylevel(mgmt_data):
     modlist = list([Mod_Stoch_FBHP(**mgmt_data),
                     Mod_Stoch_FBPH(**mgmt_data)])
