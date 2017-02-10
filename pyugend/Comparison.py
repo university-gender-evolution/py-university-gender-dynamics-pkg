@@ -503,6 +503,26 @@ class Comparison():
         levels = ['f1', 'f2', 'f3', 'm1', 'm2', 'm3']
         yvals = [yval_f1, yval_f2, yval_f3, yval_m1, yval_m2, yval_m3]
         fills = [fill_f1, fill_f2, fill_f3, fill_m1, fill_m2, fill_m3]
+        xlabels = [xlabel_f1,
+                   xlabel_f2,
+                   xlabel_f3,
+                   xlabel_m1,
+                   xlabel_m2,
+                   xlabel_m3]
+
+        ylabels = [ylabel_f1,
+                   ylabel_f2,
+                   ylabel_f3,
+                   ylabel_m1,
+                   ylabel_m2,
+                   ylabel_m3]
+
+        titles = [title_f1,
+                  title_f2,
+                  title_f3,
+                  title_m1,
+                  title_m2,
+                  title_m3]
 
         plots = []
 
@@ -511,9 +531,9 @@ class Comparison():
 
         for key, val in enumerate(levels):
 
-            plots.append(figure(title=val,
-                                x_axis_label='year',
-                                y_axis_label = 'percentage female',
+            plots.append(figure(title=titles[key],
+                                x_axis_label=xlabels[key],
+                                y_axis_label = ylabels[key],
                                 width=xmax_f1,
                                 height=ymax_f1))
 
