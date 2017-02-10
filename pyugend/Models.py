@@ -18,7 +18,7 @@ from bokeh.io import output_file, show
 from bokeh.layouts import gridplot
 from bokeh.palettes import Viridis3
 from bokeh.plotting import figure
-
+from bokeh.charts import defaults
 
 ## Initialize Constants
 
@@ -1107,7 +1107,7 @@ class Base_model():
         plt.show()
 
 
-    def plot_level_chart(self,
+    def deprecated_plot_level_chart(self,
                          plottype,
                          number_of_runs,
                          target,
@@ -1456,8 +1456,8 @@ class Base_model():
                            line_width,
                            xmin,
                            ymin,
-                           xmax,
-                           ymax,
+                           xmax=defaults.width,
+                           ymax=defaults.height,
                            transparency,
                            marker_shape=None,
                            linecolor='green',
@@ -1497,8 +1497,8 @@ class Base_model():
         p = figure(title=title,
                x_axis_label=xlabel,
                y_axis_label=ylabel,
-               width=400,
-               height=400)
+               width=xmax,
+               height=ymax)
 
         if plottype == 'probability proportion':
             self.run_probability_analysis_gender_proportion(number_of_runs,
@@ -1657,8 +1657,8 @@ class Base_model():
                          line_width,
                          xmin_f1,
                          ymin_f1,
-                         xmax_f1,
-                         ymax_f1,
+                         xmax_f1=defaults.width,
+                         ymax_f1=defaults.height,
                          xmin_f2,
                          ymin_f2,
                          xmax_f2,
@@ -1779,8 +1779,8 @@ class Base_model():
             plots.append(figure(title=val,
                                 x_axis_label='year',
                                 y_axis_label = 'percentage female',
-                                width=250,
-                                height=250))
+                                width=xmax_f1,
+                                height=ymax_f1))
 
         for i, p in enumerate(plots):
             p.line(range(xval), np.minimum(1,
