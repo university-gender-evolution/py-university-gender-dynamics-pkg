@@ -1605,7 +1605,7 @@ class Base_model():
                    line_color = mf_target_color,
                    line_width = mf_target_linewidth)
 
-        show(p)
+        return(p)
 
 
 
