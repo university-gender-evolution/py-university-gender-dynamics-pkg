@@ -361,7 +361,7 @@ class Comparison():
             #            label=percent_legend_label,
                         line_width=percent_linewidth)
 
-        show(p)
+        return(p)
 
 
     def plot_comparison_level_chart(self,
@@ -578,7 +578,7 @@ class Comparison():
 
         grid = gridplot([[plots[0], plots[1], plots[2]],
                          [plots[3], plots[4], plots[5]]])
-        show(grid)
+        return(grid)
 
 
     def testfunc(self):

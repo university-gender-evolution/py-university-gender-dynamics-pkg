@@ -1800,7 +1800,7 @@ class Base_model():
 
         grid = gridplot([[plots[0], plots[1], plots[2]],
                          [plots[3], plots[4], plots[5]]])
-        show(grid)
+        return(grid)
 
 ## Supplementary/Helper functions
 
