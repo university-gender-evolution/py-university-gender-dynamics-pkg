@@ -1548,12 +1548,6 @@ class Base_model():
                line_color = linecolor)
         p.circle(range(xval), yval, size=3)
 
-        # plt.plot(range(xval),
-        #          yval,
-        #          linewidth=line_width,
-        #          marker=marker_shape,
-        #          color=linecolor,
-        #          label=model_legend_label)
 
         x_data = np.arange(0, xval)
         band_x = np.append(x_data, x_data[::-1])

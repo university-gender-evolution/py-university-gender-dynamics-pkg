@@ -341,13 +341,13 @@ class Comparison():
                          yval2[k],
                          line_color=mf_male_color[k],
             #             label=mf_male_label[k],
-                         line_width=mf_male_linewidth[k])
+                         line_width=mf_male_linewidth)
 
                 p.line(range(xval),
                          yval3[k],
                          line_color=mf_target_color[k],
              #            label=mf_target_label[k],
-                         line_width=mf_target_linewidth[k])
+                         line_width=mf_target_linewidth)
 
         if target_plot:
             p.line(range(xval),target,
