@@ -1740,8 +1740,8 @@ class Base_model():
             fill_m2 = self.std_matrix['m2']
             fill_m3 = self.std_matrix['m3']
 
-        print(fill_f2)
-        print(fill_m2)
+        #print(fill_f2)
+        #print(fill_m2)
 
         #TODO set levels to configurable parameter. This is just for test.
         levels = ['f1', 'f2', 'f3', 'm1', 'm2', 'm3']
