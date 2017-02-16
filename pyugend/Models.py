@@ -87,32 +87,33 @@ RESULTS_COLUMNS = list([ 'year', 'mean_f1', 'mean_f2',
                                    'std_f_prom_3','std_m_prom_3',
                                    'std_f_prom_2','std_m_prom_2',
                                    'std_f_prom_1','std_m_prom_1',
-                                   '025_f1', '975_f1',
-                                   '025_f2','975_f2',
-                                   '025_f3', '975_f3',
-                                   '025_m1', '975_m1',
-                                   '025_m2', '975_m2',
-                                   '025_m3', '975_m3',
-                                   '025_vac_3', '975_vac_3',
-                                   '025_vac_2', '975_vac_2',
-                                   '025_vac_1', '975_vac_1',
-                                   '025_prom1', '975_prom_1',
-                                   '025_prom2', '975_prom2',
-                                   '025_gendprop', '975_genderprop',
-                                   '025_unfilled', '975_unfilled',
-                                   '025_dept_size', '975_dept_size',
-                                   '025_f_hire_3', '975_f_hire_3',
-                                   '025_m_hire_3', '975_m_hire_3',
-                                   '025_f_hire_2', '975_f_hire_2',
-                                   '025_m_hire_2', '975_m_hire_2',
-                                   '025_f_hire_1', '975_f_hire_1',
-                                   '025_m_hire_1', '975_m_hire_1',
-                                   '025_f_prom_3', '975_f_prom_3',
-                                   '025_m_prom_3', '975_m_prom_3',
-                                   '025_f_prom_2', '975_f_prom_2',
-                                   '025_m_prom_2', '975_m_prom_2',
-                                   '025_f_prom_1', '975_f_prom_1',
-                                   '025_m_prom_1', '975_m_prom_1'])
+                                   'f1_025', 'f2_025',
+                                   'f3_025', 'm1_025',
+                                   'm2_025', 'm3_025', 'vac_3_025',
+                                    'vac_2_025', 'vac_1_025',
+                                    'prom1_025', 'prom2_025',
+                                    'gendprop_025','unfilled_025',
+                                    'dept_size_025', 'f_hire_3_025',
+                                    'm_hire_3_025', 'f_hire_2_025',
+                                    'm_hire_2_025','f_hire_1_025',
+                                    'm_hire_1_025', 'f_prom_3_025',
+                                    'm_prom_3_025', 'f_prom_2_025',
+                                    'm_prom_2_025','f_prom_1_025',
+                                    'm_prom_1_025', 'f1_975',
+                                    'f2_975','f3_975',
+                                    'm1_975', 'm2_975',
+                                    'm3_975', 'vac_3_975',
+                                    'vac_2_975', 'vac_1_975',
+                                    'prom_1_975', 'prom2_975',
+                                    'genderprop_975', 'unfilled_975',
+                                    'dept_size_975','f_hire_3_975',
+                                    'm_hire_3_975', 'f_hire_2_975',
+                                    'm_hire_2_975', 'f_hire_1_975',
+                                    'm_hire_1_975','f_prom_3_975',
+                                    'm_prom_3_975', 'f_prom_2_975',
+                                    'm_prom_2_975', 'f_prom_1_975',
+                                    'm_prom_1_975'
+                         ])
 
 FEMALE_MATRIX_COLUMNS = list(['year',
                               'mpct_f1',
@@ -127,18 +128,18 @@ FEMALE_MATRIX_COLUMNS = list(['year',
                               'spct_m2',
                               'mpct_m3',
                               'spct_m3',
-                              '025_f1',
-                              '975_f1',
-                              '025_f2',
-                              '975_f2',
-                              '025_f3',
-                              '975_f3',
-                              '025_m1',
-                              '975_m1',
-                              '025_m2',
-                              '975_m2',
-                              '025_m3',
-                              '975_m3'])
+                              'f1_025',
+                              'f1_975',
+                              'f2_025',
+                              'f2_975',
+                              'f3_025',
+                              'f3_975',
+                              'm1_025',
+                              'm1_975',
+                              'm2_025',
+                              'm2_975',
+                              'm3_025',
+                              'm3_975'])
 
 
 
@@ -523,33 +524,28 @@ class Base_model():
         for idx in range(self.duration):
 
 
+            # Set the year in the results matrix
+
+            self.results_matrix.loc[idx,0] = idx
+
             ## This section will iterate over all of the values in the results
             ## matrix for a year, and it will get the mean and average values
             ## for each statistic for that year. This info contains the raw
             ## numbers for each grouping and goes to the gender numbers plots.
 
-            for k, f in enumerate(MODEL_RUN_COLUMNS[1:]):
+            for k, f in enumerate(MODEL_RUN_COLUMNS):
                 _t = np.array([r['run'][f][idx] for r in res_array])
-                self.results_matrix[f][idx] = np.array(np.mean(_t))
-                self.results_matrix[f][idx] = np.array(np.std(_t))
 
                 self.results_matrix.loc[idx,
-                        EMPIRICAL_RESULTS_COLUMNS[2*k]] = np.percentile(_t, 2.5)
+                        RESULTS_COLUMNS[k+1]] = np.array(np.mean(_t))
                 self.results_matrix.loc[idx,
-                        EMPIRICAL_RESULTS_COLUMNS[2*k+1]] = np.percentile(_t,
-                                                                         97.5)
+                        RESULTS_COLUMNS[k+27]] = np.array(np.std(_t))
 
-            # Calculate department size info. This info goes to the
-            # department size plots.
-            _s = np.array([sum(list([r['run']['f1'][idx],
-                                     r['run']['f2'][idx],
-                                     r['run']['f3'][idx],
-                                     r['run']['m1'][idx],
-                                     r['run']['m2'][idx],
-                                     r['run']['m3'][idx]])) for r in res_array])
+                self.results_matrix.loc[idx,
+                        RESULTS_COLUMNS[k+53]] = np.percentile(_t,2.5)
+                self.results_matrix.loc[idx,
+                        RESULTS_COLUMNS[k+79]] = np.percentile(_t,97.5)
 
-            self.results_matrix['mean'][idx] = _s.mean()
-            self.results_matrix['std'][idx] = _s.std()
 
             # Calculate the mean and standard deviation/percentiles
             # for each grouping.
@@ -572,59 +568,13 @@ class Base_model():
 
                 self.pct_female_matrix.loc[idx, 'year'] = idx
                 self.pct_female_matrix.loc[idx,
-                    FEMALE_EMPIRICAL_COLUMNS[2*k+1]] = np.percentile(_u,2.5)
+                    FEMALE_MATRIX_COLUMNS[2*k+1]] = np.percentile(_u,2.5)
                 self.pct_female_matrix.loc[idx,
-                    FEMALE_EMPIRICAL_COLUMNS[2*k+2]] = np.percentile(_u,97.5)
+                    FEMALE_MATRIX_COLUMNS[2*k+2]] = np.percentile(_u,97.5)
 
-
-        # create matrix to hold data for the final iteration of the model. That data
-        # holds the distributions of the data. The matrix that holds
-        # this data will have columns for each male female groups. The rows will
-        # have one entry per run of the model.
-
-        # last_row_data = np.zeros(number_of_runs, dtype=[('f1', 'float'),
-        #                                                 ('f2', 'float'),
-        #                                                 ('f3', 'float'),
-        #                                                 ('m1', 'float'),
-        #                                                 ('m2', 'float'),
-        #                                                 ('m3', 'float'),
-        #                                                 ('vac_3', 'float'),
-        #                                                 ('vac_2', 'float'),
-        #                                                 ('vac_1', 'float'),
-        #                                                 ('prom1', 'float'),
-        #                                                 ('prom2', 'float'),
-        #                                                 ('gendprop', 'float'),
-        #                                                 ('unfilled', 'float'),
-        #                                                 ('dept_size', 'float'),
-        #                                                 ('f_hire_3', 'float'),
-        #                                                 ('m_hire_3', 'float'),
-        #                                                 ('f_hire_2', 'float'),
-        #                                                 ('m_hire_2', 'float'),
-        #                                                 ('f_hire_1', 'float'),
-        #                                                 ('m_hire_1', 'float'),
-        #                                                 ('f_prom_3', 'float'),
-        #                                                 ('m_prom_3', 'float'),
-        #                                                 ('f_prom_2', 'float'),
-        #                                                 ('m_prom_2', 'float'),
-        #                                                 ('f_prom_1', 'float'),
-        #                                                 ('m_prom_1', 'float')])
-        #
-        #
-        # for f in list(self.std_matrix.dtype.names)[1:]:
-        #     last_row_data[f] = np.array([r['run'][f][-1] for r in res_array])
-        #
-        # # Produce statistical summaries for the data and write to summary
-        # # statistics matrix. So take the data from the data matrix column and
-        # # calculate its summaries and then write them to the corresponding column of
-        # # the summaries matrix.
-        # self.pd_last_row_data = pd.DataFrame(last_row_data)
-
-
-        ## Save the original res_array data to the object for use by later analysis
 
         self.res_array = res_array
 
-        # return(list((self.mean_matrix,self.std_matrix, self.model_summary_stats, self.pd_last_row_data)))
 
     def run_parameter_sweep(self, number_of_runs, param, llim,
                             ulim, num_of_steps):

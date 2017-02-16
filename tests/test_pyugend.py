@@ -91,14 +91,14 @@ def test_base_model_persistence(mock_data):
 
 def test_base_model_multiple_runs(mgmt_data):
     t = Mod_Stoch_FBHP(**mgmt_data)
-    t.run_multiple(100)
+    t.run_multiple(10)
     assert (hasattr(t, 'res_array'))
 
 
 def test_base_model_multiple_runs_persistent_state(mock_data):
     t = Mod_Stoch_FBHP(**mock_data)
     t.run_multiple(10)
-    assert (isinstance(t.mean_matrix, np.ndarray))
+    assert (isinstance(t.results_matrix, pd.DataFrame))
 
 
 def test_base_model_parameter_sweep(mgmt_data):
@@ -109,7 +109,7 @@ def test_base_model_parameter_sweep(mgmt_data):
 def test_base_model_multiple_runs_gender_prop(mock_data):
      t = Mod_Stoch_FBHP(**mock_data)
      t.run_multiple(100)
-     print(t.pct_female_matrix)
+     #print(t.pct_female_matrix)
 
 
 def test_excel_export(mock_data):
