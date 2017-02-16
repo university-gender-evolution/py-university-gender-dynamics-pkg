@@ -585,112 +585,23 @@ class Base_model():
 
         parameter_sweep_increments = np.linspace(llim, ulim, num_of_steps)
 
-        parameter_sweep_results = np.zeros([len(parameter_sweep_increments),
-                                            ])
+        parameter_sweep_results = pd.DataFrame(np.zeros([len(
+            parameter_sweep_increments),
+            len(RESULTS_COLUMNS) +1]))
 
-        # Make arrays to hold the values for each key value for plotting.
-        paramater_sweep_plot_array = np.zeros(
-            [len(parameter_sweep_increments), 3])
+        parameter_sweep_results.loc[:,0] = parameter_sweep_increments
 
-        paramater_sweep_plot_array_f1 = np.zeros([len(
-            parameter_sweep_increments), 3])
-
-        paramater_sweep_plot_array_f2 = np.zeros([len(
-            parameter_sweep_increments), 3])
-
-        paramater_sweep_plot_array_f3 = np.zeros([len(
-            parameter_sweep_increments), 3])
-
-        paramater_sweep_plot_array_m1 = np.zeros([len(
-            parameter_sweep_increments), 3])
-
-        paramater_sweep_plot_array_m2 = np.zeros([len(
-            parameter_sweep_increments), 3])
-
-        paramater_sweep_plot_array_m3 = np.zeros([len(
-            parameter_sweep_increments), 3])
 
         # Run simulations with parameter increments and collect into a container.
 
         for i, val in enumerate(parameter_sweep_increments):
             setattr(self, param, val)
-            # setattr(self, 'duration', 20)
             self.run_multiple(number_of_runs)
-            # print(getattr(self, param))
-            model_final_year_results = self.pd_last_row_data
+            parameter_sweep_results.iloc[i, 1:] = self.results_matrix.tail(1).iloc[0,1:]
 
-            paramater_sweep_plot_array[i, 0] = val
-            paramater_sweep_plot_array_f1[i, 0] = val
-            paramater_sweep_plot_array_f2[i, 0] = val
-            paramater_sweep_plot_array_f3[i, 0] = val
-            paramater_sweep_plot_array_m1[i, 0] = val
-            paramater_sweep_plot_array_m2[i, 0] = val
-            paramater_sweep_plot_array_m3[i, 0] = val
+        self.parameter_sweep_results = parameter_sweep_results
 
-            paramater_sweep_plot_array[i, 1] = np.mean(model_final_year_results[
-                                                           'gendprop'])
-            paramater_sweep_plot_array[i, 2] = np.std(model_final_year_results[
-                                                          'gendprop'])
-
-            paramater_sweep_plot_array_f1[i, 1] = np.mean(
-                model_final_year_results[
-                    'f1'])
-            paramater_sweep_plot_array_f1[i, 2] = np.std(
-                model_final_year_results[
-                    'f1'])
-
-            paramater_sweep_plot_array_f2[i, 1] = np.mean(
-                model_final_year_results[
-                    'f2'])
-            paramater_sweep_plot_array_f2[i, 2] = np.std(
-                model_final_year_results[
-                    'f2'])
-
-            paramater_sweep_plot_array_f3[i, 1] = np.mean(
-                model_final_year_results[
-                    'f3'])
-            paramater_sweep_plot_array_f3[i, 2] = np.std(
-                model_final_year_results[
-                    'f3'])
-
-            paramater_sweep_plot_array_m1[i, 1] = np.mean(
-                model_final_year_results[
-                    'm1'])
-            paramater_sweep_plot_array_m1[i, 2] = np.std(
-                model_final_year_results[
-                    'm1'])
-            paramater_sweep_plot_array_m2[i, 1] = np.mean(
-                model_final_year_results[
-                    'm2'])
-            paramater_sweep_plot_array_m2[i, 2] = np.std(
-                model_final_year_results[
-                    'm2'])
-
-            paramater_sweep_plot_array_m3[i, 1] = np.mean(
-                model_final_year_results[
-                    'm3'])
-            paramater_sweep_plot_array_m3[i, 2] = np.std(
-                model_final_year_results[
-                    'm3'])
-
-            # print(getattr(self, param))
-
-        # return parameter sweep results as list
-
-        self.parameter_sweep_array = list([paramater_sweep_plot_array,
-                                           paramater_sweep_plot_array_f1,
-                                           paramater_sweep_plot_array_f2,
-                                           paramater_sweep_plot_array_f3,
-                                           paramater_sweep_plot_array_m1,
-                                           paramater_sweep_plot_array_m2,
-                                           paramater_sweep_plot_array_m3,
-                                           param])
-
-        # print(paramater_sweep_plot_array_f1)
-        # print(paramater_sweep_plot_array_f2)
-        # print(model_final_year_results['f2'])
-        if hasattr(self, 'parameter_sweep_array'):
-            return (0)
+        return (0)
 
     def run_probability_analysis_gender_proportion(self, num_runs, target):
 
