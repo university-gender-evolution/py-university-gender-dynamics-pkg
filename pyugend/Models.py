@@ -20,14 +20,106 @@ from bokeh.palettes import Viridis3
 from bokeh.plotting import figure
 from bokeh.charts import defaults
 
-
 ## Initialize Constants
 
 PROFESSOR_LEVEL_NAMES = list(['f1n', 'f2n', 'f3n', 'm1n', 'm2n', 'm3n'])
+
 PROBABILITY_ARRAY_COLUMN_NAMES = list(
     ['param', 'prof_group_mean', 'probability'])
+
+LEVELS = list(['f1',
+               'f2',
+               'f3',
+               'm1',
+               'm2',
+               'm3'])
+
+MODEL_RUN_COLUMNS = list(['f1',
+                           'f2',
+                           'f3',
+                           'm1',
+                           'm2',
+                           'm3',
+                           'vac_3',
+                           'vac_2',
+                           'vac_1',
+                           'prom1',
+                           'prom2',
+                           'gendprop',
+                           'unfilled',
+                           'dept_size',
+                           'f_hire_3',
+                           'm_hire_3',
+                           'f_hire_2',
+                           'm_hire_2',
+                           'f_hire_1',
+                           'm_hire_1',
+                           'f_prom_3',
+                           'm_prom_3',
+                           'f_prom_2',
+                           'm_prom_2',
+                           'f_prom_1',
+                           'm_prom_1'])
+
+FEMALE_MATRIX_COLUMNS = list(['year',
+                              'mpct_f1',
+                              'spct_f1',
+                              'mpct_f2',
+                              'spct_f2',
+                              'mpct_f3',
+                              'spct_f3',
+                              'mpct_m1',
+                              'spct_m1',
+                              'mpct_m2',
+                              'spct_m2',
+                              'mpct_m3',
+                              'spct_m3'])
+
+FEMALE_EMPIRICAL_COLUMNS = list(['year',
+                                '025_f1',
+                                '975_f1',
+                                '025_f2',
+                                '975_f2',
+                                '025_f3',
+                                '975_f3',
+                                '025_m1',
+                                '975_m1',
+                                '025_m2',
+                                '975_m2',
+                                '025_m3',
+                                '975_m3'])
+
+EMPIRICAL_RESULTS_COLUMNS = list([ '025_f1', '975_f1',
+                                   '025_f2','975_f2',
+                                   '025_f3', '975_f3',
+                                   '025_m1', '975_m1',
+                                   '025_m2', '975_m2',
+                                   '025_m3', '975_m3',
+                                   '025_vac_3', '975_vac_3',
+                                   '025_vac_2', '975_vac_2',
+                                   '025_vac_1', '975_vac_1',
+                                   '025_prom1', '975_prom_1',
+                                   '025_prom2', '975_prom2',
+                                   '025_gendprop', '975_genderprop',
+                                   '025_unfilled', '975_unfilled',
+                                   '025_dept_size', '975_dept_size',
+                                   '025_f_hire_3', '975_f_hire_3',
+                                   '025_m_hire_3', '975_m_hire_3',
+                                   '025_f_hire_2', '975_f_hire_2',
+                                   '025_m_hire_2', '975_m_hire_2',
+                                   '025_f_hire_1', '975_f_hire_1',
+                                   '025_m_hire_1', '975_m_hire_1',
+                                   '025_f_prom_3', '975_f_prom_3',
+                                   '025_m_prom_3', '975_m_prom_3',
+                                   '025_f_prom_2', '975_f_prom_2',
+                                   '025_m_prom_2', '975_m_prom_2',
+                                   '025_f_prom_1', '975_f_prom_1',
+                                   '025_m_prom_1', '975_m_prom_1'])
+
+
 defaults.width = 400
 defaults.height = 400
+
 
 class Base_model():
     def __init__(self, number_of_females_1,
@@ -375,33 +467,8 @@ class Base_model():
 
         self.res = np.zeros([self.duration, 26], dtype=np.float32)
         df_ = pd.DataFrame(self.res)
-        df_.columns = ['f1',
-                       'f2',
-                       'f3',
-                       'm1',
-                       'm2',
-                       'm3',
-                       'vac_3',
-                       'vac_2',
-                       'vac_1',
-                       'prom1',
-                       'prom2',
-                       'gendprop',
-                       'unfilled',
-                       'dept_size',
-                       'f_hire_3',
-                       'm_hire_3',
-                       'f_hire_2',
-                       'm_hire_2',
-                       'f_hire_1',
-                       'm_hire_1',
-                       'f_prom_3',
-                       'm_prom_3',
-                       'f_prom_2',
-                       'm_prom_2',
-                       'f_prom_1',
-                       'm_prom_1']
-        # print(df_)
+        df_.columns = MODEL_RUN_COLUMNS
+
         recarray_results = df_.to_records(index=True)
         self.res = recarray_results
         return recarray_results
@@ -420,24 +487,48 @@ class Base_model():
 
         self.mean_matrix = np.empty_like(res_array['run'][0])
         self.std_matrix = np.empty_like(res_array['run'][0])
+
+        self.empirical_percentile = pd.DataFrame(np.zeros([self.duration,
+                                        len(EMPIRICAL_RESULTS_COLUMNS)]))
+
+        self.empirical_percentile.columns = EMPIRICAL_RESULTS_COLUMNS
+
         self.dept_size_matrix = pd.DataFrame(np.zeros([self.duration, 3]))
-        self.dept_size_matrix.columns = ['year', 'mean', 'std']
+        self.dept_size_matrix.columns = ['year',
+                                         'mean',
+                                         'std']
         self.pct_female_matrix = pd.DataFrame(np.zeros([self.duration, 13]))
-        self.pct_female_matrix.columns = ['year', 'mpct_f1', 'mpct_f2',
-                                          'mpct_f3',
-                                          'spct_f1', 'spct_f2', 'spct_f3',
-                                          'mpct_m1', 'spct_m1', 'mpct_m2',
-                                          'spct_m2', 'mpct_m3', 'spct_m3']
+        self.pct_female_matrix.columns = FEMALE_MATRIX_COLUMNS
+
+        self.pct_female_matrix_empirical = pd.DataFrame(np.zeros([
+            self.duration, 13]))
+        self.pct_female_matrix_empirical.columns = FEMALE_EMPIRICAL_COLUMNS
+
         ## Collect mean and standard deviations for each column/row across all
         # iterations of the model.
 
 
         for idx in range(self.duration):
-            for f in list(self.std_matrix.dtype.names)[1:]:
+
+
+            ## This section will iterate over all of the values in the results
+            ## matrix for a year, and it will get the mean and average values
+            ## for each statistic for that year. This info contains the raw
+            ## numbers for each grouping and goes to the gender numbers plots.
+
+            for k, f in enumerate(list(self.std_matrix.dtype.names)[1:]):
                 _t = np.array([r['run'][f][idx] for r in res_array])
                 self.mean_matrix[f][idx] = np.mean(_t)
                 self.std_matrix[f][idx] = np.std(_t)
 
+                self.empirical_percentile.loc[idx,
+                        EMPIRICAL_RESULTS_COLUMNS[2*k]] = np.percentile(_t, 2.5)
+                self.empirical_percentile.loc[idx,
+                        EMPIRICAL_RESULTS_COLUMNS[2*k+1]] = np.percentile(_t,
+                                                                         97.5)
+
+            # Calculate department size info. This info goes to the
+            # department size plots.
             _s = np.array([sum(list([r['run']['f1'][idx],
                                      r['run']['f2'][idx],
                                      r['run']['f3'][idx],
@@ -448,36 +539,31 @@ class Base_model():
             self.dept_size_matrix['mean'][idx] = _s.mean()
             self.dept_size_matrix['std'][idx] = _s.std()
 
-            _u = np.array([r['run']['f1'][idx] / (r['run']['f1'][idx] + r[
-                'run']['m1'][idx]) for r in res_array])
-            self.pct_female_matrix.loc[idx, 'year'] = idx
-            self.pct_female_matrix.loc[idx, 'mpct_f1'] = _u.mean()
-            self.pct_female_matrix.loc[idx, 'spct_f1'] = _u.std()
+            # Calculate the mean and standard deviation/percentiles
+            # for each grouping.
 
-            _u = np.array([r['run']['f2'][idx] / (r['run']['f2'][idx] + r[
-                'run']['m2'][idx]) for r in res_array])
-            self.pct_female_matrix.loc[idx, 'mpct_f2'] = _u.mean()
-            self.pct_female_matrix.loc[idx, 'spct_f2'] = _u.std()
+            for k, lev in enumerate(LEVELS):
+                if k <=2:
+                    _u = np.array([r['run'][LEVELS[k]][idx] / (r['run'][LEVELS[k]][idx]
+                                  + r['run'][LEVELS[k + 3]][idx]) for r in
+                                   res_array])
+                else:
+                    _u = np.array([r['run'][LEVELS[k]][idx] / (r['run'][LEVELS[k]][idx]
+                                  + r['run'][LEVELS[k - 3]][idx]) for r in
+                                   res_array])
 
-            _u = np.array([r['run']['f3'][idx] / (r['run']['f3'][idx] + r[
-                'run']['m3'][idx]) for r in res_array])
-            self.pct_female_matrix.loc[idx, 'mpct_f3'] = _u.mean()
-            self.pct_female_matrix.loc[idx, 'spct_f3'] = _u.std()
+                self.pct_female_matrix.loc[idx, 'year'] = idx
+                self.pct_female_matrix.loc[idx, FEMALE_MATRIX_COLUMNS[2*k+1]]\
+                    = _u.mean()
+                self.pct_female_matrix.loc[idx, FEMALE_MATRIX_COLUMNS[2*k+2]]\
+                    = _u.std()
 
-            _u = np.array([r['run']['m1'][idx] / (r['run']['m1'][idx] + r[
-                'run']['f1'][idx]) for r in res_array])
-            self.pct_female_matrix.loc[idx, 'mpct_m1'] = _u.mean()
-            self.pct_female_matrix.loc[idx, 'spct_m1'] = _u.std()
+                self.pct_female_matrix_empirical.loc[idx, 'year'] = idx
+                self.pct_female_matrix_empirical.loc[idx,
+                    FEMALE_EMPIRICAL_COLUMNS[2*k+1]] = np.percentile(_u,2.5)
+                self.pct_female_matrix_empirical.loc[idx,
+                    FEMALE_EMPIRICAL_COLUMNS[2*k+2]] = np.percentile(_u,97.5)
 
-            _u = np.array([r['run']['m2'][idx] / (r['run']['m2'][idx] + r[
-                'run']['f2'][idx]) for r in res_array])
-            self.pct_female_matrix.loc[idx, 'mpct_m2'] = _u.mean()
-            self.pct_female_matrix.loc[idx, 'spct_m2'] = _u.std()
-
-            _u = np.array([r['run']['m3'][idx] / (r['run']['f3'][idx] + r[
-                'run']['m3'][idx]) for r in res_array])
-            self.pct_female_matrix.loc[idx, 'mpct_m3'] = _u.mean()
-            self.pct_female_matrix.loc[idx, 'spct_m3'] = _u.std()
 
         # create matrix to hold data for the final iteration of the model. That data
         # holds the distributions of the data. The matrix that holds
@@ -610,9 +696,9 @@ class Base_model():
 
         for i, val in enumerate(parameter_sweep_increments):
             setattr(self, param, val)
-            #setattr(self, 'duration', 20)
+            # setattr(self, 'duration', 20)
             self.run_multiple(number_of_runs)
-            #print(getattr(self, param))
+            # print(getattr(self, param))
             model_final_year_results = self.pd_last_row_data
 
             paramater_sweep_plot_array[i, 0] = val
@@ -685,9 +771,9 @@ class Base_model():
                                            paramater_sweep_plot_array_m3,
                                            param])
 
-        #print(paramater_sweep_plot_array_f1)
-        #print(paramater_sweep_plot_array_f2)
-        #print(model_final_year_results['f2'])
+        # print(paramater_sweep_plot_array_f1)
+        # print(paramater_sweep_plot_array_f2)
+        # print(model_final_year_results['f2'])
         if hasattr(self, 'parameter_sweep_array'):
             return (0)
 
@@ -822,8 +908,6 @@ class Base_model():
 
         return (empirical_probability_param_sweep_df)
 
-
-
     def plot_parameter_sweep(self, title, xlabel, ylabel):
 
         if not hasattr(self, 'parameter_sweep_array'):
@@ -912,8 +996,6 @@ class Base_model():
 
         plt.show()
 
-
-
     def export_model_run(self, model_label, number_of_runs):
 
         if not hasattr(self, 'res'):
@@ -971,44 +1053,44 @@ class Base_model():
                                            'men_promoted_1']).to_csv(filename)
 
     def deprecated_plot_overall_chart(self,
-                           plottype,
-                           number_of_runs,
-                           target,
-                           caption,
-                           xlabel,
-                           ylabel,
-                           title,
-                           line_width,
-                           xmin,
-                           ymin,
-                           xmax,
-                           ymax,
-                           transparency,
-                           marker_shape=None,
-                           linecolor='g',
-                           target_plot=False,
-                           legend_location='upper right',
-                           color_target='r',
-                           percent_line_plot=False,
-                           percent_line_value=0.5,
-                           color_percent_line='r',
-                           target_plot_line_style='--',
-                           percent_line_style='-.',
-                           target_plot_linewidth=2,
-                           percent_linewidth=2,
-                           model_legend_label='model',
-                           target_plot_legend_label='target',
-                           percent_legend_label='percent',
-                           male_female_numbers_plot=False,
-                           mf_male_color='k',
-                           mf_target_color='r',
-                           mf_male_label='Male',
-                           mf_target_label='Target',
-                           mf_male_linestyle=None,
-                           mf_target_linestyle=None,
-                           mf_male_linewidth=2,
-                           mf_target_linewidth=2
-                           ):
+                                      plottype,
+                                      number_of_runs,
+                                      target,
+                                      caption,
+                                      xlabel,
+                                      ylabel,
+                                      title,
+                                      line_width,
+                                      xmin,
+                                      ymin,
+                                      xmax,
+                                      ymax,
+                                      transparency,
+                                      marker_shape=None,
+                                      linecolor='g',
+                                      target_plot=False,
+                                      legend_location='upper right',
+                                      color_target='r',
+                                      percent_line_plot=False,
+                                      percent_line_value=0.5,
+                                      color_percent_line='r',
+                                      target_plot_line_style='--',
+                                      percent_line_style='-.',
+                                      target_plot_linewidth=2,
+                                      percent_linewidth=2,
+                                      model_legend_label='model',
+                                      target_plot_legend_label='target',
+                                      percent_legend_label='percent',
+                                      male_female_numbers_plot=False,
+                                      mf_male_color='k',
+                                      mf_target_color='r',
+                                      mf_male_label='Male',
+                                      mf_target_label='Target',
+                                      mf_male_linestyle=None,
+                                      mf_target_linestyle=None,
+                                      mf_male_linewidth=2,
+                                      mf_target_linewidth=2
+                                      ):
 
         # generate data for the plot.
         self.run_multiple(number_of_runs)
@@ -1108,72 +1190,71 @@ class Base_model():
         plt.legend(loc=legend_location, shadow=True)
         plt.show()
 
-
     def deprecated_plot_level_chart(self,
-                         plottype,
-                         number_of_runs,
-                         target,
-                         caption,
-                         xlabel_f1,
-                         ylabel_f1,
-                         xlabel_f2,
-                         ylabel_f2,
-                         xlabel_f3,
-                         ylabel_f3,
-                         xlabel_m1,
-                         ylabel_m1,
-                         xlabel_m2,
-                         ylabel_m2,
-                         xlabel_m3,
-                         ylabel_m3,
-                         group_title,
-                         title_f1,
-                         title_f2,
-                         title_f3,
-                         title_m1,
-                         title_m2,
-                         title_m3,
-                         line_width,
-                         xmin_f1,
-                         ymin_f1,
-                         xmax_f1,
-                         ymax_f1,
-                         xmin_f2,
-                         ymin_f2,
-                         xmax_f2,
-                         ymax_f2,
-                         xmin_f3,
-                         ymin_f3,
-                         xmax_f3,
-                         ymax_f3,
-                         xmin_m1,
-                         ymin_m1,
-                         xmax_m1,
-                         ymax_m1,
-                         xmin_m2,
-                         ymin_m2,
-                         xmax_m2,
-                         ymax_m2,
-                         xmin_m3,
-                         ymin_m3,
-                         xmax_m3,
-                         ymax_m3,
-                         legend_location='upper right',
-                         model_legend_label='model',
-                         transparency = 0.25,
-                         marker_shape=None,
-                         linecolor='g',
-                         target_plot=False,
-                         target_color='r',
-                         target_plot_line_style='--',
-                         target_plot_linewidth=2,
-                         target_plot_legend_label='target',
-                         percent_line_plot=False,
-                         percent_line_value=0.5,
-                         color_percent_line='r',
-                         percent_line_style='-.',
-                         percent_linewidth=2,
-                         percent_legend_label='percent'):
+                                    plottype,
+                                    number_of_runs,
+                                    target,
+                                    caption,
+                                    xlabel_f1,
+                                    ylabel_f1,
+                                    xlabel_f2,
+                                    ylabel_f2,
+                                    xlabel_f3,
+                                    ylabel_f3,
+                                    xlabel_m1,
+                                    ylabel_m1,
+                                    xlabel_m2,
+                                    ylabel_m2,
+                                    xlabel_m3,
+                                    ylabel_m3,
+                                    group_title,
+                                    title_f1,
+                                    title_f2,
+                                    title_f3,
+                                    title_m1,
+                                    title_m2,
+                                    title_m3,
+                                    line_width,
+                                    xmin_f1,
+                                    ymin_f1,
+                                    xmax_f1,
+                                    ymax_f1,
+                                    xmin_f2,
+                                    ymin_f2,
+                                    xmax_f2,
+                                    ymax_f2,
+                                    xmin_f3,
+                                    ymin_f3,
+                                    xmax_f3,
+                                    ymax_f3,
+                                    xmin_m1,
+                                    ymin_m1,
+                                    xmax_m1,
+                                    ymax_m1,
+                                    xmin_m2,
+                                    ymin_m2,
+                                    xmax_m2,
+                                    ymax_m2,
+                                    xmin_m3,
+                                    ymin_m3,
+                                    xmax_m3,
+                                    ymax_m3,
+                                    legend_location='upper right',
+                                    model_legend_label='model',
+                                    transparency=0.25,
+                                    marker_shape=None,
+                                    linecolor='g',
+                                    target_plot=False,
+                                    target_color='r',
+                                    target_plot_line_style='--',
+                                    target_plot_linewidth=2,
+                                    target_plot_legend_label='target',
+                                    percent_line_plot=False,
+                                    percent_line_value=0.5,
+                                    color_percent_line='r',
+                                    percent_line_style='-.',
+                                    percent_linewidth=2,
+                                    percent_legend_label='percent'):
 
         # generate data for the plot.
 
@@ -1187,7 +1268,7 @@ class Base_model():
 
         if plottype == 'probability proportion':
             d = self.run_probability_analysis_gender_by_level(number_of_runs,
-                                                                target)
+                                                              target)
 
             yval_f1 = d['pf1']
             yval_f2 = d['pf2']
@@ -1239,7 +1320,6 @@ class Base_model():
             fill_m1 = self.std_matrix['m1']
             fill_m2 = self.std_matrix['m2']
             fill_m3 = self.std_matrix['m3']
-
 
         f, axarr = plt.subplots(nrows=2, ncols=3)
         f.suptitle(group_title)
@@ -1378,43 +1458,43 @@ class Base_model():
         if target_plot == True:
             axarr[0, 0].axhline(y=target,
                                 color=target_color,
-                                linestyle = target_plot_line_style,
-                                linewidth = target_plot_linewidth,
-                                label = target_plot_legend_label)
+                                linestyle=target_plot_line_style,
+                                linewidth=target_plot_linewidth,
+                                label=target_plot_legend_label)
             axarr[0, 0].legend(loc=legend_location, shadow=True)
 
             axarr[0, 1].axhline(y=target,
                                 color=target_color,
-                                linestyle = target_plot_line_style,
-                                linewidth = target_plot_linewidth,
-                                label = target_plot_legend_label)
+                                linestyle=target_plot_line_style,
+                                linewidth=target_plot_linewidth,
+                                label=target_plot_legend_label)
             axarr[0, 2].axhline(y=target,
                                 color=target_color,
-                                linestyle = target_plot_line_style,
-                                linewidth = target_plot_linewidth,
-                                label = target_plot_legend_label)
+                                linestyle=target_plot_line_style,
+                                linewidth=target_plot_linewidth,
+                                label=target_plot_legend_label)
             axarr[1, 0].axhline(y=1 - target,
                                 color=target_color,
-                                linestyle = target_plot_line_style,
-                                linewidth = target_plot_linewidth,
-                                label = target_plot_legend_label)
+                                linestyle=target_plot_line_style,
+                                linewidth=target_plot_linewidth,
+                                label=target_plot_legend_label)
             axarr[1, 1].axhline(y=1 - target,
                                 color=target_color,
-                                linestyle = target_plot_line_style,
-                                linewidth = target_plot_linewidth,
-                                label = target_plot_legend_label)
+                                linestyle=target_plot_line_style,
+                                linewidth=target_plot_linewidth,
+                                label=target_plot_legend_label)
             axarr[1, 2].axhline(y=1 - target,
                                 color=target_color,
-                                linestyle = target_plot_line_style,
-                                linewidth = target_plot_linewidth,
-                                label = target_plot_legend_label)
+                                linestyle=target_plot_line_style,
+                                linewidth=target_plot_linewidth,
+                                label=target_plot_legend_label)
 
         if percent_line_plot == True:
             axarr[0, 0].axhline(y=percent_line_value,
                                 color=color_percent_line,
-                                linestyle = percent_line_style,
-                                linewidth = percent_linewidth,
-                                label = percent_legend_label)
+                                linestyle=percent_line_style,
+                                linewidth=percent_linewidth,
+                                label=percent_legend_label)
             axarr[0, 0].legend(loc=legend_location, shadow=True)
 
             axarr[0, 1].axhline(y=percent_line_value,
@@ -1443,9 +1523,7 @@ class Base_model():
                                 linewidth=percent_linewidth,
                                 label=percent_legend_label)
 
-
         plt.show()
-
 
     def plot_overall_chart(self,
                            plottype,
@@ -1497,10 +1575,10 @@ class Base_model():
         xval = self.duration
 
         p = figure(title=title,
-               x_axis_label=xlabel,
-               y_axis_label=ylabel,
-               width=xmax,
-               height=ymax)
+                   x_axis_label=xlabel,
+                   y_axis_label=ylabel,
+                   width=xmax,
+                   height=ymax)
 
         if plottype == 'probability proportion':
             self.run_probability_analysis_gender_proportion(number_of_runs,
@@ -1541,13 +1619,10 @@ class Base_model():
 
             yval3 = np.round(target * total_faculty)
 
-
-
         p.line(range(xval), yval,
                line_width=line_width,
-               line_color = linecolor)
+               line_color=linecolor)
         p.circle(range(xval), yval, size=3)
-
 
         x_data = np.arange(0, xval)
         band_x = np.append(x_data, x_data[::-1])
@@ -1560,7 +1635,6 @@ class Base_model():
                 color=linecolor,
                 fill_alpha=transparency)
 
-
         # plt.fill_between(range(xval),
         #                  yval + 1.96 * fill_matrix,
         #                  yval - 1.96 * fill_matrix,
@@ -1568,40 +1642,31 @@ class Base_model():
         #                  facecolor=linecolor)
 
         if target_plot:
-
             p.line(range(xval),
                    target,
-                   line_color = color_target,
-                   line_width = target_plot_linewidth,
-                   line_dash = [6, 6])
-
+                   line_color=color_target,
+                   line_width=target_plot_linewidth,
+                   line_dash=[6, 6])
 
         if percent_line_plot:
-
             p.line(range(xval),
                    percent_line_value,
-                   line_color = color_percent_line,
-                   line_width = percent_linewidth,
-                   line_dash = [2,2])
-
-
+                   line_color=color_percent_line,
+                   line_width=percent_linewidth,
+                   line_dash=[2, 2])
 
         if male_female_numbers_plot:
-
             p.line(range(xval),
                    yval2,
-                   line_color = mf_male_color,
-                   line_width = mf_male_linewidth)
-
+                   line_color=mf_male_color,
+                   line_width=mf_male_linewidth)
 
             p.line(range(xval),
                    yval3,
-                   line_color = mf_target_color,
-                   line_width = mf_target_linewidth)
+                   line_color=mf_target_color,
+                   line_width=mf_target_linewidth)
 
-        return(p)
-
-
+        return (p)
 
     def plot_level_chart(self,
                          plottype,
@@ -1654,7 +1719,7 @@ class Base_model():
                          ymax_m3=defaults.height,
                          legend_location='upper right',
                          model_legend_label='model',
-                         transparency = 0.25,
+                         transparency=0.25,
                          marker_shape=None,
                          linecolor='green',
                          target_plot=False,
@@ -1681,7 +1746,7 @@ class Base_model():
 
         if plottype == 'probability proportion':
             d = self.run_probability_analysis_gender_by_level(number_of_runs,
-                                                                target)
+                                                              target)
 
             yval_f1 = d['pf1']
             yval_f2 = d['pf2']
@@ -1734,10 +1799,10 @@ class Base_model():
             fill_m2 = self.std_matrix['m2']
             fill_m3 = self.std_matrix['m3']
 
-        #print(fill_f2)
-        #print(fill_m2)
+        # print(fill_f2)
+        # print(fill_m2)
 
-        #TODO set levels to configurable parameter. This is just for test.
+        # TODO set levels to configurable parameter. This is just for test.
         levels = ['f1', 'f2', 'f3', 'm1', 'm2', 'm3']
         yvals = [yval_f1, yval_f2, yval_f3, yval_m1, yval_m2, yval_m3]
         fills = [fill_f1, fill_f2, fill_f3, fill_m1, fill_m2, fill_m3]
@@ -1748,19 +1813,18 @@ class Base_model():
         band_x = np.append(x_data, x_data[::-1])
 
         for key, val in enumerate(levels):
-
             plots.append(figure(title=val,
                                 x_axis_label='year',
-                                y_axis_label = 'percentage female',
+                                y_axis_label='percentage female',
                                 width=xmax_f1,
                                 height=ymax_f1))
 
         for i, p in enumerate(plots):
             p.line(range(xval), np.minimum(1,
-                                    np.maximum(0,
-                                               yvals[i])),
-                   line_width = line_width,
-                   line_color = linecolor)
+                                           np.maximum(0,
+                                                      yvals[i])),
+                   line_width=line_width,
+                   line_color=linecolor)
 
             upper_band = np.minimum(1, yvals[i] + 1.96 * fills[i])
             lower_band = np.maximum(0, yvals[i] - 1.96 * fills[i])
@@ -1768,33 +1832,31 @@ class Base_model():
 
             p.patch(band_x,
                     band_y,
-                    color = linecolor,
+                    color=linecolor,
                     fill_alpha=transparency)
-
 
         if target_plot == True:
 
             for i, p in enumerate(plots):
                 p.line(range(xval),
                        target,
-                       line_color = target_color,
-                       line_width = target_plot_linewidth,
+                       line_color=target_color,
+                       line_width=target_plot_linewidth,
                        line_dash=[6, 6])
-
 
         if percent_line_plot == True:
 
             for i, p in enumerate(plots):
                 p.line(range(xval),
                        percent_line_value,
-                       line_color = color_percent_line,
-                       line_width = percent_linewidth,
+                       line_color=color_percent_line,
+                       line_width=percent_linewidth,
                        line_dash=[2, 2])
-
 
         grid = gridplot([[plots[0], plots[1], plots[2]],
                          [plots[3], plots[4], plots[5]]])
-        return(grid)
+        return (grid)
+
 
 ## Supplementary/Helper functions
 
