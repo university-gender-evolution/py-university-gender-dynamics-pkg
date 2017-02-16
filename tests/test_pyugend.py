@@ -91,7 +91,7 @@ def test_base_model_persistence(mock_data):
 
 def test_base_model_multiple_runs(mgmt_data):
     t = Mod_Stoch_FBHP(**mgmt_data)
-    t.run_multiple(10)
+    t.run_multiple(100)
     assert (hasattr(t, 'res_array'))
 
 
