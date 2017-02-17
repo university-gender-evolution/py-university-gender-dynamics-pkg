@@ -145,7 +145,8 @@ def test_plot_bokeh_overall(mgmt_data):
     t = Mod_Stoch_FBHP(**mgmt_data)
 
     plot_settings = {'plottype': 'gender proportion',
-                     'number_of_runs': 10,
+                     'intervals': 'standard',
+                     'number_of_runs': 100,
                      # number simulations to average over
                      'target': 0.25,
                      # target percentage of women in the department
@@ -153,15 +154,12 @@ def test_plot_bokeh_overall(mgmt_data):
 
                      # Main plot settings
                      'xlabel': 'Years',
-                     'ylabel': 'Probability of Achieving Target',
-                     'title': 'Figure 4.1.2b:  Probability of Achieving 25% Women, Model 2 (Promote-Hire)',
+                     'ylabel': 'Percentage of Dept that is Female',
+                     'title': 'Gender proportion over time - empirical bounds',
+                     'height': 800,
+                     'width' : 800,
                      'line_width': 2,
-                     'xmin': 0,
-                     'ymin': 0,
-                     # 'xmax': None,
-                     # 'ymax': None,
                      'transparency': 0.25,
-                     'marker_shape': None,
                      'linecolor': 'green',
                      'model_legend_label': 'Average Probability',
                      'legend_location': 'upper right',
@@ -170,14 +168,12 @@ def test_plot_bokeh_overall(mgmt_data):
                      'target_plot': True,
                      'color_target': 'red',
                      'color_percent_line': 'blue',
-                     'target_plot_line_style': '--',
                      'target_plot_linewidth': 2,
                      'target_plot_legend_label': 'Target',
 
                      # Percent plot settings
-                     'percent_line_plot': True,
+                     'percent_line_plot': False,
                      'percent_line_value': 0.5,
-                     'percent_line_style': '-.',
                      'percent_linewidth': 2,
                      'percent_legend_label': 'Reference Line',
 
@@ -185,7 +181,7 @@ def test_plot_bokeh_overall(mgmt_data):
                      'male_female_numbers_plot' : False
                     }
 
-    t.plot_overall_chart(**plot_settings)
+    show(t.plot_overall_chart(**plot_settings))
 
 def test_plot_bokeh_bylevel_percentage(mgmt_data):
     output_file('plot_bokeh_detail.html')
