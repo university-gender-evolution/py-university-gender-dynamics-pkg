@@ -162,7 +162,7 @@ def test_plot_bokeh_overall(mgmt_data):
                      'transparency': 0.25,
                      'linecolor': 'green',
                      'model_legend_label': 'Average Probability',
-                     'legend_location': 'upper right',
+                     'legend_location': 'top_right',
 
                      # Target value plot settings
                      'target_plot': True,

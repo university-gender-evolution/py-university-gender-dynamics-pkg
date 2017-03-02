@@ -884,7 +884,6 @@ class Base_model():
                            intervals,
                            number_of_runs,
                            target,
-                           caption,
                            xlabel,
                            ylabel,
                            title,
@@ -896,12 +895,11 @@ class Base_model():
                            transparency=0.25,
                            linecolor='green',
                            target_plot=False,
-                           legend_location='upper right',
+                           legend_location="top_right",
                            color_target='red',
                            percent_line_plot=False,
                            percent_line_value=0.5,
                            color_percent_line='red',
-                           target_plot_line_style='--',
                            target_plot_linewidth=2,
                            percent_linewidth=2,
                            model_legend_label='model',
@@ -912,8 +910,6 @@ class Base_model():
                            mf_target_color='red',
                            mf_male_label='Male',
                            mf_target_label='Target',
-                           mf_male_linestyle=None,
-                           mf_target_linestyle=None,
                            mf_male_linewidth=2,
                            mf_target_linewidth=2
                            ):
@@ -1027,7 +1023,9 @@ class Base_model():
 
         p.line(range(xval), yval,
                line_width=line_width,
-               line_color=linecolor)
+               line_color=linecolor,
+               legend=model_legend_label)
+
         p.circle(range(xval), yval, size=3)
 
         x_data = np.arange(0, xval)
@@ -1044,54 +1042,56 @@ class Base_model():
                    target,
                    line_color=color_target,
                    line_width=target_plot_linewidth,
-                   line_dash=[6, 6])
+                   line_dash=[6, 6],
+                   legend=target_plot_legend_label)
 
         if percent_line_plot:
             p.line(range(xval),
                    percent_line_value,
                    line_color=color_percent_line,
                    line_width=percent_linewidth,
-                   line_dash=[2, 2])
+                   line_dash=[2, 2],
+                   legend=percent_legend_label)
 
         if male_female_numbers_plot:
             p.line(range(xval),
                    yval2,
                    line_color=mf_male_color,
-                   line_width=mf_male_linewidth)
+                   line_width=mf_male_linewidth,
+                   legend=mf_male_label)
 
             p.line(range(xval),
                    yval3,
                    line_color=mf_target_color,
-                   line_width=mf_target_linewidth)
+                   line_width=mf_target_linewidth,
+                   legend=mf_target_label)
 
+        p.legend.location = legend_location
+        p.title.align = 'center'
         return (p)
 
     def plot_level_chart(self,
                          plottype,
+                         intervals,
                          number_of_runs,
                          target,
-                         caption,
                          xlables,
                          ylabels,
-                         group_title,
                          titles,
                          line_width,
                          height=defaults.width // 2,
                          width=defaults.height // 2,
-                         legend_location='upper right',
+                         legend_location='top_right',
                          model_legend_label='model',
                          transparency=0.25,
-                         marker_shape=None,
                          linecolor='green',
                          target_plot=False,
                          target_color='red',
-                         target_plot_line_style='--',
                          target_plot_linewidth=2,
                          target_plot_legend_label='target',
                          percent_line_plot=False,
                          percent_line_value=0.5,
                          color_percent_line='red',
-                         percent_line_style='-.',
                          percent_linewidth=2,
                          percent_legend_label='percent'):
 

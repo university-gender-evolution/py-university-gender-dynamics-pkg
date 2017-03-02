@@ -199,26 +199,20 @@ class Comparison():
                            plottype,
                            number_of_runs,
                            target,
-                           caption,
                            xlabel,
                            ylabel,
                            title,
                            line_width=2,
-                           xmin=0,
-                           ymin=0,
                            xmax=defaults.width,
                            ymax=defaults.height,
                            transparency =0.25,
-                           marker_shape=None,
                            linecolor='green',
                            target_plot=False,
-                           legend_location='upper right',
+                           legend_location='top_right',
                            color_target='red',
                            percent_line_plot=False,
                            percent_line_value=0.5,
                            color_percent_line='red',
-                           target_plot_line_style='--',
-                           percent_line_style='-.',
                            target_plot_linewidth=2,
                            percent_linewidth=2,
                            model_legend_label='model',
@@ -229,8 +223,6 @@ class Comparison():
                            mf_target_color='red',
                            mf_male_label='Male',
                            mf_target_label='Target',
-                           mf_male_linestyle=None,
-                           mf_target_linestyle=None,
                            mf_male_linewidth=2,
                            mf_target_linewidth=2
                            ):
@@ -307,7 +299,8 @@ class Comparison():
 
             p.line(range(xval), yval[k],
                    line_width=line_width,
-                   line_color=linecolor[k])
+                   line_color=linecolor[k],
+                   legend=model_legend_label[k])
 
             p.circle(range(xval), yval[k], size=3)
 
@@ -322,43 +315,29 @@ class Comparison():
                     color=linecolor[k],
                     fill_alpha=transparency[k])
 
-
-            # plt.plot(range(xval),
-            #          yval[k],
-            #          linewidth=line_width,
-            #          marker=marker_shape[k],
-            #          color=linecolor[k],
-            #          label=model_legend_label[k])
-            #
-            # plt.fill_between(range(xval),
-            #                  yval[k] + 1.96 * fill_matrix[k],
-            #                  yval[k] - 1.96 * fill_matrix[k],
-            #                  alpha=transparency[k],
-            #                  facecolor=linecolor[k])
-
             if male_female_numbers_plot:
                 p.line(range(xval),
                          yval2[k],
                          line_color=mf_male_color[k],
-            #             label=mf_male_label[k],
+                         legend=mf_male_label[k],
                          line_width=mf_male_linewidth)
 
                 p.line(range(xval),
                          yval3[k],
                          line_color=mf_target_color[k],
-             #            label=mf_target_label[k],
+                         legend=mf_target_label[k],
                          line_width=mf_target_linewidth)
 
         if target_plot:
             p.line(range(xval),target,
                         line_color=color_target,
-            #            label=target_plot_legend_label,
+                        legend=target_plot_legend_label,
                         line_width=target_plot_linewidth)
 
         if percent_line_plot:
             p.line(range(xval), percent_line_value,
                         line_color=color_percent_line,
-            #            label=percent_legend_label,
+                        legend=percent_legend_label,
                         line_width=percent_linewidth)
 
         return(p)
