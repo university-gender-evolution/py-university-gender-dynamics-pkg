@@ -147,10 +147,7 @@ def test_plot_bokeh_overall(mgmt_data):
     plot_settings = {'plottype': 'gender proportion',
                      'intervals': 'standard',
                      'number_of_runs': 100,
-                     # number simulations to average over
                      'target': 0.25,
-                     # target percentage of women in the department
-                     'caption': 'The red line shows a goal of .25 women',
 
                      # Main plot settings
                      'xlabel': 'Years',
@@ -253,7 +250,52 @@ def test_plot_bokeh_bylevel_percentage(mgmt_data):
 
     t.plot_level_chart(**d)
 
+def test_bokeh_comparison_plot_overall_one_model(mgmt_data):
+    modlist = list([Mod_Stoch_FBHP(**mgmt_data)])
+    # modlist = list([Mod_Stoch_FBHP(**mgmt_data),
+    #                 Mod_Stoch_FBPH(**mgmt_data)])
+    c = Comparison(modlist)
 
+    plot_settings = {'plottype': 'male female numbers',
+                     'intervals': 'empirical',
+            'number_of_runs': 10,  # number simulations to average over
+            'target': 0.25,  # target percentage of women in the department
+            # Main plot settings
+            'xlabel':'Years',
+            'ylabel': 'Proportion Women' ,
+            'title': 'Figure 4.1.3a: Change in Proportion Women, Model 1',
+            'line_width': 2,
+            'transparency': [0.25],
+            'linecolor': ['green'],
+            'model_legend_label': ['Model 1, Hire-Promote'],
+            'legend_location': 'top_right',
+            'height_': 800,
+            'width_': 800,
+
+            # Optional Settings
+            # Target value plot settings
+            'target_plot': False,
+            'color_target': 'red',
+            'color_percent_line': 'red',
+            'target_plot_linewidth': 2,
+            'target_plot_legend_label': 'Target Proportion',
+
+            # Percent plot settings
+            'percent_line_plot': False,
+            'percent_line_value': 0.5,
+            'percent_linewidth': 2,
+            'percent_legend_label': 'Reference Line',
+
+            # Male Female numbers plot settings
+            'male_female_numbers_plot': True,
+            'mf_male_color': ['black'],
+            'mf_target_color': ['red'],
+            'mf_male_label': ['Male 1'],
+            'mf_target_label': ['Target 1'],
+            'mf_male_linewidth':2,
+            'mf_target_linewidth': 2
+            }
+    show(c.plot_comparison_overall_chart(**plot_settings))
 
 def test_bokeh_comparison_plot_overall(mgmt_data):
     modlist = list([Mod_Stoch_FBHP(**mgmt_data),

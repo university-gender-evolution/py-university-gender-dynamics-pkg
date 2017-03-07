@@ -209,8 +209,6 @@ class Base_model():
         self.variation_range = variation_range
         self.run = 0
         self.runarray = 0
-        self.mean_matrix = 0
-        self.std_matrix = 0
         self.pd_last_row_data = 0
         self.pct_female_matrix = 0
         self.probability_matrix = 0
@@ -949,25 +947,26 @@ class Base_model():
             yval = self.results_matrix['mean_dept_size']
 
         if plottype == 'male female numbers':
-            yval = sum(list([self.mean_matrix['f1'],
-                             self.mean_matrix['f2'],
-                             self.mean_matrix['f3']]))
+            yval = sum(list([self.results_matrix['mean_f1'],
+                             self.results_matrix['mean_f2'],
+                             self.results_matrix['mean_f3']]))
 
 
 
-            yval2 = sum(list([self.mean_matrix['m1'],
-                              self.mean_matrix['m2'],
-                              self.mean_matrix['m3']]))
+            yval2 = sum(list([self.results_matrix['mean_m1'],
+                              self.results_matrix['mean_m2'],
+                              self.results_matrix['mean_m3']]))
 
-            total_faculty = sum(list([self.mean_matrix['f1'],
-                                      self.mean_matrix['f2'],
-                                      self.mean_matrix['f3'],
-                                      self.mean_matrix['m1'],
-                                      self.mean_matrix['m2'],
-                                      self.mean_matrix['m3']]))
+            total_faculty = sum(list([self.results_matrix['mean_f1'],
+                                      self.results_matrix['mean_f2'],
+                                      self.results_matrix['mean_f3'],
+                                      self.results_matrix['mean_m1'],
+                                      self.results_matrix['mean_m2'],
+                                      self.results_matrix['mean_m3']]))
 
             yval3 = np.round(target * total_faculty)
 
+        # Set confidence bounds using empirical results
 
         if intervals == 'empirical':
             if plottype == 'probability proportion':
@@ -992,6 +991,8 @@ class Base_model():
             if plottype == 'male female numbers':
                 pass
 
+
+        # Set confidence bounds using 2 standard deviations
 
         if intervals == 'standard':
 
@@ -1146,19 +1147,19 @@ class Base_model():
             if self.model_summary_stats == 0:
                 self.run_multiple(number_of_runs)
 
-            yval_f1 = self.mean_matrix['f1']
-            yval_f2 = self.mean_matrix['f2']
-            yval_f3 = self.mean_matrix['f3']
-            yval_m1 = self.mean_matrix['m1']
-            yval_m2 = self.mean_matrix['m2']
-            yval_m3 = self.mean_matrix['m3']
+            yval_f1 = self.results_matrix['mean_f1']
+            yval_f2 = self.results_matrix['mean_f2']
+            yval_f3 = self.results_matrix['mean_f3']
+            yval_m1 = self.results_matrix['mean_m1']
+            yval_m2 = self.results_matrix['mean_m2']
+            yval_m3 = self.results_matrix['mean_m3']
 
-            fill_f1 = self.std_matrix['f1']
-            fill_f2 = self.std_matrix['f2']
-            fill_f3 = self.std_matrix['f3']
-            fill_m1 = self.std_matrix['m1']
-            fill_m2 = self.std_matrix['m2']
-            fill_m3 = self.std_matrix['m3']
+            fill_f1 = self.results_matrix['std_f1']
+            fill_f2 = self.results_matrix['std_f2']
+            fill_f3 = self.results_matrix['std_f3']
+            fill_m1 = self.results_matrix['std_m1']
+            fill_m2 = self.results_matrix['std_m2']
+            fill_m3 = self.results_matrix['std_m3']
 
         # print(fill_f2)
         # print(fill_m2)

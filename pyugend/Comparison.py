@@ -5,6 +5,8 @@ import matplotlib.pyplot as plt
 from bokeh.plotting import figure, output_file, show
 from bokeh.charts import defaults
 from bokeh.layouts import gridplot
+from operator import add, sub
+
 
 # CONSTANTS
 
@@ -197,16 +199,17 @@ class Comparison():
 
     def plot_comparison_overall_chart(self,
                            plottype,
+                           intervals,
                            number_of_runs,
                            target,
                            xlabel,
                            ylabel,
                            title,
                            line_width=2,
-                           xmax=defaults.width,
-                           ymax=defaults.height,
+                           width_=defaults.width,
+                           height_=defaults.height,
                            transparency =0.25,
-                           linecolor='green',
+                           linecolor=['green'],
                            target_plot=False,
                            legend_location='top_right',
                            color_target='red',
@@ -215,13 +218,13 @@ class Comparison():
                            color_percent_line='red',
                            target_plot_linewidth=2,
                            percent_linewidth=2,
-                           model_legend_label='model',
+                           model_legend_label=['model'],
                            target_plot_legend_label='target',
                            percent_legend_label='percent',
                            male_female_numbers_plot=False,
-                           mf_male_color='black',
-                           mf_target_color='red',
-                           mf_male_label='Male',
+                           mf_male_color=['black'],
+                           mf_target_color=['red'],
+                           mf_male_label=['Male'],
                            mf_target_label='Target',
                            mf_male_linewidth=2,
                            mf_target_linewidth=2
@@ -240,8 +243,8 @@ class Comparison():
         p = figure(title=title,
                x_axis_label=xlabel,
                y_axis_label=ylabel,
-               width=xmax,
-               height=ymax)
+               width=width_,
+               height=height_)
 
         if plottype == 'probability proportion':
 
@@ -250,48 +253,117 @@ class Comparison():
                                                             target)
 
             yval = [m.probability_matrix['Probability'] for m in self.mlist]
-            fill_matrix = np.zeros(len(self.mlist)).tolist()
 
         if plottype == 'gender proportion':
 
-            yval = [m.mean_matrix['gendprop'] for m in self.mlist]
-
-            fill_matrix = [m.std_matrix['gendprop'] for m in self.mlist]
+            yval = [m.results_matrix['mean_gendprop'] for m in self.mlist]
 
         if plottype == 'gender numbers':
             pass
 
         if plottype == 'unfilled vacancies':
-            yval = [m.mean_matrix['unfilled'] for m in self.mlist]
+            yval = [m.results_matrix['mean_unfilled'] for m in self.mlist]
 
-            fill_matrix = [m.std_matrix['unfilled'] for m in self.mlist]
 
         if plottype == 'department size':
-            yval = [m.dept_size_matrix['mean'] for m in self.mlist]
-
-            fill_matrix = [m.dept_size_matrix['std'] for m in self.mlist]
+            yval = [m.results_matrix['mean_dept_size'] for m in self.mlist]
 
         if plottype == 'male female numbers':
 
-            yval = [sum(list([m.mean_matrix['f1'],
-                             m.mean_matrix['f2'],
-                             m.mean_matrix['f3']])) for m in self.mlist]
-
-            fill_matrix = np.zeros(len(self.mlist)).tolist()
-
-            yval2 = [sum(list([m.mean_matrix['m1'],
-                             m.mean_matrix['m2'],
-                             m.mean_matrix['m3']])) for m in self.mlist]
+            yval = [sum(list([m.results_matrix['mean_f1'],
+                             m.results_matrix['mean_f2'],
+                             m.results_matrix['mean_f3']])) for m in self.mlist]
 
 
-            total_faculty = [sum(list([m.mean_matrix['m1'],
-                             m.mean_matrix['m2'],
-                             m.mean_matrix['m3'],
-                             m.mean_matrix['f1'],
-                             m.mean_matrix['f2'],
-                             m.mean_matrix['f3']])) for m in self.mlist]
+
+            yval2 = [sum(list([m.results_matrix['mean_m1'],
+                             m.results_matrix['mean_m2'],
+                             m.results_matrix['mean_m3']])) for m in self.mlist]
+
+
+            total_faculty = [sum(list([m.results_matrix['mean_m1'],
+                             m.results_matrix['mean_m2'],
+                             m.results_matrix['mean_m3'],
+                             m.results_matrix['mean_f1'],
+                             m.results_matrix['mean_f2'],
+                             m.results_matrix['mean_f3']])) for m in self.mlist]
 
             yval3 = [np.round(target * dept) for dept in total_faculty]
+
+        # Set confidence bounds using empirical results
+
+        if intervals == 'empirical':
+            if plottype == 'probability proportion':
+
+                upper_band = yval
+                lower_band = yval
+
+
+            if plottype == 'gender proportion':
+
+                upper_band = [m.results_matrix['gendprop_975'] for m in
+                              self.mlist]
+                lower_band = [m.results_matrix['gendprop_025'] for m in
+                              self.mlist]
+
+            if plottype == 'unfilled vacancies':
+                upper_band = [m.results_matrix['unfilled_975'] for m in
+                              self.mlist]
+                lower_band = [m.results_matrix['unfilled_025'] for m in
+                              self.mlist]
+
+            if plottype == 'department size':
+
+                upper_band = [m.results_matrix['dept_size_975'] for m in
+                              self.mlist]
+                lower_band = [m.results_matrix['dept_size_025'] for m in
+                              self.mlist]
+
+            if plottype == 'male female numbers':
+                upper_band = yval
+                lower_band = yval
+
+
+        # Set confidence bounds using 2 standard deviations
+
+        if intervals == 'standard':
+
+            if plottype == 'probability proportion':
+
+                upper_band = yval
+                lower_band = yval
+
+            if plottype == 'gender proportion':
+
+                fill_matrix = [m.results_matrix['std_gendprop'] for m in
+                               self.mlist]
+
+                upper_band = list(map(add, [y for y in yval],[1.96*f for f in
+                                                         fill_matrix]))
+
+                lower_band = list(map(sub, [y for y in yval],[1.96*f for f in
+                                                         fill_matrix]))
+
+            if plottype == 'unfilled vacancies':
+                fill_matrix = [m.results_matrix['std_unfilled'] for m in
+                               self.mlist]
+                upper_band = list(map(add, [y for y in yval],[1.96*f for f in
+                                                         fill_matrix]))
+                lower_band = list(map(sub, [y for y in yval],[1.96*f for f in
+                                                         fill_matrix]))
+
+            if plottype == 'department size':
+                fill_matrix = [m.results_matrix['std_dept_size'] for m in
+                               self.mlist]
+                upper_band = list(map(add, [y for y in yval],[1.96*f for f in
+                                                         fill_matrix]))
+                lower_band = list(map(sub, [y for y in yval],[1.96*f for f in
+                                                         fill_matrix]))
+
+            if plottype == 'male female numbers':
+
+                upper_band = yval
+                lower_band = yval
 
         # Execute plots
 
@@ -306,9 +378,7 @@ class Comparison():
 
             x_data = np.arange(0, xval)
             band_x = np.append(x_data, x_data[::-1])
-            upper_band = yval[k] + 1.96 * fill_matrix[k]
-            lower_band = yval[k] - 1.96 * fill_matrix[k]
-            band_y = np.append(lower_band, upper_band[::-1])
+            band_y = np.append(lower_band[k], upper_band[k][::-1])
 
             p.patch(band_x,
                     band_y,
