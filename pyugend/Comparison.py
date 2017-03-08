@@ -415,67 +415,26 @@ class Comparison():
 
     def plot_comparison_level_chart(self,
                          plottype,
+                         intervals,
                          number_of_runs,
                          target,
-                         caption,
-                         xlabel_f1,
-                         ylabel_f1,
-                         xlabel_f2,
-                         ylabel_f2,
-                         xlabel_f3,
-                         ylabel_f3,
-                         xlabel_m1,
-                         ylabel_m1,
-                         xlabel_m2,
-                         ylabel_m2,
-                         xlabel_m3,
-                         ylabel_m3,
-                         group_title,
-                         title_f1,
-                         title_f2,
-                         title_f3,
-                         title_m1,
-                         title_m2,
-                         title_m3,
+                         xlabels,
+                         ylabels,
+                         titles,
                          line_width=2,
-                         xmin_f1=0,
-                         ymin_f1=0,
-                         xmax_f1=defaults.width // 2,
-                         ymax_f1=defaults.height // 2,
-                         xmin_f2=0,
-                         ymin_f2=0,
-                         xmax_f2=defaults.width,
-                         ymax_f2=defaults.height,
-                         xmin_f3=0,
-                         ymin_f3=0,
-                         xmax_f3=defaults.width,
-                         ymax_f3=defaults.height,
-                         xmin_m1=0,
-                         ymin_m1=0,
-                         xmax_m1=defaults.width,
-                         ymax_m1=defaults.height,
-                         xmin_m2=0,
-                         ymin_m2=0,
-                         xmax_m2=defaults.width,
-                         ymax_m2=defaults.height,
-                         xmin_m3=0,
-                         ymin_m3=0,
-                         xmax_m3=defaults.width,
-                         ymax_m3=defaults.height,
-                         legend_location='upper right',
+                         height_= defaults.height // 2,
+                         width_ = defaults.width // 2,
+                         legend_location='top right',
                          model_legend_label='model',
                          transparency = 0.25,
-                         marker_shape=None,
                          linecolor='green',
                          target_plot=False,
                          target_color='red',
-                         target_plot_line_style='--',
                          target_plot_linewidth=2,
                          target_plot_legend_label='target',
                          percent_line_plot=False,
                          percent_line_value=0.5,
                          color_percent_line='red',
-                         percent_line_style='-.',
                          percent_linewidth=2,
                          percent_legend_label='percent'):
 
@@ -505,12 +464,6 @@ class Comparison():
             yval_m2 = [m.probability_by_level['pm2'] for m in self.mlist]
             yval_m3 = [m.probability_by_level['pm3'] for m in self.mlist]
 
-            fill_f1 = np.zeros(len(self.mlist)).tolist()
-            fill_f2 = np.zeros(len(self.mlist)).tolist()
-            fill_f3 = np.zeros(len(self.mlist)).tolist()
-            fill_m1 = np.zeros(len(self.mlist)).tolist()
-            fill_m2 = np.zeros(len(self.mlist)).tolist()
-            fill_m3 = np.zeros(len(self.mlist)).tolist()
 
         if plottype == 'gender proportion':
 
@@ -523,16 +476,12 @@ class Comparison():
             yval_m2 = [m['mpct_m2'] for m in female_pct_matrices]
             yval_m3 = [m['mpct_m3'] for m in female_pct_matrices]
 
-            fill_f1 = [m['spct_f1'] for m in female_pct_matrices]
-            fill_f2 = [m['spct_f2'] for m in female_pct_matrices]
-            fill_f3 = [m['spct_f3'] for m in female_pct_matrices]
-            fill_m1 = [m['spct_m1'] for m in female_pct_matrices]
-            fill_m2 = [m['spct_m2'] for m in female_pct_matrices]
-            fill_m3 = [m['spct_m3'] for m in female_pct_matrices]
+
 
         if plottype == 'gender number':
 
-            mean_matrices = [m.mean_matrix for m in self.mlist]
+            mean_matrices = [m.results_matrix[:,'mean_f1':'mean_m3'] for m in
+                             self.mlist]
             yval_f1 = [m['f1'] for m in mean_matrices]
             yval_f2 = [m['f2'] for m in mean_matrices]
             yval_f3 = [m['f3'] for m in mean_matrices]
@@ -540,38 +489,174 @@ class Comparison():
             yval_m2 = [m['m2'] for m in mean_matrices]
             yval_m3 = [m['m3'] for m in mean_matrices]
 
-            std_matrices = [m.std_matrix for m in self.mlist]
-            fill_f1 = [m['f1'] for m in std_matrices]
-            fill_f2 = [m['f2'] for m in std_matrices]
-            fill_f3 = [m['f3'] for m in std_matrices]
-            fill_m1 = [m['m1'] for m in std_matrices]
-            fill_m2 = [m['m2'] for m in std_matrices]
-            fill_m3 = [m['m3'] for m in std_matrices]
+
+
+
+        # setup empirical bounds
+
+        if intervals == 'empirical':
+
+            if plottype == 'probability proportion':
+
+                upper_f1 = yval_f1
+                upper_f2 = yval_f2
+                upper_f3 = yval_f3
+                upper_m1 = yval_m1
+                upper_m2 = yval_m2
+                upper_m3 = yval_m3
+
+                lower_f1 = yval_f1
+                lower_f2 = yval_f2
+                lower_f3 = yval_f3
+                lower_m1 = yval_m1
+                lower_m2 = yval_m2
+                lower_m3 = yval_m3
+
+            if plottype == 'gender proportion':
+
+                upper_f1 = [m['f1_975'] for m in female_pct_matrices]
+                upper_f2 = [m['f2_975'] for m in female_pct_matrices]
+                upper_f3 = [m['f3_975'] for m in female_pct_matrices]
+                upper_m1 = [m['m1_975'] for m in female_pct_matrices]
+                upper_m2 = [m['m2_975'] for m in female_pct_matrices]
+                upper_m3 = [m['m3_975'] for m in female_pct_matrices]
+
+                lower_f1 = [m['f1_025'] for m in female_pct_matrices]
+                lower_f2 = [m['f2_025'] for m in female_pct_matrices]
+                lower_f3 = [m['f3_025'] for m in female_pct_matrices]
+                lower_m1 = [m['m1_025'] for m in female_pct_matrices]
+                lower_m2 = [m['m2_025'] for m in female_pct_matrices]
+                lower_m3 = [m['m3_025'] for m in female_pct_matrices]
+
+
+            if plottype == 'gender number':
+                u_matrices = [m.results_matrix[:, 'f1_975':'m3_975'] for m in
+                            self.mlist]
+
+                upper_f1 = [m['f1_975'] for m in u_matrices]
+                upper_f2 = [m['f2_975'] for m in u_matrices]
+                upper_f3 = [m['f3_975'] for m in u_matrices]
+                upper_m1 = [m['m1_975'] for m in u_matrices]
+                upper_m2 = [m['m2_975'] for m in u_matrices]
+                upper_m3 = [m['m3_975'] for m in u_matrices]
+
+                l_matrices = [m.results_matrix[:, 'f1_025':'m3_025'] for m in
+                            self.mlist]
+
+                lower_f1 = [m['f1_025'] for m in l_matrices]
+                lower_f2 = [m['f2_025'] for m in l_matrices]
+                lower_f3 = [m['f3_025'] for m in l_matrices]
+                lower_m1 = [m['m1_025'] for m in l_matrices]
+                lower_m2 = [m['m2_025'] for m in l_matrices]
+                lower_m3 = [m['m3_025'] for m in l_matrices]
+
+        # setup standard bounds
+
+
+        if intervals == 'standard':
+
+            if plottype == 'probability proportion':
+
+                upper_f1 = yval_f1
+                upper_f2 = yval_f2
+                upper_f3 = yval_f3
+                upper_m1 = yval_m1
+                upper_m2 = yval_m2
+                upper_m3 = yval_m3
+                lower_f1 = yval_f1
+                lower_f2 = yval_f2
+                lower_f3 = yval_f3
+                lower_m1 = yval_m1
+                lower_m2 = yval_m2
+                lower_m3 = yval_m3
+
+            if plottype == 'gender proportion':
+
+                upper_f1 = list(map(add, [y for y in yval_f1], [1.96 * m[
+                    'spct_f1'] for m in female_pct_matrices]))
+
+                upper_f2 = list(map(add, [y for y in yval_f2], [1.96 * m[
+                    'spct_f2'] for m in female_pct_matrices]))
+
+                upper_f3 = list(map(add, [y for y in yval_f3], [1.96 * m[
+                    'spct_f3'] for m in female_pct_matrices]))
+
+                upper_m1 = list(map(add, [y for y in yval_m1], [1.96 * m[
+                    'spct_m1']for m in female_pct_matrices]))
+
+                upper_m2 = list(map(add, [y for y in yval_m2], [1.96 * m[
+                    'spct_m2']for m in female_pct_matrices]))
+
+                upper_m3 = list(map(add, [y for y in yval_m3], [1.96 * m[
+                    'spct_m3']for m in female_pct_matrices]))
+
+                lower_f1 = list(map(sub, [y for y in yval_f1], [1.96 * m[
+                    'spct_f1'] for m in female_pct_matrices]))
+
+                lower_f2 = list(map(sub, [y for y in yval_f2], [1.96 * m[
+                    'spct_f2'] for m in female_pct_matrices]))
+
+                lower_f3 = list(map(sub, [y for y in yval_f3], [1.96 * m[
+                    'spct_f3'] for m in female_pct_matrices]))
+
+                lower_m1 = list(map(sub, [y for y in yval_m1], [1.96 * m[
+                    'spct_m1'] for m in female_pct_matrices]))
+
+                lower_m2 = list(map(sub, [y for y in yval_m2], [1.96 * m[
+                    'spct_m2'] for m in female_pct_matrices]))
+
+                lower_m3 = list(map(sub, [y for y in yval_m3], [1.96 * m[
+                    'spct_m3'] for m in female_pct_matrices]))
+
+            if plottype == 'gender number':
+
+                std_matrices = [m.results_matrix[:, 'std_f1':'std_m3'] for m in
+                                self.mlist]
+
+                upper_f1 = list(map(add, [y for y in yval_f1], [1.96 * m[
+                    'spct_f1'] for m in std_matrices]))
+
+                upper_f2 = list(map(add, [y for y in yval_f2], [1.96 * m[
+                    'spct_f2'] for m in std_matrices]))
+
+                upper_f3 = list(map(add, [y for y in yval_f3], [1.96 * m[
+                    'spct_f3'] for m in std_matrices]))
+
+                upper_m1 = list(map(add, [y for y in yval_m1], [1.96 * m[
+                    'spct_m1'] for m in std_matrices]))
+
+                upper_m2 = list(map(add, [y for y in yval_m2], [1.96 * m[
+                    'spct_m2'] for m in std_matrices]))
+
+                upper_m3 = list(map(add, [y for y in yval_m3], [1.96 * m[
+                    'spct_m3'] for m in std_matrices]))
+
+                lower_f1 = list(map(sub, [y for y in yval_f1], [1.96 * m[
+                    'spct_f1'] for m in std_matrices]))
+
+                lower_f2 = list(map(sub, [y for y in yval_f2], [1.96 * m[
+                    'spct_f2'] for m in std_matrices]))
+
+                lower_f3 = list(map(sub, [y for y in yval_f3], [1.96 * m[
+                    'spct_f3'] for m in std_matrices]))
+
+                lower_m1 = list(map(sub, [y for y in yval_m1], [1.96 * m[
+                    'spct_m1'] for m in std_matrices]))
+
+                lower_m2 = list(map(sub, [y for y in yval_m2], [1.96 * m[
+                    'spct_m2'] for m in std_matrices]))
+
+                lower_m3 = list(map(sub, [y for y in yval_m3], [1.96 * m[
+                    'spct_m3'] for m in std_matrices]))
+
 
 
         levels = ['f1', 'f2', 'f3', 'm1', 'm2', 'm3']
         yvals = [yval_f1, yval_f2, yval_f3, yval_m1, yval_m2, yval_m3]
-        fills = [fill_f1, fill_f2, fill_f3, fill_m1, fill_m2, fill_m3]
-        xlabels = [xlabel_f1,
-                   xlabel_f2,
-                   xlabel_f3,
-                   xlabel_m1,
-                   xlabel_m2,
-                   xlabel_m3]
-
-        ylabels = [ylabel_f1,
-                   ylabel_f2,
-                   ylabel_f3,
-                   ylabel_m1,
-                   ylabel_m2,
-                   ylabel_m3]
-
-        titles = [title_f1,
-                  title_f2,
-                  title_f3,
-                  title_m1,
-                  title_m2,
-                  title_m3]
+        upper_fill = [upper_f1, upper_f2, upper_f3, upper_m1, upper_m2,
+                      upper_m3]
+        lower_fill = [lower_f1, lower_f2, lower_f3, lower_m1, lower_m2,
+                      lower_m3]
 
         plots = []
 
@@ -583,22 +668,26 @@ class Comparison():
             plots.append(figure(title=titles[key],
                                 x_axis_label=xlabels[key],
                                 y_axis_label = ylabels[key],
-                                width=xmax_f1,
-                                height=ymax_f1))
+                                width=width_,
+                                height=height_))
 
 
         for k,v in enumerate(self.mlist):
 
             for i, p in enumerate(plots):
-                p.line(range(xval), np.minimum(1,
-                                               np.maximum(0,
-                                                          yvals[i][k])),
+                p.line(range(xval), yvals[i][k],
                        line_width=line_width,
                        line_color=linecolor[k])
 
-                upper_band = np.minimum(1, yvals[i][k] + 1.96 * fills[i][k])
-                lower_band = np.maximum(0, yvals[i][k] - 1.96 * fills[i][k])
-                band_y = np.append(lower_band, upper_band[::-1])
+                # previous validation code
+                # p.line(range(xval), np.minimum(1,
+                #                                np.maximum(0,
+                #                                           yvals[i][k]))
+
+
+                # upper_band = np.minimum(1, yvals[i][k] + 1.96 * fills[i][k])
+                # lower_band = np.maximum(0, yvals[i][k] - 1.96 * fills[i][k])
+                band_y = np.append(lower_fill[i], upper_fill[i][0][::-1])
 
                 p.patch(band_x,
                         band_y,

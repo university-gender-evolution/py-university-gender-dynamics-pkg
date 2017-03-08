@@ -548,27 +548,26 @@ class Base_model():
             # Calculate the mean and standard deviation/percentiles
             # for each grouping.
 
-            for k, lev in enumerate(LEVELS):
-                if k <=2:
-                    _u = np.array([r['run'][LEVELS[k]][idx] / (r['run'][LEVELS[k]][idx]
-                                  + r['run'][LEVELS[k + 3]][idx]) for r in
+            for l, lev in enumerate(LEVELS):
+                if l <=2:
+                    _u = np.array([r['run'][LEVELS[l]][idx] / (r['run'][LEVELS[l]][idx]
+                                  + r['run'][LEVELS[l + 3]][idx]) for r in
                                    res_array])
                 else:
-                    _u = np.array([r['run'][LEVELS[k]][idx] / (r['run'][LEVELS[k]][idx]
-                                  + r['run'][LEVELS[k - 3]][idx]) for r in
+                    _u = np.array([r['run'][LEVELS[l]][idx] / (r['run'][LEVELS[l]][idx]
+                                  + r['run'][LEVELS[l - 3]][idx]) for r in
                                    res_array])
 
                 self.pct_female_matrix.loc[idx, 'year'] = idx
-                self.pct_female_matrix.loc[idx, FEMALE_MATRIX_COLUMNS[2*k+1]]\
+                self.pct_female_matrix.loc[idx, FEMALE_MATRIX_COLUMNS[2*l+1]]\
                     = _u.mean()
-                self.pct_female_matrix.loc[idx, FEMALE_MATRIX_COLUMNS[2*k+2]]\
+                self.pct_female_matrix.loc[idx, FEMALE_MATRIX_COLUMNS[2*l+2]]\
                     = _u.std()
 
-                self.pct_female_matrix.loc[idx, 'year'] = idx
                 self.pct_female_matrix.loc[idx,
-                    FEMALE_MATRIX_COLUMNS[2*k+1]] = np.percentile(_u,2.5)
+                    FEMALE_MATRIX_COLUMNS[12+2*l+1]] = np.percentile(_u,2.5)
                 self.pct_female_matrix.loc[idx,
-                    FEMALE_MATRIX_COLUMNS[2*k+2]] = np.percentile(_u,97.5)
+                    FEMALE_MATRIX_COLUMNS[12+2*l+2]] = np.percentile(_u,97.5)
 
 
         self.res_array = res_array
