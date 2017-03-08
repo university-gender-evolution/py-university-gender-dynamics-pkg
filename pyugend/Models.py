@@ -534,15 +534,23 @@ class Base_model():
             for k, f in enumerate(MODEL_RUN_COLUMNS):
                 _t = np.array([r['run'][f][idx] for r in res_array])
 
-                self.results_matrix.loc[idx,
-                        RESULTS_COLUMNS[k+1]] = np.array(np.mean(_t))
-                self.results_matrix.loc[idx,
-                        RESULTS_COLUMNS[k+27]] = np.array(np.std(_t))
+
 
                 self.results_matrix.loc[idx,
-                        RESULTS_COLUMNS[k+53]] = np.percentile(_t,2.5)
+                        RESULTS_COLUMNS[k+1]] = np.array(np.mean(_t)) if \
+                    np.isfinite(np.array(np.mean(_t))) else 0
+
                 self.results_matrix.loc[idx,
-                        RESULTS_COLUMNS[k+79]] = np.percentile(_t,97.5)
+                        RESULTS_COLUMNS[k+27]] = np.array(np.std(_t)) if \
+                    np.isfinite(np.array(np.std(_t))) else 0
+
+                self.results_matrix.loc[idx,
+                        RESULTS_COLUMNS[k+53]] = np.percentile(_t,2.5) if \
+                    np.isfinite(np.percentile(_t,2.5))  else 0
+
+                self.results_matrix.loc[idx,
+                        RESULTS_COLUMNS[k+79]] = np.percentile(_t,97.5) if \
+                    np.isfinite(np.percentile(_t,97.5)) else 0
 
 
             # Calculate the mean and standard deviation/percentiles
@@ -559,19 +567,28 @@ class Base_model():
                                    res_array])
 
                 self.pct_female_matrix.loc[idx, 'year'] = idx
+
                 self.pct_female_matrix.loc[idx, FEMALE_MATRIX_COLUMNS[2*l+1]]\
-                    = _u.mean()
+                    = _u.mean() if np.isfinite(_u.mean()) else 0
+
                 self.pct_female_matrix.loc[idx, FEMALE_MATRIX_COLUMNS[2*l+2]]\
-                    = _u.std()
+                    = _u.std() if np.isfinite(_u.std()) else 0
 
                 self.pct_female_matrix.loc[idx,
-                    FEMALE_MATRIX_COLUMNS[12+2*l+1]] = np.percentile(_u,2.5)
-                self.pct_female_matrix.loc[idx,
-                    FEMALE_MATRIX_COLUMNS[12+2*l+2]] = np.percentile(_u,97.5)
+                    FEMALE_MATRIX_COLUMNS[12+2*l+1]] = np.percentile(_u,
+                                                                     2.5) if \
+                    np.isfinite(np.percentile(_u,2.5)) else 0
 
+                self.pct_female_matrix.loc[idx,
+                    FEMALE_MATRIX_COLUMNS[12+2*l+2]] = np.percentile(_u,
+                                                                     97.5) if\
+                    np.isfinite(np.percentile(_u,97.5)) else 0
+
+        # print(self.results_matrix.isnull().any().any())
+        # print(self.pct_female_matrix.isnull().any().any())
 
         self.res_array = res_array
-
+        #print(self.pct_female_matrix)
 
     def run_parameter_sweep(self, number_of_runs, param, llim,
                             ulim, num_of_steps):

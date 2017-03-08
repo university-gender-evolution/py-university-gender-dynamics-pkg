@@ -234,6 +234,7 @@ class Mod_Stoch_FBHP(Base_model):
                       neg(promotions_of_females_level_2_3),
                       promotions_of_females_level_1_2,
                       hiring_female_2])))
+
             self.res[i, 2] = number_of_females_level_3 = sum(list([
                 prev_number_of_females_level_3,
                 neg(female_attrition_level_3),
@@ -355,9 +356,7 @@ class Mod_Stoch_FBHP(Base_model):
                                                             1)[0]].sum())
                     flag = True
 
-                    # print(self.res[i,:])
-                    # print(self.res[i, 0:6].sum())
-                    ## Print Data matrix
+
 
         df_ = pd.DataFrame(self.res)
         df_.columns = ['f1',
@@ -386,7 +385,7 @@ class Mod_Stoch_FBHP(Base_model):
                        'm_prom_2',
                        'f_prom_1',
                        'm_prom_1']
-        # print(df_)
+
         recarray_results = df_.to_records(index=True)
         self.run = recarray_results
         return recarray_results
