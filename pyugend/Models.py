@@ -534,8 +534,6 @@ class Base_model():
             for k, f in enumerate(MODEL_RUN_COLUMNS):
                 _t = np.array([r['run'][f][idx] for r in res_array])
 
-
-
                 self.results_matrix.loc[idx,
                         RESULTS_COLUMNS[k+1]] = np.array(np.mean(_t)) if \
                     np.isfinite(np.array(np.mean(_t))) else 0
@@ -561,28 +559,55 @@ class Base_model():
                     _u = np.array([r['run'][LEVELS[l]][idx] / (r['run'][LEVELS[l]][idx]
                                   + r['run'][LEVELS[l + 3]][idx]) for r in
                                    res_array])
+
+                    #Code for debugging just in case. Previous problems here.
+                    # if np.isnan(_u).any():
+                    #     print('year', idx)
+                    #     print('\n')
+                    #     print('previous year', np.round(np.array([r['run'][
+                    #                                                  LEVELS[l]][
+                    #                                          idx-1] / (r['run'][LEVELS[l]][idx-1]
+                    #               + r['run'][LEVELS[l + 3]][idx-1]) for r in
+                    #                res_array])))
+                    #     print('_u', np.round(_u))
+                    #     print('\n')
+                    #     print('top',[r['run'][LEVELS[l]][idx] for r in
+                    #           res_array])
+                    #     print('\n')
+                    #     print('bottom', list(np.round([r['run'][LEVELS[l]][idx]
+                    #                                 + r[
+                    #         'run'][LEVELS[l + 3]][idx] for
+                    #                          r in
+                    #           res_array])))
+                    #     print('\n')
+                    #     print('mean', np.nanmean(_u))
+                    #     print('\n')
+                    #     print('std', np.nanstd(_u))
+                    #     print('\n')
+
                 else:
                     _u = np.array([r['run'][LEVELS[l]][idx] / (r['run'][LEVELS[l]][idx]
                                   + r['run'][LEVELS[l - 3]][idx]) for r in
                                    res_array])
 
+
                 self.pct_female_matrix.loc[idx, 'year'] = idx
 
                 self.pct_female_matrix.loc[idx, FEMALE_MATRIX_COLUMNS[2*l+1]]\
-                    = _u.mean() if np.isfinite(_u.mean()) else 0
+                    = np.nanmean(_u)
 
                 self.pct_female_matrix.loc[idx, FEMALE_MATRIX_COLUMNS[2*l+2]]\
-                    = _u.std() if np.isfinite(_u.std()) else 0
+                    = np.nanstd(_u)
 
                 self.pct_female_matrix.loc[idx,
-                    FEMALE_MATRIX_COLUMNS[12+2*l+1]] = np.percentile(_u,
+                    FEMALE_MATRIX_COLUMNS[12+2*l+1]] = np.nanpercentile(_u,
                                                                      2.5) if \
-                    np.isfinite(np.percentile(_u,2.5)) else 0
+                    np.isfinite(np.nanpercentile(_u,2.5)) else 0
 
                 self.pct_female_matrix.loc[idx,
-                    FEMALE_MATRIX_COLUMNS[12+2*l+2]] = np.percentile(_u,
+                    FEMALE_MATRIX_COLUMNS[12+2*l+2]] = np.nanpercentile(_u,
                                                                      97.5) if\
-                    np.isfinite(np.percentile(_u,97.5)) else 0
+                    np.isfinite(np.nanpercentile(_u,97.5)) else 0
 
         # print(self.results_matrix.isnull().any().any())
         # print(self.pct_female_matrix.isnull().any().any())

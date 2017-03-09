@@ -303,7 +303,7 @@ def test_bokeh_comparison_plot_overall_multiple_models(mgmt_data):
     c = Comparison(modlist)
 
     plot_settings = {'plottype': 'gender proportion',
-                     'intervals': 'empirical',
+                     'intervals': 'standard',
             'number_of_runs': 10,  # number simulations to average over
             'target': 0.25,  # target percentage of women in the department
             # Main plot settings
@@ -348,7 +348,7 @@ def test_bokeh_comparison_plot_bylevel(mgmt_data):
                     Mod_Stoch_FBPH(**mgmt_data)])
     c = Comparison(modlist)
 
-    plot_settings = {'plottype': 'gender proportion',
+    plot_settings = {'plottype': 'gender number',
                      'intervals': 'empirical',
                  'number_of_runs': 10,
                  'target': 0.25,

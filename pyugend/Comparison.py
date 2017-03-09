@@ -480,14 +480,14 @@ class Comparison():
 
         if plottype == 'gender number':
 
-            mean_matrices = [m.results_matrix[:,'mean_f1':'mean_m3'] for m in
-                             self.mlist]
-            yval_f1 = [m['f1'] for m in mean_matrices]
-            yval_f2 = [m['f2'] for m in mean_matrices]
-            yval_f3 = [m['f3'] for m in mean_matrices]
-            yval_m1 = [m['m1'] for m in mean_matrices]
-            yval_m2 = [m['m2'] for m in mean_matrices]
-            yval_m3 = [m['m3'] for m in mean_matrices]
+            mean_matrices = [m.results_matrix.loc[:,'mean_f1':'mean_m3'] for
+                             m in self.mlist]
+            yval_f1 = [m['mean_f1'] for m in mean_matrices]
+            yval_f2 = [m['mean_f2'] for m in mean_matrices]
+            yval_f3 = [m['mean_f3'] for m in mean_matrices]
+            yval_m1 = [m['mean_m1'] for m in mean_matrices]
+            yval_m2 = [m['mean_m2'] for m in mean_matrices]
+            yval_m3 = [m['mean_m3'] for m in mean_matrices]
 
 
 
@@ -521,6 +521,8 @@ class Comparison():
                 upper_m2 = [m['m2_975'] for m in female_pct_matrices]
                 upper_m3 = [m['m3_975'] for m in female_pct_matrices]
 
+                # print('band', upper_f2)
+                # print('\n')
                 lower_f1 = [m['f1_025'] for m in female_pct_matrices]
                 lower_f2 = [m['f2_025'] for m in female_pct_matrices]
                 lower_f3 = [m['f3_025'] for m in female_pct_matrices]
@@ -530,7 +532,8 @@ class Comparison():
 
 
             if plottype == 'gender number':
-                u_matrices = [m.results_matrix[:, 'f1_975':'m3_975'] for m in
+                u_matrices = [m.results_matrix.loc[:, 'f1_975':'m3_975'] for
+                              m in
                             self.mlist]
 
                 upper_f1 = [m['f1_975'] for m in u_matrices]
@@ -540,7 +543,8 @@ class Comparison():
                 upper_m2 = [m['m2_975'] for m in u_matrices]
                 upper_m3 = [m['m3_975'] for m in u_matrices]
 
-                l_matrices = [m.results_matrix[:, 'f1_025':'m3_025'] for m in
+                l_matrices = [m.results_matrix.loc[:, 'f1_025':'m3_025'] for
+                              m in
                             self.mlist]
 
                 lower_f1 = [m['f1_025'] for m in l_matrices]
@@ -575,38 +579,64 @@ class Comparison():
                 upper_f1 = list(map(add, [y for y in yval_f1], [1.96 * m[
                     'spct_f1'] for m in female_pct_matrices]))
 
+                upper_f1 = np.where(np.array(upper_f1)>1,1,np.array(upper_f1))
+
                 upper_f2 = list(map(add, [y for y in yval_f2], [1.96 * m[
                     'spct_f2'] for m in female_pct_matrices]))
+
+                upper_f2 = np.where(np.array(upper_f2)>1,1,np.array(upper_f2))
 
                 upper_f3 = list(map(add, [y for y in yval_f3], [1.96 * m[
                     'spct_f3'] for m in female_pct_matrices]))
 
+                upper_f3 = np.where(np.array(upper_f3)>1,1,np.array(upper_f3))
+
                 upper_m1 = list(map(add, [y for y in yval_m1], [1.96 * m[
                     'spct_m1']for m in female_pct_matrices]))
+
+                upper_m1 = np.where(np.array(upper_m1)>1,1,np.array(upper_m1))
 
                 upper_m2 = list(map(add, [y for y in yval_m2], [1.96 * m[
                     'spct_m2']for m in female_pct_matrices]))
 
+                upper_m2 = np.where(np.array(upper_m2)>1,1,np.array(upper_m2))
+
                 upper_m3 = list(map(add, [y for y in yval_m3], [1.96 * m[
                     'spct_m3']for m in female_pct_matrices]))
+
+                upper_m3 = np.where(np.array(upper_m3)>1,1,np.array(upper_m3))
+
 
                 lower_f1 = list(map(sub, [y for y in yval_f1], [1.96 * m[
                     'spct_f1'] for m in female_pct_matrices]))
 
+                lower_f1 = np.where(np.array(lower_f1)<0,0,np.array(lower_f1))
+
                 lower_f2 = list(map(sub, [y for y in yval_f2], [1.96 * m[
                     'spct_f2'] for m in female_pct_matrices]))
+
+                lower_f2 = np.where(np.array(lower_f2)<0,0,np.array(lower_f2))
 
                 lower_f3 = list(map(sub, [y for y in yval_f3], [1.96 * m[
                     'spct_f3'] for m in female_pct_matrices]))
 
+                lower_f3 = np.where(np.array(lower_f3)<0,0,np.array(lower_f3))
+
+
                 lower_m1 = list(map(sub, [y for y in yval_m1], [1.96 * m[
                     'spct_m1'] for m in female_pct_matrices]))
+
+                lower_m1 = np.where(np.array(lower_m1)<0,0,np.array(lower_m1))
 
                 lower_m2 = list(map(sub, [y for y in yval_m2], [1.96 * m[
                     'spct_m2'] for m in female_pct_matrices]))
 
+                lower_m2 = np.where(np.array(lower_m2)<0,0,np.array(lower_m2))
+
                 lower_m3 = list(map(sub, [y for y in yval_m3], [1.96 * m[
                     'spct_m3'] for m in female_pct_matrices]))
+
+                lower_m3 = np.where(np.array(lower_m3)<0,0,np.array(lower_m3))
 
             if plottype == 'gender number':
 
@@ -687,7 +717,7 @@ class Comparison():
 
                 # upper_band = np.minimum(1, yvals[i][k] + 1.96 * fills[i][k])
                 # lower_band = np.maximum(0, yvals[i][k] - 1.96 * fills[i][k])
-                band_y = np.append(lower_fill[i], upper_fill[i][0][::-1])
+                band_y = np.append(lower_fill[i][k], upper_fill[i][k][::-1])
 
                 p.patch(band_x,
                         band_y,
