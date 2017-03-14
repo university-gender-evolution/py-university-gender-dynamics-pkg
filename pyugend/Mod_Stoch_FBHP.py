@@ -92,6 +92,8 @@ class Mod_Stoch_FBHP(Base_model):
         self.res = np.zeros([self.duration, len(MODEL_RUN_COLUMNS) + len(EXPORT_COLUMNS_FOR_CSV)],
                             dtype=np.float32)
 
+        self.res.dtype.names = MODEL_RUN_COLUMNS + EXPORT_COLUMNS_FOR_CSV
+
         self.res[0, 0] = self.nf1
         self.res[0, 1] = self.nf2
         self.res[0, 2] = self.nf3
@@ -354,6 +356,29 @@ class Mod_Stoch_FBHP(Base_model):
             self.res[i, 23] = promotions_of_males_level_2_3
             self.res[i, 24] = promotions_of_females_level_1_2
             self.res[i, 25] = promotions_of_males_level_1_2
+            self.res[i, 26] = hiring_rate_female_level_1
+            self.res[i, 27] = hiring_rate_female_level_2
+            self.res[i, 28] = hiring_rate_female_level_3
+            self.res[i, 29] = 1 - hiring_rate_female_level_1
+            self.res[i, 30] = 1 - hiring_rate_female_level_2
+            self.res[i, 31] = 1 - hiring_rate_female_level_3
+            self.res[i, 32] = attrition_rate_female_level_1
+            self.res[i, 33] = attrition_rate_female_level_2
+            self.res[i, 34] = attrition_rate_female_level_3
+            self.res[i, 35] = attrition_rate_male_level_1
+            self.res[i, 36] = attrition_rate_male_level_2
+            self.res[i, 37] = attrition_rate_male_level_3
+            self.res[i, 38] = 1
+            self.res[i, 39] = probability_of_outside_hire_level_2
+            self.res[i, 40] = probability_of_outside_hire_level_3
+            self.res[i, 41] = female_promotion_probability_1_2
+            self.res[i, 42] = female_promotion_probability_2_3
+            self.res[i, 43] = 1 - female_promotion_probability_1_2
+            self.res[i, 44] = 1 - female_promotion_probability_2_3
+            self.res[i, 45] = department_size_upper_bound
+            self.res[i, 46] = department_size_lower_bound
+            self.res[i, 47] = variation_range
+            self.res[i, 48] = self.duration
 
             # this produces an array of values. Then I need to assign the
             # values to levels. So if I have say a range of variation of 5. I
