@@ -303,8 +303,8 @@ def test_bokeh_comparison_plot_overall_multiple_models(mgmt_data):
     c = Comparison(modlist)
 
     plot_settings = {'plottype': 'gender proportion',
-                     'intervals': 'standard',
-            'number_of_runs': 10,  # number simulations to average over
+                     'intervals': 'empirical',
+            'number_of_runs': 100,  # number simulations to average over
             'target': 0.25,  # target percentage of women in the department
             # Main plot settings
             'xlabel':'Years',

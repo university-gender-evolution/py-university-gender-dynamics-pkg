@@ -142,6 +142,32 @@ FEMALE_MATRIX_COLUMNS = list(['year',
                               'm3_975'])
 
 
+EXPORT_COLUMNS_FOR_CSV = list([ 'hiring_rate_women_1',
+             'hiring_rate_women_2',
+             'hiring_rate_women_3',
+             'hiring_rate_men_1',
+             'hiring_rate_men_2',
+             'hiring_rate_men_3',
+             'attrition_rate_women_1',
+             'attrition_rate_women_2'
+             'attrition_rate_women_3',
+             'attrition_rate_men_1',
+             'attrition_rate_men_2',
+             'attrition_rate_men_3',
+             'probablity_of_outside_hire_1'
+             'probability_of_outside_hire_2',
+             'probability_of_outside_hire_3',
+             'female_promotion_rate_1',
+             'female_promotion_rate_2',
+             'male_promotion_rate_1',
+             'male_promotion_rate_2',
+             'dept_size_upperbound',
+             'dept_size_lowerbound',
+             'dept_size_exogenous_variation_range',
+             'duration')
+
+
+
 
 defaults.width = 400
 defaults.height = 400
@@ -917,348 +943,348 @@ class Base_model():
                                            'women_promoted_1',
                                            'men_promoted_1']).to_csv(filename)
 
-
-    def plot_overall_chart(self,
-                           plottype,
-                           intervals,
-                           number_of_runs,
-                           target,
-                           xlabel,
-                           ylabel,
-                           title,
-                           height=defaults.height,
-                           width=defaults.width,
-                           line_width=2,
-                           xmax=defaults.width,
-                           ymax=defaults.height,
-                           transparency=0.25,
-                           linecolor='green',
-                           target_plot=False,
-                           legend_location="top_right",
-                           color_target='red',
-                           percent_line_plot=False,
-                           percent_line_value=0.5,
-                           color_percent_line='red',
-                           target_plot_linewidth=2,
-                           percent_linewidth=2,
-                           model_legend_label='model',
-                           target_plot_legend_label='target',
-                           percent_legend_label='percent',
-                           male_female_numbers_plot=False,
-                           mf_male_color='black',
-                           mf_target_color='red',
-                           mf_male_label='Male',
-                           mf_target_label='Target',
-                           mf_male_linewidth=2,
-                           mf_target_linewidth=2
-                           ):
-
-        # generate data for the plot.
-        self.run_multiple(number_of_runs)
-
-        # set default plot parameters. The xaxis is generally duration,
-        # though I have the option--depending on the plot, to put in a
-        # different x-axis.
-
-        xval = self.duration
-
-        p = figure(title=title,
-                   x_axis_label=xlabel,
-                   y_axis_label=ylabel,
-                   width=width,
-                   height=height)
-
-        # generate main plot data
-
-        if plottype == 'probability proportion':
-            self.run_probability_analysis_gender_proportion(number_of_runs,
-                                                            target)
-
-            yval = self.probability_matrix['Probability']
-
-
-        if plottype == 'gender proportion':
-
-            yval = self.results_matrix['mean_gendprop']
-
-        if plottype == 'unfilled vacancies':
-            yval = self.results_matrix['mean_unfilled']
-
-        if plottype == 'department size':
-            yval = self.results_matrix['mean_dept_size']
-
-        if plottype == 'male female numbers':
-            yval = sum(list([self.results_matrix['mean_f1'],
-                             self.results_matrix['mean_f2'],
-                             self.results_matrix['mean_f3']]))
-
-
-
-            yval2 = sum(list([self.results_matrix['mean_m1'],
-                              self.results_matrix['mean_m2'],
-                              self.results_matrix['mean_m3']]))
-
-            total_faculty = sum(list([self.results_matrix['mean_f1'],
-                                      self.results_matrix['mean_f2'],
-                                      self.results_matrix['mean_f3'],
-                                      self.results_matrix['mean_m1'],
-                                      self.results_matrix['mean_m2'],
-                                      self.results_matrix['mean_m3']]))
-
-            yval3 = np.round(target * total_faculty)
-
-        # Set confidence bounds using empirical results
-
-        if intervals == 'empirical':
-            if plottype == 'probability proportion':
-
-                upper_band = yval
-                lower_band = yval
-
-            if plottype == 'gender proportion':
-
-                upper_band = self.results_matrix['gendprop_975']
-                lower_band = self.results_matrix['gendprop_025']
-
-            if plottype == 'unfilled vacancies':
-                upper_band = self.results_matrix['unfilled_975']
-                lower_band = self.results_matrix['unfilled_025']
-
-            if plottype == 'department size':
-
-                upper_band = self.results_matrix['dept_size_975']
-                lower_band = self.results_matrix['dept_size_025']
-
-            if plottype == 'male female numbers':
-                pass
-
-
-        # Set confidence bounds using 2 standard deviations
-
-        if intervals == 'standard':
-
-            if plottype == 'probability proportion':
-
-
-                upper_band = yval
-                lower_band = yval
-
-            if plottype == 'gender proportion':
-                fill_matrix = self.results_matrix['std_gendprop']
-
-                upper_band = yval + 1.96 * fill_matrix
-                lower_band = yval - 1.96 * fill_matrix
-
-            if plottype == 'unfilled vacancies':
-                fill_matrix = self.results_matrix['std_unfilled']
-                upper_band = yval + 1.96 * fill_matrix
-                lower_band = yval - 1.96 * fill_matrix
-
-            if plottype == 'department size':
-                fill_matrix = self.results_matrix['std_dept_size']
-                upper_band = yval + 1.96 * fill_matrix
-                lower_band = yval - 1.96 * fill_matrix
-
-            if plottype == 'male female numbers':
-                fill_matrix = 0
-
-
-        p.line(range(xval), yval,
-               line_width=line_width,
-               line_color=linecolor,
-               legend=model_legend_label)
-
-        p.circle(range(xval), yval, size=3)
-
-        x_data = np.arange(0, xval)
-        band_x = np.append(x_data, x_data[::-1])
-        band_y = np.append(lower_band, upper_band[::-1])
-
-        p.patch(band_x,
-                band_y,
-                color=linecolor,
-                fill_alpha=transparency)
-
-        if target_plot:
-            p.line(range(xval),
-                   target,
-                   line_color=color_target,
-                   line_width=target_plot_linewidth,
-                   line_dash=[6, 6],
-                   legend=target_plot_legend_label)
-
-        if percent_line_plot:
-            p.line(range(xval),
-                   percent_line_value,
-                   line_color=color_percent_line,
-                   line_width=percent_linewidth,
-                   line_dash=[2, 2],
-                   legend=percent_legend_label)
-
-        if male_female_numbers_plot:
-            p.line(range(xval),
-                   yval2,
-                   line_color=mf_male_color,
-                   line_width=mf_male_linewidth,
-                   legend=mf_male_label)
-
-            p.line(range(xval),
-                   yval3,
-                   line_color=mf_target_color,
-                   line_width=mf_target_linewidth,
-                   legend=mf_target_label)
-
-        p.legend.location = legend_location
-        p.title.align = 'center'
-        return (p)
-
-    def plot_level_chart(self,
-                         plottype,
-                         intervals,
-                         number_of_runs,
-                         target,
-                         xlables,
-                         ylabels,
-                         titles,
-                         line_width,
-                         height=defaults.width // 2,
-                         width=defaults.height // 2,
-                         legend_location='top_right',
-                         model_legend_label='model',
-                         transparency=0.25,
-                         linecolor='green',
-                         target_plot=False,
-                         target_color='red',
-                         target_plot_linewidth=2,
-                         target_plot_legend_label='target',
-                         percent_line_plot=False,
-                         percent_line_value=0.5,
-                         color_percent_line='red',
-                         percent_linewidth=2,
-                         percent_legend_label='percent'):
-
-        # generate data for the plot.
-
-        self.run_multiple(number_of_runs)
-
-        # set default plot parameters. The xaxis is generally duration,
-        # though I have the option--depending on the plot, to put in a
-        # different x-axis.
-
-        xval = self.duration
-
-        if plottype == 'probability proportion':
-            d = self.run_probability_analysis_gender_by_level(number_of_runs,
-                                                              target)
-
-            yval_f1 = d['pf1']
-            yval_f2 = d['pf2']
-            yval_f3 = d['pf3']
-            yval_m1 = d['pm1']
-            yval_m2 = d['pm2']
-            yval_m3 = d['pm3']
-
-            fill_f1 = 0
-            fill_f2 = 0
-            fill_f3 = 0
-            fill_m1 = 0
-            fill_m2 = 0
-            fill_m3 = 0
-
-        if plottype == 'gender proportion':
-            pd_stats_matrix = pd.DataFrame(self.model_summary_stats)
-            tmp = pd_stats_matrix.select_dtypes(include=[np.number])
-            pd_stats_matrix.loc[:, tmp.columns] = np.round(tmp, 2)
-
-            yval_f1 = self.pct_female_matrix['mpct_f1']
-            yval_f2 = self.pct_female_matrix['mpct_f2']
-            yval_f3 = self.pct_female_matrix['mpct_f3']
-            yval_m1 = self.pct_female_matrix['mpct_m1']
-            yval_m2 = self.pct_female_matrix['mpct_m2']
-            yval_m3 = self.pct_female_matrix['mpct_m3']
-
-            fill_f1 = self.pct_female_matrix['spct_f1']
-            fill_f2 = self.pct_female_matrix['spct_f2']
-            fill_f3 = self.pct_female_matrix['spct_f3']
-            fill_m1 = self.pct_female_matrix['spct_m1']
-            fill_m2 = self.pct_female_matrix['spct_m2']
-            fill_m3 = self.pct_female_matrix['spct_m3']
-
-        if plottype == 'gender number':
-            if self.model_summary_stats == 0:
-                self.run_multiple(number_of_runs)
-
-            yval_f1 = self.results_matrix['mean_f1']
-            yval_f2 = self.results_matrix['mean_f2']
-            yval_f3 = self.results_matrix['mean_f3']
-            yval_m1 = self.results_matrix['mean_m1']
-            yval_m2 = self.results_matrix['mean_m2']
-            yval_m3 = self.results_matrix['mean_m3']
-
-            fill_f1 = self.results_matrix['std_f1']
-            fill_f2 = self.results_matrix['std_f2']
-            fill_f3 = self.results_matrix['std_f3']
-            fill_m1 = self.results_matrix['std_m1']
-            fill_m2 = self.results_matrix['std_m2']
-            fill_m3 = self.results_matrix['std_m3']
-
-        # print(fill_f2)
-        # print(fill_m2)
-
-        # TODO set levels to configurable parameter. This is just for test.
-        levels = ['f1', 'f2', 'f3', 'm1', 'm2', 'm3']
-        yvals = [yval_f1, yval_f2, yval_f3, yval_m1, yval_m2, yval_m3]
-        fills = [fill_f1, fill_f2, fill_f3, fill_m1, fill_m2, fill_m3]
-
-        plots = []
-
-        x_data = np.arange(0, xval)
-        band_x = np.append(x_data, x_data[::-1])
-
-        for key, val in enumerate(levels):
-            plots.append(figure(title=titles[key],
-                                x_axis_label=xlables[k],
-                                y_axis_label=ylabels[k],
-                                width=xmax_f1,
-                                height=ymax_f1))
-
-        for i, p in enumerate(plots):
-            p.line(range(xval), np.minimum(1,
-                                           np.maximum(0,
-                                                      yvals[i])),
-                   line_width=line_width,
-                   line_color=linecolor)
-
-            upper_band = np.minimum(1, yvals[i] + 1.96 * fills[i])
-            lower_band = np.maximum(0, yvals[i] - 1.96 * fills[i])
-            band_y = np.append(lower_band, upper_band[::-1])
-
-            p.patch(band_x,
-                    band_y,
-                    color=linecolor,
-                    fill_alpha=transparency)
-
-        if target_plot == True:
-
-            for i, p in enumerate(plots):
-                p.line(range(xval),
-                       target,
-                       line_color=target_color,
-                       line_width=target_plot_linewidth,
-                       line_dash=[6, 6])
-
-        if percent_line_plot == True:
-
-            for i, p in enumerate(plots):
-                p.line(range(xval),
-                       percent_line_value,
-                       line_color=color_percent_line,
-                       line_width=percent_linewidth,
-                       line_dash=[2, 2])
-
-        grid = gridplot([[plots[0], plots[1], plots[2]],
-                         [plots[3], plots[4], plots[5]]])
-        return (grid)
+    #
+    # def plot_overall_chart(self,
+    #                        plottype,
+    #                        intervals,
+    #                        number_of_runs,
+    #                        target,
+    #                        xlabel,
+    #                        ylabel,
+    #                        title,
+    #                        height=defaults.height,
+    #                        width=defaults.width,
+    #                        line_width=2,
+    #                        xmax=defaults.width,
+    #                        ymax=defaults.height,
+    #                        transparency=0.25,
+    #                        linecolor='green',
+    #                        target_plot=False,
+    #                        legend_location="top_right",
+    #                        color_target='red',
+    #                        percent_line_plot=False,
+    #                        percent_line_value=0.5,
+    #                        color_percent_line='red',
+    #                        target_plot_linewidth=2,
+    #                        percent_linewidth=2,
+    #                        model_legend_label='model',
+    #                        target_plot_legend_label='target',
+    #                        percent_legend_label='percent',
+    #                        male_female_numbers_plot=False,
+    #                        mf_male_color='black',
+    #                        mf_target_color='red',
+    #                        mf_male_label='Male',
+    #                        mf_target_label='Target',
+    #                        mf_male_linewidth=2,
+    #                        mf_target_linewidth=2
+    #                        ):
+    #
+    #     # generate data for the plot.
+    #     self.run_multiple(number_of_runs)
+    #
+    #     # set default plot parameters. The xaxis is generally duration,
+    #     # though I have the option--depending on the plot, to put in a
+    #     # different x-axis.
+    #
+    #     xval = self.duration
+    #
+    #     p = figure(title=title,
+    #                x_axis_label=xlabel,
+    #                y_axis_label=ylabel,
+    #                width=width,
+    #                height=height)
+    #
+    #     # generate main plot data
+    #
+    #     if plottype == 'probability proportion':
+    #         self.run_probability_analysis_gender_proportion(number_of_runs,
+    #                                                         target)
+    #
+    #         yval = self.probability_matrix['Probability']
+    #
+    #
+    #     if plottype == 'gender proportion':
+    #
+    #         yval = self.results_matrix['mean_gendprop']
+    #
+    #     if plottype == 'unfilled vacancies':
+    #         yval = self.results_matrix['mean_unfilled']
+    #
+    #     if plottype == 'department size':
+    #         yval = self.results_matrix['mean_dept_size']
+    #
+    #     if plottype == 'male female numbers':
+    #         yval = sum(list([self.results_matrix['mean_f1'],
+    #                          self.results_matrix['mean_f2'],
+    #                          self.results_matrix['mean_f3']]))
+    #
+    #
+    #
+    #         yval2 = sum(list([self.results_matrix['mean_m1'],
+    #                           self.results_matrix['mean_m2'],
+    #                           self.results_matrix['mean_m3']]))
+    #
+    #         total_faculty = sum(list([self.results_matrix['mean_f1'],
+    #                                   self.results_matrix['mean_f2'],
+    #                                   self.results_matrix['mean_f3'],
+    #                                   self.results_matrix['mean_m1'],
+    #                                   self.results_matrix['mean_m2'],
+    #                                   self.results_matrix['mean_m3']]))
+    #
+    #         yval3 = np.round(target * total_faculty)
+    #
+    #     # Set confidence bounds using empirical results
+    #
+    #     if intervals == 'empirical':
+    #         if plottype == 'probability proportion':
+    #
+    #             upper_band = yval
+    #             lower_band = yval
+    #
+    #         if plottype == 'gender proportion':
+    #
+    #             upper_band = self.results_matrix['gendprop_975']
+    #             lower_band = self.results_matrix['gendprop_025']
+    #
+    #         if plottype == 'unfilled vacancies':
+    #             upper_band = self.results_matrix['unfilled_975']
+    #             lower_band = self.results_matrix['unfilled_025']
+    #
+    #         if plottype == 'department size':
+    #
+    #             upper_band = self.results_matrix['dept_size_975']
+    #             lower_band = self.results_matrix['dept_size_025']
+    #
+    #         if plottype == 'male female numbers':
+    #             pass
+    #
+    #
+    #     # Set confidence bounds using 2 standard deviations
+    #
+    #     if intervals == 'standard':
+    #
+    #         if plottype == 'probability proportion':
+    #
+    #
+    #             upper_band = yval
+    #             lower_band = yval
+    #
+    #         if plottype == 'gender proportion':
+    #             fill_matrix = self.results_matrix['std_gendprop']
+    #
+    #             upper_band = yval + 1.96 * fill_matrix
+    #             lower_band = yval - 1.96 * fill_matrix
+    #
+    #         if plottype == 'unfilled vacancies':
+    #             fill_matrix = self.results_matrix['std_unfilled']
+    #             upper_band = yval + 1.96 * fill_matrix
+    #             lower_band = yval - 1.96 * fill_matrix
+    #
+    #         if plottype == 'department size':
+    #             fill_matrix = self.results_matrix['std_dept_size']
+    #             upper_band = yval + 1.96 * fill_matrix
+    #             lower_band = yval - 1.96 * fill_matrix
+    #
+    #         if plottype == 'male female numbers':
+    #             fill_matrix = 0
+    #
+    #
+    #     p.line(range(xval), yval,
+    #            line_width=line_width,
+    #            line_color=linecolor,
+    #            legend=model_legend_label)
+    #
+    #     p.circle(range(xval), yval, size=3)
+    #
+    #     x_data = np.arange(0, xval)
+    #     band_x = np.append(x_data, x_data[::-1])
+    #     band_y = np.append(lower_band, upper_band[::-1])
+    #
+    #     p.patch(band_x,
+    #             band_y,
+    #             color=linecolor,
+    #             fill_alpha=transparency)
+    #
+    #     if target_plot:
+    #         p.line(range(xval),
+    #                target,
+    #                line_color=color_target,
+    #                line_width=target_plot_linewidth,
+    #                line_dash=[6, 6],
+    #                legend=target_plot_legend_label)
+    #
+    #     if percent_line_plot:
+    #         p.line(range(xval),
+    #                percent_line_value,
+    #                line_color=color_percent_line,
+    #                line_width=percent_linewidth,
+    #                line_dash=[2, 2],
+    #                legend=percent_legend_label)
+    #
+    #     if male_female_numbers_plot:
+    #         p.line(range(xval),
+    #                yval2,
+    #                line_color=mf_male_color,
+    #                line_width=mf_male_linewidth,
+    #                legend=mf_male_label)
+    #
+    #         p.line(range(xval),
+    #                yval3,
+    #                line_color=mf_target_color,
+    #                line_width=mf_target_linewidth,
+    #                legend=mf_target_label)
+    #
+    #     p.legend.location = legend_location
+    #     p.title.align = 'center'
+    #     return (p)
+    #
+    # def plot_level_chart(self,
+    #                      plottype,
+    #                      intervals,
+    #                      number_of_runs,
+    #                      target,
+    #                      xlables,
+    #                      ylabels,
+    #                      titles,
+    #                      line_width,
+    #                      height=defaults.width // 2,
+    #                      width=defaults.height // 2,
+    #                      legend_location='top_right',
+    #                      model_legend_label='model',
+    #                      transparency=0.25,
+    #                      linecolor='green',
+    #                      target_plot=False,
+    #                      target_color='red',
+    #                      target_plot_linewidth=2,
+    #                      target_plot_legend_label='target',
+    #                      percent_line_plot=False,
+    #                      percent_line_value=0.5,
+    #                      color_percent_line='red',
+    #                      percent_linewidth=2,
+    #                      percent_legend_label='percent'):
+    #
+    #     # generate data for the plot.
+    #
+    #     self.run_multiple(number_of_runs)
+    #
+    #     # set default plot parameters. The xaxis is generally duration,
+    #     # though I have the option--depending on the plot, to put in a
+    #     # different x-axis.
+    #
+    #     xval = self.duration
+    #
+    #     if plottype == 'probability proportion':
+    #         d = self.run_probability_analysis_gender_by_level(number_of_runs,
+    #                                                           target)
+    #
+    #         yval_f1 = d['pf1']
+    #         yval_f2 = d['pf2']
+    #         yval_f3 = d['pf3']
+    #         yval_m1 = d['pm1']
+    #         yval_m2 = d['pm2']
+    #         yval_m3 = d['pm3']
+    #
+    #         fill_f1 = 0
+    #         fill_f2 = 0
+    #         fill_f3 = 0
+    #         fill_m1 = 0
+    #         fill_m2 = 0
+    #         fill_m3 = 0
+    #
+    #     if plottype == 'gender proportion':
+    #         pd_stats_matrix = pd.DataFrame(self.model_summary_stats)
+    #         tmp = pd_stats_matrix.select_dtypes(include=[np.number])
+    #         pd_stats_matrix.loc[:, tmp.columns] = np.round(tmp, 2)
+    #
+    #         yval_f1 = self.pct_female_matrix['mpct_f1']
+    #         yval_f2 = self.pct_female_matrix['mpct_f2']
+    #         yval_f3 = self.pct_female_matrix['mpct_f3']
+    #         yval_m1 = self.pct_female_matrix['mpct_m1']
+    #         yval_m2 = self.pct_female_matrix['mpct_m2']
+    #         yval_m3 = self.pct_female_matrix['mpct_m3']
+    #
+    #         fill_f1 = self.pct_female_matrix['spct_f1']
+    #         fill_f2 = self.pct_female_matrix['spct_f2']
+    #         fill_f3 = self.pct_female_matrix['spct_f3']
+    #         fill_m1 = self.pct_female_matrix['spct_m1']
+    #         fill_m2 = self.pct_female_matrix['spct_m2']
+    #         fill_m3 = self.pct_female_matrix['spct_m3']
+    #
+    #     if plottype == 'gender number':
+    #         if self.model_summary_stats == 0:
+    #             self.run_multiple(number_of_runs)
+    #
+    #         yval_f1 = self.results_matrix['mean_f1']
+    #         yval_f2 = self.results_matrix['mean_f2']
+    #         yval_f3 = self.results_matrix['mean_f3']
+    #         yval_m1 = self.results_matrix['mean_m1']
+    #         yval_m2 = self.results_matrix['mean_m2']
+    #         yval_m3 = self.results_matrix['mean_m3']
+    #
+    #         fill_f1 = self.results_matrix['std_f1']
+    #         fill_f2 = self.results_matrix['std_f2']
+    #         fill_f3 = self.results_matrix['std_f3']
+    #         fill_m1 = self.results_matrix['std_m1']
+    #         fill_m2 = self.results_matrix['std_m2']
+    #         fill_m3 = self.results_matrix['std_m3']
+    #
+    #     # print(fill_f2)
+    #     # print(fill_m2)
+    #
+    #     # TODO set levels to configurable parameter. This is just for test.
+    #     levels = ['f1', 'f2', 'f3', 'm1', 'm2', 'm3']
+    #     yvals = [yval_f1, yval_f2, yval_f3, yval_m1, yval_m2, yval_m3]
+    #     fills = [fill_f1, fill_f2, fill_f3, fill_m1, fill_m2, fill_m3]
+    #
+    #     plots = []
+    #
+    #     x_data = np.arange(0, xval)
+    #     band_x = np.append(x_data, x_data[::-1])
+    #
+    #     for key, val in enumerate(levels):
+    #         plots.append(figure(title=titles[key],
+    #                             x_axis_label=xlables[k],
+    #                             y_axis_label=ylabels[k],
+    #                             width=xmax_f1,
+    #                             height=ymax_f1))
+    #
+    #     for i, p in enumerate(plots):
+    #         p.line(range(xval), np.minimum(1,
+    #                                        np.maximum(0,
+    #                                                   yvals[i])),
+    #                line_width=line_width,
+    #                line_color=linecolor)
+    #
+    #         upper_band = np.minimum(1, yvals[i] + 1.96 * fills[i])
+    #         lower_band = np.maximum(0, yvals[i] - 1.96 * fills[i])
+    #         band_y = np.append(lower_band, upper_band[::-1])
+    #
+    #         p.patch(band_x,
+    #                 band_y,
+    #                 color=linecolor,
+    #                 fill_alpha=transparency)
+    #
+    #     if target_plot == True:
+    #
+    #         for i, p in enumerate(plots):
+    #             p.line(range(xval),
+    #                    target,
+    #                    line_color=target_color,
+    #                    line_width=target_plot_linewidth,
+    #                    line_dash=[6, 6])
+    #
+    #     if percent_line_plot == True:
+    #
+    #         for i, p in enumerate(plots):
+    #             p.line(range(xval),
+    #                    percent_line_value,
+    #                    line_color=color_percent_line,
+    #                    line_width=percent_linewidth,
+    #                    line_dash=[2, 2])
+    #
+    #     grid = gridplot([[plots[0], plots[1], plots[2]],
+    #                      [plots[3], plots[4], plots[5]]])
+    #     return (grid)
 
 
 ## Supplementary/Helper functions

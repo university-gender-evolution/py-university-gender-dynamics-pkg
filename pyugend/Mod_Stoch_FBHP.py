@@ -28,7 +28,56 @@ from numpy.random import binomial
 from pyugend.Models import Base_model
 
 
+MODEL_RUN_COLUMNS = list(['f1',
+                           'f2',
+                           'f3',
+                           'm1',
+                           'm2',
+                           'm3',
+                           'vac_3',
+                           'vac_2',
+                           'vac_1',
+                           'prom1',
+                           'prom2',
+                           'gendprop',
+                           'unfilled',
+                           'dept_size',
+                           'f_hire_3',
+                           'm_hire_3',
+                           'f_hire_2',
+                           'm_hire_2',
+                           'f_hire_1',
+                           'm_hire_1',
+                           'f_prom_3',
+                           'm_prom_3',
+                           'f_prom_2',
+                           'm_prom_2',
+                           'f_prom_1',
+                           'm_prom_1'])
 
+EXPORT_COLUMNS_FOR_CSV = list([ 'hiring_rate_women_1',
+             'hiring_rate_women_2',
+             'hiring_rate_women_3',
+             'hiring_rate_men_1',
+             'hiring_rate_men_2',
+             'hiring_rate_men_3',
+             'attrition_rate_women_1',
+             'attrition_rate_women_2'
+             'attrition_rate_women_3',
+             'attrition_rate_men_1',
+             'attrition_rate_men_2',
+             'attrition_rate_men_3',
+             'probablity_of_outside_hire_1'
+             'probability_of_outside_hire_2',
+             'probability_of_outside_hire_3',
+             'female_promotion_rate_1',
+             'female_promotion_rate_2',
+             'male_promotion_rate_1',
+             'male_promotion_rate_2',
+             'dept_size_upperbound',
+             'dept_size_lowerbound',
+             'dept_size_exogenous_variation_range',
+             'duration')
 
 class Mod_Stoch_FBHP(Base_model):
 
@@ -40,7 +89,8 @@ class Mod_Stoch_FBHP(Base_model):
 
         ## initialize data structure
 
-        self.res = np.zeros([self.duration, 26], dtype=np.float32)
+        self.res = np.zeros([self.duration, len(MODEL_RUN_COLUMNS) + len(EXPORT_COLUMNS_FOR_CSV)],
+                            dtype=np.float32)
 
         self.res[0, 0] = self.nf1
         self.res[0, 1] = self.nf2
