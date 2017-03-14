@@ -27,27 +27,27 @@ PROFESSOR_LEVEL_NAMES = list(['f1n', 'f2n', 'f3n', 'm1n', 'm2n', 'm3n'])
 PROBABILITY_ARRAY_COLUMN_NAMES = list(
     ['param', 'prof_group_mean', 'probability'])
 
-LEVELS = list(['f1',
-               'f2',
-               'f3',
-               'm1',
-               'm2',
-               'm3'])
+LEVELS = list(['number_f1',
+               'number_f2',
+               'number_f3',
+               'number_m1',
+               'number_m2',
+               'number_m3'])
 
-MODEL_RUN_COLUMNS = list(['f1',
-                           'f2',
-                           'f3',
-                           'm1',
-                           'm2',
-                           'm3',
-                           'vac_3',
-                           'vac_2',
-                           'vac_1',
+MODEL_RUN_COLUMNS = list(['number_f1',
+                           'number_f2',
+                           'number_f3',
+                           'number_m1',
+                           'number_m2',
+                           'number_m3',
+                           'vacancies_3',
+                           'vacancies_2',
+                           'vacancies_1',
                            'prom1',
                            'prom2',
-                           'gendprop',
-                           'unfilled',
-                           'dept_size',
+                           'gender_proportion_overall',
+                           'unfilled_vacancies',
+                           'department_size',
                            'f_hire_3',
                            'm_hire_3',
                            'f_hire_2',
@@ -149,12 +149,12 @@ EXPORT_COLUMNS_FOR_CSV = list([ 'hiring_rate_women_1',
              'hiring_rate_men_2',
              'hiring_rate_men_3',
              'attrition_rate_women_1',
-             'attrition_rate_women_2'
+             'attrition_rate_women_2',
              'attrition_rate_women_3',
              'attrition_rate_men_1',
              'attrition_rate_men_2',
              'attrition_rate_men_3',
-             'probablity_of_outside_hire_1'
+             'probablity_of_outside_hire_1',
              'probability_of_outside_hire_2',
              'probability_of_outside_hire_3',
              'female_promotion_rate_1',
@@ -164,7 +164,7 @@ EXPORT_COLUMNS_FOR_CSV = list([ 'hiring_rate_women_1',
              'dept_size_upperbound',
              'dept_size_lowerbound',
              'dept_size_exogenous_variation_range',
-             'duration')
+             'duration'])
 
 
 
@@ -899,8 +899,11 @@ class Base_model():
 
         # print(pd.DataFrame(self.res_array['run'][3]))
 
+        columnnames = [ 'run', 'year'] + MODEL_RUN_COLUMNS + \
+                      EXPORT_COLUMNS_FOR_CSV
+
         print_array = np.zeros([self.duration * number_of_runs,
-                                28])
+                                len(columnnames)])
 
         for idx in range(number_of_runs):
             print_array[(idx * self.duration):(idx * self.duration +
@@ -912,36 +915,13 @@ class Base_model():
 
         # work with barbara to craft the filename
         # model_label + 160114_HH:MM(24hour) +
+
+
+
+
         filename = model_label + "_" + str(datetime.datetime.now()) + "_iter" \
                    + str(number_of_runs) + ".csv"
-        pd.DataFrame(print_array, columns=['run',
-                                           'year',
-                                           'women_1',
-                                           'women_2',
-                                           'women_3',
-                                           'men_1',
-                                           'men_2',
-                                           'men_3',
-                                           'attrition_3',
-                                           'attrition_2',
-                                           'attrition_1',
-                                           'women_promotion_rate_1',
-                                           'women_promotion_rate_2',
-                                           'gender_proportion_overall',
-                                           'unfilled_vacancies',
-                                           'department_size',
-                                           'women_hires_3',
-                                           'men_hired_3',
-                                           'women_hired_2',
-                                           'men_hired_2',
-                                           'women_hired_1',
-                                           'men_hired_1',
-                                           'women_promoted_3',
-                                           'men_promoted_3',
-                                           'women_promoted_2',
-                                           'men_promoted_2',
-                                           'women_promoted_1',
-                                           'men_promoted_1']).to_csv(filename)
+        pd.DataFrame(print_array.round(2), columns=columnnames).to_csv(filename)
 
     #
     # def plot_overall_chart(self,

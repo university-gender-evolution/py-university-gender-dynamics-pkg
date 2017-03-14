@@ -113,8 +113,8 @@ def test_base_model_multiple_runs_gender_prop(mock_data):
 
 
 def test_excel_export(mock_data):
-    t = Mod_Stoch_FBPH(**mock_data)
-    t.export_model_run(10)
+    t = Mod_Stoch_FBHP(**mock_data)
+    t.export_model_run('testexport',10)
 
 
 
