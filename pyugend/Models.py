@@ -273,6 +273,8 @@ class Base_model():
         self.upperbound = 84
         self.lowerbound = 64
         self.variation_range = 3
+        self.name = "Promote-Hire baseline"
+        self.label = "Promote-Hire baseline"
 
     def load_optimistic_data_mgmt(self):
         '''
@@ -887,7 +889,7 @@ class Base_model():
 
         plt.show()
 
-    def export_model_run(self, model_label, number_of_runs):
+    def export_model_run(self, model_label, model_choice, number_of_runs):
 
         if not hasattr(self, 'res'):
             self.run_multiple(number_of_runs)
@@ -900,7 +902,7 @@ class Base_model():
         # print(pd.DataFrame(self.res_array['run'][3]))
 
         columnnames = [ 'run', 'year'] + MODEL_RUN_COLUMNS + \
-                      EXPORT_COLUMNS_FOR_CSV
+                      EXPORT_COLUMNS_FOR_CSV + ['model_name']
 
         print_array = np.zeros([self.duration * number_of_runs,
                                 len(columnnames)])
@@ -911,17 +913,25 @@ class Base_model():
 
             print_array[(idx * self.duration):(idx * self.duration +
                                                self.duration),
-            1:] = pd.DataFrame(self.res_array['run'][idx])
+            1:-1] = pd.DataFrame(self.res_array['run'][idx])
+
+
 
         # work with barbara to craft the filename
         # model_label + 160114_HH:MM(24hour) +
 
-
-
-
         filename = model_label + "_" + str(datetime.datetime.now()) + "_iter" \
                    + str(number_of_runs) + ".csv"
-        pd.DataFrame(print_array.round(2), columns=columnnames).to_csv(filename)
+
+        df_print_array = pd.DataFrame(print_array, columns=columnnames).round(2)
+        df_print_array.iloc[:,-1] = model_choice
+        df_print_array.to_csv(filename)
+
+
+
+
+    #    pd.DataFrame(print_array.round(2), columns=columnnames).to_csv(
+        # filename)
 
     #
     # def plot_overall_chart(self,

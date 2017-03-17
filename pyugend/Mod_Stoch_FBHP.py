@@ -101,9 +101,9 @@ class Mod_Stoch_FBHP(Base_model):
         self.res[0, 3] = self.nm1
         self.res[0, 4] = self.nm2
         self.res[0, 5] = self.nm3
-        self.res[0, 6] = self.vac3
-        self.res[0, 7] = self.vac2
-        self.res[0, 8] = self.vac1
+        self.res[0, 6] = 0
+        self.res[0, 7] = 0
+        self.res[0, 8] = 0
         self.res[0, 9] = self.female_promotion_probability_1
         self.res[0, 10] = self.female_promotion_probability_2
         self.res[0, 11] = np.float32(

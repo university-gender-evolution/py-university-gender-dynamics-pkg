@@ -90,7 +90,7 @@ def test_base_model_persistence(mock_data):
 
 
 def test_base_model_multiple_runs(mgmt_data):
-    t = Mod_Stoch_FBHP(**mgmt_data)
+    t = Mod_Stoch_FBPH(**mgmt_data)
     t.run_multiple(5)
     assert (hasattr(t, 'res_array'))
 
@@ -113,8 +113,8 @@ def test_base_model_multiple_runs_gender_prop(mock_data):
 
 
 def test_excel_export(mock_data):
-    t = Mod_Stoch_FBHP(**mock_data)
-    t.export_model_run('testexport',10)
+    t = Mod_Stoch_FBPH(**mock_data)
+    t.export_model_run('testexport', 'model test', 10)
 
 
 

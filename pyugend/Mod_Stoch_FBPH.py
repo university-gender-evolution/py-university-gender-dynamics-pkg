@@ -27,20 +27,73 @@ import pandas as pd
 from numpy.random import binomial
 from pyugend.Models import Base_model
 
+MODEL_RUN_COLUMNS = list(['number_f1',
+                           'number_f2',
+                           'number_f3',
+                           'number_m1',
+                           'number_m2',
+                           'number_m3',
+                           'vacancies_3',
+                           'vacancies_2',
+                           'vacancies_1',
+                           'prom1',
+                           'prom2',
+                           'gender_proportion_overall',
+                           'unfilled_vacancies',
+                           'department_size',
+                           'f_hire_3',
+                           'm_hire_3',
+                           'f_hire_2',
+                           'm_hire_2',
+                           'f_hire_1',
+                           'm_hire_1',
+                           'f_prom_3',
+                           'm_prom_3',
+                           'f_prom_2',
+                           'm_prom_2',
+                           'f_prom_1',
+                           'm_prom_1'])
 
+EXPORT_COLUMNS_FOR_CSV = list([ 'hiring_rate_women_1',
+             'hiring_rate_women_2',
+             'hiring_rate_women_3',
+             'hiring_rate_men_1',
+             'hiring_rate_men_2',
+             'hiring_rate_men_3',
+             'attrition_rate_women_1',
+             'attrition_rate_women_2',
+             'attrition_rate_women_3',
+             'attrition_rate_men_1',
+             'attrition_rate_men_2',
+             'attrition_rate_men_3',
+             'probablity_of_outside_hire_1',
+             'probability_of_outside_hire_2',
+             'probability_of_outside_hire_3',
+             'female_promotion_rate_1',
+             'female_promotion_rate_2',
+             'male_promotion_rate_1',
+             'male_promotion_rate_2',
+             'dept_size_upperbound',
+             'dept_size_lowerbound',
+             'dept_size_exogenous_variation_range',
+             'duration'])
 
 
 class Mod_Stoch_FBPH(Base_model):
 
     def __init__(self, **kwds):
         Base_model.__init__(self, **kwds)
-        self.name = "Promote-Hire"
-        self.label = "Promote-Hire"
+        self.name = "Promote-Hire baseline"
+        self.label = "Promote-Hire baseline"
     def run_model(self):
 
         ## initialize data structure
 
-        self.res = np.zeros([self.duration, 26], dtype=np.float32)
+        self.res = np.zeros([self.duration,
+                             len(MODEL_RUN_COLUMNS) +
+                             len(
+            EXPORT_COLUMNS_FOR_CSV)],
+                            dtype=np.float32)
 
         self.res[0, 0] = self.nf1
         self.res[0, 1] = self.nf2
@@ -328,6 +381,34 @@ class Mod_Stoch_FBPH(Base_model):
             self.res[i, 23] = promotions_of_males_level_2_3
             self.res[i, 24] = promotions_of_females_level_1_2
             self.res[i, 25] = promotions_of_males_level_1_2
+            self.res[i, 26] = hiring_rate_female_level_1
+            self.res[i, 27] = hiring_rate_female_level_2
+            self.res[i, 28] = hiring_rate_female_level_3
+            self.res[i, 29] = 1 - hiring_rate_female_level_1
+            self.res[i, 30] = 1 - hiring_rate_female_level_2
+            self.res[i, 31] = 1 - hiring_rate_female_level_3
+            self.res[i, 32] = attrition_rate_female_level_1
+            self.res[i, 33] = attrition_rate_female_level_2
+            self.res[i, 34] = attrition_rate_female_level_3
+            self.res[i, 35] = attrition_rate_male_level_1
+            self.res[i, 36] = attrition_rate_male_level_2
+            self.res[i, 37] = attrition_rate_male_level_3
+            self.res[i, 38] = 1
+            self.res[i, 39] = probability_of_outside_hire_level_2
+            self.res[i, 40] = probability_of_outside_hire_level_3
+            self.res[i, 41] = female_promotion_probability_1_2
+            self.res[i, 42] = female_promotion_probability_2_3
+            self.res[i, 43] = 1 - female_promotion_probability_1_2
+            self.res[i, 44] = 1 - female_promotion_probability_2_3
+            self.res[i, 45] = department_size_upper_bound
+            self.res[i, 46] = department_size_lower_bound
+            self.res[i, 47] = variation_range
+            self.res[i, 48] = self.duration
+
+
+
+
+
 
             #assert (np.isnan(self.res[i,0]) == True), 'NaN detected'
 
@@ -398,32 +479,8 @@ class Mod_Stoch_FBPH(Base_model):
             ## Print Data matrix
 
         df_ = pd.DataFrame(self.res)
-        df_.columns = ['f1',
-                       'f2',
-                       'f3',
-                       'm1',
-                       'm2',
-                       'm3',
-                       'vac_3',
-                       'vac_2',
-                       'vac_1',
-                       'prom1',
-                       'prom2',
-                       'gendprop',
-                       'unfilled',
-                       'dept_size',
-                       'f_hire_3',
-                       'm_hire_3',
-                       'f_hire_2',
-                       'm_hire_2',
-                       'f_hire_1',
-                       'm_hire_1',
-                       'f_prom_3',
-                       'm_prom_3',
-                       'f_prom_2',
-                       'm_prom_2',
-                       'f_prom_1',
-                       'm_prom_1']
+        df_.columns = MODEL_RUN_COLUMNS + EXPORT_COLUMNS_FOR_CSV
+
         #print(df_)
         recarray_results = df_.to_records(index=True)
         self.run = recarray_results
