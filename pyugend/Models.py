@@ -35,85 +35,85 @@ LEVELS = list(['number_f1',
                'number_m3'])
 
 MODEL_RUN_COLUMNS = list(['number_f1',
-                           'number_f2',
-                           'number_f3',
-                           'number_m1',
-                           'number_m2',
-                           'number_m3',
-                           'vacancies_3',
-                           'vacancies_2',
-                           'vacancies_1',
-                           'prom1',
-                           'prom2',
-                           'gender_proportion_overall',
-                           'unfilled_vacancies',
-                           'department_size',
-                           'f_hire_3',
-                           'm_hire_3',
-                           'f_hire_2',
-                           'm_hire_2',
-                           'f_hire_1',
-                           'm_hire_1',
-                           'f_prom_3',
-                           'm_prom_3',
-                           'f_prom_2',
-                           'm_prom_2',
-                           'f_prom_1',
-                           'm_prom_1'])
+                          'number_f2',
+                          'number_f3',
+                          'number_m1',
+                          'number_m2',
+                          'number_m3',
+                          'vacancies_3',
+                          'vacancies_2',
+                          'vacancies_1',
+                          'prom1',
+                          'prom2',
+                          'gender_proportion_overall',
+                          'unfilled_vacancies',
+                          'department_size',
+                          'f_hire_3',
+                          'm_hire_3',
+                          'f_hire_2',
+                          'm_hire_2',
+                          'f_hire_1',
+                          'm_hire_1',
+                          'f_prom_3',
+                          'm_prom_3',
+                          'f_prom_2',
+                          'm_prom_2',
+                          'f_prom_1',
+                          'm_prom_1'])
 
-RESULTS_COLUMNS = list([ 'year', 'mean_f1', 'mean_f2',
-                                   'mean_f3', 'mean_m1',
-                                   'mean_m2', 'mean_m3',
-                                   'mean_vac_3', 'mean_vac_2',
-                                   'mean_vac_1', 'mean_prom1',
-                                   'mean_prom2', 'mean_gendprop',
-                                   'mean_unfilled','mean_dept_size',
-                                   'mean_f_hire_3','mean_m_hire_3',
-                                   'mean_f_hire_2','mean_m_hire_2',
-                                   'mean_f_hire_1','mean_m_hire_1',
-                                   'mean_f_prom_3','mean_m_prom_3',
-                                   'mean_f_prom_2','mean_m_prom_2',
-                                   'mean_f_prom_1','mean_m_prom_1',
-                                   'std_f1', 'std_f2',
-                                   'std_f3', 'std_m1',
-                                   'std_m2', 'std_m3',
-                                   'std_vac_3', 'std_vac_2',
-                                   'std_vac_1', 'std_prom1',
-                                   'std_prom2', 'std_gendprop',
-                                   'std_unfilled','std_dept_size',
-                                   'std_f_hire_3','std_m_hire_3',
-                                   'std_f_hire_2','std_m_hire_2',
-                                   'std_f_hire_1','std_m_hire_1',
-                                   'std_f_prom_3','std_m_prom_3',
-                                   'std_f_prom_2','std_m_prom_2',
-                                   'std_f_prom_1','std_m_prom_1',
-                                   'f1_025', 'f2_025',
-                                   'f3_025', 'm1_025',
-                                   'm2_025', 'm3_025', 'vac_3_025',
-                                    'vac_2_025', 'vac_1_025',
-                                    'prom1_025', 'prom2_025',
-                                    'gendprop_025','unfilled_025',
-                                    'dept_size_025', 'f_hire_3_025',
-                                    'm_hire_3_025', 'f_hire_2_025',
-                                    'm_hire_2_025','f_hire_1_025',
-                                    'm_hire_1_025', 'f_prom_3_025',
-                                    'm_prom_3_025', 'f_prom_2_025',
-                                    'm_prom_2_025','f_prom_1_025',
-                                    'm_prom_1_025', 'f1_975',
-                                    'f2_975','f3_975',
-                                    'm1_975', 'm2_975',
-                                    'm3_975', 'vac_3_975',
-                                    'vac_2_975', 'vac_1_975',
-                                    'prom_1_975', 'prom2_975',
-                                    'gendprop_975', 'unfilled_975',
-                                    'dept_size_975','f_hire_3_975',
-                                    'm_hire_3_975', 'f_hire_2_975',
-                                    'm_hire_2_975', 'f_hire_1_975',
-                                    'm_hire_1_975','f_prom_3_975',
-                                    'm_prom_3_975', 'f_prom_2_975',
-                                    'm_prom_2_975', 'f_prom_1_975',
-                                    'm_prom_1_975'
-                         ])
+RESULTS_COLUMNS = list(['year', 'mean_f1', 'mean_f2',
+                        'mean_f3', 'mean_m1',
+                        'mean_m2', 'mean_m3',
+                        'mean_vac_3', 'mean_vac_2',
+                        'mean_vac_1', 'mean_prom1',
+                        'mean_prom2', 'mean_gendprop',
+                        'mean_unfilled', 'mean_dept_size',
+                        'mean_f_hire_3', 'mean_m_hire_3',
+                        'mean_f_hire_2', 'mean_m_hire_2',
+                        'mean_f_hire_1', 'mean_m_hire_1',
+                        'mean_f_prom_3', 'mean_m_prom_3',
+                        'mean_f_prom_2', 'mean_m_prom_2',
+                        'mean_f_prom_1', 'mean_m_prom_1',
+                        'std_f1', 'std_f2',
+                        'std_f3', 'std_m1',
+                        'std_m2', 'std_m3',
+                        'std_vac_3', 'std_vac_2',
+                        'std_vac_1', 'std_prom1',
+                        'std_prom2', 'std_gendprop',
+                        'std_unfilled', 'std_dept_size',
+                        'std_f_hire_3', 'std_m_hire_3',
+                        'std_f_hire_2', 'std_m_hire_2',
+                        'std_f_hire_1', 'std_m_hire_1',
+                        'std_f_prom_3', 'std_m_prom_3',
+                        'std_f_prom_2', 'std_m_prom_2',
+                        'std_f_prom_1', 'std_m_prom_1',
+                        'f1_025', 'f2_025',
+                        'f3_025', 'm1_025',
+                        'm2_025', 'm3_025', 'vac_3_025',
+                        'vac_2_025', 'vac_1_025',
+                        'prom1_025', 'prom2_025',
+                        'gendprop_025', 'unfilled_025',
+                        'dept_size_025', 'f_hire_3_025',
+                        'm_hire_3_025', 'f_hire_2_025',
+                        'm_hire_2_025', 'f_hire_1_025',
+                        'm_hire_1_025', 'f_prom_3_025',
+                        'm_prom_3_025', 'f_prom_2_025',
+                        'm_prom_2_025', 'f_prom_1_025',
+                        'm_prom_1_025', 'f1_975',
+                        'f2_975', 'f3_975',
+                        'm1_975', 'm2_975',
+                        'm3_975', 'vac_3_975',
+                        'vac_2_975', 'vac_1_975',
+                        'prom_1_975', 'prom2_975',
+                        'gendprop_975', 'unfilled_975',
+                        'dept_size_975', 'f_hire_3_975',
+                        'm_hire_3_975', 'f_hire_2_975',
+                        'm_hire_2_975', 'f_hire_1_975',
+                        'm_hire_1_975', 'f_prom_3_975',
+                        'm_prom_3_975', 'f_prom_2_975',
+                        'm_prom_2_975', 'f_prom_1_975',
+                        'm_prom_1_975'
+                        ])
 
 FEMALE_MATRIX_COLUMNS = list(['year',
                               'mpct_f1',
@@ -141,33 +141,29 @@ FEMALE_MATRIX_COLUMNS = list(['year',
                               'm3_025',
                               'm3_975'])
 
-
-EXPORT_COLUMNS_FOR_CSV = list([ 'hiring_rate_women_1',
-             'hiring_rate_women_2',
-             'hiring_rate_women_3',
-             'hiring_rate_men_1',
-             'hiring_rate_men_2',
-             'hiring_rate_men_3',
-             'attrition_rate_women_1',
-             'attrition_rate_women_2',
-             'attrition_rate_women_3',
-             'attrition_rate_men_1',
-             'attrition_rate_men_2',
-             'attrition_rate_men_3',
-             'probablity_of_outside_hire_1',
-             'probability_of_outside_hire_2',
-             'probability_of_outside_hire_3',
-             'female_promotion_rate_1',
-             'female_promotion_rate_2',
-             'male_promotion_rate_1',
-             'male_promotion_rate_2',
-             'dept_size_upperbound',
-             'dept_size_lowerbound',
-             'dept_size_exogenous_variation_range',
-             'duration'])
-
-
-
+EXPORT_COLUMNS_FOR_CSV = list(['hiring_rate_women_1',
+                               'hiring_rate_women_2',
+                               'hiring_rate_women_3',
+                               'hiring_rate_men_1',
+                               'hiring_rate_men_2',
+                               'hiring_rate_men_3',
+                               'attrition_rate_women_1',
+                               'attrition_rate_women_2',
+                               'attrition_rate_women_3',
+                               'attrition_rate_men_1',
+                               'attrition_rate_men_2',
+                               'attrition_rate_men_3',
+                               'probablity_of_outside_hire_1',
+                               'probability_of_outside_hire_2',
+                               'probability_of_outside_hire_3',
+                               'female_promotion_rate_1',
+                               'female_promotion_rate_2',
+                               'male_promotion_rate_1',
+                               'male_promotion_rate_2',
+                               'dept_size_upperbound',
+                               'dept_size_lowerbound',
+                               'dept_size_exogenous_variation_range',
+                               'duration'])
 
 defaults.width = 400
 defaults.height = 400
@@ -242,7 +238,11 @@ class Base_model():
 
     def load_baseline_data_mgmt(self):
         '''
-        This function will load the original management data to the object and remove any previous data.
+        This function will load the parameter values for the baseline
+        scenario of the Business School into the model
+        :return: This function does not return anything. It changes the
+        current model in place.
+        :rtype: void
         '''
 
         self.nf1 = 3
@@ -278,7 +278,11 @@ class Base_model():
 
     def load_optimistic_data_mgmt(self):
         '''
-        This function will load the original management data to the object and remove any previous data.
+        This function will load the parameter values for the optimistic
+        scenario of the Business School into the model
+        :return: This function does not return anything. It changes the
+        current model in place.
+        :rtype: void
         '''
 
         self.nf1 = 3
@@ -312,7 +316,12 @@ class Base_model():
 
     def load_most_optimistic_data_mgmt(self):
         '''
-        This function will load the original management data to the object and remove any previous data.
+        This function will load the parameter values for the most optimistic
+        scenario of the Business School into the model
+        :return: This function does not return anything. It changes the
+        current model in place.
+        :rtype: void
+
         '''
 
         self.nf1 = 3
@@ -346,7 +355,12 @@ class Base_model():
 
     def load_pessimistic_data_mgmt(self):
         '''
-        This function will load the original management data to the object and remove any previous data.
+        This function will load the parameter values for the pessimistic
+        scenario of the Business School into the model
+        :return: This function does not return anything. It changes the
+        current model in place.
+        :rtype: void
+
         '''
 
         self.nf1 = 3
@@ -380,7 +394,12 @@ class Base_model():
 
     def load_baseline_data_science(self):
         '''
-        This function will load the original management data to the object and remove any previous data.
+        This function will sets the parameter values for the model
+        to the baseline for the science department.
+        :return: This function does not return anything. It changes the
+        current model in place.
+        :rtype: void
+
         '''
 
         self.nf1 = 14
@@ -414,7 +433,11 @@ class Base_model():
 
     def load_optimistic_data_science(self):
         '''
-        This function will load the original management data to the object and remove any previous data.
+        This function will load the parameter values for the optimistic
+        scenario of the Science Department into the model
+        :return: This function does not return anything. It changes the
+        current model in place.
+        :rtype: void
         '''
 
         self.nf1 = 14
@@ -448,7 +471,12 @@ class Base_model():
 
     def load_most_optimistic_data_science(self):
         '''
-        This function will load the original management data to the object and remove any previous data.
+        This function will load the parameter values for the most optimistic
+        scenario of the Science Department into the model
+        :return: This function does not return anything. It changes the
+        current model in place.
+        :rtype: void
+
         '''
 
         self.nf1 = 14
@@ -482,7 +510,12 @@ class Base_model():
 
     def load_pessimistic_data_science(self):
         '''
-        This function will load the original management data to the object and remove any previous data.
+        This function will load the parameter values for the pessimistic
+        scenario of the Science Department into the model
+        :return: This function does not return anything. It changes the
+        current model in place.
+        :rtype: void
+
         '''
 
         self.nf1 = 14
@@ -536,11 +569,12 @@ class Base_model():
         ##Create empty arrays to hold the results
 
         self.results_matrix = pd.DataFrame(np.zeros([self.duration,
-                                            len(RESULTS_COLUMNS)]))
+                                                     len(RESULTS_COLUMNS)]))
         self.results_matrix.columns = RESULTS_COLUMNS
 
         self.pct_female_matrix = pd.DataFrame(np.zeros([self.duration,
-                                                        len(FEMALE_MATRIX_COLUMNS)]))
+                                                        len(
+                                                            FEMALE_MATRIX_COLUMNS)]))
         self.pct_female_matrix.columns = FEMALE_MATRIX_COLUMNS
 
         ## Collect mean and standard deviations for each column/row across all
@@ -549,10 +583,9 @@ class Base_model():
 
         for idx in range(self.duration):
 
-
             # Set the year in the results matrix
 
-            self.results_matrix.loc[idx,0] = idx
+            self.results_matrix.loc[idx, 0] = idx
 
             ## This section will iterate over all of the values in the results
             ## matrix for a year, and it will get the mean and average values
@@ -563,61 +596,94 @@ class Base_model():
                 _t = np.array([r['run'][f][idx] for r in res_array])
 
                 self.results_matrix.loc[idx,
-                        RESULTS_COLUMNS[k+1]] = np.array(np.mean(_t)) if \
+                                        RESULTS_COLUMNS[k + 1]] = np.array(
+                    np.mean(_t)) if \
                     np.isfinite(np.array(np.mean(_t))) else 0
 
                 self.results_matrix.loc[idx,
-                        RESULTS_COLUMNS[k+27]] = np.array(np.std(_t)) if \
+                                        RESULTS_COLUMNS[k + 27]] = np.array(
+                    np.std(_t)) if \
                     np.isfinite(np.array(np.std(_t))) else 0
 
                 self.results_matrix.loc[idx,
-                        RESULTS_COLUMNS[k+53]] = np.percentile(_t,2.5) if \
-                    np.isfinite(np.percentile(_t,2.5))  else 0
+                                        RESULTS_COLUMNS[
+                                            k + 53]] = np.percentile(_t, 2.5) if \
+                    np.isfinite(np.percentile(_t, 2.5))  else 0
 
                 self.results_matrix.loc[idx,
-                        RESULTS_COLUMNS[k+79]] = np.percentile(_t,97.5) if \
-                    np.isfinite(np.percentile(_t,97.5)) else 0
-
+                                        RESULTS_COLUMNS[
+                                            k + 79]] = np.percentile(_t,
+                                                                     97.5) if \
+                    np.isfinite(np.percentile(_t, 97.5)) else 0
 
             # Calculate the mean and standard deviation/percentiles
             # for each grouping.
 
             for l, lev in enumerate(LEVELS):
-                if l <=2:
-                    _u = np.array([r['run'][LEVELS[l]][idx] / (r['run'][LEVELS[l]][idx]
-                                  + r['run'][LEVELS[l + 3]][idx]) for r in
-                                   res_array])
+                if l <= 2:
+                    _u = np.array(
+                        [r['run'][LEVELS[l]][idx] / (r['run'][LEVELS[l]][idx]
+                                                     + r['run'][LEVELS[l + 3]][
+                                                         idx]) for r in
+                         res_array])
 
                 else:
-                    _u = np.array([r['run'][LEVELS[l]][idx] / (r['run'][LEVELS[l]][idx]
-                                  + r['run'][LEVELS[l - 3]][idx]) for r in
-                                   res_array])
-
+                    _u = np.array(
+                        [r['run'][LEVELS[l]][idx] / (r['run'][LEVELS[l]][idx]
+                                                     + r['run'][LEVELS[l - 3]][
+                                                         idx]) for r in
+                         res_array])
 
                 self.pct_female_matrix.loc[idx, 'year'] = idx
 
-                self.pct_female_matrix.loc[idx, FEMALE_MATRIX_COLUMNS[2*l+1]]\
+                self.pct_female_matrix.loc[
+                    idx, FEMALE_MATRIX_COLUMNS[2 * l + 1]] \
                     = np.nanmean(_u)
 
-                self.pct_female_matrix.loc[idx, FEMALE_MATRIX_COLUMNS[2*l+2]]\
+                self.pct_female_matrix.loc[
+                    idx, FEMALE_MATRIX_COLUMNS[2 * l + 2]] \
                     = np.nanstd(_u)
 
                 self.pct_female_matrix.loc[idx,
-                    FEMALE_MATRIX_COLUMNS[12+2*l+1]] = np.nanpercentile(_u,
-                                                                     2.5) if \
-                    np.isfinite(np.nanpercentile(_u,2.5)) else 0
+                                           FEMALE_MATRIX_COLUMNS[
+                                               12 + 2 * l + 1]] = np.nanpercentile(
+                    _u,
+                    2.5) if \
+                    np.isfinite(np.nanpercentile(_u, 2.5)) else 0
 
                 self.pct_female_matrix.loc[idx,
-                    FEMALE_MATRIX_COLUMNS[12+2*l+2]] = np.nanpercentile(_u,
-                                                                     97.5) if\
-                    np.isfinite(np.nanpercentile(_u,97.5)) else 0
-
+                                           FEMALE_MATRIX_COLUMNS[
+                                               12 + 2 * l + 2]] = np.nanpercentile(
+                    _u,
+                    97.5) if \
+                    np.isfinite(np.nanpercentile(_u, 97.5)) else 0
 
         self.res_array = res_array
 
-
     def run_parameter_sweep(self, number_of_runs, param, llim,
                             ulim, num_of_steps):
+
+        '''
+
+        This function sweeps a single parameter and captures the effect of
+        that variation on the overall model. Any valid parameter can be chosen.
+
+        :param number_of_runs: The number of model iterations per parameter
+        value
+        :type number_of_runs: int
+        :param param: The name of the parameter to sweep
+        :type param: basestring
+        :param llim: lower limit of the parameter value
+        :type llim: float
+        :param ulim: upper limit of the parameter value
+        :type ulim: float
+        :param num_of_steps: total number of increments in the range between
+        the upper and lower limits.
+        :type num_of_steps: int
+        :return: a Dataframe containing individual model runs using the
+        parameter increments
+        :rtype: pandas Dataframe
+        '''
 
         # First I will create a structured array to hold the results of the
         # simulation. The size of the array should be one for each step in the
@@ -625,19 +691,23 @@ class Base_model():
 
         parameter_sweep_increments = np.linspace(llim, ulim, num_of_steps)
 
+        # TODO have to adjust the length of the dataframe to include the
+        # extra columns for the EXPORT_COLUMNS_FOR_CSV
+
         parameter_sweep_results = pd.DataFrame(np.zeros([len(
             parameter_sweep_increments),
-            len(RESULTS_COLUMNS) +1]))
+            len(RESULTS_COLUMNS) + 1]))
 
-        parameter_sweep_results.loc[:,0] = parameter_sweep_increments
-
+        parameter_sweep_results.loc[:, 0] = parameter_sweep_increments
 
         # Run simulations with parameter increments and collect into a container.
+
 
         for i, val in enumerate(parameter_sweep_increments):
             setattr(self, param, val)
             self.run_multiple(number_of_runs)
-            parameter_sweep_results.iloc[i, 1:] = self.results_matrix.tail(1).iloc[0,1:]
+            parameter_sweep_results.iloc[i, 1:] = self.results_matrix.tail(
+                1).iloc[0, 1:]
 
         self.parameter_sweep_results = parameter_sweep_results
 
@@ -874,7 +944,7 @@ class Base_model():
 
         # print(pd.DataFrame(self.res_array['run'][3]))
 
-        columnnames = [ 'run', 'year'] + MODEL_RUN_COLUMNS + \
+        columnnames = ['run', 'year'] + MODEL_RUN_COLUMNS + \
                       EXPORT_COLUMNS_FOR_CSV + ['model_name']
 
         print_array = np.zeros([self.duration * number_of_runs,
@@ -888,8 +958,6 @@ class Base_model():
                                                self.duration),
             1:-1] = pd.DataFrame(self.res_array['run'][idx])
 
-
-
         # work with barbara to craft the filename
         # model_label + 160114_HH:MM(24hour) +
 
@@ -897,8 +965,9 @@ class Base_model():
                    + str(number_of_runs) + ".csv"
 
         df_print_array = pd.DataFrame(print_array, columns=columnnames).round(2)
-        df_print_array.iloc[:,-1] = model_choice
+        df_print_array.iloc[:, -1] = model_choice
         df_print_array.to_csv(filename)
+
 
 ## Supplementary/Helper functions
 
