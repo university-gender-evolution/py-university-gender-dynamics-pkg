@@ -103,7 +103,7 @@ def test_base_model_multiple_runs_persistent_state(mock_data):
 
 def test_base_model_parameter_sweep(mgmt_data):
     t = Mod_Stoch_FBHP(**mgmt_data)
-    v = t.run_parameter_sweep(10, 'female_pp_1', 0.1, 0.9, 15)
+    v = t.run_parameter_sweep(10, 'female_pp_1', 0.1, 0.9, 4)
     assert (isinstance(v, int))
 
 def test_base_model_multiple_runs_gender_prop(mock_data):

@@ -314,6 +314,7 @@ class Base_model():
         self.lowerbound = 64
         self.variation_range = 3
 
+
     def load_most_optimistic_data_mgmt(self):
         '''
         This function will load the parameter values for the most optimistic
@@ -696,9 +697,10 @@ class Base_model():
 
         parameter_sweep_results = pd.DataFrame(np.zeros([len(
             parameter_sweep_increments),
-            len(RESULTS_COLUMNS) + 1]))
+            len(RESULTS_COLUMNS)+1]))
 
-        parameter_sweep_results.loc[:, 0] = parameter_sweep_increments
+        parameter_sweep_results.columns = ['increment'] + RESULTS_COLUMNS
+        parameter_sweep_results.loc[:,'increment'] = parameter_sweep_increments
 
         # Run simulations with parameter increments and collect into a container.
 
@@ -707,7 +709,9 @@ class Base_model():
             setattr(self, param, val)
             self.run_multiple(number_of_runs)
             parameter_sweep_results.iloc[i, 1:] = self.results_matrix.tail(
-                1).iloc[0, 1:]
+                1).iloc[0, 1: -1]
+            parameter_sweep_results.iloc[i, 1] = self.results_matrix.tail(
+                1).iloc[0, -1]
 
         self.parameter_sweep_results = parameter_sweep_results
 
