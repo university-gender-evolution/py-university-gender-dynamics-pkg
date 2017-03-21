@@ -81,55 +81,33 @@ def mgmt_data():
 def test_Base_model(mock_data):
     assert isinstance(Base_model(**mock_data), Base_model)
 
-
 def test_base_model_run(mock_data):
     t = Base_model(**mock_data)
     t.run_model()
     assert (isinstance(t.res, np.ndarray))
 
-
 def test_base_model_persistence(mock_data):
     t = Base_model(**mock_data)
     assert (t.nf1 == 14)
-
 
 def test_base_model_multiple_runs(mgmt_data):
     t = Mod_Stoch_FBPH(**mgmt_data)
     t.run_multiple(5)
     assert (hasattr(t, 'res_array'))
 
-
 def test_base_model_multiple_runs_persistent_state(mock_data):
     t = Mod_Stoch_FBHP(**mock_data)
     t.run_multiple(10)
     assert (isinstance(t.results_matrix, pd.DataFrame))
 
-
-def test_base_model_parameter_sweep(mgmt_data):
-    t = Mod_Stoch_FBHP(**mgmt_data)
-    v = t.run_parameter_sweep(10, 'female_pp_1', 0.1, 0.9, 4)
-    assert (isinstance(v, int))
-
-
 def test_excel_export(mock_data):
     t = Mod_Stoch_FBPH(**mock_data)
     t.export_model_run('testexport', 'model test', 10)
 
-
-
-def test_comparison_model_param_sweep(mock_data):
-    modlist = list([Mod_Stoch_FBHP(**mock_data),
-                    Mod_Stoch_FBPH(**mock_data)])
-    c = Comparison(modlist)
-    c.plot_parameter_sweep_gender_proportion(10, 'female_promotion_probability_2', 0.1, 0.5, 8)
-
-
 def test_comparison_model_param_sweep_detail(mock_data):
-    modlist = list([Mod_Stoch_FBHP(**mock_data),
-                    Mod_Stoch_FBPH(**mock_data)])
-    c = Comparison(modlist)
-    c.plot_parameter_sweep_detail(10, 'female_promotion_probability_2', 0.1, 0.5, 8)
-
+    t = Mod_Stoch_FBPH(**mock_data)
+    t.run_parameter_sweep(10, 'female_promotion_probability_2', 0.1, 0.5, 8)
+    assert(hasattr(t, 'parameter_sweep_results'))
 
 def test_base_model_probability_calc_detail_array(mock_data):
     t = Mod_Stoch_FBPH(**mock_data)
@@ -139,56 +117,14 @@ def test_base_model_probability_calc_detail_array(mock_data):
                                                                    0.8, 8, 150)
     assert (isinstance(res, pd.DataFrame))
 
-
-def test_plot_bokeh_overall(mgmt_data):
-    output_file('plot_bokeh_detail.html')
-    t = Mod_Stoch_FBHP(**mgmt_data)
-
-    plot_settings = {'plottype': 'gender proportion',
-                     'intervals': 'standard',
-                     'number_of_runs': 100,
-                     'target': 0.25,
-
-                     # Main plot settings
-                     'xlabel': 'Years',
-                     'ylabel': 'Percentage of Dept that is Female',
-                     'title': 'Gender proportion over time - empirical bounds',
-                     'height': 800,
-                     'width' : 800,
-                     'line_width': 2,
-                     'transparency': 0.25,
-                     'linecolor': 'green',
-                     'model_legend_label': 'Average Probability',
-                     'legend_location': 'top_right',
-
-                     # Target value plot settings
-                     'target_plot': True,
-                     'color_target': 'red',
-                     'color_percent_line': 'blue',
-                     'target_plot_linewidth': 2,
-                     'target_plot_legend_label': 'Target',
-
-                     # Percent plot settings
-                     'percent_line_plot': False,
-                     'percent_line_value': 0.5,
-                     'percent_linewidth': 2,
-                     'percent_legend_label': 'Reference Line',
-
-                     # Male Female Numbers Plot
-                     'male_female_numbers_plot' : False
-                    }
-
-    show(t.plot_overall_chart(**plot_settings))
-
-
 def test_bokeh_comparison_plot_overall_one_model(mgmt_data):
     modlist = list([Mod_Stoch_FBHP(**mgmt_data)])
     # modlist = list([Mod_Stoch_FBHP(**mgmt_data),
     #                 Mod_Stoch_FBPH(**mgmt_data)])
     c = Comparison(modlist)
 
-    plot_settings = {'plottype': 'male female numbers',
-                     'intervals': 'empirical',
+    plot_settings = {'plottype': 'gender proportion',
+                     'intervals': 'standard',
             'number_of_runs': 10,  # number simulations to average over
             'target': 0.25,  # target percentage of women in the department
             # Main plot settings
@@ -203,28 +139,6 @@ def test_bokeh_comparison_plot_overall_one_model(mgmt_data):
             'height_': 800,
             'width_': 800,
 
-            # Optional Settings
-            # Target value plot settings
-            'target_plot': False,
-            'color_target': 'red',
-            'color_percent_line': 'red',
-            'target_plot_linewidth': 2,
-            'target_plot_legend_label': 'Target Proportion',
-
-            # Percent plot settings
-            'percent_line_plot': False,
-            'percent_line_value': 0.5,
-            'percent_linewidth': 2,
-            'percent_legend_label': 'Reference Line',
-
-            # Male Female numbers plot settings
-            'male_female_numbers_plot': True,
-            'mf_male_color': ['black'],
-            'mf_target_color': ['red'],
-            'mf_male_label': ['Male 1'],
-            'mf_target_label': ['Target 1'],
-            'mf_male_linewidth':2,
-            'mf_target_linewidth': 2
             }
     show(c.plot_comparison_overall_chart(**plot_settings))
 
@@ -235,23 +149,18 @@ def test_bokeh_comparison_plot_overall_multiple_models(mgmt_data):
 
     plot_settings = {'plottype': 'gender proportion',
                      'intervals': 'empirical',
-            'number_of_runs': 10,  # number simulations to average over
-            'target': 0.25,  # target percentage of women in the department
-            # Main plot settings
-            'xlabel':'Years',
-            'ylabel': 'Proportion Women' ,
-            'title': 'Figure 4.1.3a: Change in Proportion Women, Compare Models 1 and 2' ,
-            'transparency': [0.25,0.25],
-            'model_legend_label': ['Model 1, Hire-Promote', 'Model 2, Promote-Hire'],
+                     'number_of_runs': 10,  # number simulations to average over
+                     'target': 0.25,
+                     # target percentage of women in the department
+                     # Main plot settings
+                     'xlabel': 'Years',
+                     'ylabel': 'Proportion Women',
+                     'title': 'Figure 4.1.3a: Change in Proportion Women, Compare Models 1 and 2',
+                     'transparency': [0.25, 0.25],
+                     'model_legend_label': ['Model 1, Hire-Promote',
+                                            'Model 2, Promote-Hire']
 
-            # Optional Settings
-            # Target value plot settings
-            'target_plot': True,
-
-
-            # Percent plot settings
-            'percent_line_plot': True
-            }
+                     }
     show(c.plot_comparison_overall_chart(**plot_settings))
 
 def test_bokeh_comparison_plot_bylevel(mgmt_data):

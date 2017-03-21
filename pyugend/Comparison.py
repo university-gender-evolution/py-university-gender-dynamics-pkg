@@ -7,7 +7,8 @@ from bokeh.charts import defaults
 from bokeh.layouts import gridplot
 from operator import add, sub
 
-
+defaults.height = 800
+defaults.width = 800
 # CONSTANTS
 
 # line_colors = ['#7fc97f', '#beaed4', '#fdc086','#386cb0','#f0027f','#ffff99']
@@ -240,8 +241,8 @@ class Comparison():
         # Models.run_parameter_sweep() function. If this is not a parameter
         # sweep, then the block will run the Models.run_multiple() function.
 
-        if plottype == 'parameter sweep percentage' or 'parameter sweep ' \
-                                                       'probability':
+        if plottype in ['parameter sweep percentage','parameter sweep '
+                                                     'probability']:
 
             for mod in self.mlist:
                 mod.run_parameter_sweep(number_of_runs,
@@ -448,6 +449,8 @@ class Comparison():
 
         for k, v in enumerate(self.mlist):
 
+            assert(len(range(xval)) == len(yval[k]))
+
             p.line(range(xval), yval[k],
                    line_width=line_width,
                    line_color=linecolor[k],
@@ -458,6 +461,8 @@ class Comparison():
             x_data = np.arange(0, xval)
             band_x = np.append(x_data, x_data[::-1])
             band_y = np.append(lower_band[k], upper_band[k][::-1])
+
+            assert (len(band_x) == len(band_y))
 
             p.patch(band_x,
                     band_y,
