@@ -209,42 +209,77 @@ class Comparison():
                            width_=defaults.width,
                            height_=defaults.height,
                            transparency =0.25,
-                           linecolor=['green'],
+                           linecolor=['#018571', '#a6611a', '#e66101'],
                            target_plot=False,
                            legend_location='top_right',
-                           color_target='red',
+                           color_target='#ca0020',
                            percent_line_plot=False,
                            percent_line_value=0.5,
-                           color_percent_line='red',
+                           color_percent_line='#ca0020',
                            target_plot_linewidth=2,
                            percent_linewidth=2,
                            model_legend_label=['model'],
                            target_plot_legend_label='target',
                            percent_legend_label='percent',
                            male_female_numbers_plot=False,
-                           mf_male_color=['black'],
-                           mf_target_color=['red'],
+                           mf_male_color=['#404040'],
+                           mf_target_color=['#404040'],
                            mf_male_label=['Male'],
                            mf_target_label='Target',
                            mf_male_linewidth=2,
-                           mf_target_linewidth=2
+                           mf_target_linewidth=2,
+                           parameter_sweep_param = None,
+                           parameter_ubound = 0,
+                           parameter_lbound = 0,
+                           number_of_steps = 0
                            ):
-        # generate data for the plot.
 
-        for mod in self.mlist:
-            mod.run_multiple(number_of_runs)
 
-        # set default plot parameters. The xaxis is generally duration,
-        # though I have the option--depending on the plot, to put in a
-        # different x-axis.
+        # Choose plot type. This block will initialize the data for the
+        # plots. If the plot is a parameter sweep, then it will run the
+        # Models.run_parameter_sweep() function. If this is not a parameter
+        # sweep, then the block will run the Models.run_multiple() function.
 
-        xval = min([m.duration for m in self.mlist])
+        if plottype == 'parameter sweep percentage' or 'parameter sweep ' \
+                                                       'probability':
 
+            for mod in self.mlist:
+                mod.run_parameter_sweep(number_of_runs,
+                                        parameter_sweep_param,
+                                        parameter_lbound,
+                                        parameter_ubound,
+                                        number_of_steps)
+
+
+            xval = self.mlist[0].parameter_sweep_results.loc[:,'increment']
+
+        else:
+
+            for mod in self.mlist:
+                mod.run_multiple(number_of_runs)
+
+            xval = min([m.duration for m in self.mlist])
+
+        # END OF BLOCK
+
+
+
+        # BEGIN BLOCK
+        # This section  just initializes the bokeh figure with labels and
+        # sizing.
         p = figure(title=title,
                x_axis_label=xlabel,
                y_axis_label=ylabel,
                width=width_,
                height=height_)
+
+        # END BLOCK
+
+        # BEGIN BLOCK
+        # Generate main plot values.
+        # This section will take the data from the model simulation and
+        # convert it to the appropriate y-variables for the plot.
+
 
         if plottype == 'probability proportion':
 
@@ -290,6 +325,25 @@ class Comparison():
 
             yval3 = [np.round(target * dept) for dept in total_faculty]
 
+        if plottype == 'parameter sweep percentage':
+
+            yval = [m.parameter_sweep_results['mean_gendprop'] for m in
+                    self.mlist]
+
+        if plottype == 'parameter sweep probability':
+
+            for mod in self.mlist:
+                mod.run_probability_parameter_sweep_overall(number_of_runs,
+                                                            parameter_sweep_param,
+                                                            parameter_lbound,
+                                                            parameter_ubound,
+                                                            number_of_steps,
+                                                            target)
+
+            yval = [m.probability_sweep_results['Probability'] for m in
+                    self.mlist]
+
+
         # Set confidence bounds using empirical results
 
         if intervals == 'empirical':
@@ -320,6 +374,16 @@ class Comparison():
                               self.mlist]
 
             if plottype == 'male female numbers':
+                upper_band = yval
+                lower_band = yval
+
+            if plottype == 'parameter sweep percentage':
+                upper_band = [m.parameter_sweep_results['gendprop_975'] for m in
+                              self.mlist]
+                lower_band = [m.parameter_sweep_results['gendprop_025'] for m in
+                              self.mlist]
+
+            if plottype == 'parameter sweep probability':
                 upper_band = yval
                 lower_band = yval
 
@@ -365,9 +429,24 @@ class Comparison():
                 upper_band = yval
                 lower_band = yval
 
+            if plottype == 'parameter sweep percentage':
+
+                fill_matrix = [m.parameter_sweep_results['std_gendprop'] for m in
+                               self.mlist]
+
+                upper_band = list(map(add, [y for y in yval],[1.96*f for f in
+                                                         fill_matrix]))
+
+                lower_band = list(map(sub, [y for y in yval],[1.96*f for f in
+                                                         fill_matrix]))
+
+            if plottype == 'parameter sweep probability':
+                upper_band = yval
+                lower_band = yval
+
         # Execute plots
 
-        for k,v in enumerate(self.mlist):
+        for k, v in enumerate(self.mlist):
 
             p.line(range(xval), yval[k],
                    line_width=line_width,
@@ -383,32 +462,32 @@ class Comparison():
             p.patch(band_x,
                     band_y,
                     color=linecolor[k],
-                    fill_alpha=transparency[k])
+                    fill_alpha=transparency)
 
             if male_female_numbers_plot:
                 p.line(range(xval),
-                         yval2[k],
-                         line_color=mf_male_color[k],
-                         legend=mf_male_label[k],
-                         line_width=mf_male_linewidth)
+                       yval2[k],
+                       line_color=mf_male_color[k],
+                       legend=mf_male_label[k],
+                       line_width=mf_male_linewidth)
 
                 p.line(range(xval),
-                         yval3[k],
-                         line_color=mf_target_color[k],
-                         legend=mf_target_label[k],
-                         line_width=mf_target_linewidth)
+                       yval3[k],
+                       line_color=mf_target_color[k],
+                       legend=mf_target_label[k],
+                       line_width=mf_target_linewidth)
 
         if target_plot:
-            p.line(range(xval),target,
-                        line_color=color_target,
-                        legend=target_plot_legend_label,
-                        line_width=target_plot_linewidth)
+            p.line(range(xval), target,
+                   line_color=color_target,
+                   legend=target_plot_legend_label,
+                   line_width=target_plot_linewidth)
 
         if percent_line_plot:
             p.line(range(xval), percent_line_value,
-                        line_color=color_percent_line,
-                        legend=percent_legend_label,
-                        line_width=percent_linewidth)
+                   line_color=color_percent_line,
+                   legend=percent_legend_label,
+                   line_width=percent_linewidth)
 
         return(p)
 

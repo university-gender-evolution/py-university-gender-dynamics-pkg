@@ -236,6 +236,7 @@ class Base_model():
         self.probability_matrix = 0
         self.probability_by_level = 0
 
+
     def load_baseline_data_mgmt(self):
         '''
         This function will load the parameter values for the baseline
@@ -692,9 +693,6 @@ class Base_model():
 
         parameter_sweep_increments = np.linspace(llim, ulim, num_of_steps)
 
-        # TODO have to adjust the length of the dataframe to include the
-        # extra columns for the EXPORT_COLUMNS_FOR_CSV
-
         parameter_sweep_results = pd.DataFrame(np.zeros([len(
             parameter_sweep_increments),
             len(RESULTS_COLUMNS)+1]))
@@ -713,9 +711,93 @@ class Base_model():
             parameter_sweep_results.iloc[i, 1] = self.results_matrix.tail(
                 1).iloc[0, -1]
 
+
         self.parameter_sweep_results = parameter_sweep_results
 
+        # BEGIN BLOCK
+        # Reset the models to original settings. This is very important,
+        # otherwise settings from the parameter sweep will contaminate
+        # subsequent runs of the model.
+
+        self.load_baseline_data_mgmt()
+        # END BLOCK
+
         return (0)
+
+
+    def run_probability_parameter_sweep_overall(self,
+                                                number_of_runs,
+                                                param,
+                                                llim,
+                                                ulim,
+                                                num_of_steps,
+                                                target):
+
+        '''
+
+        This function sweeps a single parameter and captures the effect of
+        that variation on the probability of achieving a target at the end of the model.
+        Any valid parameter can be chosen.
+
+        :param number_of_runs: The number of model iterations per parameter
+        value
+        :type number_of_runs: int
+        :param param: The name of the parameter to sweep
+        :type param: basestring
+        :param llim: lower limit of the parameter value
+        :type llim: float
+        :param ulim: upper limit of the parameter value
+        :type ulim: float
+        :param num_of_steps: total number of increments in the range between
+        the upper and lower limits.
+        :type num_of_steps: int
+        :return: a Dataframe containing individual model runs using the
+        parameter increments
+        :rtype: pandas Dataframe
+        '''
+
+        # First I will create a structured array to hold the results of the
+        # simulation. The size of the array should be one for each step in the
+        # parameter sweep. To calculate that,
+
+        parameter_sweep_increments = np.linspace(llim, ulim, num_of_steps)
+        parameter_sweep_columns = ['increment',
+                                   'Year',
+                                   'Probability',
+                                   'Mean',
+                                   'Min',
+                                   'Max']
+        parameter_sweep_results = pd.DataFrame(np.zeros([len(
+            parameter_sweep_increments),
+            len(parameter_sweep_columns)]))
+
+        parameter_sweep_results.columns = parameter_sweep_columns
+        parameter_sweep_results.loc[:,'increment'] = parameter_sweep_increments
+
+        # Run simulations with parameter increments and collect into a container.
+
+        for i, val in enumerate(parameter_sweep_increments):
+            setattr(self, param, val)
+            self.run_probability_analysis_gender_proportion(number_of_runs,
+                                                            target)
+            parameter_sweep_results.iloc[i, 1:] = self.probability_matrix.tail(
+                1).iloc[0, 1:]
+
+
+
+        self.probability_sweep_results = parameter_sweep_results
+
+        # BEGIN BLOCK
+        # Reset the models to original settings. This is very important,
+        # otherwise settings from the parameter sweep will contaminate
+        # subsequent runs of the model.
+
+        self.load_baseline_data_mgmt()
+        # END BLOCK
+
+        return (0)
+
+
 
     def run_probability_analysis_gender_proportion(self, num_runs, target):
 
@@ -733,15 +815,15 @@ class Base_model():
         ## Pull the gender ratio data from the sims and extract probability of reaching the target.
 
         for idx in range(self.duration):
-            _s = np.array([sum(list([r['run']['f1'][idx],
-                                     r['run']['f2'][idx],
-                                     r['run']['f3'][idx]])) / sum(
-                list([r['run']['f1'][idx],
-                      r['run']['f2'][idx],
-                      r['run']['f3'][idx],
-                      r['run']['m1'][idx],
-                      r['run']['m2'][idx],
-                      r['run']['m3'][idx]])) for r in self.res_array])
+            _s = np.array([sum(list([r['run']['number_f1'][idx],
+                                     r['run']['number_f2'][idx],
+                                     r['run']['number_f3'][idx]])) / sum(
+                list([r['run']['number_f1'][idx],
+                      r['run']['number_f2'][idx],
+                      r['run']['number_f3'][idx],
+                      r['run']['number_m1'][idx],
+                      r['run']['number_m2'][idx],
+                      r['run']['number_m3'][idx]])) for r in self.res_array])
             probability_matrix.loc[idx, 'Probability'] = \
                 calculate_empirical_probability_of_value(target, _s)
             probability_matrix.loc[idx, 'Mean'] = _s.mean()
