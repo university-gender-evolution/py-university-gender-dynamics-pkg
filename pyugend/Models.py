@@ -930,93 +930,93 @@ class Base_model():
 
         return (empirical_probability_param_sweep_df)
 
-    def plot_parameter_sweep(self, title, xlabel, ylabel):
-
-        if not hasattr(self, 'parameter_sweep_array'):
-            print("please run parameter sweep function first.")
-            return (0)
-        plot_array = self.parameter_sweep_array[0]
-        plt.plot(plot_array[:, 0], plot_array[:, 1], label=self.label)
-        plt.fill_between(plot_array[:, 0], plot_array[:, 1] +
-                         1.96 * plot_array[:, 2], plot_array[:, 1] -
-                         1.96 * plot_array[:, 2], alpha=0.5)
-
-        plt.xlabel(xlabel)
-        plt.ylabel(ylabel)
-        plt.title(title)
-        plt.legend(loc='upper right', shadow=True)
-        plt.show()
-
-    def plot_parameter_sweep_all_counts(self):
-
-        # This function will generate graphs of the mean and standard deviation
-        # matrices.
-
-        if not hasattr(self, 'parameter_sweep_array'):
-            print("please run parameter sweep function first.")
-            return (0)
-
-        array_list = self.parameter_sweep_array
-
-        f, axarr = plt.subplots(nrows=2, ncols=3)
-        f.suptitle('Model: ' + self.name)
-        axarr[0, 0].plot(array_list[1][:, 0], array_list[1][:, 1],
-                         label=self.label)
-        axarr[0, 0].set_title('Female level 1')
-        axarr[0, 0].set_xlabel('parameter: ' + array_list[7])
-        axarr[0, 0].set_ylabel('Number of Females')
-        axarr[0, 0].fill_between(array_list[1][:, 0], array_list[1][:, 1] +
-                                 1.96 * array_list[1][:, 2],
-                                 array_list[1][:, 1] -
-                                 1.96 * array_list[1][:, 2], alpha=0.5)
-        axarr[0, 0].legend(loc='upper right', shadow=True)
-
-        axarr[0, 1].plot(array_list[2][:, 0], array_list[2][:, 1])
-        axarr[0, 1].set_title('Female level 2')
-        axarr[0, 1].set_xlabel('parameter: ' + array_list[7])
-        axarr[0, 1].set_ylabel('Number of Females')
-        axarr[0, 1].fill_between(array_list[2][:, 0], array_list[2][:, 1] +
-                                 1.96 * array_list[2][:, 2],
-                                 array_list[2][:, 1] -
-                                 1.96 * array_list[2][:, 2], alpha=0.5)
-
-        axarr[0, 2].plot(array_list[3][:, 0], array_list[3][:, 1])
-        axarr[0, 2].set_title('Female level 3')
-        axarr[0, 2].set_xlabel('parameter: ' + array_list[7])
-        axarr[0, 2].set_ylabel('Number of Females')
-        axarr[0, 2].fill_between(array_list[3][:, 0], array_list[3][:, 1] +
-                                 1.96 * array_list[3][:, 2],
-                                 array_list[3][:, 1] -
-                                 1.96 * array_list[3][:, 2], alpha=0.5)
-
-        axarr[1, 0].plot(array_list[4][:, 0], array_list[4][:, 1])
-        axarr[1, 0].set_title('Male level 1')
-        axarr[1, 0].set_xlabel('parameter: ' + array_list[7])
-        axarr[1, 0].set_ylabel('Number of Males')
-        axarr[1, 0].fill_between(array_list[4][:, 0], array_list[4][:, 1] +
-                                 1.96 * array_list[4][:, 2],
-                                 array_list[4][:, 1] -
-                                 1.96 * array_list[4][:, 2], alpha=0.5)
-
-        axarr[1, 1].plot(array_list[5][:, 0], array_list[5][:, 1])
-        axarr[1, 1].set_title('Male level 2')
-        axarr[1, 1].set_xlabel('parameter: ' + array_list[7])
-        axarr[1, 1].set_ylabel('Number of Males')
-        axarr[1, 1].fill_between(array_list[5][:, 0], array_list[5][:, 1] +
-                                 1.96 * array_list[5][:, 2],
-                                 array_list[5][:, 1] -
-                                 1.96 * array_list[5][:, 2], alpha=0.5)
-
-        axarr[1, 2].plot(array_list[6][:, 0], array_list[6][:, 1])
-        axarr[1, 2].set_title('Male level 3')
-        axarr[1, 2].set_xlabel('parameter: ' + array_list[7])
-        axarr[1, 2].set_ylabel('Number of Males')
-        axarr[1, 2].fill_between(array_list[6][:, 0], array_list[6][:, 1] +
-                                 1.96 * array_list[6][:, 2],
-                                 array_list[6][:, 1] -
-                                 1.96 * array_list[6][:, 2], alpha=0.5)
-
-        plt.show()
+    # def plot_parameter_sweep(self, title, xlabel, ylabel):
+    #
+    #     if not hasattr(self, 'parameter_sweep_array'):
+    #         print("please run parameter sweep function first.")
+    #         return (0)
+    #     plot_array = self.parameter_sweep_array[0]
+    #     plt.plot(plot_array[:, 0], plot_array[:, 1], label=self.label)
+    #     plt.fill_between(plot_array[:, 0], plot_array[:, 1] +
+    #                      1.96 * plot_array[:, 2], plot_array[:, 1] -
+    #                      1.96 * plot_array[:, 2], alpha=0.5)
+    #
+    #     plt.xlabel(xlabel)
+    #     plt.ylabel(ylabel)
+    #     plt.title(title)
+    #     plt.legend(loc='upper right', shadow=True)
+    #     plt.show()
+    #
+    # def plot_parameter_sweep_all_counts(self):
+    #
+    #     # This function will generate graphs of the mean and standard deviation
+    #     # matrices.
+    #
+    #     if not hasattr(self, 'parameter_sweep_array'):
+    #         print("please run parameter sweep function first.")
+    #         return (0)
+    #
+    #     array_list = self.parameter_sweep_array
+    #
+    #     f, axarr = plt.subplots(nrows=2, ncols=3)
+    #     f.suptitle('Model: ' + self.name)
+    #     axarr[0, 0].plot(array_list[1][:, 0], array_list[1][:, 1],
+    #                      label=self.label)
+    #     axarr[0, 0].set_title('Female level 1')
+    #     axarr[0, 0].set_xlabel('parameter: ' + array_list[7])
+    #     axarr[0, 0].set_ylabel('Number of Females')
+    #     axarr[0, 0].fill_between(array_list[1][:, 0], array_list[1][:, 1] +
+    #                              1.96 * array_list[1][:, 2],
+    #                              array_list[1][:, 1] -
+    #                              1.96 * array_list[1][:, 2], alpha=0.5)
+    #     axarr[0, 0].legend(loc='upper right', shadow=True)
+    #
+    #     axarr[0, 1].plot(array_list[2][:, 0], array_list[2][:, 1])
+    #     axarr[0, 1].set_title('Female level 2')
+    #     axarr[0, 1].set_xlabel('parameter: ' + array_list[7])
+    #     axarr[0, 1].set_ylabel('Number of Females')
+    #     axarr[0, 1].fill_between(array_list[2][:, 0], array_list[2][:, 1] +
+    #                              1.96 * array_list[2][:, 2],
+    #                              array_list[2][:, 1] -
+    #                              1.96 * array_list[2][:, 2], alpha=0.5)
+    #
+    #     axarr[0, 2].plot(array_list[3][:, 0], array_list[3][:, 1])
+    #     axarr[0, 2].set_title('Female level 3')
+    #     axarr[0, 2].set_xlabel('parameter: ' + array_list[7])
+    #     axarr[0, 2].set_ylabel('Number of Females')
+    #     axarr[0, 2].fill_between(array_list[3][:, 0], array_list[3][:, 1] +
+    #                              1.96 * array_list[3][:, 2],
+    #                              array_list[3][:, 1] -
+    #                              1.96 * array_list[3][:, 2], alpha=0.5)
+    #
+    #     axarr[1, 0].plot(array_list[4][:, 0], array_list[4][:, 1])
+    #     axarr[1, 0].set_title('Male level 1')
+    #     axarr[1, 0].set_xlabel('parameter: ' + array_list[7])
+    #     axarr[1, 0].set_ylabel('Number of Males')
+    #     axarr[1, 0].fill_between(array_list[4][:, 0], array_list[4][:, 1] +
+    #                              1.96 * array_list[4][:, 2],
+    #                              array_list[4][:, 1] -
+    #                              1.96 * array_list[4][:, 2], alpha=0.5)
+    #
+    #     axarr[1, 1].plot(array_list[5][:, 0], array_list[5][:, 1])
+    #     axarr[1, 1].set_title('Male level 2')
+    #     axarr[1, 1].set_xlabel('parameter: ' + array_list[7])
+    #     axarr[1, 1].set_ylabel('Number of Males')
+    #     axarr[1, 1].fill_between(array_list[5][:, 0], array_list[5][:, 1] +
+    #                              1.96 * array_list[5][:, 2],
+    #                              array_list[5][:, 1] -
+    #                              1.96 * array_list[5][:, 2], alpha=0.5)
+    #
+    #     axarr[1, 2].plot(array_list[6][:, 0], array_list[6][:, 1])
+    #     axarr[1, 2].set_title('Male level 3')
+    #     axarr[1, 2].set_xlabel('parameter: ' + array_list[7])
+    #     axarr[1, 2].set_ylabel('Number of Males')
+    #     axarr[1, 2].fill_between(array_list[6][:, 0], array_list[6][:, 1] +
+    #                              1.96 * array_list[6][:, 2],
+    #                              array_list[6][:, 1] -
+    #                              1.96 * array_list[6][:, 2], alpha=0.5)
+    #
+    #     plt.show()
 
     def export_model_run(self, model_label, model_choice, number_of_runs):
 

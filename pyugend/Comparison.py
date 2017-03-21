@@ -209,7 +209,7 @@ class Comparison():
                            line_width=2,
                            width_=defaults.width,
                            height_=defaults.height,
-                           transparency =0.25,
+                           transparency = 0.25,
                            linecolor=['#018571', '#a6611a', '#e66101'],
                            target_plot=False,
                            legend_location='top_right',
@@ -251,15 +251,17 @@ class Comparison():
                                         parameter_ubound,
                                         number_of_steps)
 
+            # xval, so I need to directly feed this range in.
 
-            xval = self.mlist[0].parameter_sweep_results.loc[:,'increment']
+            xval = self.mlist[0].parameter_sweep_results.loc[:,
+                           'increment']
 
         else:
 
             for mod in self.mlist:
                 mod.run_multiple(number_of_runs)
 
-            xval = min([m.duration for m in self.mlist])
+            xval = list(range(min([m.duration for m in self.mlist])))
 
         # END OF BLOCK
 
@@ -449,20 +451,16 @@ class Comparison():
 
         for k, v in enumerate(self.mlist):
 
-            assert(len(range(xval)) == len(yval[k]))
-
-            p.line(range(xval), yval[k],
+            p.line(xval, yval[k],
                    line_width=line_width,
                    line_color=linecolor[k],
                    legend=model_legend_label[k])
 
-            p.circle(range(xval), yval[k], size=3)
+            p.circle(xval, yval[k], size=3)
 
-            x_data = np.arange(0, xval)
+            x_data = np.asarray(xval)
             band_x = np.append(x_data, x_data[::-1])
             band_y = np.append(lower_band[k], upper_band[k][::-1])
-
-            assert (len(band_x) == len(band_y))
 
             p.patch(band_x,
                     band_y,

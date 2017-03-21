@@ -124,7 +124,7 @@ def test_bokeh_comparison_plot_overall_one_model(mgmt_data):
     c = Comparison(modlist)
 
     plot_settings = {'plottype': 'gender proportion',
-                     'intervals': 'standard',
+                     'intervals': 'empirical',
             'number_of_runs': 10,  # number simulations to average over
             'target': 0.25,  # target percentage of women in the department
             # Main plot settings
@@ -132,7 +132,7 @@ def test_bokeh_comparison_plot_overall_one_model(mgmt_data):
             'ylabel': 'Proportion Women' ,
             'title': 'Figure 4.1.3a: Change in Proportion Women, Model 1',
             'line_width': 2,
-            'transparency': [0.25],
+            'transparency': 0.25,
             'linecolor': ['green'],
             'model_legend_label': ['Model 1, Hire-Promote'],
             'legend_location': 'top_right',
@@ -156,7 +156,7 @@ def test_bokeh_comparison_plot_overall_multiple_models(mgmt_data):
                      'xlabel': 'Years',
                      'ylabel': 'Proportion Women',
                      'title': 'Figure 4.1.3a: Change in Proportion Women, Compare Models 1 and 2',
-                     'transparency': [0.25, 0.25],
+                     'transparency': 0.25,
                      'model_legend_label': ['Model 1, Hire-Promote',
                                             'Model 2, Promote-Hire']
 
@@ -174,7 +174,7 @@ def test_bokeh_comparison_plot_bylevel(mgmt_data):
                  'target': 0.25,
                  'line_width': 2,
                  'model_legend_label': ['model 1', 'model2'],
-                 'transparency': [0.25,0.25],
+                 'transparency': 0.25,
                  'linecolor': ['green', 'blue'],
                  'legend_location': 'top right',
                  'height_': 400,
@@ -214,9 +214,9 @@ def test_parameter_sweep_probability_overall(mgmt_data):
     assert (hasattr(t, 'probability_matrix'))
 
 def test_bokeh_sweep_plot_overall(mgmt_data):
-    modlist = list([Mod_Stoch_FBHP(**mgmt_data)])
-    # modlist = list([Mod_Stoch_FBHP(**mgmt_data),
-    #                 Mod_Stoch_FBPH(**mgmt_data)])
+    #modlist = list([Mod_Stoch_FBHP(**mgmt_data)])
+    modlist = list([Mod_Stoch_FBHP(**mgmt_data),
+                     Mod_Stoch_FBPH(**mgmt_data)])
     c = Comparison(modlist)
 
     plot_settings = {'plottype': 'parameter sweep percentage',
@@ -226,10 +226,13 @@ def test_bokeh_sweep_plot_overall(mgmt_data):
                      'xlabel': 'Years',
                      'ylabel': 'Proportion Women',
                      'title': 'Figure 4.1.3a: Change in Proportion Women, Model 1',
-                     'model_legend_label': ['Model 1, Hire-Promote'],
+                     'model_legend_label': ['Model 1, Hire-Promote', 'Model '
+                                                                     '2, '
+                                                                     'Promote-Hire'],
                      'parameter_sweep_param': 'hiring_rate_women_1',
                      'parameter_ubound': 0.6,
                      'parameter_lbound': 0.05,
                      'number_of_steps': 5
                      }
     show(c.plot_comparison_overall_chart(**plot_settings))
+
