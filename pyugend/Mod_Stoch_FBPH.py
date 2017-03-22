@@ -15,11 +15,8 @@ upon allowing the size of the department to vary but with greater probability
 for male hires. So I will see how that goes.
 """
 
-
-
 __author__ = 'krishnab'
 __version__ = '0.1.0'
-
 
 from operator import neg, truediv
 import numpy as np
@@ -28,63 +25,63 @@ from numpy.random import binomial
 from pyugend.Models import Base_model
 
 MODEL_RUN_COLUMNS = list(['number_f1',
-                           'number_f2',
-                           'number_f3',
-                           'number_m1',
-                           'number_m2',
-                           'number_m3',
-                           'vacancies_3',
-                           'vacancies_2',
-                           'vacancies_1',
-                           'prom1',
-                           'prom2',
-                           'gender_proportion_overall',
-                           'unfilled_vacancies',
-                           'department_size',
-                           'f_hire_3',
-                           'm_hire_3',
-                           'f_hire_2',
-                           'm_hire_2',
-                           'f_hire_1',
-                           'm_hire_1',
-                           'f_prom_3',
-                           'm_prom_3',
-                           'f_prom_2',
-                           'm_prom_2',
-                           'f_prom_1',
-                           'm_prom_1'])
+                          'number_f2',
+                          'number_f3',
+                          'number_m1',
+                          'number_m2',
+                          'number_m3',
+                          'vacancies_3',
+                          'vacancies_2',
+                          'vacancies_1',
+                          'prom1',
+                          'prom2',
+                          'gender_proportion_overall',
+                          'unfilled_vacancies',
+                          'department_size',
+                          'f_hire_3',
+                          'm_hire_3',
+                          'f_hire_2',
+                          'm_hire_2',
+                          'f_hire_1',
+                          'm_hire_1',
+                          'f_prom_3',
+                          'm_prom_3',
+                          'f_prom_2',
+                          'm_prom_2',
+                          'f_prom_1',
+                          'm_prom_1'])
 
-EXPORT_COLUMNS_FOR_CSV = list([ 'hiring_rate_women_1',
-             'hiring_rate_women_2',
-             'hiring_rate_women_3',
-             'hiring_rate_men_1',
-             'hiring_rate_men_2',
-             'hiring_rate_men_3',
-             'attrition_rate_women_1',
-             'attrition_rate_women_2',
-             'attrition_rate_women_3',
-             'attrition_rate_men_1',
-             'attrition_rate_men_2',
-             'attrition_rate_men_3',
-             'probablity_of_outside_hire_1',
-             'probability_of_outside_hire_2',
-             'probability_of_outside_hire_3',
-             'female_promotion_rate_1',
-             'female_promotion_rate_2',
-             'male_promotion_rate_1',
-             'male_promotion_rate_2',
-             'dept_size_upperbound',
-             'dept_size_lowerbound',
-             'dept_size_exogenous_variation_range',
-             'duration'])
+EXPORT_COLUMNS_FOR_CSV = list(['hiring_rate_women_1',
+                               'hiring_rate_women_2',
+                               'hiring_rate_women_3',
+                               'hiring_rate_men_1',
+                               'hiring_rate_men_2',
+                               'hiring_rate_men_3',
+                               'attrition_rate_women_1',
+                               'attrition_rate_women_2',
+                               'attrition_rate_women_3',
+                               'attrition_rate_men_1',
+                               'attrition_rate_men_2',
+                               'attrition_rate_men_3',
+                               'probablity_of_outside_hire_1',
+                               'probability_of_outside_hire_2',
+                               'probability_of_outside_hire_3',
+                               'female_promotion_rate_1',
+                               'female_promotion_rate_2',
+                               'male_promotion_rate_1',
+                               'male_promotion_rate_2',
+                               'dept_size_upperbound',
+                               'dept_size_lowerbound',
+                               'dept_size_exogenous_variation_range',
+                               'duration'])
 
 
 class Mod_Stoch_FBPH(Base_model):
-
     def __init__(self, **kwds):
         Base_model.__init__(self, **kwds)
         self.name = "Promote-Hire baseline"
         self.label = "Promote-Hire baseline"
+
     def run_model(self):
 
         ## initialize data structure
@@ -92,7 +89,7 @@ class Mod_Stoch_FBPH(Base_model):
         self.res = np.zeros([self.duration,
                              len(MODEL_RUN_COLUMNS) +
                              len(
-            EXPORT_COLUMNS_FOR_CSV)],
+                                 EXPORT_COLUMNS_FOR_CSV)],
                             dtype=np.float32)
 
         self.res[0, 0] = self.nf1
@@ -113,9 +110,9 @@ class Mod_Stoch_FBPH(Base_model):
                                                                   self.nm1,
                                                                   self.nm2,
                                                                   self.nm3])))
-        self.res[0,12] = 0
-        self.res[0,13] = self.res[0, 0:6].sum()
-        self.res[0,14:] = 0
+        self.res[0, 12] = 0
+        self.res[0, 13] = self.res[0, 0:6].sum()
+        self.res[0, 14:] = 0
 
         # I assign the state variables to temporary variables. That way I
         # don't have to worry about overwriting the original state variables.
@@ -157,7 +154,6 @@ class Mod_Stoch_FBPH(Base_model):
             prev_number_of_vacancies_level_1 = self.res[i - 1, 8]
             department_size = self.res[i - 1, 0:6].sum()
 
-
             # Process Model
 
             # Determine department size variation for this timestep
@@ -180,37 +176,31 @@ class Mod_Stoch_FBPH(Base_model):
             total_vacancies_3 = female_attrition_level_3 + \
                                 male_attrition_level_3 + change_to_level_3
 
-
-            promotions_of_females_level_2_3 = binomial(max(0,min(
+            promotions_of_females_level_2_3 = binomial(max(0, min(
                 total_vacancies_3, prev_number_of_females_level_2)),
-                female_promotion_probability_2_3)
+                                                       female_promotion_probability_2_3)
 
             promotions_of_males_level_2_3 = binomial(max(0,
-                                           min(total_vacancies_3 - \
-                                           promotions_of_females_level_2_3,
-                                           prev_number_of_males_level_2)),
-                                           1 - female_promotion_probability_2_3)
-
-
-
+                                                         min(total_vacancies_3 - \
+                                                             promotions_of_females_level_2_3,
+                                                             prev_number_of_males_level_2)),
+                                                     1 - female_promotion_probability_2_3)
 
             # After promotions, then the remaining vacancies are settled by
             # hiring.
 
             vacancies_remaining_after_promotion_3 = max(0, total_vacancies_3 - \
-                                                    promotions_of_females_level_2_3 - \
-                                                    promotions_of_males_level_2_3)
-
+                                                        promotions_of_females_level_2_3 - \
+                                                        promotions_of_males_level_2_3)
 
             hiring_female_3 = binomial(vacancies_remaining_after_promotion_3,
-                                       probability_of_outside_hire_level_3*hiring_rate_female_level_3)
+                                       probability_of_outside_hire_level_3 * hiring_rate_female_level_3)
 
-            hiring_male_3 = binomial(max(0,vacancies_remaining_after_promotion_3 - \
-                            hiring_female_3),
-                            probability_of_outside_hire_level_3*(
-                                         1 - hiring_rate_female_level_3))
-
-
+            hiring_male_3 = binomial(
+                max(0, vacancies_remaining_after_promotion_3 - \
+                    hiring_female_3),
+                probability_of_outside_hire_level_3 * (
+                    1 - hiring_rate_female_level_3))
 
             # attrition at level 2 - either people leave from attrition or
             # promotion. I have to make sure that when I account of
@@ -219,14 +209,14 @@ class Mod_Stoch_FBPH(Base_model):
             # people who are promoted are not candidates for attrition.
 
             female_attrition_level_2 = binomial(max(0,
-                                       prev_number_of_females_level_2 -
-                                       promotions_of_females_level_2_3),
-                                       attrition_rate_female_level_2)
+                                                    prev_number_of_females_level_2 -
+                                                    promotions_of_females_level_2_3),
+                                                attrition_rate_female_level_2)
 
             male_attrition_level_2 = binomial(max(0,
-                                     prev_number_of_males_level_2 -
-                                     promotions_of_males_level_2_3),
-                                     attrition_rate_male_level_2)
+                                                  prev_number_of_males_level_2 -
+                                                  promotions_of_males_level_2_3),
+                                              attrition_rate_male_level_2)
 
             # The total number of promotions plus attrition for both men and
             # women create the number of vacancies at level 2.
@@ -237,46 +227,40 @@ class Mod_Stoch_FBPH(Base_model):
                                           promotions_of_males_level_2_3,
                                           change_to_level_2]))
 
-
-            promotions_of_females_level_1_2 = binomial(max(0,min(
-                                              total_vacancies_2,
-                                              prev_number_of_females_level_1)),
-                                              female_promotion_probability_1_2)
-
-
-            # print(min(total_vacancies_2 - \
-            #                                promotions_of_females_level_1_2,
-            #                                prev_number_of_males_level_1))
+            promotions_of_females_level_1_2 = binomial(max(0, min(
+                total_vacancies_2,
+                prev_number_of_females_level_1)),
+                                                       female_promotion_probability_1_2)
 
             promotions_of_males_level_1_2 = binomial(max(0,
                                                          min(total_vacancies_2 - \
-                                           promotions_of_females_level_1_2,
-                                           prev_number_of_males_level_1)),
-                                           1 - female_promotion_probability_1_2)
+                                                             promotions_of_females_level_1_2,
+                                                             prev_number_of_males_level_1)),
+                                                     1 - female_promotion_probability_1_2)
 
             vacancies_remaining_after_promotion_2 = max(0, total_vacancies_2 - \
                                                         promotions_of_females_level_1_2 - \
                                                         promotions_of_males_level_1_2)
 
             hiring_female_2 = binomial(vacancies_remaining_after_promotion_2,
-                                       probability_of_outside_hire_level_2*hiring_rate_female_level_2)
+                                       probability_of_outside_hire_level_2 * hiring_rate_female_level_2)
             hiring_male_2 = binomial(max(0,
-                            vacancies_remaining_after_promotion_2 - \
-                            hiring_female_2),
-                            probability_of_outside_hire_level_2*(
-                            1 - hiring_rate_female_level_2))
+                                         vacancies_remaining_after_promotion_2 - \
+                                         hiring_female_2),
+                                     probability_of_outside_hire_level_2 * (
+                                         1 - hiring_rate_female_level_2))
 
             ## Level 1
 
             female_attrition_level_1 = binomial(max(0,
-                                       prev_number_of_females_level_1 - \
-                                       promotions_of_females_level_1_2),
-                                       attrition_rate_female_level_1)
+                                                    prev_number_of_females_level_1 - \
+                                                    promotions_of_females_level_1_2),
+                                                attrition_rate_female_level_1)
 
             male_attrition_level_1 = binomial(max(0,
-                                     prev_number_of_males_level_1 - \
-                                     promotions_of_males_level_1_2),
-                                     attrition_rate_male_level_1)
+                                                  prev_number_of_males_level_1 - \
+                                                  promotions_of_males_level_1_2),
+                                              attrition_rate_male_level_1)
 
             total_vacancies_1 = sum(list([female_attrition_level_1,
                                           male_attrition_level_1,
@@ -288,7 +272,7 @@ class Mod_Stoch_FBPH(Base_model):
             # hiring.
 
             hiring_female_1 = binomial(max(0, total_vacancies_1),
-                              hiring_rate_female_level_1)
+                                       hiring_rate_female_level_1)
 
             hiring_male_1 = binomial(max(0, total_vacancies_1 -
                                          hiring_female_1),
@@ -301,7 +285,6 @@ class Mod_Stoch_FBPH(Base_model):
                       neg(female_attrition_level_1),
                       neg(promotions_of_females_level_1_2),
                       hiring_female_1]))
-
 
             self.res[i, 1] = number_of_females_level_2 = max(0, sum(
                 list([prev_number_of_females_level_2,
@@ -366,10 +349,10 @@ class Mod_Stoch_FBPH(Base_model):
                     number_of_males_level_3]))))
 
             unfilled_vacanies = abs(department_size - self.res[i, 0:6].sum())
-            self.res[i,12] = unfilled_vacanies
+            self.res[i, 12] = unfilled_vacanies
             department_size = self.res[i, 0:6].sum()
-            self.res[i,13] = department_size
-            self.res[i,14] = hiring_female_3
+            self.res[i, 13] = department_size
+            self.res[i, 14] = hiring_female_3
             self.res[i, 15] = hiring_male_3
             self.res[i, 16] = hiring_female_2
             self.res[i, 17] = hiring_male_2
@@ -404,13 +387,6 @@ class Mod_Stoch_FBPH(Base_model):
             self.res[i, 46] = department_size_lower_bound
             self.res[i, 47] = variation_range
             self.res[i, 48] = self.duration
-
-
-
-
-
-
-            #assert (np.isnan(self.res[i,0]) == True), 'NaN detected'
 
             # this produces an array of values. Then I need to assign the
             # values to levels. So if I have say a range of variation of 5. I
@@ -473,16 +449,10 @@ class Mod_Stoch_FBPH(Base_model):
                     flag = True
 
 
-
-                        # print(self.res[i,:])
-            # print(self.res[i, 0:6].sum())
-            ## Print Data matrix
-
         df_ = pd.DataFrame(self.res)
         df_.columns = MODEL_RUN_COLUMNS + EXPORT_COLUMNS_FOR_CSV
 
-        #print(df_)
+        # print(df_)
         recarray_results = df_.to_records(index=True)
         self.run = recarray_results
         return recarray_results
-

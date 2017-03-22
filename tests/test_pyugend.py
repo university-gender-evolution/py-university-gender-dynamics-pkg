@@ -2,6 +2,7 @@ import pytest
 from pyugend.Models import Base_model
 from pyugend.Mod_Stoch_FBHP import Mod_Stoch_FBHP
 from pyugend.Mod_Stoch_FBPH import Mod_Stoch_FBPH
+from pyugend.Mod_Validate_Sweep import Mod_Validate_Sweep
 from pyugend.ReplicationModel import Replication_model
 from pyugend.Comparison import Comparison
 import numpy as np
@@ -77,17 +78,18 @@ def mgmt_data():
              'variation_range': 3,
              'duration': 40})
 
+## Tests for base model class initialization
 
-def test_Base_model(mock_data):
-    assert isinstance(Base_model(**mock_data), Base_model)
+def test_Base_model(mgmt_data):
+    assert isinstance(Base_model(**mgmt_data), Base_model)
 
-def test_base_model_run(mock_data):
-    t = Base_model(**mock_data)
+def test_base_model_run(mgmt_data):
+    t = Base_model(**mgmt_data)
     t.run_model()
     assert (isinstance(t.res, np.ndarray))
 
-def test_base_model_persistence(mock_data):
-    t = Base_model(**mock_data)
+def test_base_model_persistence(mgmt_data):
+    t = Base_model(**mgmt_data)
     assert (t.nf1 == 14)
 
 def test_base_model_multiple_runs(mgmt_data):
@@ -95,27 +97,65 @@ def test_base_model_multiple_runs(mgmt_data):
     t.run_multiple(5)
     assert (hasattr(t, 'res_array'))
 
-def test_base_model_multiple_runs_persistent_state(mock_data):
-    t = Mod_Stoch_FBHP(**mock_data)
+def test_base_model_multiple_runs_persistent_state(mgmt_data):
+    t = Mod_Stoch_FBHP(**mgmt_data)
     t.run_multiple(10)
     assert (isinstance(t.results_matrix, pd.DataFrame))
 
-def test_excel_export(mock_data):
-    t = Mod_Stoch_FBPH(**mock_data)
+# Tests for CSV export of model results
+
+def test_excel_export(mgmt_data):
+    t = Mod_Stoch_FBPH(**mgmt_data)
     t.export_model_run('testexport', 'model test', 10)
 
-def test_comparison_model_param_sweep_detail(mock_data):
-    t = Mod_Stoch_FBPH(**mock_data)
+# Tests for Model Simulation and Analysis functions
+
+def test_comparison_model_param_sweep_detail(mgmt_data):
+    t = Mod_Stoch_FBPH(**mgmt_data)
     t.run_parameter_sweep(10, 'female_promotion_probability_2', 0.1, 0.5, 8)
     assert(hasattr(t, 'parameter_sweep_results'))
 
-def test_base_model_probability_calc_detail_array(mock_data):
-    t = Mod_Stoch_FBPH(**mock_data)
+def test_base_model_probability_calc_detail_array(mgmt_data):
+    t = Mod_Stoch_FBPH(**mgmt_data)
     res = t.run_probability_analysis_parameter_sweep_gender_detail(10,
                                                                    'female_promotion_probability_2',
                                                                    'm2', 0.1,
                                                                    0.8, 8, 150)
     assert (isinstance(res, pd.DataFrame))
+
+def test_parameter_sweep_probability_overall(mgmt_data):
+    t = Mod_Stoch_FBPH(**mgmt_data)
+    t.run_probability_parameter_sweep_overall(10,
+                                              'hiring_rate_women_1',
+                                              0.05,
+                                              0.5,
+                                              4,
+                                              0.50)
+    assert (hasattr(t, 'probability_matrix'))
+
+def test_parameter_sweep_function_validation(mgmt_data):
+    modlist = list([Mod_Validate_Sweep(**mgmt_data)])
+    c = Comparison(modlist)
+    print(c.mlist[0].bf1)
+    assert (isinstance(c, Comparison))
+    # plot_settings = {'plottype': 'parameter sweep percentage',
+    #                  'intervals': 'empirical',
+    #                  'number_of_runs': 10,  # number simulations to average over
+    #                  'target': 0.25,
+    #                  'xlabel': 'Years',
+    #                  'ylabel': 'Proportion Women',
+    #                  'title': 'Figure 4.1.3a: Change in Proportion Women, Model 1',
+    #                  'model_legend_label': ['Model 1, Hire-Promote', 'Model '
+    #                                                                  '2, '
+    #                                                                  'Promote-Hire'],
+    #                  'parameter_sweep_param': 'hiring_rate_women_1',
+    #                  'parameter_ubound': 0.6,
+    #                  'parameter_lbound': 0.05,
+    #                  'number_of_steps': 5
+    #                  }
+    # show(c.plot_comparison_overall_chart(**plot_settings))
+
+# Test for plots of simulation results.
 
 def test_bokeh_comparison_plot_overall_one_model(mgmt_data):
     modlist = list([Mod_Stoch_FBHP(**mgmt_data)])
@@ -202,16 +242,6 @@ def test_bokeh_comparison_plot_bylevel(mgmt_data):
                      }
 
     show(c.plot_comparison_level_chart(**plot_settings))
-
-def test_parameter_sweep_probability_overall(mgmt_data):
-    t = Mod_Stoch_FBPH(**mgmt_data)
-    t.run_probability_parameter_sweep_overall(10,
-                                              'hiring_rate_women_1',
-                                              0.05,
-                                              0.5,
-                                              4,
-                                              0.50)
-    assert (hasattr(t, 'probability_matrix'))
 
 def test_bokeh_sweep_plot_overall(mgmt_data):
     #modlist = list([Mod_Stoch_FBHP(**mgmt_data)])
