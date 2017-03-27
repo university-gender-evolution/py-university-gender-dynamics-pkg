@@ -241,6 +241,7 @@ class Comparison():
         # Models.run_parameter_sweep() function. If this is not a parameter
         # sweep, then the block will run the Models.run_multiple() function.
 
+        # BEGIN BLOCK
         if plottype in ['parameter sweep percentage','parameter sweep '
                                                      'probability']:
 
@@ -518,24 +519,54 @@ class Comparison():
                          percent_line_value=0.5,
                          color_percent_line='red',
                          percent_linewidth=2,
-                         percent_legend_label='percent'):
+                         percent_legend_label='percent',
+                         parameter_sweep_param=None,
+                         parameter_ubound=0,
+                         parameter_lbound=0,
+                         number_of_steps=0
+                        ):
 
-        # generate data for the plot.
+        # Choose plot type. This block will initialize the data for the
+        # plots. If the plot is a parameter sweep, then it will run the
+        # Models.run_parameter_sweep() function. If this is not a parameter
+        # sweep, then the block will run the Models.run_multiple() function.
 
-        for mod in self.mlist:
-            mod.run_multiple(number_of_runs)
+        # BEGIN BLOCK
 
-        # set default plot parameters. The xaxis is generally duration,
-        # though I have the option--depending on the plot, to put in a
-        # different x-axis.
+        if plottype in ['parameter sweep percentage','parameter sweep '
+                                                     'probability']:
 
-        xval = min([m.duration for m in self.mlist])
+            for mod in self.mlist:
+                mod.run_parameter_sweep(number_of_runs,
+                                        parameter_sweep_param,
+                                        parameter_lbound,
+                                        parameter_ubound,
+                                        number_of_steps)
+
+            # xval, so I need to directly feed this range in.
+
+            xval = self.mlist[0].parameter_sweep_results.loc[:,
+                           'increment']
+
+        else:
+
+            for mod in self.mlist:
+                mod.run_multiple(number_of_runs)
+
+            xval = list(range(min([m.duration for m in self.mlist])))
+
+        # END BLOCK
+
+
+        # Generate main plot values.
+        # This section will take the data from the model simulation and
+        # convert it to the appropriate y-variables for the plot.
+        # BEGIN BLOCK
 
         if plottype == 'probability proportion':
             for mod in self.mlist:
                 mod.run_probability_analysis_gender_by_level(number_of_runs,
                                                              target)
-
 
             # Not a very finesse way to do these assignments, but it makes
             # the code more readable.
@@ -572,6 +603,22 @@ class Comparison():
             yval_m3 = [m['mean_m3'] for m in mean_matrices]
 
 
+        if plottype == 'parameter sweep percentage':
+
+            female_sweep_matrices = [m.parameter_sweep_results for m in
+                                   self.mlist]
+
+            yval_f1 = [m['mpct_f1'] for m in female_sweep_matrices]
+            yval_f2 = [m['mpct_f2'] for m in female_sweep_matrices]
+            yval_f3 = [m['mpct_f3'] for m in female_sweep_matrices]
+            yval_m1 = [m['mpct_m1'] for m in female_sweep_matrices]
+            yval_m2 = [m['mpct_m2'] for m in female_sweep_matrices]
+            yval_m3 = [m['mpct_m3'] for m in female_sweep_matrices]
+
+        if plottype == 'parameter sweep probability':
+            pass
+
+        #END BLOCK
 
 
         # setup empirical bounds
@@ -804,7 +851,7 @@ class Comparison():
                 p.patch(band_x,
                         band_y,
                         color=linecolor[k],
-                        fill_alpha=transparency[k])
+                        fill_alpha=transparency)
 
         if target_plot == True:
 

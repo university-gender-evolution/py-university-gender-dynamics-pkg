@@ -61,7 +61,7 @@ def mgmt_data():
              'hiring_rate_women_2': 0.4,
              'hiring_rate_women_3': 0.167,
              'attrition_rate_women_1': 0.056,
-             'attrition_rate_women_2': 0.00,
+             'attrition_rate_women_2': 0.0001,
              'attrition_rate_women_3': 0.074,
              'attrition_rate_men_1': 0.069,
              'attrition_rate_men_2': 0.057,
@@ -105,7 +105,8 @@ def test_base_model_multiple_runs_persistent_state(mgmt_data):
 # Tests for CSV export of model results
 
 def test_excel_export(mgmt_data):
-    t = Mod_Stoch_FBPH(**mgmt_data)
+    #t = Mod_Stoch_FBPH(**mgmt_data)
+    t = Mod_Validate_Sweep(**mgmt_data)
     t.export_model_run('testexport', 'model test', 10)
 
 # Tests for Model Simulation and Analysis functions
@@ -133,27 +134,51 @@ def test_parameter_sweep_probability_overall(mgmt_data):
                                               0.50)
     assert (hasattr(t, 'probability_matrix'))
 
-def test_parameter_sweep_function_validation(mgmt_data):
+def test_parameter_sweep_function_validation_overall(mgmt_data):
     modlist = list([Mod_Validate_Sweep(**mgmt_data)])
     c = Comparison(modlist)
-    print(c.mlist[0].bf1)
-    assert (isinstance(c, Comparison))
-    # plot_settings = {'plottype': 'parameter sweep percentage',
-    #                  'intervals': 'empirical',
-    #                  'number_of_runs': 10,  # number simulations to average over
-    #                  'target': 0.25,
-    #                  'xlabel': 'Years',
-    #                  'ylabel': 'Proportion Women',
-    #                  'title': 'Figure 4.1.3a: Change in Proportion Women, Model 1',
-    #                  'model_legend_label': ['Model 1, Hire-Promote', 'Model '
-    #                                                                  '2, '
-    #                                                                  'Promote-Hire'],
-    #                  'parameter_sweep_param': 'hiring_rate_women_1',
-    #                  'parameter_ubound': 0.6,
-    #                  'parameter_lbound': 0.05,
-    #                  'number_of_steps': 5
-    #                  }
-    # show(c.plot_comparison_overall_chart(**plot_settings))
+
+    #assert (isinstance(c, Comparison))
+    plot_settings = {'plottype': 'parameter sweep percentage',
+                     'intervals': 'empirical',
+                     'number_of_runs': 10,  # number simulations to average over
+                     'target': 0.25,
+                     'xlabel': 'Hiring Rate for Women',
+                     'ylabel': 'Proportion Women',
+                     'title': 'Parameter Sweep Validation, uniform noise(0,'
+                              '0.1)',
+                     'model_legend_label': ['Model 1, Hire-Promote', 'Model '
+                                                                     '2, '
+                                                                     'Promote-Hire'],
+                     'parameter_sweep_param': 'bf1',
+                     'parameter_ubound': 0.6,
+                     'parameter_lbound': 0.05,
+                     'number_of_steps': 5
+                     }
+    show(c.plot_comparison_overall_chart(**plot_settings))
+
+def test_parameter_sweep_function_validation_bylevel(mgmt_data):
+    modlist = list([Mod_Validate_Sweep(**mgmt_data)])
+    c = Comparison(modlist)
+
+    #assert (isinstance(c, Comparison))
+    plot_settings = {'plottype': 'parameter sweep percentage',
+                     'intervals': 'empirical',
+                     'number_of_runs': 10,  # number simulations to average over
+                     'target': 0.25,
+                     'xlabel': 'Hiring Rate for Women',
+                     'ylabel': 'Proportion Women',
+                     'title': 'Parameter Sweep Validation, uniform noise(0,'
+                              '0.1)',
+                     'model_legend_label': ['Model 1, Hire-Promote', 'Model '
+                                                                     '2, '
+                                                                     'Promote-Hire'],
+                     'parameter_sweep_param': 'bf1',
+                     'parameter_ubound': 0.6,
+                     'parameter_lbound': 0.05,
+                     'number_of_steps': 5
+                     }
+    show(c.plot_comparison_overall_chart(**plot_settings))
 
 # Test for plots of simulation results.
 

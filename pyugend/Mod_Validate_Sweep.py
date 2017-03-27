@@ -23,6 +23,7 @@ import numpy as np
 import pandas as pd
 from numpy.random import binomial
 from pyugend.Models import Base_model
+from random import random, uniform
 
 MODEL_RUN_COLUMNS = list(['number_f1',
                           'number_f2',
@@ -92,13 +93,8 @@ class Mod_Validate_Sweep(Base_model):
 
         self.res[0, :] = 0
 
-
-
-
         for i in range(1, self.duration):
-            # initialize variables for this iteration
-
-
+            # run base static simulation.
 
             self.res[i, 0] = self.bf1
             self.res[i, 1] = self.bf1
@@ -112,45 +108,45 @@ class Mod_Validate_Sweep(Base_model):
             self.res[i, 9] =self.phire2
             self.res[i, 10] =self.phire2
 
-            # Gender proportion overall
+            # Gender proportion overall col 11
 
-            self.res[i, 11] = self.female_promotion_probability_1
+            self.res[i, 11] = self.bf1 + uniform(0,0.1)
             self.res[i, 12] =self.female_promotion_probability_1
             self.res[i, 13] =self.female_promotion_probability_1
             self.res[i, 14] =self.female_promotion_probability_1
             self.res[i, 15] =self.female_promotion_probability_1
             self.res[i, 16] =self.female_promotion_probability_1
-            self.res[i, 17] =self.df2
-            self.res[i, 18] =self.df2
-            self.res[i, 19] =self.df2
-            self.res[i, 20] =self.df2
-            self.res[i, 21] =self.df2
-            self.res[i, 22] =self.df2
-            self.res[i, 23] =self.df2
-            self.res[i, 24] =self.df2
-            self.res[i, 25] =self.df2
-            self.res[i, 26] = hiring_rate_female_level_1
-            self.res[i, 27] = hiring_rate_female_level_2
-            self.res[i, 28] = hiring_rate_female_level_3
-            self.res[i, 29] = 1 - hiring_rate_female_level_1
-            self.res[i, 30] = 1 - hiring_rate_female_level_2
-            self.res[i, 31] = 1 - hiring_rate_female_level_3
-            self.res[i, 32] = attrition_rate_female_level_1
-            self.res[i, 33] = attrition_rate_female_level_2
-            self.res[i, 34] = attrition_rate_female_level_3
-            self.res[i, 35] = attrition_rate_male_level_1
-            self.res[i, 36] = attrition_rate_male_level_2
-            self.res[i, 37] = attrition_rate_male_level_3
+            self.res[i, 17] =self.df1
+            self.res[i, 18] =self.df1
+            self.res[i, 19] =self.df1
+            self.res[i, 20] =self.df1
+            self.res[i, 21] =self.df1
+            self.res[i, 22] =self.df1
+            self.res[i, 23] =self.df1
+            self.res[i, 24] =self.df1
+            self.res[i, 25] =self.df1
+            self.res[i, 26] = self.bf1
+            self.res[i, 27] = self.bf2
+            self.res[i, 28] = self.bf3
+            self.res[i, 29] = 1 - self.bf1
+            self.res[i, 30] = 1 - self.bf2
+            self.res[i, 31] = 1 - self.bf3
+            self.res[i, 32] = self.df1
+            self.res[i, 33] = self.df2
+            self.res[i, 34] = self.df3
+            self.res[i, 35] = self.dm1
+            self.res[i, 36] = self.dm2
+            self.res[i, 37] = self.dm3
             self.res[i, 38] = 1
-            self.res[i, 39] = probability_of_outside_hire_level_2
-            self.res[i, 40] = probability_of_outside_hire_level_3
-            self.res[i, 41] = female_promotion_probability_1_2
-            self.res[i, 42] = female_promotion_probability_2_3
-            self.res[i, 43] = 1 - female_promotion_probability_1_2
-            self.res[i, 44] = 1 - female_promotion_probability_2_3
-            self.res[i, 45] = department_size_upper_bound
-            self.res[i, 46] = department_size_lower_bound
-            self.res[i, 47] = variation_range
+            self.res[i, 39] = self.phire2
+            self.res[i, 40] = self.phire3
+            self.res[i, 41] = self.female_promotion_probability_1
+            self.res[i, 42] = self.female_promotion_probability_2
+            self.res[i, 43] = 1 - self.female_promotion_probability_1
+            self.res[i, 44] = 1 - self.female_promotion_probability_2
+            self.res[i, 45] = self.upperbound
+            self.res[i, 46] = self.lowerbound
+            self.res[i, 47] = self.variation_range
             self.res[i, 48] = self.duration
 
             # this produces an array of values. Then I need to assign the
