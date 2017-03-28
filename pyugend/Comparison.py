@@ -469,26 +469,26 @@ class Comparison():
                     fill_alpha=transparency)
 
             if male_female_numbers_plot:
-                p.line(range(xval),
+                p.line(xval,
                        yval2[k],
                        line_color=mf_male_color[k],
                        legend=mf_male_label[k],
                        line_width=mf_male_linewidth)
 
-                p.line(range(xval),
+                p.line(xval,
                        yval3[k],
                        line_color=mf_target_color[k],
                        legend=mf_target_label[k],
                        line_width=mf_target_linewidth)
 
         if target_plot:
-            p.line(range(xval), target,
+            p.line(xval, target,
                    line_color=color_target,
                    legend=target_plot_legend_label,
                    line_width=target_plot_linewidth)
 
         if percent_line_plot:
-            p.line(range(xval), percent_line_value,
+            p.line(xval, percent_line_value,
                    line_color=color_percent_line,
                    legend=percent_legend_label,
                    line_width=percent_linewidth)
@@ -510,14 +510,14 @@ class Comparison():
                          legend_location='top right',
                          model_legend_label='model',
                          transparency = 0.25,
-                         linecolor=['green'],
+                         linecolor=['#018571', '#a6611a', '#e66101'],
                          target_plot=False,
-                         target_color='red',
+                         target_color='#ca0020',
                          target_plot_linewidth=2,
                          target_plot_legend_label='target',
                          percent_line_plot=False,
                          percent_line_value=0.5,
-                         color_percent_line='red',
+                         color_percent_line='#ca0020',
                          percent_linewidth=2,
                          percent_legend_label='percent',
                          parameter_sweep_param=None,
@@ -933,9 +933,9 @@ class Comparison():
                 p.line(xval,
                        target,
                        line_color=target_color,
-                       line_width = target_plot_linewidth,
-             #          label = target_plot_legend_label,
-                       line_dash = [6,6])
+                       line_width=target_plot_linewidth,
+                       legend=target_plot_legend_label,
+                       line_dash=[6,6])
 
         if percent_line_plot == True:
 
@@ -943,8 +943,8 @@ class Comparison():
                 p.line(xval, percent_line_value,
                        line_color=color_percent_line,
                        line_width=percent_linewidth,
-                       line_dash = [2,2])
- #                      label=percent_legend_label)
+                       line_dash=[2,2],
+                       legend=percent_legend_label)
 
         grid = gridplot([[plots[0], plots[1], plots[2]],
                          [plots[3], plots[4], plots[5]]])

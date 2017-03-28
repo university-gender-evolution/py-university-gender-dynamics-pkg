@@ -168,7 +168,7 @@ EXPORT_COLUMNS_FOR_CSV = list(['hiring_rate_women_1',
 
 defaults.width = 400
 defaults.height = 400
-
+np.seterr(divide='ignore', invalid='ignore')
 
 class Base_model():
     def __init__(self, number_of_females_1,
@@ -624,18 +624,22 @@ class Base_model():
 
             for l, lev in enumerate(LEVELS):
                 if l <= 2:
-                    _u = np.array(
-                        [r['run'][LEVELS[l]][idx] / (r['run'][LEVELS[l]][idx]
-                                                     + r['run'][LEVELS[l + 3]][
-                                                         idx]) for r in
-                         res_array])
+
+                    _num = np.array([r['run'][LEVELS[l]][idx] for r in
+                                     res_array])
+                    _denom = np.array([r['run'][LEVELS[l]][idx]+ r['run'][
+                        LEVELS[l + 3]][idx] for r in res_array])
+                    _u = np.nan_to_num(np.divide(_num, _denom))
+
 
                 else:
-                    _u = np.array(
-                        [r['run'][LEVELS[l]][idx] / (r['run'][LEVELS[l]][idx]
-                                                     + r['run'][LEVELS[l - 3]][
-                                                         idx]) for r in
-                         res_array])
+
+                   _num = np.array([r['run'][LEVELS[l]][idx] for r in
+                                     res_array])
+                   _denom = np.array([r['run'][LEVELS[l]][idx]+ r['run'][
+                        LEVELS[l - 3]][idx] for r in res_array])
+                   _u = np.nan_to_num(np.divide(_num, _denom))
+
 
                 self.pct_female_matrix.loc[idx, 'year'] = idx
 
