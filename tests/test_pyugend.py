@@ -1,10 +1,10 @@
 import pytest
-from pyugend.Models import Base_model
-from pyugend.Mod_Stoch_FBHP import Mod_Stoch_FBHP
-from pyugend.Mod_Stoch_FBPH import Mod_Stoch_FBPH
-from pyugend.Mod_Validate_Sweep import Mod_Validate_Sweep
-from pyugend.ReplicationModel import Replication_model
-from pyugend.Comparison import Comparison
+from pyugend.pyugend.Models import Base_model
+from pyugend.pyugend.Mod_Stoch_FBHP import Mod_Stoch_FBHP
+from pyugend.pyugend.Mod_Stoch_FBPH import Mod_Stoch_FBPH
+from pyugend.pyugend.Mod_Validate_Sweep import Mod_Validate_Sweep
+from pyugend.pyugend.ReplicationModel import Replication_model
+from pyugend.pyugend.Comparison import Comparison
 import numpy as np
 import pandas as pd
 from bokeh.plotting import figure, output_file, show
@@ -13,101 +13,13 @@ from bokeh.charts import defaults
 defaults.height = 800
 defaults.width = 800
 
-@pytest.fixture
-def mock_data():
-    return ({'number_of_females_1': 14,
-             'number_of_females_2': 3,
-             'number_of_females_3': 19,
-             'number_of_males_1': 37,
-             'number_of_males_2': 28,
-             'number_of_males_3': 239,
-             'number_of_initial_vacancies_1': 5.303,
-             'number_of_initial_vacancies_2': 5.9,
-             'number_of_initial_vacancies_3': 8.31,
-             'hiring_rate_women_1': 0.310,
-             'hiring_rate_women_2': 0.222,
-             'hiring_rate_women_3': 0,
-             'attrition_rate_women_1': 0,
-             'attrition_rate_women_2': 0,
-             'attrition_rate_women_3': 0.017,
-             'attrition_rate_men_1': 0.009,
-             'attrition_rate_men_2': 0.017,
-             'attrition_rate_men_3': 0.033,
-             'probablity_of_outside_hire_1': 1,
-             'probability_of_outside_hire_2': 0.158,
-             'probability_of_outside_hire_3': 0.339,
-             'female_promotion_probability_1': 0.122,
-             'female_promotion_probability_2': 0.188,
-             'male_promotion_probability_1': 0.19,
-             'male_promotion_probability_2': 0.19,
-             'upperbound': 350,
-             'lowerbound': 330,
-             'variation_range': 3,
-             'duration': 40})
-
-
-@pytest.fixture
-def mgmt_data():
-    return ({'number_of_females_1': 3,
-             'number_of_females_2': 3,
-             'number_of_females_3': 2,
-             'number_of_males_1': 11,
-             'number_of_males_2': 12,
-             'number_of_males_3': 43,
-             'number_of_initial_vacancies_1': 5.303,
-             'number_of_initial_vacancies_2': 5.9,
-             'number_of_initial_vacancies_3': 8.31,
-             'hiring_rate_women_1': 0.172,
-             'hiring_rate_women_2': 0.4,
-             'hiring_rate_women_3': 0.167,
-             'attrition_rate_women_1': 0.056,
-             'attrition_rate_women_2': 0.0001,
-             'attrition_rate_women_3': 0.074,
-             'attrition_rate_men_1': 0.069,
-             'attrition_rate_men_2': 0.057,
-             'attrition_rate_men_3': 0.040,
-             'probablity_of_outside_hire_1': 1,
-             'probability_of_outside_hire_2': 0.125,
-             'probability_of_outside_hire_3': 0.150,
-             'female_promotion_probability_1': 0.0555,
-             'female_promotion_probability_2': 0.1905,
-             'male_promotion_probability_1': 0.0635,
-             'male_promotion_probability_2': 0.1149,
-             'upperbound': 84,
-             'lowerbound': 64,
-             'variation_range': 3,
-             'duration': 40})
-
 ## Tests for base model class initialization
 
-def test_Base_model(mgmt_data):
-    assert isinstance(Base_model(**mgmt_data), Base_model)
 
-def test_base_model_run(mgmt_data):
-    t = Base_model(**mgmt_data)
-    t.run_model()
-    assert (isinstance(t.res, np.ndarray))
-
-def test_base_model_persistence(mgmt_data):
-    t = Base_model(**mgmt_data)
-    assert (t.nf1 == 14)
-
-def test_base_model_multiple_runs(mgmt_data):
-    t = Mod_Stoch_FBPH(**mgmt_data)
-    t.run_multiple(5)
-    assert (hasattr(t, 'res_array'))
-
-def test_base_model_multiple_runs_persistent_state(mgmt_data):
-    t = Mod_Stoch_FBHP(**mgmt_data)
-    t.run_multiple(10)
-    assert (isinstance(t.results_matrix, pd.DataFrame))
 
 # Tests for CSV export of model results
 
-def test_excel_export(mgmt_data):
-    #t = Mod_Stoch_FBPH(**mgmt_data)
-    t = Mod_Validate_Sweep(**mgmt_data)
-    t.export_model_run('testexport', 'model test', 10)
+
 
 # Tests for Model Simulation and Analysis functions
 
