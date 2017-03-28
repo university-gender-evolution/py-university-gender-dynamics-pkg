@@ -1,9 +1,7 @@
 import pytest
-from pyugend.pyugend.Models import Base_model
 from pyugend.pyugend.Mod_Stoch_FBHP import Mod_Stoch_FBHP
 from pyugend.pyugend.Mod_Stoch_FBPH import Mod_Stoch_FBPH
-import numpy as np
-import pandas as pd
+
 
 @pytest.mark.usefixtures('mgmt_data')
 
@@ -12,6 +10,10 @@ import pandas as pd
 
 class TestExcelExport:
 
-    def test_excel_export(self,mgmt_data):
+    def test_excel_export_ph(self, mgmt_data):
         t = Mod_Stoch_FBPH(**mgmt_data)
-        t.export_model_run('testexport', 'model test', 10)
+        t.export_model_run('testexport', 'model test PH', 10)
+
+    def test_excel_export_hp(self, mgmt_data):
+        t = Mod_Stoch_FBHP(**mgmt_data)
+        t.export_model_run('testexport', 'model test HP', 10)

@@ -29,7 +29,16 @@ class TestBaseModel:
         t.run_multiple(5)
         assert (hasattr(t, 'res_array'))
 
-    def test_base_model_multiple_runs_persistent_state(self,mgmt_data):
+    def test_base_model_multiple_runs_persistent_state(self, mgmt_data):
         t = Mod_Stoch_FBHP(**mgmt_data)
         t.run_multiple(5)
         assert (isinstance(t.results_matrix, pd.DataFrame))
+
+    #TODO must fix this test case
+    @pytest.mark.skip(reason="no way of currently testing this")
+    def test_base_model_probability_calc_detail_array(self, mgmt_data):
+        t = Mod_Stoch_FBPH(**mgmt_data)
+        res = t.run_probability_analysis_parameter_sweep_gender_detail(10,
+            'female_promotion_probability_2','m2', 0.1,0.8, 8, 150)
+        assert (isinstance(res, pd.DataFrame))
+
