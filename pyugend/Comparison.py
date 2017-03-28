@@ -503,14 +503,14 @@ class Comparison():
                          target,
                          xlabels,
                          ylabels,
-                         titles,
+                         titles = ['f1', 'f2', 'f3', 'm1', 'm2', 'm3'],
                          line_width=2,
                          height_= defaults.height // 2,
                          width_ = defaults.width // 2,
                          legend_location='top right',
                          model_legend_label='model',
                          transparency = 0.25,
-                         linecolor='green',
+                         linecolor=['green'],
                          target_plot=False,
                          target_color='red',
                          target_plot_linewidth=2,
@@ -533,7 +533,7 @@ class Comparison():
 
         # BEGIN BLOCK
 
-        if plottype in ['parameter sweep percentage','parameter sweep '
+        if plottype in ['parameter sweep gender percentage','parameter sweep '
                                                      'probability']:
 
             for mod in self.mlist:
@@ -603,7 +603,7 @@ class Comparison():
             yval_m3 = [m['mean_m3'] for m in mean_matrices]
 
 
-        if plottype == 'parameter sweep percentage':
+        if plottype == 'parameter sweep gender percentage':
 
             female_sweep_matrices = [m.parameter_sweep_results for m in
                                    self.mlist]
@@ -682,6 +682,24 @@ class Comparison():
                 lower_m1 = [m['m1_025'] for m in l_matrices]
                 lower_m2 = [m['m2_025'] for m in l_matrices]
                 lower_m3 = [m['m3_025'] for m in l_matrices]
+
+            if plottype == 'parameter sweep gender percentage':
+                female_sweep_matrices = [m.parameter_sweep_results for m in
+                                         self.mlist]
+
+                upper_f1 = [m['f1_975'] for m in female_sweep_matrices]
+                upper_f2 = [m['f2_975'] for m in female_sweep_matrices]
+                upper_f3 = [m['f3_975'] for m in female_sweep_matrices]
+                upper_m1 = [m['m1_975'] for m in female_sweep_matrices]
+                upper_m2 = [m['m2_975'] for m in female_sweep_matrices]
+                upper_m3 = [m['m3_975'] for m in female_sweep_matrices]
+
+                lower_f1 = [m['f1_025'] for m in female_sweep_matrices]
+                lower_f2 = [m['f2_025'] for m in female_sweep_matrices]
+                lower_f3 = [m['f3_025'] for m in female_sweep_matrices]
+                lower_m1 = [m['m1_025'] for m in female_sweep_matrices]
+                lower_m2 = [m['m2_025'] for m in female_sweep_matrices]
+                lower_m3 = [m['m3_025'] for m in female_sweep_matrices]
 
         # setup standard bounds
 
@@ -808,6 +826,69 @@ class Comparison():
                 lower_m3 = list(map(sub, [y for y in yval_m3], [1.96 * m[
                     'spct_m3'] for m in std_matrices]))
 
+            if plottype == 'parameter sweep gender percentage ':
+
+                upper_f1 = list(map(add, [y for y in yval_f1], [1.96 * m[
+                    'spct_f1'] for m in female_sweep_matrices]))
+
+                upper_f1 = np.where(np.array(upper_f1)>1,1,np.array(upper_f1))
+
+                upper_f2 = list(map(add, [y for y in yval_f2], [1.96 * m[
+                    'spct_f2'] for m in female_sweep_matrices]))
+
+                upper_f2 = np.where(np.array(upper_f2)>1,1,np.array(upper_f2))
+
+                upper_f3 = list(map(add, [y for y in yval_f3], [1.96 * m[
+                    'spct_f3'] for m in female_sweep_matrices]))
+
+                upper_f3 = np.where(np.array(upper_f3)>1,1,np.array(upper_f3))
+
+                upper_m1 = list(map(add, [y for y in yval_m1], [1.96 * m[
+                    'spct_m1']for m in female_sweep_matrices]))
+
+                upper_m1 = np.where(np.array(upper_m1)>1,1,np.array(upper_m1))
+
+                upper_m2 = list(map(add, [y for y in yval_m2], [1.96 * m[
+                    'spct_m2']for m in female_sweep_matrices]))
+
+                upper_m2 = np.where(np.array(upper_m2)>1,1,np.array(upper_m2))
+
+                upper_m3 = list(map(add, [y for y in yval_m3], [1.96 * m[
+                    'spct_m3']for m in female_sweep_matrices]))
+
+                upper_m3 = np.where(np.array(upper_m3)>1,1,np.array(upper_m3))
+
+
+                lower_f1 = list(map(sub, [y for y in yval_f1], [1.96 * m[
+                    'spct_f1'] for m in female_sweep_matrices]))
+
+                lower_f1 = np.where(np.array(lower_f1)<0,0,np.array(lower_f1))
+
+                lower_f2 = list(map(sub, [y for y in yval_f2], [1.96 * m[
+                    'spct_f2'] for m in female_sweep_matrices]))
+
+                lower_f2 = np.where(np.array(lower_f2)<0,0,np.array(lower_f2))
+
+                lower_f3 = list(map(sub, [y for y in yval_f3], [1.96 * m[
+                    'spct_f3'] for m in female_sweep_matrices]))
+
+                lower_f3 = np.where(np.array(lower_f3)<0,0,np.array(lower_f3))
+
+
+                lower_m1 = list(map(sub, [y for y in yval_m1], [1.96 * m[
+                    'spct_m1'] for m in female_sweep_matrices]))
+
+                lower_m1 = np.where(np.array(lower_m1)<0,0,np.array(lower_m1))
+
+                lower_m2 = list(map(sub, [y for y in yval_m2], [1.96 * m[
+                    'spct_m2'] for m in female_sweep_matrices]))
+
+                lower_m2 = np.where(np.array(lower_m2)<0,0,np.array(lower_m2))
+
+                lower_m3 = list(map(sub, [y for y in yval_m3], [1.96 * m[
+                    'spct_m3'] for m in female_sweep_matrices]))
+
+                lower_m3 = np.where(np.array(lower_m3)<0,0,np.array(lower_m3))
 
 
         levels = ['f1', 'f2', 'f3', 'm1', 'm2', 'm3']
@@ -819,7 +900,7 @@ class Comparison():
 
         plots = []
 
-        x_data = np.arange(0, xval)
+        x_data = np.asarray(xval)
         band_x = np.append(x_data, x_data[::-1])
 
         for key, val in enumerate(levels):
@@ -834,18 +915,10 @@ class Comparison():
         for k,v in enumerate(self.mlist):
 
             for i, p in enumerate(plots):
-                p.line(range(xval), yvals[i][k],
+                p.line(xval, yvals[i][k],
                        line_width=line_width,
                        line_color=linecolor[k])
 
-                # previous validation code
-                # p.line(range(xval), np.minimum(1,
-                #                                np.maximum(0,
-                #                                           yvals[i][k]))
-
-
-                # upper_band = np.minimum(1, yvals[i][k] + 1.96 * fills[i][k])
-                # lower_band = np.maximum(0, yvals[i][k] - 1.96 * fills[i][k])
                 band_y = np.append(lower_fill[i][k], upper_fill[i][k][::-1])
 
                 p.patch(band_x,
@@ -857,7 +930,7 @@ class Comparison():
 
             for i, p in enumerate(plots):
 
-                p.line(range(xval),
+                p.line(xval,
                        target,
                        line_color=target_color,
                        line_width = target_plot_linewidth,
@@ -867,7 +940,7 @@ class Comparison():
         if percent_line_plot == True:
 
             for i, p in enumerate(plots):
-                p.line(range(xval), percent_line_value,
+                p.line(xval, percent_line_value,
                        line_color=color_percent_line,
                        line_width=percent_linewidth,
                        line_dash = [2,2])
