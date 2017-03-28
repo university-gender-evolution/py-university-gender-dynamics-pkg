@@ -19,6 +19,7 @@ from bokeh.layouts import gridplot
 from bokeh.palettes import Viridis3
 from bokeh.plotting import figure
 from bokeh.charts import defaults
+from operator import neg
 
 ## Initialize Constants
 

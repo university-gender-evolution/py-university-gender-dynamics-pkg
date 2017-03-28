@@ -134,6 +134,7 @@ def test_parameter_sweep_probability_overall(mgmt_data):
                                               0.50)
     assert (hasattr(t, 'probability_matrix'))
 
+
 def test_parameter_sweep_function_validation_overall(mgmt_data):
     modlist = list([Mod_Validate_Sweep(**mgmt_data)])
     c = Comparison(modlist)
