@@ -717,7 +717,7 @@ class Base_model():
             # Sets the year in the sweep data matrix to the last year in the
             # results_matrix.
             parameter_sweep_results.iloc[i, 1] = self.results_matrix.tail(
-                1).iloc[0, len(RESULTS_COLUMNS)-1]
+                1).iloc[0, len(RESULTS_COLUMNS)]
 
             # Fills the sweep matrix with data from the female percentage
             # matrices
