@@ -11,7 +11,6 @@ __version__ = '0.1.0'
 
 import numpy as np
 import pandas as pd
-import matplotlib.pyplot as plt
 import os
 import datetime
 from bokeh.io import output_file, show
@@ -129,18 +128,18 @@ FEMALE_MATRIX_COLUMNS = list(['year',
                               'spct_m2',
                               'mpct_m3',
                               'spct_m3',
-                              'f1_025',
-                              'f1_975',
-                              'f2_025',
-                              'f2_975',
-                              'f3_025',
-                              'f3_975',
-                              'm1_025',
-                              'm1_975',
-                              'm2_025',
-                              'm2_975',
-                              'm3_025',
-                              'm3_975'])
+                              'pf1_025',
+                              'pf1_975',
+                              'pf2_025',
+                              'pf2_975',
+                              'pf3_025',
+                              'pf3_975',
+                              'pm1_025',
+                              'pm1_975',
+                              'pm2_025',
+                              'pm2_975',
+                              'pm3_025',
+                              'pm3_975'])
 
 EXPORT_COLUMNS_FOR_CSV = list(['hiring_rate_women_1',
                                'hiring_rate_women_2',
@@ -671,7 +670,6 @@ class Base_model():
                             ulim, num_of_steps):
 
         '''
-
         This function sweeps a single parameter and captures the effect of
         that variation on the overall model. Any valid parameter can be chosen.
 
@@ -708,7 +706,6 @@ class Base_model():
 
         # Run simulations with parameter increments and collect into a container.
 
-
         for i, val in enumerate(parameter_sweep_increments):
             setattr(self, param, val)
             self.run_multiple(number_of_runs)
@@ -727,9 +724,6 @@ class Base_model():
             # matrices
             parameter_sweep_results.iloc[i, len(RESULTS_COLUMNS)+1:] = \
                 self.pct_female_matrix.tail(1).iloc[0, 1:]
-
-
-
 
         self.parameter_sweep_results = parameter_sweep_results
 

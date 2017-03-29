@@ -34,6 +34,12 @@ class TestBaseModel:
         t.run_multiple(5)
         assert (isinstance(t.results_matrix, pd.DataFrame))
 
+    def test_base_model_parameter_sweep(self, mgmt_data):
+        t = Mod_Stoch_FBHP(**mgmt_data)
+        t.run_parameter_sweep(10,'bf1',0.05, 0.6,5)
+        assert (hasattr(t, 'parameter_sweep_results'))
+
+
     #TODO must fix this test case
     @pytest.mark.skip(reason="no way of currently testing this")
     def test_base_model_probability_calc_detail_array(self, mgmt_data):

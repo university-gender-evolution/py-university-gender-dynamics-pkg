@@ -57,7 +57,7 @@ class Test_param_sweeps:
                          }
         show(c.plot_comparison_overall_chart(**plot_settings))
 
-    @pytest.mark.skip(reason="no way of currently testing this")
+    #@pytest.mark.skip(reason="no way of currently testing this")
     def test_parameter_sweep_function_validation_overall_hp(self, mgmt_data):
         modlist = list([Mod_Stoch_FBHP(**mgmt_data)])
 
@@ -65,7 +65,7 @@ class Test_param_sweeps:
 
         plot_settings = {'plottype': 'parameter sweep percentage',
                          'intervals': 'empirical',
-                         'number_of_runs': 10,
+                         'number_of_runs': 100,
                          # number simulations to average over
                          'target': 0.25,
                          'xlabel': 'Hiring Rate for Women',
@@ -76,9 +76,9 @@ class Test_param_sweeps:
                                                 '2, '
                                                 'Promote-Hire'],
                          'parameter_sweep_param': 'bf1',
-                         'parameter_ubound': 0.6,
+                         'parameter_ubound': 0.5,
                          'parameter_lbound': 0.05,
-                         'number_of_steps': 5
+                         'number_of_steps': 15
                          }
         show(c.plot_comparison_overall_chart(**plot_settings))
 
@@ -141,6 +141,7 @@ class Test_param_sweeps:
                          }
         show(c.plot_comparison_level_chart(**plot_settings))
 
+    #@pytest.mark.skip(reason="no way of currently testing this")
     def test_parameter_sweep_function_validation_level_hp(self, mgmt_data):
         modlist = list([Mod_Stoch_FBHP(**mgmt_data)])
 
@@ -148,7 +149,7 @@ class Test_param_sweeps:
 
         plot_settings = {'plottype': 'parameter sweep gender percentage',
                          'intervals': 'empirical',
-                         'number_of_runs': 10,
+                         'number_of_runs': 200,
                          # number simulations to average over
                          'target': 0.25,
                          'xlabels': ['Hiring Rate for Women',
@@ -168,9 +169,9 @@ class Test_param_sweeps:
                                                 '2, '
                                                 'Promote-Hire'],
                          'parameter_sweep_param': 'bf1',
-                         'parameter_ubound': 0.6,
+                         'parameter_ubound': 0.5,
                          'parameter_lbound': 0.05,
-                         'number_of_steps': 5
+                         'number_of_steps': 15
                          }
         show(c.plot_comparison_level_chart(**plot_settings))
 

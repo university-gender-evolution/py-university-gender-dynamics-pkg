@@ -1,7 +1,6 @@
 __author__ = 'krishnab'
 import numpy as np
 import pandas as pd
-import matplotlib.pyplot as plt
 from bokeh.plotting import figure, output_file, show
 from bokeh.charts import defaults
 from bokeh.layouts import gridplot
@@ -533,8 +532,8 @@ class Comparison():
 
         # BEGIN BLOCK
 
-        if plottype in ['parameter sweep gender percentage','parameter sweep '
-                                                     'probability']:
+        if plottype in ['parameter sweep gender percentage',
+                        'parameter sweep probability']:
 
             for mod in self.mlist:
                 mod.run_parameter_sweep(number_of_runs,
@@ -545,8 +544,7 @@ class Comparison():
 
             # xval, so I need to directly feed this range in.
 
-            xval = self.mlist[0].parameter_sweep_results.loc[:,
-                           'increment']
+            xval = self.mlist[0].parameter_sweep_results.loc[:, 'increment']
 
         else:
 
@@ -684,22 +682,20 @@ class Comparison():
                 lower_m3 = [m['m3_025'] for m in l_matrices]
 
             if plottype == 'parameter sweep gender percentage':
-                female_sweep_matrices = [m.parameter_sweep_results for m in
-                                         self.mlist]
 
-                upper_f1 = [m['f1_975'] for m in female_sweep_matrices]
-                upper_f2 = [m['f2_975'] for m in female_sweep_matrices]
-                upper_f3 = [m['f3_975'] for m in female_sweep_matrices]
-                upper_m1 = [m['m1_975'] for m in female_sweep_matrices]
-                upper_m2 = [m['m2_975'] for m in female_sweep_matrices]
-                upper_m3 = [m['m3_975'] for m in female_sweep_matrices]
+                upper_f1 = [m['pf1_975'] for m in female_sweep_matrices]
+                upper_f2 = [m['pf2_975'] for m in female_sweep_matrices]
+                upper_f3 = [m['pf3_975'] for m in female_sweep_matrices]
+                upper_m1 = [m['pm1_975'] for m in female_sweep_matrices]
+                upper_m2 = [m['pm2_975'] for m in female_sweep_matrices]
+                upper_m3 = [m['pm3_975'] for m in female_sweep_matrices]
 
-                lower_f1 = [m['f1_025'] for m in female_sweep_matrices]
-                lower_f2 = [m['f2_025'] for m in female_sweep_matrices]
-                lower_f3 = [m['f3_025'] for m in female_sweep_matrices]
-                lower_m1 = [m['m1_025'] for m in female_sweep_matrices]
-                lower_m2 = [m['m2_025'] for m in female_sweep_matrices]
-                lower_m3 = [m['m3_025'] for m in female_sweep_matrices]
+                lower_f1 = [m['pf1_025'] for m in female_sweep_matrices]
+                lower_f2 = [m['pf2_025'] for m in female_sweep_matrices]
+                lower_f3 = [m['pf3_025'] for m in female_sweep_matrices]
+                lower_m1 = [m['pm1_025'] for m in female_sweep_matrices]
+                lower_m2 = [m['pm2_025'] for m in female_sweep_matrices]
+                lower_m3 = [m['pm3_025'] for m in female_sweep_matrices]
 
         # setup standard bounds
 
