@@ -68,7 +68,7 @@ class Test_param_sweeps:
                          'number_of_runs': 500,
                          # number simulations to average over
                          'target': 0.25,
-                         'xlabel': 'Hiring Rate for Women',
+                         'xlabel': 'Promotion Rate for Women',
                          'ylabel': 'Proportion Women',
                          'title': 'Sweep, Hire-Promote, Female Promotion Rate 1->2',
                          'model_legend_label': ['Model 1, Hire-Promote',
