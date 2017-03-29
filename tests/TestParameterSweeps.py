@@ -57,7 +57,7 @@ class Test_param_sweeps:
                          }
         show(c.plot_comparison_overall_chart(**plot_settings))
 
-    #@pytest.mark.skip(reason="no way of currently testing this")
+    @pytest.mark.skip(reason="no way of currently testing this")
     def test_parameter_sweep_function_validation_overall_hp(self, mgmt_data):
         modlist = list([Mod_Stoch_FBHP(**mgmt_data)])
 
@@ -65,17 +65,17 @@ class Test_param_sweeps:
 
         plot_settings = {'plottype': 'parameter sweep percentage',
                          'intervals': 'empirical',
-                         'number_of_runs': 100,
+                         'number_of_runs': 500,
                          # number simulations to average over
                          'target': 0.25,
                          'xlabel': 'Hiring Rate for Women',
                          'ylabel': 'Proportion Women',
-                         'title': 'Parameter Sweep Validation, Hire-Promote',
+                         'title': 'Sweep, Hire-Promote, Female Promotion Rate 1->2',
                          'model_legend_label': ['Model 1, Hire-Promote',
                                                 'Model '
                                                 '2, '
                                                 'Promote-Hire'],
-                         'parameter_sweep_param': 'bf1',
+                         'parameter_sweep_param': 'female_promotion_probability_1',
                          'parameter_ubound': 0.5,
                          'parameter_lbound': 0.05,
                          'number_of_steps': 15
@@ -143,13 +143,81 @@ class Test_param_sweeps:
 
     #@pytest.mark.skip(reason="no way of currently testing this")
     def test_parameter_sweep_function_validation_level_hp(self, mgmt_data):
-        modlist = list([Mod_Stoch_FBHP(**mgmt_data)])
+        modlist = list([Mod_Stoch_FBPH(**mgmt_data)])
 
         c = Comparison(modlist)
 
         plot_settings = {'plottype': 'parameter sweep gender percentage',
                          'intervals': 'empirical',
-                         'number_of_runs': 200,
+                         'number_of_runs': 500,
+                         # number simulations to average over
+                         'target': 0.25,
+                         'xlabels': ['Promotion Rate for Women',
+                                     'Promotion Rate for Women',
+                                     'Promotion Rate for Women',
+                                     'Promotion Rate for Women',
+                                     'Promotion Rate for Women',
+                                     'Promotion Rate for Women'],
+                         'ylabels': ['Proportion Women',
+                                     'Proportion Women',
+                                     'Proportion Women',
+                                     'Proportion Women',
+                                     'Proportion Women',
+                                     'Proportion Women'],
+                         'model_legend_label': ['Model 1, Hire-Promote',
+                                                'Model '
+                                                '2, '
+                                                'Promote-Hire'],
+                         'parameter_sweep_param': 'female_promotion_probability_1',
+                         'parameter_ubound': 0.5,
+                         'parameter_lbound': 0.05,
+                         'number_of_steps': 15
+                         }
+        show(c.plot_comparison_level_chart(**plot_settings))
+
+    #@pytest.mark.skip(reason="no way of currently testing this")
+    def test_parameter_sweep_function_validation_level_hp(self, mgmt_data):
+        modlist = list([Mod_Stoch_FBPH(**mgmt_data)])
+
+        c = Comparison(modlist)
+
+        plot_settings = {'plottype': 'parameter sweep gender percentage',
+                         'intervals': 'empirical',
+                         'number_of_runs': 500,
+                         # number simulations to average over
+                         'target': 0.25,
+                         'xlabels': ['Attrition Rate for Men_3',
+                                     'Attrition Rate for Men_3',
+                                     'Attrition Rate for Men_3',
+                                     'Attrition Rate for Men_3',
+                                     'Attrition Rate for Men_3',
+                                     'Attrition Rate for Men_3'],
+                         'ylabels': ['Proportion Women',
+                                     'Proportion Women',
+                                     'Proportion Women',
+                                     'Proportion Women',
+                                     'Proportion Women',
+                                     'Proportion Women'],
+                         'model_legend_label': ['Model 1, Hire-Promote',
+                                                'Model '
+                                                '2, '
+                                                'Promote-Hire'],
+                         'parameter_sweep_param': 'dm3',
+                         'parameter_ubound': 0.5,
+                         'parameter_lbound': 0.05,
+                         'number_of_steps': 15
+                         }
+        show(c.plot_comparison_level_chart(**plot_settings))
+
+    #@pytest.mark.skip(reason="no way of currently testing this")
+    def test_parameter_sweep_function_validation_level_hp(self, mgmt_data):
+        modlist = list([Mod_Stoch_FBPH(**mgmt_data)])
+
+        c = Comparison(modlist)
+
+        plot_settings = {'plottype': 'parameter sweep gender percentage',
+                         'intervals': 'empirical',
+                         'number_of_runs': 500,
                          # number simulations to average over
                          'target': 0.25,
                          'xlabels': ['Hiring Rate for Women',
@@ -174,6 +242,82 @@ class Test_param_sweeps:
                          'number_of_steps': 15
                          }
         show(c.plot_comparison_level_chart(**plot_settings))
+
+    #@pytest.mark.skip(reason="no way of currently testing this")
+    def test_parameter_sweep_function_validation_overall_hp(self, mgmt_data):
+        modlist = list([Mod_Stoch_FBPH(**mgmt_data)])
+
+        c = Comparison(modlist)
+
+        plot_settings = {'plottype': 'parameter sweep percentage',
+                         'intervals': 'empirical',
+                         'number_of_runs': 500,
+                         # number simulations to average over
+                         'target': 0.25,
+                         'xlabel': 'Hiring Rate for Women',
+                         'ylabel': 'Proportion Women',
+                         'title': 'Sweep, Hire-Promote, Female Promotion Rate 1->2',
+                         'model_legend_label': ['Model 1, Hire-Promote',
+                                                'Model '
+                                                '2, '
+                                                'Promote-Hire'],
+                         'parameter_sweep_param': 'female_promotion_probability_1',
+                         'parameter_ubound': 0.5,
+                         'parameter_lbound': 0.05,
+                         'number_of_steps': 15
+                         }
+        show(c.plot_comparison_overall_chart(**plot_settings))
+
+    #@pytest.mark.skip(reason="no way of currently testing this")
+    def test_parameter_sweep_function_validation_overall_hp(self, mgmt_data):
+        modlist = list([Mod_Stoch_FBPH(**mgmt_data)])
+
+        c = Comparison(modlist)
+
+        plot_settings = {'plottype': 'parameter sweep percentage',
+                         'intervals': 'empirical',
+                         'number_of_runs': 500,
+                         # number simulations to average over
+                         'target': 0.25,
+                         'xlabel': 'Hiring Rate for Women',
+                         'ylabel': 'Attrition Rate Men_3',
+                         'title': 'Sweep, Hire-Promote, Attrition Rate Male_3',
+                         'model_legend_label': ['Model 1, Hire-Promote',
+                                                'Model '
+                                                '2, '
+                                                'Promote-Hire'],
+                         'parameter_sweep_param': 'dm3',
+                         'parameter_ubound': 0.5,
+                         'parameter_lbound': 0.05,
+                         'number_of_steps': 15
+                         }
+        show(c.plot_comparison_overall_chart(**plot_settings))
+
+    #@pytest.mark.skip(reason="no way of currently testing this")
+    def test_parameter_sweep_function_validation_overall_hp(self, mgmt_data):
+        modlist = list([Mod_Stoch_FBPH(**mgmt_data)])
+
+        c = Comparison(modlist)
+
+        plot_settings = {'plottype': 'parameter sweep percentage',
+                         'intervals': 'empirical',
+                         'number_of_runs': 500,
+                         # number simulations to average over
+                         'target': 0.25,
+                         'xlabel': 'Hiring Rate for Women',
+                         'ylabel': 'Proportion Women',
+                         'title': 'Sweep, Hire-Promote, Female Promotion Rate 1->2',
+                         'model_legend_label': ['Model 1, Hire-Promote',
+                                                'Model '
+                                                '2, '
+                                                'Promote-Hire'],
+                         'parameter_sweep_param': 'bf1',
+                         'parameter_ubound': 0.5,
+                         'parameter_lbound': 0.05,
+                         'number_of_steps': 15
+                         }
+        show(c.plot_comparison_overall_chart(**plot_settings))
+
 
 
     @pytest.mark.skip(reason="no way of currently testing this")
