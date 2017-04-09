@@ -18,11 +18,9 @@ for male hires. So I will see how that goes.
 __author__ = 'krishnab'
 __version__ = '0.1.0'
 
-from operator import neg, truediv
 import numpy as np
 import pandas as pd
-from numpy.random import binomial
-from pyugend.pyugend.Models import Base_model
+from pyugend.Models import Base_model
 from random import random, uniform
 
 MODEL_RUN_COLUMNS = list(['number_f1',
