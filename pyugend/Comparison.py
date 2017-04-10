@@ -241,8 +241,8 @@ class Comparison():
         # sweep, then the block will run the Models.run_multiple() function.
 
         # BEGIN BLOCK
-        if plottype in ['parameter sweep percentage','parameter sweep '
-                                                     'probability']:
+        if plottype in ['parameter sweep percentage',
+                        'parameter sweep probability']:
 
             for mod in self.mlist:
                 mod.run_parameter_sweep(number_of_runs,
