@@ -124,3 +124,29 @@ class TestPlots:
                          }
         show(c.plot_comparison_overall_chart(**plot_settings))
 
+    def test_bokeh_comparison_plot_probability_bylevel(self, mgmt_data):
+        modlist = list([Mod_Stoch_FBHP(**mgmt_data),
+                        Mod_Stoch_FBPH(**mgmt_data)])
+        c = Comparison(modlist)
+
+        plot_settings = {'plottype': 'probability proportion',
+                         'intervals': 'empirical',
+                         'number_of_runs': 100,
+                         'target': 0.25,
+                         'line_width': 2,
+                         'model_legend_label': ['model 1, Hire-Promote',
+                                                'model2, Promote-Hire'],
+                         'legend_location': 'top right',
+                         'height_': 300,
+                         'width_': 300,
+                         # main plot axis labels
+                         'xlabels': ['Years', 'Years', 'Years', 'Years',
+                                     'Years', 'Years'],
+                         'ylabels': ['Percentage of Women',
+                                     'Percentage of Women',
+                                     'Percentage of Women', 'Percentage of Men',
+                                     'Percentage of Men', 'Percentage of Men'],
+                         'titles': ['f1', 'f2', 'f3', 'm1', 'm2', 'm3'],
+                         }
+
+        show(c.plot_comparison_level_chart(**plot_settings))

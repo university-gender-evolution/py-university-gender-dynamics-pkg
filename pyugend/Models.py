@@ -856,14 +856,17 @@ class Base_model():
                                              'pm2', 'pm3']
 
         for idx in range(self.duration):
-            _u1 = np.array([r['run']['f1'][idx] / (r['run']['f1'][idx] + r[
-                'run']['m1'][idx]) for r in self.res_array])
+            _u1 = np.array([r['run']['number_f1'][idx] / (r['run']['number_f1'][
+                                                              idx] + r[
+                'run']['number_m1'][idx]) for r in self.res_array])
 
-            _u2 = np.array([r['run']['f2'][idx] / (r['run']['f2'][idx] + r[
-                'run']['m2'][idx]) for r in self.res_array])
+            _u2 = np.array([r['run']['number_f2'][idx] / (r['run']['number_f2'][
+                                                              idx] + r[
+                'run']['number_m2'][idx]) for r in self.res_array])
 
-            _u3 = np.array([r['run']['f3'][idx] / (r['run']['f3'][idx] + r[
-                'run']['m3'][idx]) for r in self.res_array])
+            _u3 = np.array([r['run']['number_f3'][idx] / (r['run']['number_f3'][
+                                                              idx] + r[
+                'run']['number_m3'][idx]) for r in self.res_array])
 
             probability_by_level_data['year'] = idx
 
