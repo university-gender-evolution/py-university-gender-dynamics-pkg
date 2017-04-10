@@ -222,9 +222,9 @@ class Comparison():
                            target_plot_legend_label='target',
                            percent_legend_label='percent',
                            male_female_numbers_plot=False,
-                           mf_male_color=['#404040'],
-                           mf_target_color=['#404040'],
-                           mf_male_label=['Male'],
+                           mf_male_color=['#a6611a', '#2c7bb6'],
+                           mf_target_color=['#fdae61'],
+                           mf_male_label=['Male model 1', 'Male model 2'],
                            mf_target_label='Target',
                            mf_male_linewidth=2,
                            mf_target_linewidth=2,
@@ -473,6 +473,8 @@ class Comparison():
                        line_color=mf_male_color[k],
                        legend=mf_male_label[k],
                        line_width=mf_male_linewidth)
+
+                p.circle(xval, yval2[k], size=3)
 
                 p.line(xval,
                        yval3[k],
