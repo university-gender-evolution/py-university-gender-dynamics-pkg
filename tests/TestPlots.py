@@ -1,8 +1,8 @@
 import pytest
-from pyugend.Mod_Stoch_FBHP import Mod_Stoch_FBHP
-from pyugend.Mod_Stoch_FBPH import Mod_Stoch_FBPH
-from pyugend.Mod_Validate_Sweep import Mod_Validate_Sweep
-from pyugend.Comparison import Comparison
+from pyugend.pyugend.Mod_Stoch_FBHP import Mod_Stoch_FBHP
+from pyugend.pyugend.Mod_Stoch_FBPH import Mod_Stoch_FBPH
+from pyugend.pyugend.Mod_Validate_Sweep import Mod_Validate_Sweep
+from pyugend.pyugend.Comparison import Comparison
 from bokeh.plotting import figure, output_file, show
 from bokeh.charts import defaults
 
