@@ -1,9 +1,8 @@
 import pytest
-from pyugend.pyugend.Models import Base_model
-from pyugend.pyugend.Mod_Stoch_FBHP import Mod_Stoch_FBHP
-from pyugend.pyugend.Mod_Stoch_FBPH import Mod_Stoch_FBPH
-import numpy as np
-import pandas as pd
+from pyugend.Models import Base_model
+from pyugend.Mod_Stoch_FBHP import Mod_Stoch_FBHP
+from pyugend.Mod_Stoch_FBPH import Mod_Stoch_FBPH
+import numpimport pandas as pd
 
 @pytest.mark.usefixtures('mgmt_data')
 

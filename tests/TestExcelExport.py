@@ -1,6 +1,6 @@
 import pytest
-from pyugend.pyugend.Mod_Stoch_FBHP import Mod_Stoch_FBHP
-from pyugend.pyugend.Mod_Stoch_FBPH import Mod_Stoch_FBPH
+from pyugend.Mod_Stoch_FBHP import Mod_Stoch_FBHP
+from pyugend.Mod_Stoch_FBPH import Mod_Stoch_FBPH
 
 
 @pytest.mark.usefixtures('mgmt_data')
