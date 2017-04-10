@@ -641,21 +641,21 @@ class Comparison():
 
             if plottype == 'gender proportion':
 
-                upper_f1 = [m['f1_975'] for m in female_pct_matrices]
-                upper_f2 = [m['f2_975'] for m in female_pct_matrices]
-                upper_f3 = [m['f3_975'] for m in female_pct_matrices]
-                upper_m1 = [m['m1_975'] for m in female_pct_matrices]
-                upper_m2 = [m['m2_975'] for m in female_pct_matrices]
-                upper_m3 = [m['m3_975'] for m in female_pct_matrices]
+                upper_f1 = [m['pf1_975'] for m in female_pct_matrices]
+                upper_f2 = [m['pf2_975'] for m in female_pct_matrices]
+                upper_f3 = [m['pf3_975'] for m in female_pct_matrices]
+                upper_m1 = [m['pm1_975'] for m in female_pct_matrices]
+                upper_m2 = [m['pm2_975'] for m in female_pct_matrices]
+                upper_m3 = [m['pm3_975'] for m in female_pct_matrices]
 
                 # print('band', upper_f2)
                 # print('\n')
-                lower_f1 = [m['f1_025'] for m in female_pct_matrices]
-                lower_f2 = [m['f2_025'] for m in female_pct_matrices]
-                lower_f3 = [m['f3_025'] for m in female_pct_matrices]
-                lower_m1 = [m['m1_025'] for m in female_pct_matrices]
-                lower_m2 = [m['m2_025'] for m in female_pct_matrices]
-                lower_m3 = [m['m3_025'] for m in female_pct_matrices]
+                lower_f1 = [m['pf1_025'] for m in female_pct_matrices]
+                lower_f2 = [m['pf2_025'] for m in female_pct_matrices]
+                lower_f3 = [m['pf3_025'] for m in female_pct_matrices]
+                lower_m1 = [m['pm1_025'] for m in female_pct_matrices]
+                lower_m2 = [m['pm2_025'] for m in female_pct_matrices]
+                lower_m3 = [m['pm3_025'] for m in female_pct_matrices]
 
 
             if plottype == 'gender number':
