@@ -999,7 +999,8 @@ class Comparison():
             for i, p in enumerate(plots):
                 p.line(xval, yvals[i][k],
                        line_width=line_width,
-                       line_color=linecolor[k])
+                       line_color=linecolor[k],
+                       legend=model_legend_label[k])
 
                 band_y = np.append(lower_fill[i][k], upper_fill[i][k][::-1])
 
@@ -1007,6 +1008,7 @@ class Comparison():
                         band_y,
                         color=linecolor[k],
                         fill_alpha=transparency)
+
 
         if target_plot == True:
 

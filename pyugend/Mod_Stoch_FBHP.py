@@ -25,7 +25,7 @@ from operator import neg, truediv
 import numpy as np
 import pandas as pd
 from numpy.random import binomial
-from pyugend.Models import Base_model
+from pyugend.pyugend.Models import Base_model
 
 
 MODEL_RUN_COLUMNS = list(['number_f1',
