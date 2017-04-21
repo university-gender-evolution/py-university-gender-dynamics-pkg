@@ -509,7 +509,7 @@ class Comparison():
                          height_= defaults.height // 2,
                          width_ = defaults.width // 2,
                          legend_location='top right',
-                         model_legend_label='model',
+                         model_legend_label=['model1', 'model2'],
                          transparency = 0.25,
                          linecolor=['#018571', '#a6611a', '#e66101'],
                          target_plot=False,
