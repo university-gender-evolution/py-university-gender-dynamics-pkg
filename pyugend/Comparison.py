@@ -223,7 +223,7 @@ class Comparison():
                            percent_legend_label='percent',
                            male_female_numbers_plot=False,
                            mf_male_color=['#a6611a', '#2c7bb6'],
-                           mf_target_color=['#fdae61'],
+                           mf_target_color='#fdae61',
                            mf_male_label=['Male model 1', 'Male model 2'],
                            mf_target_label='Target',
                            mf_male_linewidth=2,
