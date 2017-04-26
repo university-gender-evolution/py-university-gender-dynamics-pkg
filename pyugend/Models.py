@@ -169,6 +169,7 @@ defaults.width = 400
 defaults.height = 400
 np.seterr(divide='ignore', invalid='ignore')
 
+
 class Base_model():
     def __init__(self, number_of_females_1,
                  number_of_females_2,
@@ -235,7 +236,6 @@ class Base_model():
         self.pct_female_matrix = 0
         self.probability_matrix = 0
         self.probability_by_level = 0
-
 
     def load_baseline_data_mgmt(self):
         '''
@@ -314,7 +314,6 @@ class Base_model():
         self.upperbound = 84
         self.lowerbound = 64
         self.variation_range = 3
-
 
     def load_most_optimistic_data_mgmt(self):
         '''
@@ -626,19 +625,18 @@ class Base_model():
 
                     _num = np.array([r['run'][LEVELS[l]][idx] for r in
                                      res_array])
-                    _denom = np.array([r['run'][LEVELS[l]][idx]+ r['run'][
+                    _denom = np.array([r['run'][LEVELS[l]][idx] + r['run'][
                         LEVELS[l + 3]][idx] for r in res_array])
                     _u = np.nan_to_num(np.divide(_num, _denom))
 
 
                 else:
 
-                   _num = np.array([r['run'][LEVELS[l]][idx] for r in
+                    _num = np.array([r['run'][LEVELS[l]][idx] for r in
                                      res_array])
-                   _denom = np.array([r['run'][LEVELS[l]][idx]+ r['run'][
+                    _denom = np.array([r['run'][LEVELS[l]][idx] + r['run'][
                         LEVELS[l - 3]][idx] for r in res_array])
-                   _u = np.nan_to_num(np.divide(_num, _denom))
-
+                    _u = np.nan_to_num(np.divide(_num, _denom))
 
                 self.pct_female_matrix.loc[idx, 'year'] = idx
 
@@ -698,11 +696,11 @@ class Base_model():
 
         parameter_sweep_results = pd.DataFrame(np.zeros([len(
             parameter_sweep_increments),
-            len(RESULTS_COLUMNS + FEMALE_MATRIX_COLUMNS[1:])+1]))
+            len(RESULTS_COLUMNS + FEMALE_MATRIX_COLUMNS[1:]) + 1]))
 
         parameter_sweep_results.columns = ['increment'] + RESULTS_COLUMNS + \
                                           FEMALE_MATRIX_COLUMNS[1:]
-        parameter_sweep_results.loc[:,'increment'] = parameter_sweep_increments
+        parameter_sweep_results.loc[:, 'increment'] = parameter_sweep_increments
 
         # Run simulations with parameter increments and collect into a container.
 
@@ -712,8 +710,9 @@ class Base_model():
 
             # Sets the values the sweep data matrix to the last values in the
             #  multiple runs results_matrix.
-            parameter_sweep_results.iloc[i, 1 : neg(len(
-                FEMALE_MATRIX_COLUMNS))-1] = self.results_matrix.tail(1).iloc[0, 1: -1]
+            parameter_sweep_results.iloc[i, 1: neg(len(
+                FEMALE_MATRIX_COLUMNS)) - 1] = self.results_matrix.tail(1).iloc[
+                                               0, 1: -1]
 
             # Sets the year in the sweep data matrix to the last year in the
             # results_matrix.
@@ -722,7 +721,7 @@ class Base_model():
 
             # Fills the sweep matrix with data from the female percentage
             # matrices
-            parameter_sweep_results.iloc[i, len(RESULTS_COLUMNS)+1:] = \
+            parameter_sweep_results.iloc[i, len(RESULTS_COLUMNS) + 1:] = \
                 self.pct_female_matrix.tail(1).iloc[0, 1:]
 
         self.parameter_sweep_results = parameter_sweep_results
@@ -736,7 +735,6 @@ class Base_model():
         # END BLOCK
 
         return (0)
-
 
     def run_probability_parameter_sweep_overall(self,
                                                 number_of_runs,
@@ -785,7 +783,7 @@ class Base_model():
             len(parameter_sweep_columns)]))
 
         parameter_sweep_results.columns = parameter_sweep_columns
-        parameter_sweep_results.loc[:,'increment'] = parameter_sweep_increments
+        parameter_sweep_results.loc[:, 'increment'] = parameter_sweep_increments
 
         # Run simulations with parameter increments and collect into a container.
 
@@ -795,8 +793,6 @@ class Base_model():
                                                             target)
             parameter_sweep_results.iloc[i, 1:] = self.probability_matrix.tail(
                 1).iloc[0, 1:]
-
-
 
         self.probability_sweep_results = parameter_sweep_results
 
@@ -809,8 +805,6 @@ class Base_model():
         # END BLOCK
 
         return (0)
-
-
 
     def run_probability_analysis_gender_proportion(self, num_runs, target):
 
@@ -858,15 +852,21 @@ class Base_model():
         for idx in range(self.duration):
             _u1 = np.array([r['run']['number_f1'][idx] / (r['run']['number_f1'][
                                                               idx] + r[
-                'run']['number_m1'][idx]) for r in self.res_array])
+                                                              'run'][
+                                                              'number_m1'][idx])
+                            for r in self.res_array])
 
             _u2 = np.array([r['run']['number_f2'][idx] / (r['run']['number_f2'][
                                                               idx] + r[
-                'run']['number_m2'][idx]) for r in self.res_array])
+                                                              'run'][
+                                                              'number_m2'][idx])
+                            for r in self.res_array])
 
             _u3 = np.array([r['run']['number_f3'][idx] / (r['run']['number_f3'][
                                                               idx] + r[
-                'run']['number_m3'][idx]) for r in self.res_array])
+                                                              'run'][
+                                                              'number_m3'][idx])
+                            for r in self.res_array])
 
             probability_by_level_data['year'] = idx
 
