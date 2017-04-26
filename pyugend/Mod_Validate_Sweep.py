@@ -20,7 +20,7 @@ __version__ = '0.1.0'
 
 import numpy as np
 import pandas as pd
-from pyugend.Models import Base_model
+from .Models import Base_model
 from random import random, uniform
 
 MODEL_RUN_COLUMNS = list(['number_f1',
