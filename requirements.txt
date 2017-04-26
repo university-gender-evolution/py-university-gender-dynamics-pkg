@@ -11,3 +11,4 @@ numpy>=1.10.1
 pandas>=0.17.0
 matplotlib >=1.4.3
 sphinxcontrib-napoleon >=0.5.0
+py.test=3.0.7

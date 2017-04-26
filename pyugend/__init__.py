@@ -6,7 +6,8 @@ __all__ = ['Base_model',
            'Mod_Stoch_FBPH',
            'Mod_Validate_Sweep',
            'Comparison']
-
+import sys, os
+sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 from pyugend.Models import Base_model
 from pyugend.ReplicationModel import Replication_model
 from pyugend.Mod_Stoch_FBHP import Mod_Stoch_FBHP

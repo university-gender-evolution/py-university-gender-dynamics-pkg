@@ -18,184 +18,6 @@ class Comparison():
         self.label = 'All Models'
         self.mlist = model_list
 
-    # def plot_comparison_spec_parameter(self, parm, title,
-    #                                    xlabel, ylabel, number_of_runs=10):
-    #
-    #     ## This function will execute gender proportion comparisons for all models
-    #
-    #     ## Color list
-    #
-    #     line_colors = ['#7fc97f', '#beaed4', '#fdc086', '#386cb0', '#f0027f',
-    #                    '#ffff99']
-    #
-    #     for mod in self.mlist:
-    #         mod.run_multiple(number_of_runs)
-    #
-    #     ## Create plot array and execute plot
-    #
-    #     for k, v in enumerate(self.mlist):
-    #         plt.plot(range(self.mlist[k].duration),
-    #                  self.mlist[k].mean_matrix[parm],
-    #                  color=line_colors[k], label=self.mlist[k].label,
-    #                  linewidth=2.0)
-    #
-    #         plt.plot(range(self.mlist[k].duration),
-    #                  self.mlist[k].mean_matrix[parm])
-    #         plt.fill_between(range(self.mlist[k].duration),
-    #                          self.mlist[k].mean_matrix[
-    #                              parm] +
-    #                          1.96 * self.mlist[k].std_matrix[
-    #                              parm],
-    #                          self.mlist[k].mean_matrix[parm] - 1.96 *
-    #                          self.mlist[k].std_matrix[
-    #                              parm], color=line_colors[k], alpha=0.5)
-    #
-    #     plt.title(title)
-    #     plt.xlabel(xlabel)
-    #     plt.ylabel(ylabel)
-    #     plt.legend(loc='upper right', shadow=True)
-    #     plt.show()
-
-
-    # def plot_parameter_sweep_gender_proportion(self, number_of_runs, param,
-    #                                            llim, ulim, number_of_steps):
-    #
-    #     ## This function will execute gender proportion comparisons for all models
-    #
-    #     ## Color list
-    #
-    #     line_colors = ['#7fc97f', '#beaed4', '#fdc086', '#386cb0', '#f0027f',
-    #                    '#ffff99']
-    #     for mod in self.mlist:
-    #         mod.run_parameter_sweep(number_of_runs, param, llim, ulim,
-    #                                 number_of_steps)
-    #
-    #     ## Create plot array and execute plot
-    #
-    #     for k, v in enumerate(self.mlist):
-    #         plot_array = self.mlist[k].parameter_sweep_array[0]
-    #         plt.plot(plot_array[:, 0], plot_array[:, 1],
-    #                  label=self.mlist[k].label, linewidth=2.0,
-    #                  color=line_colors[k])
-    #         plt.fill_between(plot_array[:, 0], plot_array[:, 1] +
-    #                          1.96 * plot_array[:, 2], plot_array[:, 1] -
-    #                          1.96 * plot_array[:, 2], alpha=0.5,
-    #                          color=line_colors[k], facecolor=line_colors[k])
-    #
-    #     plt.title('Parameter Sweep for Gender Proportion over ' + str(
-    #         self.mlist[0].duration) + ' years')
-    #     plt.xlabel(param)
-    #     plt.ylabel('Percentage of the Department that is Women')
-    #     plt.legend(loc='upper right', shadow=True)
-    #     plt.show()
-    #
-    # def plot_parameter_sweep_detail(self,
-    #                                 number_of_runs,
-    #                                 param,
-    #                                 llim,
-    #                                 ulim,
-    #                                 number_of_steps):
-    #
-    #     # create color list
-    #
-    #     line_colors = ['#7fc97f', '#beaed4', '#fdc086', '#386cb0', '#f0027f',
-    #                    '#ffff99']
-    #     plot_titles = ['extra', 'Female Level 1', 'Female level 2', 'Female '
-    #                                                                 'level 3',
-    #                    'Male level 1', 'Male level 2', 'Male level 3']
-    #     plot_y_axis_titles = ['extra', 'Number of Females', 'Number of Females',
-    #                           'Number of Females', 'Number of Males',
-    #                           'Number of Males', 'Number of Males']
-    #
-    #     # run all models and generate result matrices. I run each model so I can guarantee that they all have the same duration.
-    #
-    #     for mod in self.mlist:
-    #         mod.run_parameter_sweep(number_of_runs, param, llim, ulim,
-    #                                 number_of_steps)
-    #
-    #     f, axarr = plt.subplots(nrows=2, ncols=3)
-    #     f.suptitle("Parameter sweep")
-    #
-    #     for k, v in enumerate(self.mlist):
-    #         array_list = self.mlist[k].parameter_sweep_array
-    #
-    #         axarr[0, 0].plot(array_list[1][:, 0], array_list[1][:, 1],
-    #                          label=self.mlist[k].label, linewidth=2.0,
-    #                          color=line_colors[k])
-    #         axarr[0, 0].set_title('Female level 1')
-    #         axarr[0, 0].set_xlabel(array_list[7])
-    #         axarr[0, 0].set_ylabel('Number of Females')
-    #         axarr[0, 0].fill_between(array_list[1][:, 0], array_list[1][:, 1] +
-    #                                  1.96 * array_list[1][:, 2],
-    #                                  array_list[1][:, 1] -
-    #                                  1.96 * array_list[1][:, 2], alpha=0.5,
-    #                                  color=line_colors[k],
-    #                                  facecolor=line_colors[k])
-    #         axarr[0, 0].legend(loc='upper right', shadow=True)
-    #
-    #         axarr[0, 1].plot(array_list[2][:, 0], array_list[2][:, 1],
-    #                          color=line_colors[k])
-    #         axarr[0, 1].set_title('Female level 2')
-    #         axarr[0, 1].set_xlabel(array_list[7])
-    #         axarr[0, 1].set_ylabel('Number of Females')
-    #         axarr[0, 1].fill_between(array_list[2][:, 0], array_list[2][:, 1] +
-    #                                  1.96 * array_list[2][:, 2],
-    #                                  array_list[2][:, 1] -
-    #                                  1.96 * array_list[2][:, 2], alpha=0.5,
-    #                                  color=line_colors[k],
-    #                                  facecolor=line_colors[k])
-    #
-    #         axarr[0, 2].plot(array_list[3][:, 0], array_list[3][:, 1],
-    #                          color=line_colors[k])
-    #         axarr[0, 2].set_title('Female level 3')
-    #         axarr[0, 2].set_xlabel(array_list[7])
-    #         axarr[0, 2].set_ylabel('Number of Females')
-    #         axarr[0, 2].fill_between(array_list[3][:, 0], array_list[3][:, 1] +
-    #                                  1.96 * array_list[3][:, 2],
-    #                                  array_list[3][:, 1] -
-    #                                  1.96 * array_list[3][:, 2], alpha=0.5,
-    #                                  color=line_colors[k],
-    #                                  facecolor=line_colors[k])
-    #
-    #         axarr[1, 0].plot(array_list[4][:, 0], array_list[4][:, 1],
-    #                          color=line_colors[k])
-    #         axarr[1, 0].set_title('Male level 1')
-    #         axarr[1, 0].set_xlabel(array_list[7])
-    #         axarr[1, 0].set_ylabel('Number of Males')
-    #         axarr[1, 0].fill_between(array_list[4][:, 0], array_list[4][:, 1] +
-    #                                  1.96 * array_list[4][:, 2],
-    #                                  array_list[4][:, 1] -
-    #                                  1.96 * array_list[4][:, 2], alpha=0.5,
-    #                                  color=line_colors[k],
-    #                                  facecolor=line_colors[k])
-    #
-    #         axarr[1, 1].plot(array_list[5][:, 0], array_list[5][:, 1],
-    #                          color=line_colors[k])
-    #         axarr[1, 1].set_title('Male level 2')
-    #         axarr[1, 1].set_xlabel(array_list[7])
-    #         axarr[1, 1].set_ylabel('Number of Males')
-    #         axarr[1, 1].fill_between(array_list[5][:, 0], array_list[5][:, 1] +
-    #                                  1.96 * array_list[5][:, 2],
-    #                                  array_list[5][:, 1] -
-    #                                  1.96 * array_list[5][:, 2], alpha=0.5,
-    #                                  color=line_colors[k],
-    #                                  facecolor=line_colors[k])
-    #
-    #         axarr[1, 2].plot(array_list[6][:, 0], array_list[6][:, 1],
-    #                          color=line_colors[k])
-    #         axarr[1, 2].set_title('Male level 3')
-    #         axarr[1, 2].set_xlabel(array_list[7])
-    #         axarr[1, 2].set_ylabel('Number of Males')
-    #         axarr[1, 2].fill_between(array_list[6][:, 0], array_list[6][:, 1] +
-    #                                  1.96 * array_list[6][:, 2],
-    #                                  array_list[6][:, 1] -
-    #                                  1.96 * array_list[6][:, 2], alpha=0.5,
-    #                                  color=line_colors[k],
-    #                                  facecolor=line_colors[k])
-    #     plt.tight_layout()
-    #     plt.subplots_adjust(top=0.85)
-    #     plt.show()
-
 
     def plot_comparison_overall_chart(self,
                            plottype,
@@ -244,6 +66,7 @@ class Comparison():
         if plottype in ['parameter sweep percentage',
                         'parameter sweep probability']:
 
+            vertLineForSweepPlot = getattr(self.mlist[0], parameter_sweep_param)
             for mod in self.mlist:
                 mod.run_parameter_sweep(number_of_runs,
                                         parameter_sweep_param,
@@ -466,6 +289,12 @@ class Comparison():
                     band_y,
                     color=linecolor[k],
                     fill_alpha=transparency)
+
+            if plottype in ['parameter sweep percentage',
+                            'parameter sweep probability']:
+                p.line(xval, np.linspace(0, max(ban_y)),
+                       line_width = 2,
+                       line_color = 'black')
 
             if male_female_numbers_plot:
                 p.line(xval,
