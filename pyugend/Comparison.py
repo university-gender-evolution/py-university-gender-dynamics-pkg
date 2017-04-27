@@ -5,6 +5,8 @@ from bokeh.plotting import figure, output_file, show
 from bokeh.charts import defaults
 from bokeh.layouts import gridplot
 from operator import add, sub
+from .ColumnSpecs import MODEL_RUN_COLUMNS, EXPORT_COLUMNS_FOR_CSV
+import datetime
 
 defaults.height = 800
 defaults.width = 800
@@ -864,13 +866,43 @@ class Comparison():
         return(grid)
 
 
-    def testfunc(self):
+    def export_model_run(self, model_label, model_choice, number_of_runs):
 
-        for mod in self.mlist:
-            mod.run_multiple(5)
+        if not hasattr(self, 'res'):
+            self.mlist[0].run_multiple(number_of_runs)
 
-        yval = [m.mean_matrix['gendprop'] for m in self.mlist]
-        return(yval)
+        # first I will allocate the memory by creating an empty dataframe.
+        # then I will iterate over the res_array matrix and write to the
+        # correct rows of the dataframe. This is more memory efficient compared
+        # to appending to a dataframe.
+
+        # print(pd.DataFrame(self.res_array['run'][3]))
+
+        columnnames = ['run', 'year'] + MODEL_RUN_COLUMNS + \
+                      EXPORT_COLUMNS_FOR_CSV + ['model_name']
+
+        print_array = np.zeros([self.mlist[0].duration * number_of_runs,
+                                len(columnnames)])
+
+        for idx in range(number_of_runs):
+            print_array[(idx * self.mlist[0].duration):(idx * self.mlist[0].
+                duration +
+                                               self.mlist[0].duration), 0] = idx
+
+            print_array[(idx * self.mlist[0].duration):(idx * self.mlist[0].
+                duration +
+                                               self.mlist[0].duration),
+            1:-1] = pd.DataFrame(self.mlist[0].res_array['run'][idx])
+
+        # work with barbara to craft the filename
+        # model_label + 160114_HH:MM(24hour) +
+
+        filename = model_label + "_" + str(datetime.datetime.now()) + "_iter" \
+                   + str(number_of_runs) + ".csv"
+
+        df_print_array = pd.DataFrame(print_array, columns=columnnames).round(2)
+        df_print_array.iloc[:, -1] = model_choice
+        df_print_array.to_csv(filename)
 
 
 
