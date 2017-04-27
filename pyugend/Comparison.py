@@ -292,7 +292,7 @@ class Comparison():
 
             if plottype in ['parameter sweep percentage',
                             'parameter sweep probability']:
-                p.line(xval, np.linspace(0, max(ban_y)),
+                p.line(xval, np.linspace(0, max(band_y)),
                        line_width = 2,
                        line_color = 'black')
 
