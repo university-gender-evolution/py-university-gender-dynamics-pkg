@@ -876,8 +876,6 @@ class Comparison():
         # correct rows of the dataframe. This is more memory efficient compared
         # to appending to a dataframe.
 
-        # print(pd.DataFrame(self.res_array['run'][3]))
-
         columnnames = ['run', 'year'] + MODEL_RUN_COLUMNS + \
                       EXPORT_COLUMNS_FOR_CSV + ['model_name']
 
@@ -894,8 +892,6 @@ class Comparison():
                                                self.mlist[0].duration),
             1:-1] = pd.DataFrame(self.mlist[0].res_array['run'][idx])
 
-        # work with barbara to craft the filename
-        # model_label + 160114_HH:MM(24hour) +
 
         filename = model_label + "_" + str(datetime.datetime.now()) + "_iter" \
                    + str(number_of_runs) + ".csv"
@@ -904,5 +900,12 @@ class Comparison():
         df_print_array.iloc[:, -1] = model_choice
         df_print_array.to_csv(filename)
 
+        filename2 = model_label + "_" + str(datetime.datetime.now()) + "_iter" \
+                   + str(number_of_runs) + "_number_summary.csv"
 
+        self.mlist[0].results_matrix.to_csv(filename2)
 
+        filename3 = model_label + "_" + str(datetime.datetime.now()) + "_iter" \
+                   + str(number_of_runs) + "_percentage_summary.csv"
+
+        self.mlist[0].pct_female_matrix.to_csv(filename3)
