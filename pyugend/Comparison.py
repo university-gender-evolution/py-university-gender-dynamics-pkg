@@ -903,9 +903,9 @@ class Comparison():
         filename2 = model_label + "_" + str(datetime.datetime.now()) + "_iter" \
                    + str(number_of_runs) + "_number_summary.csv"
 
-        self.mlist[0].results_matrix.to_csv(filename2)
+        self.mlist[0].results_matrix.round(2).to_csv(filename2)
 
         filename3 = model_label + "_" + str(datetime.datetime.now()) + "_iter" \
                    + str(number_of_runs) + "_percentage_summary.csv"
 
-        self.mlist[0].pct_female_matrix.to_csv(filename3)
+        self.mlist[0].pct_female_matrix.round(2).to_csv(filename3)
