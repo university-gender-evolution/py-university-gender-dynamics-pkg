@@ -317,13 +317,15 @@ class Comparison():
             p.line(xval, target,
                    line_color=color_target,
                    legend=target_plot_legend_label,
-                   line_width=target_plot_linewidth)
+                   line_width=target_plot_linewidth,
+                   line_dash=[6, 6])
 
         if percent_line_plot:
             p.line(xval, percent_line_value,
                    line_color=color_percent_line,
                    legend=percent_legend_label,
-                   line_width=percent_linewidth)
+                   line_width=percent_linewidth,
+                   line_dash=[2, 2])
 
         return(p)
 

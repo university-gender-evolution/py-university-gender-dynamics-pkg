@@ -58,7 +58,7 @@ class Base_model():
                  attrition_rate_men_1,
                  attrition_rate_men_2,
                  attrition_rate_men_3,
-                 probablity_of_outside_hire_1,
+                 probability_of_outside_hire_1,
                  probability_of_outside_hire_2,
                  probability_of_outside_hire_3,
                  duration,
@@ -89,6 +89,7 @@ class Base_model():
         self.dm1 = attrition_rate_men_1
         self.dm2 = attrition_rate_men_2
         self.dm3 = attrition_rate_men_3
+        self.phire1 = probability_of_outside_hire_1
         self.phire2 = probability_of_outside_hire_2
         self.phire3 = probability_of_outside_hire_3
         self.duration = duration
