@@ -7,8 +7,6 @@ from bokeh.layouts import gridplot
 from operator import add, sub
 from .ColumnSpecs import MODEL_RUN_COLUMNS, EXPORT_COLUMNS_FOR_CSV
 import datetime
-from bokeh.resources import INLINE
-output_notebook(resources=INLINE)
 
 defaults.height = 700
 defaults.width = 700
