@@ -7,9 +7,11 @@ from bokeh.layouts import gridplot
 from operator import add, sub
 from .ColumnSpecs import MODEL_RUN_COLUMNS, EXPORT_COLUMNS_FOR_CSV
 import datetime
+from bokeh.resources import INLINE
+output_notebook(resources=INLINE)
 
-defaults.height = 800
-defaults.width = 800
+defaults.height = 700
+defaults.width = 700
 # CONSTANTS
 
 # line_colors = ['#7fc97f', '#beaed4', '#fdc086','#386cb0','#f0027f','#ffff99']
