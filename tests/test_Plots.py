@@ -10,10 +10,13 @@ defaults.height = 800
 defaults.width = 800
 
 
-def test_bokeh_comparison_plot_overall_one_model(self, mgmt_data):
-    modlist = list([Mod_Stoch_FBHP(**mgmt_data)])
-    # modlist = list([Mod_Stoch_FBHP(**mgmt_data),
-    #                 Mod_Stoch_FBPH(**mgmt_data)])
+@pytest.mark.usefixtures('mgmt_data')
+@pytest.mark.usefixtures('mock_data')
+
+def test_bokeh_comparison_plot_overall_one_model(mgmt_data):
+    #modlist = list([Mod_Stoch_FBHP(**mgmt_data)])
+    modlist = list([Mod_Stoch_FBHP(**mgmt_data),
+                    Mod_Stoch_FBPH(**mgmt_data)])
     c = Comparison(modlist)
 
     plot_settings = {'plottype': 'gender proportion',
@@ -28,8 +31,8 @@ def test_bokeh_comparison_plot_overall_one_model(self, mgmt_data):
                      'title': 'Figure 4.1.3a: Change in Proportion Women, Model 1',
                      'line_width': 2,
                      'transparency': 0.25,
-                     'linecolor': ['green'],
-                     'model_legend_label': ['Model 1, Hire-Promote'],
+                     'model_legend_label': ['Model 1, Hire-Promote',
+                                            'Mode 2, Promote-Hire'],
                      'legend_location': 'top_right',
                      'height_': 800,
                      'width_': 800,
@@ -37,7 +40,8 @@ def test_bokeh_comparison_plot_overall_one_model(self, mgmt_data):
                      }
     show(c.plot_comparison_overall_chart(**plot_settings))
 
-def test_bokeh_comparison_plot_overall_multiple_models(self, mgmt_data):
+
+def test_bokeh_comparison_plot_overall_multiple_models(mgmt_data):
     modlist = list([Mod_Stoch_FBHP(**mgmt_data),
                     Mod_Stoch_FBPH(**mgmt_data)])
     c = Comparison(modlist)
@@ -59,7 +63,8 @@ def test_bokeh_comparison_plot_overall_multiple_models(self, mgmt_data):
                      }
     show(c.plot_comparison_overall_chart(**plot_settings))
 
-def test_bokeh_comparison_plot_bylevel(self, mgmt_data):
+
+def test_bokeh_comparison_plot_bylevel(mgmt_data):
     modlist = list([Mod_Stoch_FBHP(**mgmt_data),
                     Mod_Stoch_FBPH(**mgmt_data)])
     c = Comparison(modlist)
@@ -71,7 +76,6 @@ def test_bokeh_comparison_plot_bylevel(self, mgmt_data):
                      'line_width': 2,
                      'model_legend_label': ['model 1', 'model2'],
                      'transparency': 0.25,
-                     'linecolor': ['green', 'blue'],
                      'legend_location': 'top right',
                      'height_': 400,
                      'width_': 400,
@@ -99,7 +103,8 @@ def test_bokeh_comparison_plot_bylevel(self, mgmt_data):
 
     show(c.plot_comparison_level_chart(**plot_settings))
 
-def test_bokeh_sweep_plot_overall(self, mgmt_data):
+
+def test_bokeh_sweep_plot_overall(mgmt_data):
     # modlist = list([Mod_Stoch_FBHP(**mgmt_data)])
     modlist = list([Mod_Stoch_FBHP(**mgmt_data),
                     Mod_Stoch_FBPH(**mgmt_data)])
@@ -124,7 +129,8 @@ def test_bokeh_sweep_plot_overall(self, mgmt_data):
                      }
     show(c.plot_comparison_overall_chart(**plot_settings))
 
-def test_bokeh_comparison_plot_probability_bylevel(self, mgmt_data):
+
+def test_bokeh_comparison_plot_probability_bylevel(mgmt_data):
     modlist = list([Mod_Stoch_FBHP(**mgmt_data),
                     Mod_Stoch_FBPH(**mgmt_data)])
     c = Comparison(modlist)

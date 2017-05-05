@@ -5,7 +5,7 @@ echo "The script starts now. This script will rebuild the pyugend package on the
 
 echo "Hi, $USER"
 
-source activate py35_gu
+source activate pGendUniv
 
 echo "First I will remove the old pyugend package from the anaconda repository"
 

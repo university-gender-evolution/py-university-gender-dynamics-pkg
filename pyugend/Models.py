@@ -136,7 +136,6 @@ class Base_model():
         self.dm3 = 0.040
         self.phire2 = 0.125
         self.phire3 = 0.150
-        self.duration = 40
         self.female_promotion_probability_1 = 0.0555
         self.female_promotion_probability_2 = 0.1905
         self.male_promotion_probability_1 = 0.0635
@@ -176,7 +175,6 @@ class Base_model():
         self.dm3 = 0.112
         self.phire2 = 0.125
         self.phire3 = 0.150
-        self.duration = 40
         self.female_promotion_probability_1 = 0.0555
         self.female_promotion_probability_2 = 0.1905
         self.male_promotion_probability_1 = 0.0635
@@ -215,7 +213,6 @@ class Base_model():
         self.dm3 = 0.112
         self.phire2 = 0.125
         self.phire3 = 0.150
-        self.duration = 40
         self.female_promotion_probability_1 = 0.0555
         self.female_promotion_probability_2 = 0.1905
         self.male_promotion_probability_1 = 0.0635
@@ -254,7 +251,6 @@ class Base_model():
         self.dm3 = 0.076
         self.phire2 = 0.125
         self.phire3 = 0.150
-        self.duration = 40
         self.female_promotion_probability_1 = 0.0555
         self.female_promotion_probability_2 = 0.1905
         self.male_promotion_probability_1 = 0.0635
@@ -293,7 +289,6 @@ class Base_model():
         self.dm3 = 0.033
         self.phire2 = 0.158
         self.phire3 = 0.339
-        self.duration = 40
         self.female_promotion_probability_1 = 0.122
         self.female_promotion_probability_2 = 0.188
         self.male_promotion_probability_1 = 0.19
@@ -331,7 +326,6 @@ class Base_model():
         self.dm3 = 0.085
         self.phire2 = 0.158
         self.phire3 = 0.339
-        self.duration = 40
         self.female_promotion_probability_1 = 0.122
         self.female_promotion_probability_2 = 0.188
         self.male_promotion_probability_1 = 0.19
@@ -370,7 +364,6 @@ class Base_model():
         self.dm3 = 0.085
         self.phire2 = 0.158
         self.phire3 = 0.339
-        self.duration = 40
         self.female_promotion_probability_1 = 0.122
         self.female_promotion_probability_2 = 0.188
         self.male_promotion_probability_1 = 0.19
@@ -409,7 +402,6 @@ class Base_model():
         self.dm3 = 0.059
         self.phire2 = 0.158
         self.phire3 = 0.339
-        self.duration = 40
         self.female_promotion_probability_1 = 0.122
         self.female_promotion_probability_2 = 0.188
         self.male_promotion_probability_1 = 0.19
