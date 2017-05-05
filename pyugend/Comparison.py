@@ -47,7 +47,7 @@ class Comparison():
                            percent_legend_label='percent',
                            male_female_numbers_plot=False,
                            mf_male_color=['#0004ff', '#2c7bb6'],
-                           mf_target_color='#fdae61',
+                           mf_target_color=['#fdae61'],
                            mf_male_label=['Male model 1', 'Male model 2'],
                            mf_target_label='Target',
                            mf_male_linewidth=2,
@@ -281,7 +281,9 @@ class Comparison():
                    line_color=linecolor[k],
                    legend=model_legend_label[k])
 
-            p.circle(xval, yval[k], size=3)
+            p.circle(xval, yval[k],
+                     color=linecolor[k],
+                     size=3)
 
             x_data = np.asarray(xval)
             band_x = np.append(x_data, x_data[::-1])
@@ -305,13 +307,16 @@ class Comparison():
                        legend=mf_male_label[k],
                        line_width=mf_male_linewidth)
 
-                p.circle(xval, yval2[k], size=3)
+                p.circle(xval, yval2[k],
+                         color=mf_male_color[k],
+                         size=3)
 
                 p.line(xval,
                        yval3[k],
-                       line_color=mf_target_color,
-                       legend=mf_target_label,
-                       line_width=mf_target_linewidth)
+                       line_color=mf_target_color[k],
+                       legend=mf_target_label[k],
+                       line_width=mf_target_linewidth,
+                       line_dash=[6,6])
 
         if target_plot:
             p.line(xval, target,
