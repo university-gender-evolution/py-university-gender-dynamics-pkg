@@ -352,6 +352,9 @@ class Comparison():
                          linecolor=['#008000', '#0004ff', '#e66101'],
                          target_plot=False,
                          target_color='#ca0020',
+                         target_number_color = ['red', 'orange','purple'],
+                         target_number_labels = ['Target, Model 1',
+                                                 'Target, Model 2'],
                          target_plot_linewidth=2,
                          target_plot_legend_label='target',
                          percent_line_plot=False,
@@ -396,7 +399,6 @@ class Comparison():
 
         # END BLOCK
 
-
         # Generate main plot values.
         # This section will take the data from the model simulation and
         # convert it to the appropriate y-variables for the plot.
@@ -416,7 +418,6 @@ class Comparison():
             yval_m2 = [m.probability_by_level['pm2'] for m in self.mlist]
             yval_m3 = [m.probability_by_level['pm3'] for m in self.mlist]
 
-
         if plottype == 'gender proportion':
 
             female_pct_matrices = [m.pct_female_matrix for m in self.mlist]
@@ -427,8 +428,6 @@ class Comparison():
             yval_m1 = [m['mpct_m1'] for m in female_pct_matrices]
             yval_m2 = [m['mpct_m2'] for m in female_pct_matrices]
             yval_m3 = [m['mpct_m3'] for m in female_pct_matrices]
-
-
 
         if plottype == 'gender number':
 
@@ -441,7 +440,29 @@ class Comparison():
             yval_m2 = [m['mean_m2'] for m in mean_matrices]
             yval_m3 = [m['mean_m3'] for m in mean_matrices]
 
+        if plottype == 'gender number':
+            target_f1 = [sum(list([m.results_matrix['mean_f1'],
+                                   m.results_matrix['mean_m1']])) for m in
+                         self.mlist]
+            target_f2 = [sum(list([m.results_matrix['mean_f2'],
+                                   m.results_matrix['mean_m2']])) for m in
+                         self.mlist]
+            target_f3 = [sum(list([m.results_matrix['mean_f3'],
+                               m.results_matrix['mean_m3']])) for m in
+                        self.mlist]
+            target_f1 = [np.round(target * level) for level in target_f1]
+            target_f2 = [np.round(target * level) for level in target_f2]
+            target_f3 = [np.round(target * level) for level in target_f3]
+            target_m1 = [np.round((1-target) * level) for level in target_f1]
+            target_m2 = [np.round((1-target) * level) for level in target_f2]
+            target_m3 = [np.round((1-target) * level) for level in target_f3]
 
+            num_targets = [target_f1,
+                           target_f2,
+                           target_f3,
+                           target_m1,
+                           target_m2,
+                           target_m3]
         if plottype == 'parameter sweep gender percentage':
 
             female_sweep_matrices = [m.parameter_sweep_results for m in
@@ -470,7 +491,6 @@ class Comparison():
             pass
 
         #END BLOCK
-
 
         # setup empirical bounds
 
@@ -566,10 +586,7 @@ class Comparison():
                 lower_m2 = [m['m2_025'] for m in female_sweep_matrices]
                 lower_m3 = [m['m3_025'] for m in female_sweep_matrices]
 
-
-
         # setup standard bounds
-
 
         if intervals == 'standard':
 
@@ -592,104 +609,69 @@ class Comparison():
 
                 upper_f1 = list(map(add, [y for y in yval_f1], [1.96 * m[
                     'spct_f1'] for m in female_pct_matrices]))
-
                 upper_f1 = np.where(np.array(upper_f1)>1,1,np.array(upper_f1))
-
                 upper_f2 = list(map(add, [y for y in yval_f2], [1.96 * m[
                     'spct_f2'] for m in female_pct_matrices]))
-
                 upper_f2 = np.where(np.array(upper_f2)>1,1,np.array(upper_f2))
-
                 upper_f3 = list(map(add, [y for y in yval_f3], [1.96 * m[
                     'spct_f3'] for m in female_pct_matrices]))
-
                 upper_f3 = np.where(np.array(upper_f3)>1,1,np.array(upper_f3))
-
                 upper_m1 = list(map(add, [y for y in yval_m1], [1.96 * m[
                     'spct_m1']for m in female_pct_matrices]))
-
                 upper_m1 = np.where(np.array(upper_m1)>1,1,np.array(upper_m1))
-
                 upper_m2 = list(map(add, [y for y in yval_m2], [1.96 * m[
                     'spct_m2']for m in female_pct_matrices]))
-
                 upper_m2 = np.where(np.array(upper_m2)>1,1,np.array(upper_m2))
-
                 upper_m3 = list(map(add, [y for y in yval_m3], [1.96 * m[
                     'spct_m3']for m in female_pct_matrices]))
-
                 upper_m3 = np.where(np.array(upper_m3)>1,1,np.array(upper_m3))
-
 
                 lower_f1 = list(map(sub, [y for y in yval_f1], [1.96 * m[
                     'spct_f1'] for m in female_pct_matrices]))
-
                 lower_f1 = np.where(np.array(lower_f1)<0,0,np.array(lower_f1))
-
                 lower_f2 = list(map(sub, [y for y in yval_f2], [1.96 * m[
                     'spct_f2'] for m in female_pct_matrices]))
-
                 lower_f2 = np.where(np.array(lower_f2)<0,0,np.array(lower_f2))
-
                 lower_f3 = list(map(sub, [y for y in yval_f3], [1.96 * m[
                     'spct_f3'] for m in female_pct_matrices]))
-
                 lower_f3 = np.where(np.array(lower_f3)<0,0,np.array(lower_f3))
-
-
                 lower_m1 = list(map(sub, [y for y in yval_m1], [1.96 * m[
                     'spct_m1'] for m in female_pct_matrices]))
-
                 lower_m1 = np.where(np.array(lower_m1)<0,0,np.array(lower_m1))
-
                 lower_m2 = list(map(sub, [y for y in yval_m2], [1.96 * m[
                     'spct_m2'] for m in female_pct_matrices]))
-
                 lower_m2 = np.where(np.array(lower_m2)<0,0,np.array(lower_m2))
-
                 lower_m3 = list(map(sub, [y for y in yval_m3], [1.96 * m[
                     'spct_m3'] for m in female_pct_matrices]))
-
                 lower_m3 = np.where(np.array(lower_m3)<0,0,np.array(lower_m3))
 
             if plottype == 'gender number':
 
                 std_matrices = [m.results_matrix[:, 'std_f1':'std_m3'] for m in
                                 self.mlist]
-
                 upper_f1 = list(map(add, [y for y in yval_f1], [1.96 * m[
                     'spct_f1'] for m in std_matrices]))
-
                 upper_f2 = list(map(add, [y for y in yval_f2], [1.96 * m[
                     'spct_f2'] for m in std_matrices]))
-
                 upper_f3 = list(map(add, [y for y in yval_f3], [1.96 * m[
                     'spct_f3'] for m in std_matrices]))
-
                 upper_m1 = list(map(add, [y for y in yval_m1], [1.96 * m[
                     'spct_m1'] for m in std_matrices]))
-
                 upper_m2 = list(map(add, [y for y in yval_m2], [1.96 * m[
                     'spct_m2'] for m in std_matrices]))
-
                 upper_m3 = list(map(add, [y for y in yval_m3], [1.96 * m[
                     'spct_m3'] for m in std_matrices]))
 
                 lower_f1 = list(map(sub, [y for y in yval_f1], [1.96 * m[
                     'spct_f1'] for m in std_matrices]))
-
                 lower_f2 = list(map(sub, [y for y in yval_f2], [1.96 * m[
                     'spct_f2'] for m in std_matrices]))
-
                 lower_f3 = list(map(sub, [y for y in yval_f3], [1.96 * m[
                     'spct_f3'] for m in std_matrices]))
-
                 lower_m1 = list(map(sub, [y for y in yval_m1], [1.96 * m[
                     'spct_m1'] for m in std_matrices]))
-
                 lower_m2 = list(map(sub, [y for y in yval_m2], [1.96 * m[
                     'spct_m2'] for m in std_matrices]))
-
                 lower_m3 = list(map(sub, [y for y in yval_m3], [1.96 * m[
                     'spct_m3'] for m in std_matrices]))
 
@@ -697,64 +679,41 @@ class Comparison():
 
                 upper_f1 = list(map(add, [y for y in yval_f1], [1.96 * m[
                     'spct_f1'] for m in female_sweep_matrices]))
-
                 upper_f1 = np.where(np.array(upper_f1)>1,1,np.array(upper_f1))
-
                 upper_f2 = list(map(add, [y for y in yval_f2], [1.96 * m[
                     'spct_f2'] for m in female_sweep_matrices]))
-
                 upper_f2 = np.where(np.array(upper_f2)>1,1,np.array(upper_f2))
-
                 upper_f3 = list(map(add, [y for y in yval_f3], [1.96 * m[
                     'spct_f3'] for m in female_sweep_matrices]))
-
                 upper_f3 = np.where(np.array(upper_f3)>1,1,np.array(upper_f3))
-
                 upper_m1 = list(map(add, [y for y in yval_m1], [1.96 * m[
                     'spct_m1']for m in female_sweep_matrices]))
-
                 upper_m1 = np.where(np.array(upper_m1)>1,1,np.array(upper_m1))
-
                 upper_m2 = list(map(add, [y for y in yval_m2], [1.96 * m[
                     'spct_m2']for m in female_sweep_matrices]))
-
                 upper_m2 = np.where(np.array(upper_m2)>1,1,np.array(upper_m2))
-
                 upper_m3 = list(map(add, [y for y in yval_m3], [1.96 * m[
                     'spct_m3']for m in female_sweep_matrices]))
-
                 upper_m3 = np.where(np.array(upper_m3)>1,1,np.array(upper_m3))
 
 
                 lower_f1 = list(map(sub, [y for y in yval_f1], [1.96 * m[
                     'spct_f1'] for m in female_sweep_matrices]))
-
                 lower_f1 = np.where(np.array(lower_f1)<0,0,np.array(lower_f1))
-
                 lower_f2 = list(map(sub, [y for y in yval_f2], [1.96 * m[
                     'spct_f2'] for m in female_sweep_matrices]))
-
                 lower_f2 = np.where(np.array(lower_f2)<0,0,np.array(lower_f2))
-
                 lower_f3 = list(map(sub, [y for y in yval_f3], [1.96 * m[
                     'spct_f3'] for m in female_sweep_matrices]))
-
                 lower_f3 = np.where(np.array(lower_f3)<0,0,np.array(lower_f3))
-
-
                 lower_m1 = list(map(sub, [y for y in yval_m1], [1.96 * m[
                     'spct_m1'] for m in female_sweep_matrices]))
-
                 lower_m1 = np.where(np.array(lower_m1)<0,0,np.array(lower_m1))
-
                 lower_m2 = list(map(sub, [y for y in yval_m2], [1.96 * m[
                     'spct_m2'] for m in female_sweep_matrices]))
-
                 lower_m2 = np.where(np.array(lower_m2)<0,0,np.array(lower_m2))
-
                 lower_m3 = list(map(sub, [y for y in yval_m3], [1.96 * m[
                     'spct_m3'] for m in female_sweep_matrices]))
-
                 lower_m3 = np.where(np.array(lower_m3)<0,0,np.array(lower_m3))
 
 
@@ -762,54 +721,35 @@ class Comparison():
 
                 upper_f1 = list(map(add, [y for y in yval_f1], [1.96 * m[
                     'std_f1'] for m in female_sweep_matrices]))
-
                 upper_f2 = list(map(add, [y for y in yval_f2], [1.96 * m[
                     'std_f2'] for m in female_sweep_matrices]))
-
                 upper_f3 = list(map(add, [y for y in yval_f3], [1.96 * m[
                     'std_f3'] for m in female_sweep_matrices]))
-
                 upper_m1 = list(map(add, [y for y in yval_m1], [1.96 * m[
                     'std_m1']for m in female_sweep_matrices]))
-
                 upper_m2 = list(map(add, [y for y in yval_m2], [1.96 * m[
                     'std_m2']for m in female_sweep_matrices]))
-
                 upper_m3 = list(map(add, [y for y in yval_m3], [1.96 * m[
                     'std_m3']for m in female_sweep_matrices]))
 
-
                 lower_f1 = list(map(sub, [y for y in yval_f1], [1.96 * m[
                     'std_f1'] for m in female_sweep_matrices]))
-
                 lower_f1 = np.where(np.array(lower_f1)<0,0,np.array(lower_f1))
-
                 lower_f2 = list(map(sub, [y for y in yval_f2], [1.96 * m[
                     'std_f2'] for m in female_sweep_matrices]))
-
                 lower_f2 = np.where(np.array(lower_f2)<0,0,np.array(lower_f2))
-
                 lower_f3 = list(map(sub, [y for y in yval_f3], [1.96 * m[
                     'std_f3'] for m in female_sweep_matrices]))
-
                 lower_f3 = np.where(np.array(lower_f3)<0,0,np.array(lower_f3))
-
-
                 lower_m1 = list(map(sub, [y for y in yval_m1], [1.96 * m[
                     'std_m1'] for m in female_sweep_matrices]))
-
                 lower_m1 = np.where(np.array(lower_m1)<0,0,np.array(lower_m1))
-
                 lower_m2 = list(map(sub, [y for y in yval_m2], [1.96 * m[
                     'std_m2'] for m in female_sweep_matrices]))
-
                 lower_m2 = np.where(np.array(lower_m2)<0,0,np.array(lower_m2))
-
                 lower_m3 = list(map(sub, [y for y in yval_m3], [1.96 * m[
                     'std_m3'] for m in female_sweep_matrices]))
-
                 lower_m3 = np.where(np.array(lower_m3)<0,0,np.array(lower_m3))
-
 
         levels = ['f1', 'f2', 'f3', 'm1', 'm2', 'm3']
         yvals = [yval_f1, yval_f2, yval_f3, yval_m1, yval_m2, yval_m3]
@@ -831,7 +771,6 @@ class Comparison():
                                 width=width_,
                                 height=height_))
 
-
         for k,v in enumerate(self.mlist):
 
             for i, p in enumerate(plots):
@@ -847,8 +786,7 @@ class Comparison():
                         color=linecolor[k],
                         fill_alpha=transparency)
 
-
-        if target_plot == True:
+        if target_plot == True and plottype != 'gender number':
 
             for i, p in enumerate(plots):
 
@@ -858,6 +796,17 @@ class Comparison():
                        line_width=target_plot_linewidth,
                        legend=target_plot_legend_label,
                        line_dash=[6,6])
+
+        if target_plot == True and plottype == 'gender number':
+            for k, v in enumerate(self.mlist):
+                for i, p in enumerate(plots):
+                    p.line(xval,
+                           num_targets[i][k],
+                           line_color=target_number_color[k],
+                           line_width=target_plot_linewidth,
+                           legend=target_number_labels[k],
+                           line_dash=[6, 6]
+                           )
 
         if percent_line_plot == True:
 
@@ -916,3 +865,4 @@ class Comparison():
                    + str(number_of_runs) + "_percentage_summary.csv"
 
         self.mlist[0].pct_female_matrix.round(2).to_csv(filename3)
+
