@@ -58,6 +58,7 @@ class Comparison():
                            number_of_steps = 0,
                            vertical_line_label = 'Original Value',
                            vertical_line_width = 2,
+                           vertical_line_color = ['black']
                            ):
 
 
@@ -300,7 +301,7 @@ class Comparison():
                             'parameter sweep probability']:
                 p.line(vertLineForSweepPlot, np.linspace(0, max(band_y)),
                        line_width = vertical_line_width,
-                       line_color = 'black',
+                       line_color = vertical_line_color[k],
                        legend = vertical_line_label,
                        line_dash=[6,6])
 
@@ -371,7 +372,8 @@ class Comparison():
                          parameter_lbound=0,
                          number_of_steps=0,
                          vertical_line_label='Original Value',
-                         vertical_line_width = 2
+                         vertical_line_width = 2,
+                         vertical_line_color = ['black']
                          ):
 
         # Choose plot type. This block will initialize the data for the
@@ -802,7 +804,7 @@ class Comparison():
 
                     p.line(vertLineForSweepPlot, np.linspace(0, max(band_y)),
                            line_width = vertical_line_width,
-                           line_color = 'black',
+                           line_color = vertical_line_color[k],
                            legend = vertical_line_label,
                            line_dash=[6,6])
 
