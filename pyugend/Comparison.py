@@ -56,7 +56,8 @@ class Comparison():
                            parameter_ubound = 0,
                            parameter_lbound = 0,
                            number_of_steps = 0,
-                           vertical_line_label = 'Original Value'
+                           vertical_line_label = 'Original Value',
+                           vertical_line_width = 2,
                            ):
 
 
@@ -298,7 +299,7 @@ class Comparison():
             if plottype in ['parameter sweep percentage',
                             'parameter sweep probability']:
                 p.line(vertLineForSweepPlot, np.linspace(0, max(band_y)),
-                       line_width = 2,
+                       line_width = vertical_line_width,
                        line_color = 'black',
                        legend = vertical_line_label,
                        line_dash=[6,6])
