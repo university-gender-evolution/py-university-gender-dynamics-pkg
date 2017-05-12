@@ -796,7 +796,7 @@ class Comparison():
 
             if plottype in ['parameter sweep percentage',
                             'parameter sweep probability',
-                            'parameter sweep gender number']:
+                            'parameter sweep number']:
                 for i, p in enumerate(plots):
 
                     p.line(vertLineForSweepPlot, np.linspace(0, max(band_y)),
@@ -805,7 +805,7 @@ class Comparison():
                            legend = vertical_line_label,
                            line_dash=[6,6])
 
-        if target_plot == True and plottype != 'gender number':
+        if target_plot is True and plottype != 'gender number':
 
             for i, p in enumerate(plots):
 
@@ -816,7 +816,7 @@ class Comparison():
                        legend=target_plot_legend_label,
                        line_dash=[6,6])
 
-        if target_plot == True and plottype == 'gender number':
+        if target_plot is True and plottype == 'gender number':
             for k, v in enumerate(self.mlist):
                 for i, p in enumerate(plots):
                     p.line(xval,
