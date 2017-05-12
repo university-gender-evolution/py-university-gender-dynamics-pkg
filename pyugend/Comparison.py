@@ -55,7 +55,8 @@ class Comparison():
                            parameter_sweep_param = None,
                            parameter_ubound = 0,
                            parameter_lbound = 0,
-                           number_of_steps = 0
+                           number_of_steps = 0,
+                           vertical_line_label = 'Original Value'
                            ):
 
 
@@ -68,7 +69,6 @@ class Comparison():
         if plottype in ['parameter sweep percentage',
                         'parameter sweep probability']:
 
-            vertLineForSweepPlot = getattr(self.mlist[0], parameter_sweep_param)
             for mod in self.mlist:
                 mod.run_parameter_sweep(number_of_runs,
                                         parameter_sweep_param,
@@ -77,6 +77,7 @@ class Comparison():
                                         number_of_steps)
 
             # xval, so I need to directly feed this range in.
+            vertLineForSweepPlot = getattr(self.mlist[0], parameter_sweep_param)
 
             xval = self.mlist[0].parameter_sweep_results.loc[:,
                            'increment']
@@ -296,9 +297,11 @@ class Comparison():
 
             if plottype in ['parameter sweep percentage',
                             'parameter sweep probability']:
-                p.line(xval, np.linspace(0, max(band_y)),
+                p.line(vertLineForSweepPlot, np.linspace(0, max(band_y)),
                        line_width = 2,
-                       line_color = 'black')
+                       line_color = 'black',
+                       legend = vertical_line_label,
+                       line_dash=[6,6])
 
             if male_female_numbers_plot:
                 p.line(xval,
@@ -365,8 +368,10 @@ class Comparison():
                          parameter_sweep_param=None,
                          parameter_ubound=0,
                          parameter_lbound=0,
-                         number_of_steps=0
-                        ):
+                         number_of_steps=0,
+                         vertical_line_label='Original Value',
+                         vertical_line_width = 2
+                         ):
 
         # Choose plot type. This block will initialize the data for the
         # plots. If the plot is a parameter sweep, then it will run the
@@ -375,9 +380,9 @@ class Comparison():
 
         # BEGIN BLOCK
 
-        if plottype in ['parameter sweep gender percentage',
+        if plottype in ['parameter sweep percentage',
                         'parameter sweep probability',
-                        'parameter sweep gender number']:
+                        'parameter sweep number']:
 
             for mod in self.mlist:
                 mod.run_parameter_sweep(number_of_runs,
@@ -388,6 +393,7 @@ class Comparison():
 
             # xval, so I need to directly feed this range in.
 
+            vertLineForSweepPlot = getattr(self.mlist[0], parameter_sweep_param)
             xval = self.mlist[0].parameter_sweep_results.loc[:, 'increment']
 
         else:
@@ -463,7 +469,7 @@ class Comparison():
                            target_m1,
                            target_m2,
                            target_m3]
-        if plottype == 'parameter sweep gender percentage':
+        if plottype == 'parameter sweep percentage':
 
             female_sweep_matrices = [m.parameter_sweep_results for m in
                                    self.mlist]
@@ -475,7 +481,7 @@ class Comparison():
             yval_m2 = [m['mpct_m2'] for m in female_sweep_matrices]
             yval_m3 = [m['mpct_m3'] for m in female_sweep_matrices]
 
-        if plottype == 'parameter sweep gender number':
+        if plottype == 'parameter sweep number':
 
             female_sweep_matrices = [m.parameter_sweep_results for m in
                                    self.mlist]
@@ -554,7 +560,7 @@ class Comparison():
                 lower_m2 = [m['m2_025'] for m in l_matrices]
                 lower_m3 = [m['m3_025'] for m in l_matrices]
 
-            if plottype == 'parameter sweep gender percentage':
+            if plottype == 'parameter sweep percentage':
 
                 upper_f1 = [m['pf1_975'] for m in female_sweep_matrices]
                 upper_f2 = [m['pf2_975'] for m in female_sweep_matrices]
@@ -570,7 +576,7 @@ class Comparison():
                 lower_m2 = [m['pm2_025'] for m in female_sweep_matrices]
                 lower_m3 = [m['pm3_025'] for m in female_sweep_matrices]
 
-            if plottype == 'parameter sweep gender number':
+            if plottype == 'parameter sweep number':
 
                 upper_f1 = [m['f1_975'] for m in female_sweep_matrices]
                 upper_f2 = [m['f2_975'] for m in female_sweep_matrices]
@@ -675,7 +681,7 @@ class Comparison():
                 lower_m3 = list(map(sub, [y for y in yval_m3], [1.96 * m[
                     'spct_m3'] for m in std_matrices]))
 
-            if plottype == 'parameter sweep gender percentage ':
+            if plottype == 'parameter sweep percentage ':
 
                 upper_f1 = list(map(add, [y for y in yval_f1], [1.96 * m[
                     'spct_f1'] for m in female_sweep_matrices]))
@@ -717,7 +723,7 @@ class Comparison():
                 lower_m3 = np.where(np.array(lower_m3)<0,0,np.array(lower_m3))
 
 
-            if plottype == 'parameter sweep gender number':
+            if plottype == 'parameter sweep number':
 
                 upper_f1 = list(map(add, [y for y in yval_f1], [1.96 * m[
                     'std_f1'] for m in female_sweep_matrices]))
@@ -785,6 +791,19 @@ class Comparison():
                         band_y,
                         color=linecolor[k],
                         fill_alpha=transparency)
+
+        for k, v in enumerate(self.mlist):
+
+            if plottype in ['parameter sweep percentage',
+                            'parameter sweep probability',
+                            'parameter sweep gender number']:
+                for i, p in enumerate(plots):
+
+                    p.line(vertLineForSweepPlot, np.linspace(0, max(band_y)),
+                           line_width = vertical_line_width,
+                           line_color = 'black',
+                           legend = vertical_line_label,
+                           line_dash=[6,6])
 
         if target_plot == True and plottype != 'gender number':
 

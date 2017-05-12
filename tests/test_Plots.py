@@ -122,7 +122,7 @@ def test_bokeh_sweep_plot_overall(mgmt_data):
                                             'Model '
                                             '2, '
                                             'Promote-Hire'],
-                     'parameter_sweep_param': 'hiring_rate_women_1',
+                     'parameter_sweep_param': 'bf1',
                      'parameter_ubound': 0.6,
                      'parameter_lbound': 0.05,
                      'number_of_steps': 5
@@ -153,6 +153,37 @@ def test_bokeh_comparison_plot_probability_bylevel(mgmt_data):
                                  'Percentage of Women', 'Percentage of Men',
                                  'Percentage of Men', 'Percentage of Men'],
                      'titles': ['f1', 'f2', 'f3', 'm1', 'm2', 'm3'],
+                     }
+
+    show(c.plot_comparison_level_chart(**plot_settings))
+
+def test_bokeh_comparison_plot_sweep_bylevel(mgmt_data):
+    modlist = list([Mod_Stoch_FBHP(**mgmt_data),
+                    Mod_Stoch_FBPH(**mgmt_data)])
+    c = Comparison(modlist)
+
+    plot_settings = {'plottype': 'parameter sweep percentage',
+                     'intervals': 'empirical',
+                     'number_of_runs': 100,
+                     'target': 0.25,
+                     'line_width': 2,
+                     'model_legend_label': ['model 1, Hire-Promote',
+                                            'model2, Promote-Hire'],
+                     'legend_location': 'top right',
+                     'height_': 300,
+                     'width_': 300,
+                     # main plot axis labels
+                     'xlabels': ['Years', 'Years', 'Years', 'Years',
+                                 'Years', 'Years'],
+                     'ylabels': ['Percentage of Women',
+                                 'Percentage of Women',
+                                 'Percentage of Women', 'Percentage of Men',
+                                 'Percentage of Men', 'Percentage of Men'],
+                     'titles': ['f1', 'f2', 'f3', 'm1', 'm2', 'm3'],
+                     'parameter_sweep_param': 'bf1',
+                     'parameter_ubound': 0.6,
+                     'parameter_lbound': 0.05,
+                     'number_of_steps': 5
                      }
 
     show(c.plot_comparison_level_chart(**plot_settings))
