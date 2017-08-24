@@ -876,15 +876,16 @@ class Comparison():
 
         df_print_array = pd.DataFrame(print_array, columns=columnnames).round(2)
         df_print_array.iloc[:, -1] = model_choice
-        df_print_array.to_csv(filename)
+        df_print_array.to_csv(filename, index=False)
 
         filename2 = model_label + "_" + str(datetime.datetime.now()) + "_iter" \
                    + str(number_of_runs) + "_number_summary.csv"
-
-        self.mlist[0].results_matrix.round(2).to_csv(filename2)
+        self.mlist[0].results_matrix['year'] = range(self.mlist[0].duration)
+        self.mlist[0].results_matrix.round(2).to_csv(filename2, index=False)
 
         filename3 = model_label + "_" + str(datetime.datetime.now()) + "_iter" \
                    + str(number_of_runs) + "_percentage_summary.csv"
 
-        self.mlist[0].pct_female_matrix.round(2).to_csv(filename3)
+        self.mlist[0].pct_female_matrix.astype(float).round(3).to_csv(
+            filename3, index=False)
 

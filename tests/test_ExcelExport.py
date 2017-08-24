@@ -14,9 +14,9 @@ def test_excel_export_ph(mgmt_data):
     c.export_model_run('model baseline PH management', 'model baseline PH '
                                                        'management', 100)
 
-def test_excel_export_hp(mgmt_data):
-
-    modlist = list([Mod_Stoch_FBHP(**mgmt_data)])
-    c = Comparison(modlist)
-    c.export_model_run('model baseline HP management', 'model baseline HP '
-                                                       'management', 100)
+# def test_excel_export_hp(mgmt_data):
+#
+#     modlist = list([Mod_Stoch_FBHP(**mgmt_data)])
+#     c = Comparison(modlist)
+#     c.export_model_run('model baseline HP management', 'model baseline HP '
+#                                                        'management', 100)
