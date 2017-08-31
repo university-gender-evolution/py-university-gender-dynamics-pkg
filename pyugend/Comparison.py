@@ -881,7 +881,8 @@ class Comparison():
         filename2 = model_label + "_" + str(datetime.datetime.now()) + "_iter" \
                    + str(number_of_runs) + "_number_summary.csv"
         self.mlist[0].results_matrix['year'] = range(self.mlist[0].duration)
-        self.mlist[0].results_matrix.round(2).to_csv(filename2, index=False)
+        self.mlist[0].results_matrix.iloc[:, 0:-1].round(2).to_csv(filename2,
+                                                          index=False)
 
         filename3 = model_label + "_" + str(datetime.datetime.now()) + "_iter" \
                    + str(number_of_runs) + "_percentage_summary.csv"
