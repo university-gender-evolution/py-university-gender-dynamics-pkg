@@ -4,6 +4,7 @@ import pytest
 from pyugend.Models import Base_model
 from pyugend.Mod_Stoch_FBHP import Mod_Stoch_FBHP
 from pyugend.Mod_Stoch_FBPH import Mod_Stoch_FBPH
+from pyugend.ModelGenderDiversity import Model2GenderDiversity
 import numpy as np
 import pandas as pd
 
@@ -28,19 +29,21 @@ def test_base_model_persistence( mgmt_data):
     assert (t.nf1 == 3)
 
 def test_base_model_multiple_runs( mgmt_data):
-    t = Mod_Stoch_FBPH(**mgmt_data)
+    t = Model2GenderDiversity(**mgmt_data)
     t.run_multiple(5)
     assert (hasattr(t, 'res_array'))
 
 def test_base_model_multiple_runs_persistent_state(mgmt_data):
-    t = Mod_Stoch_FBHP(**mgmt_data)
+    t = Model2GenderDiversity(**mgmt_data)
     t.run_multiple(5)
     assert (isinstance(t.results_matrix, pd.DataFrame))
 
 def test_base_model_parameter_sweep( mgmt_data):
-    t = Mod_Stoch_FBHP(**mgmt_data)
+    t = Model2GenderDiversity(**mgmt_data)
     t.run_parameter_sweep(10,'bf1',0.05, 0.6,5)
     assert (hasattr(t, 'parameter_sweep_results'))
+
+
 
 
 #TODO must fix this test case

@@ -373,7 +373,7 @@ class Comparison():
                          number_of_steps=0,
                          vertical_line_label='Original Value',
                          vertical_line_width = 2,
-                         vertical_line_color = ['black']
+                         vertical_line_color = ['black', 'purple']
                          ):
 
         # Choose plot type. This block will initialize the data for the

@@ -95,7 +95,7 @@ class Model2GenderDiversity(Base_model):
         self.res[0, 8] = self.vac1
         self.res[0, 9] = self.female_promotion_probability_1
         self.res[0, 10] = self.female_promotion_probability_2
-        self.res[0, 11] = self.res[0, 0:2]/self.res[0, 0:5]
+        self.res[0, 11] = self.res[0, 0:3].sum()/self.res[0, 0:6].sum()
         self.res[0, 12] = 0
         self.res[0, 13] = self.res[0, 0:6].sum()
         self.res[0, 14:] = 0
@@ -103,9 +103,9 @@ class Model2GenderDiversity(Base_model):
         # I assign the state variables to temporary variables. That way I
         # don't have to worry about overwriting the original state variables.
 
-        hiring_rate_female_level_1 = self.bf1
-        hiring_rate_female_level_2 = self.bf2
-        hiring_rate_female_level_3 = self.bf3
+        hiring_rate_female_level_1 = 5/40
+        hiring_rate_female_level_2 = 2/40
+        hiring_rate_female_level_3 = 1/40
         hiring_rate_male_1 = 24/40
         hiring_rate_male_2 = 3/40
         hiring_rate_male_3 = 5/40
@@ -181,7 +181,7 @@ class Model2GenderDiversity(Base_model):
             self.res[i, 4] += promotions_of_males_level_1_2
             self.res[i, 5] += promotions_of_males_level_2_3
 
-            # remove the promoted folks from previous level 
+            # remove the promoted folks from previous level
             self.res[i, 0] -= promotions_of_females_level_1_2
             self.res[i, 1] -= promotions_of_females_level_2_3
             self.res[i, 3] -= promotions_of_males_level_1_2
@@ -222,8 +222,8 @@ class Model2GenderDiversity(Base_model):
                 promotions_of_females_level_1_2]))
 
             self.res[i, 9] = self.female_promotion_probability_1
-            self.res[i, 10] = self.female_promotion_probability_1_2
-            self.res[i, 11] = self.res[i, 0:2].sum()/self.res[i,3:5].sum()  
+            self.res[i, 10] = self.female_promotion_probability_2
+            self.res[i, 11] = self.res[i, 0:3].sum()/self.res[i,3:6].sum()
             unfilled_vacanies = abs(department_size - self.res[i, 0:6].sum())
             self.res[i, 12] = unfilled_vacanies
             department_size = self.res[i, 0:6].sum()
@@ -243,9 +243,9 @@ class Model2GenderDiversity(Base_model):
             self.res[i, 26] = hiring_rate_female_level_1
             self.res[i, 27] = hiring_rate_female_level_2
             self.res[i, 28] = hiring_rate_female_level_3
-            self.res[i, 29] = 1 - hiring_rate_female_level_1
-            self.res[i, 30] = 1 - hiring_rate_female_level_2
-            self.res[i, 31] = 1 - hiring_rate_female_level_3
+            self.res[i, 29] = hiring_rate_male_1
+            self.res[i, 30] = hiring_rate_male_2
+            self.res[i, 31] = hiring_rate_male_3
             self.res[i, 32] = attrition_rate_female_level_1
             self.res[i, 33] = attrition_rate_female_level_2
             self.res[i, 34] = attrition_rate_female_level_3
