@@ -1,4 +1,4 @@
-__version__ = '0.5.0'
+__version__ = '0.6.0'
 __all__ = ['Base_model',
            'Replication_model',
            'Mod_Stoch_FBHP',

@@ -24,7 +24,7 @@ test_requirements = [
 
 setup(
     name='pyugend',
-    version='0.5.0',
+    version='0.6.0',
     description="python package for university gender dynamics",
     long_description=readme + '\n\n' + history,
     author="krishna bhogaonker",
