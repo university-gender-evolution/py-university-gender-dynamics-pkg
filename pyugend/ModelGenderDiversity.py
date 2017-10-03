@@ -76,6 +76,32 @@ class Model2GenderDiversity(Base_model):
         self.name = "model-2-baseline"
         self.label = "model-2-baseline"
 
+
+    def init_hiring_rates(self,
+                          _hiring_rate_f1,
+                          _hiring_rate_f2,
+                          _hiring_rate_f3,
+                          _hiring_rate_m1,
+                          _hiring_rate_m2,
+                          _hiring_rate_m3):
+
+        self.hiring_rate_f1 = _hiring_rate_f1
+        self.hiring_rate_f2 = _hiring_rate_f2
+        self.hiring_rate_f3 = _hiring_rate_f3
+        self.hiring_rate_m1 = _hiring_rate_m1
+        self.hiring_rate_m2 = _hiring_rate_m2
+        self.hiring_rate_m3 = _hiring_rate_m3
+
+    def init_default_hiring_rate(self):
+
+        self.hiring_rate_f1 = 5/40
+        self.hiring_rate_f2 = 2/40
+        self.hiring_rate_f3 = 1/40
+        self.hiring_rate_m1 = 24/40
+        self.hiring_rate_m2 = 3/40
+        self.hiring_rate_m3 = 5/40
+
+
     def run_model(self):
 
         # initialize data structure
@@ -103,12 +129,6 @@ class Model2GenderDiversity(Base_model):
         # I assign the state variables to temporary variables. That way I
         # don't have to worry about overwriting the original state variables.
 
-        hiring_rate_female_level_1 = 5/40
-        hiring_rate_female_level_2 = 2/40
-        hiring_rate_female_level_3 = 1/40
-        hiring_rate_male_1 = 24/40
-        hiring_rate_male_2 = 3/40
-        hiring_rate_male_3 = 5/40
         attrition_rate_female_level_1 = self.df1
         attrition_rate_female_level_2 = self.df2
         attrition_rate_female_level_3 = self.df3
@@ -189,12 +209,12 @@ class Model2GenderDiversity(Base_model):
 
             # hiring of new faculty
             hires = multinomial(total_vacancies,
-                              [hiring_rate_female_level_1,
-                               hiring_rate_female_level_2,
-                               hiring_rate_female_level_3,
-                               hiring_rate_male_1,
-                               hiring_rate_male_2,
-                               hiring_rate_male_3])
+                              [self.hiring_rate_f1,
+                               self.hiring_rate_f2,
+                               self.hiring_rate_f3,
+                               self.hiring_rate_m1,
+                               self.hiring_rate_m2,
+                               self.hiring_rate_m3])
 
             self.res[i, 0] += hires[0]
             self.res[i, 1] += hires[1]
@@ -240,12 +260,12 @@ class Model2GenderDiversity(Base_model):
             self.res[i, 23] = promotions_of_males_level_2_3
             self.res[i, 24] = promotions_of_females_level_1_2
             self.res[i, 25] = promotions_of_males_level_1_2
-            self.res[i, 26] = hiring_rate_female_level_1
-            self.res[i, 27] = hiring_rate_female_level_2
-            self.res[i, 28] = hiring_rate_female_level_3
-            self.res[i, 29] = hiring_rate_male_1
-            self.res[i, 30] = hiring_rate_male_2
-            self.res[i, 31] = hiring_rate_male_3
+            self.res[i, 26] = self.hiring_rate_f1
+            self.res[i, 27] = self.hiring_rate_f2
+            self.res[i, 28] = self.hiring_rate_f3
+            self.res[i, 29] = self.hiring_rate_m1
+            self.res[i, 30] = self.hiring_rate_m2
+            self.res[i, 31] = self.hiring_rate_m3
             self.res[i, 32] = attrition_rate_female_level_1
             self.res[i, 33] = attrition_rate_female_level_2
             self.res[i, 34] = attrition_rate_female_level_3
@@ -270,3 +290,5 @@ class Model2GenderDiversity(Base_model):
         recarray_results = df_.to_records(index=True)
         self.run = recarray_results
         return recarray_results
+
+
