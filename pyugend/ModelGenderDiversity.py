@@ -117,6 +117,8 @@ class Model2GenderDiversity(Base_model):
         attrition_rate_male_level_3 = self.dm3
         female_promotion_probability_1_2 = self.female_promotion_probability_1
         female_promotion_probability_2_3 = self.female_promotion_probability_2
+        male_promotion_probability_1_2 = self.male_promotion_probability_1
+        male_promotion_probability_2_3 = self.male_promotion_probability_2
         department_size_upper_bound = self.upperbound
         department_size_lower_bound = self.lowerbound
         variation_range = self.variation_range
@@ -168,11 +170,11 @@ class Model2GenderDiversity(Base_model):
             promotions_of_females_level_2_3 = binomial(self.res[i, 1],
                                         female_promotion_probability_2_3)
             promotions_of_males_level_2_3 = binomial(self.res[i, 4],
-                                        1 - female_promotion_probability_2_3)
+                                        male_promotion_probability_2_3)
             promotions_of_females_level_1_2 = binomial(self.res[i, 0],
                                         female_promotion_probability_1_2)
             promotions_of_males_level_1_2 = binomial(self.res[i, 3],
-                                    1 - female_promotion_probability_1_2)
+                                        male_promotion_probability_1_2)
 
             # update model numbers
             # add promotions to levels
