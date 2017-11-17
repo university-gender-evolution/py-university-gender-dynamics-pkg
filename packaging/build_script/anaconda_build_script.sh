@@ -27,6 +27,6 @@ conda uninstall -y pyugend
 
 conda remove pyugend
 
-conda install -c krishnab75 pyugend=0.5 --force
+conda install -c krishnab75 pyugend=0.6 --force
 
 

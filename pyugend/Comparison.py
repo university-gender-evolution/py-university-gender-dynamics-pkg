@@ -2,14 +2,14 @@ __author__ = 'krishnab'
 import numpy as np
 import pandas as pd
 from bokeh.plotting import figure, output_file, show
-from bokeh.charts import defaults
 from bokeh.layouts import gridplot
 from operator import add, sub
 from .ColumnSpecs import MODEL_RUN_COLUMNS, EXPORT_COLUMNS_FOR_CSV
 import datetime
 
-defaults.height = 700
-defaults.width = 700
+
+height = 700
+width = 700
 # CONSTANTS
 
 # line_colors = ['#7fc97f', '#beaed4', '#fdc086','#386cb0','#f0027f','#ffff99']
@@ -30,8 +30,8 @@ class Comparison():
                            ylabel,
                            title,
                            line_width=2,
-                           width_=defaults.width,
-                           height_=defaults.height,
+                           width_=width,
+                           height_=height,
                            transparency = 0.25,
                            linecolor=['#008000', '#0004ff', '#e66101'],
                            target_plot=False,
@@ -349,8 +349,8 @@ class Comparison():
                          ylabels,
                          titles = ['f1', 'f2', 'f3', 'm1', 'm2', 'm3'],
                          line_width=2,
-                         height_= defaults.height // 2,
-                         width_ = defaults.width // 2,
+                         height_= height // 2,
+                         width_ = width // 2,
                          legend_location='top right',
                          model_legend_label=['model1', 'model2'],
                          transparency = 0.25,
@@ -889,4 +889,3 @@ class Comparison():
 
         self.mlist[0].pct_female_matrix.astype(float).round(3).to_csv(
             filename3, index=False)
-

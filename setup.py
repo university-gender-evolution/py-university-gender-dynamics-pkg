@@ -24,7 +24,7 @@ test_requirements = [
 
 setup(
     name='pyugend',
-    version='0.5.0',
+    version='0.6.0',
     description="python package for university gender dynamics",
     long_description=readme + '\n\n' + history,
     author="krishna bhogaonker",
@@ -47,7 +47,7 @@ setup(
         'Natural Language :: English',
         'Programming Language :: Python :: 3.3',
         'Programming Language :: Python :: 3.4',
-        'Programming Language :: Python :: 3.5',
+        'Programming Language :: Python :: 3.6',
     ],
     test_suite='tests',
     tests_require=test_requirements
