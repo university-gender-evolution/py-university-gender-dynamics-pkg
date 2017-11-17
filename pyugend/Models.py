@@ -136,9 +136,9 @@ class Base_model():
         self.dm3 = 0.040
         self.phire2 = 0.125
         self.phire3 = 0.150
-        self.female_promotion_probability_1 = 0.0555
+        self.female_promotion_probability_1 = 0.0556
         self.female_promotion_probability_2 = 0.1905
-        self.male_promotion_probability_1 = 0.0635
+        self.male_promotion_probability_1 = 0.0611
         self.male_promotion_probability_2 = 0.1149
         self.upperbound = 84
         self.lowerbound = 64

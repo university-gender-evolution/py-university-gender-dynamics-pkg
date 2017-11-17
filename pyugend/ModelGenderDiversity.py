@@ -279,8 +279,8 @@ class Model2GenderDiversity(Base_model):
             self.res[i, 40] = 1
             self.res[i, 41] = female_promotion_probability_1_2
             self.res[i, 42] = female_promotion_probability_2_3
-            self.res[i, 43] = 1 - female_promotion_probability_1_2
-            self.res[i, 44] = 1 - female_promotion_probability_2_3
+            self.res[i, 43] = male_promotion_probability_1_2
+            self.res[i, 44] = male_promotion_probability_2_3
             self.res[i, 45] = department_size_upper_bound
             self.res[i, 46] = department_size_lower_bound
             self.res[i, 47] = variation_range
