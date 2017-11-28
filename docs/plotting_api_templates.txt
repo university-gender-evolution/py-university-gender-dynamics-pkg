@@ -1,0 +1,205 @@
+
+#<overall:gender_proportion>
+plot_settings = {'plottype': 'gender proportion',
+                 'intervals': 'empirical',
+                 'number_of_runs': 100,
+                 'target': 0.25,
+                 'xlabel': 'Years',
+                 'ylabel': 'Proportion Women',
+                 'title': 'Figure 4.1.1a:  Change in Proportion Women, Model 1 (Hire-Promote)',
+                 'model_legend_label': ['Model 1, Hire-Promote'],
+                 'legend_location': 'top_right',
+                 'height_': 800,
+                 'width_': 800,
+                 }
+
+
+#<overall:probability_proportion>
+plot_settings = {'plottype': 'probability proportion',
+                 'intervals': 'empirical',
+                 'number_of_runs': 100,
+                 'target': 0.25,
+                 'xlabel': 'Years',
+                 'ylabel': 'Probability of Achieving Target',
+                 'title': 'Figure 4.1.1b: Probability of Achieving 25% Women, Model 1 (Hire-Promote)',
+                 'model_legend_label': ['Model 1, Hire-Promote'],
+                 'legend_location': 'top_right',
+                 'height_': 800,
+                 'width_': 800,
+                 'percent_line_plot': True
+                 }
+
+
+#<comparison-overall:gender_proportion>
+plot_settings = {'plottype': 'gender proportion',
+                 'intervals': 'empirical',
+                 'number_of_runs': 100,
+                 'target': 0.25,
+                 'xlabel': 'Years',
+                 'ylabel': 'Proportion Women',
+                 'title': 'Figure 4.1.3a: Change in Proportion Women Comparing Models 1 and 2',
+                 'model_legend_label': ['Model 1, Hire-Promote','Model 2, Promote-Hire'],
+                 'legend_location': 'top_right',
+                 'height_': 800,
+                 'width_': 800,
+                 'target_plot': True
+                 }
+
+#<comparison-overall:probability_proportion>
+plot_settings = {'plottype': 'probability proportion',
+                 'intervals': 'empirical',
+                 'number_of_runs': 100,
+                 'target': 0.25,
+                 'xlabel': 'Years',
+                 'ylabel': 'Proportion Women',
+                 'title': 'Figure 4.1.3a: Change in Proportion Women Comparing Models 1 and 2',
+                 'model_legend_label': ['Model 1, Hire-Promote','Model 2, Promote-Hire'],
+                 'legend_location': 'top_right',
+                 'height_': 800,
+                 'width_': 800,
+                 'percent_line_plot': True
+                 }
+
+
+#<overall:male_female_numbers>
+
+plot_settings = {'plottype': 'male female numbers',
+                     'intervals': 'empirical',
+            'number_of_runs': 100,  # number simulations to average over
+            'target': 0.25,  # target percentage of women in the department
+            # Main plot settings
+            'xlabel':'Years',
+            'ylabel': 'Number of Faculty' ,
+            'title': 'Figure 4.3.1a:  Faculty FTE for Achieving 25% Women, Model 1 (Hire-Promote)' ,
+            'height_': 800,
+            'width_': 800,
+            'model_legend_label': ['Average Number Women'],
+            'legend_location': 'top right',
+
+            # Optional Settings
+            # Target value plot settings
+            'target_plot': True,
+
+            # Male Female numbers plot settings
+            'male_female_numbers_plot': True
+            }
+
+
+
+
+#<bylevel:gender_number>
+
+plot_settings = {'plottype': 'gender number',
+                 'intervals': 'empirical',
+                 'number_of_runs': 100,
+                 'target': 0.25,
+                 'line_width': 2,
+                 'model_legend_label': ['model 1, Hire-Promote', 'model2, Promote-Hire'],
+                 'legend_location': 'top right',
+                 'height_': 300,
+                 'width_': 300,
+                 # main plot axis labels
+                 'xlabels': ['Years', 'Years', 'Years', 'Years',
+                             'Years', 'Years'],
+                 'ylabels': ['Number of Women', 'Number of Women',
+                             'Number of Women', 'Number of Men',
+                             'Number of Men', 'Number of Men'],
+                 'titles': ['f1', 'f2', 'f3', 'm1', 'm2', 'm3'],
+                 }
+
+
+
+#<bylevel:probability_proportion>
+
+plot_settings = {'plottype': 'probability proportion',
+                 'intervals': 'empirical',
+                 'number_of_runs': 100,
+                 'target': 0.25,
+                 'line_width': 2,
+                 'model_legend_label': ['model 1, Hire-Promote', 'model2, Promote-Hire'],
+                 'legend_location': 'top right',
+                 'height_': 300,
+                 'width_': 300,
+                 # main plot axis labels
+                 'xlabels': ['Years', 'Years', 'Years', 'Years',
+                             'Years', 'Years'],
+                 'ylabels': ['Percentage of Women', 'Percentage of Women',
+                             'Percentage of Women', 'Percentage of Men',
+                             'Percentage of Men', 'Percentage of Men'],
+                 'titles': ['f1', 'f2', 'f3', 'm1', 'm2', 'm3'],
+                 }
+
+
+
+#<comparison-bylevel:gender_proportion>
+
+plot_settings = {'plottype': 'gender proportion',
+                 'intervals': 'empirical',
+                 'number_of_runs': 100,
+                 'target': 0.25,
+                 'line_width': 2,
+                 'model_legend_label': ['model 1, Hire-Promote', 'model2, Promote-Hire'],
+                 'legend_location': 'top right',
+                 'height_': 300,
+                 'width_': 300,
+                 # main plot axis labels
+                 'xlabels': ['Years', 'Years', 'Years', 'Years',
+                             'Years', 'Years'],
+                 'ylabels': ['Number of Women', 'Number of Women',
+                             'Number of Women', 'Number of Men',
+                             'Number of Men', 'Number of Men'],
+                 'titles': ['f1', 'f2', 'f3', 'm1', 'm2', 'm3'],
+                 }
+
+
+#<parameter-sweep:detail:number>
+
+plot_settings = {'plottype': 'parameter sweep gender number',
+                 'intervals': 'empirical',
+                 'number_of_runs': 100,
+                 # number simulations to average over
+                 'target': 0.25,
+                 'xlabels': ['Hiring Rate for Women',
+                             'Hiring Rate for Women',
+                             'Hiring Rate for Women',
+                             'Hiring Rate for Women',
+                             'Hiring Rate for Women',
+                             'Hiring Rate for Women'],
+                 'ylabels': ['Proportion Women',
+                             'Proportion Women',
+                             'Proportion Women',
+                             'Proportion Women',
+                             'Proportion Women',
+                             'Proportion Women'],
+                 'model_legend_label': ['Model 1, Hire-Promote',
+                                        'Model '
+                                        '2, '
+                                        'Promote-Hire'],
+                 'parameter_sweep_param': 'bf1',
+                 'parameter_ubound': 0.6,
+                 'parameter_lbound': 0.05,
+                 'number_of_steps': 15
+                 }
+
+
+#<parameter-sweep:comparison:overall:proportion>
+
+plot_settings = {'plottype': 'parameter sweep percentage',
+                 'intervals': 'empirical',
+                 'number_of_runs': 100,
+                 # number simulations to average over
+                 'target': 0.25,
+                 'xlabel': 'Attrition Rate for Men Level 1',
+                 'ylabel': 'Proportion Women',
+                 'title': 'Parameter Sweep Male Assistant Professors',
+                 'model_legend_label': ['Model 1, Hire-Promote',
+                                        'Model 2, Promote-Hire'],
+                 'parameter_sweep_param': 'dm1',
+                 'parameter_ubound': 0.6,
+                 'parameter_lbound': 0.05,
+                 'number_of_steps': 15
+                 }
+
+
+
+

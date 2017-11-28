@@ -41,9 +41,9 @@ def mgmt_data():
              'number_of_males_1': 11,
              'number_of_males_2': 12,
              'number_of_males_3': 43,
-             'number_of_initial_vacancies_1': 5.303,
-             'number_of_initial_vacancies_2': 5.9,
-             'number_of_initial_vacancies_3': 8.31,
+             'number_of_initial_vacancies_1': 0,
+             'number_of_initial_vacancies_2': 0,
+             'number_of_initial_vacancies_3': 0,
              'hiring_rate_women_1': 0.172,
              'hiring_rate_women_2': 0.4,
              'hiring_rate_women_3': 0.167,
@@ -60,7 +60,7 @@ def mgmt_data():
              'female_promotion_probability_2': 0.1905,
              'male_promotion_probability_1': 0.0635,
              'male_promotion_probability_2': 0.1149,
-             'upperbound': 84,
-             'lowerbound': 64,
+             'upperbound': 90,
+             'lowerbound': 70,
              'variation_range': 3,
-             'duration': 40})
+             'duration': 20})

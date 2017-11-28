@@ -137,10 +137,13 @@ class Model2GenderDiversity(Base_model):
         attrition_rate_male_level_3 = self.dm3
         female_promotion_probability_1_2 = self.female_promotion_probability_1
         female_promotion_probability_2_3 = self.female_promotion_probability_2
+        male_promotion_probability_1_2 = self.male_promotion_probability_1
+        male_promotion_probability_2_3 = self.male_promotion_probability_2
         department_size_upper_bound = self.upperbound
         department_size_lower_bound = self.lowerbound
         variation_range = self.variation_range
         unfilled_vacanies = 0
+        extra_vacancies=0
 
         for i in range(1, self.duration):
             # initialize variables for this iteration
@@ -184,15 +187,17 @@ class Model2GenderDiversity(Base_model):
             total_vacancies = subtotal_vacancies_3 \
                 + subtotal_vacancies_2 + subtotal_vacancies_1
 
+            total_vacancies = max(total_vacancies+extra_vacancies, 0)
+
             # process promotions
             promotions_of_females_level_2_3 = binomial(self.res[i, 1],
                                         female_promotion_probability_2_3)
             promotions_of_males_level_2_3 = binomial(self.res[i, 4],
-                                        1 - female_promotion_probability_2_3)
+                                        male_promotion_probability_2_3)
             promotions_of_females_level_1_2 = binomial(self.res[i, 0],
                                         female_promotion_probability_1_2)
             promotions_of_males_level_1_2 = binomial(self.res[i, 3],
-                                    1 - female_promotion_probability_1_2)
+                                        male_promotion_probability_1_2)
 
             # update model numbers
             # add promotions to levels
@@ -277,16 +282,46 @@ class Model2GenderDiversity(Base_model):
             self.res[i, 40] = 1
             self.res[i, 41] = female_promotion_probability_1_2
             self.res[i, 42] = female_promotion_probability_2_3
-            self.res[i, 43] = 1 - female_promotion_probability_1_2
-            self.res[i, 44] = 1 - female_promotion_probability_2_3
+            self.res[i, 43] = male_promotion_probability_1_2
+            self.res[i, 44] = male_promotion_probability_2_3
             self.res[i, 45] = department_size_upper_bound
             self.res[i, 46] = department_size_lower_bound
             self.res[i, 47] = variation_range
             self.res[i, 48] = self.duration
+
+
+            # this produces an array of values. Then I need to assign the
+            # values to levels. So if I have say a range of variation of 5. I
+            #  will get something like [-1,0,1,-1,0] or something. I need to
+            # turn this into something like [2,-1,0]. That means randomly
+            # assigning the values in the array to levels.
+
+            flag = False
+            while flag == False:
+
+                changes = np.random.choice([-1, 0, 1], variation_range)
+
+                # [-1, -1, 0] gains/losses -- where to apply these?
+                # levels {1,2,3}, pick randomly from this set
+                # [1,1,2]
+                # matching wise [(-1, 1), (-1, 1), (0, 2)]
+
+                if (department_size + changes.sum() <=
+                        department_size_upper_bound and department_size +
+                    changes.sum() >= department_size_lower_bound):
+                    extra_vacancies = changes.sum()
+                    flag = True
+
+                if (department_size > department_size_upper_bound):
+                    extra_vacancies = 0
+                    flag = True
+
+                if department_size < department_size_lower_bound:
+                    extra_vacancies = variation_range
+                    flag = True
+
         df_ = pd.DataFrame(self.res)
         df_.columns = MODEL_RUN_COLUMNS + EXPORT_COLUMNS_FOR_CSV
-
-        # print(df_)
         recarray_results = df_.to_records(index=True)
         self.run = recarray_results
         return recarray_results
