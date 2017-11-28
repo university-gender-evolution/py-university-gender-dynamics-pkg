@@ -15,7 +15,7 @@ import datetime
 from operator import neg
 from .ColumnSpecs import MODEL_RUN_COLUMNS, EXPORT_COLUMNS_FOR_CSV
 from .ColumnSpecs import RESULTS_COLUMNS, FEMALE_MATRIX_COLUMNS
-
+from .DataManagement import DataManagement
 
 
 ## Initialize Constants
@@ -106,6 +106,7 @@ class Base_model():
         self.pct_female_matrix = 0
         self.probability_matrix = 0
         self.probability_by_level = 0
+        self.mgmt_data = DataManagement()
 
     def load_baseline_data_mgmt(self):
         '''

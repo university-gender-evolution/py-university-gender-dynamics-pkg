@@ -5,10 +5,10 @@ from pyugend.ModelGenderDiversity import Model2GenderDiversity
 from pyugend.Mod_Validate_Sweep import Mod_Validate_Sweep
 from pyugend.Comparison import Comparison
 from bokeh.plotting import figure, output_file, show
-from bokeh.charts import defaults
 
-defaults.height = 800
-defaults.width = 800
+
+height = 800
+width = 800
 
 
 @pytest.mark.usefixtures('mgmt_data')
@@ -35,8 +35,8 @@ def test_bokeh_comparison_plot_overall_one_model(mgmt_data):
                      'model_legend_label': ['New Model',
                                             'Mode 2, Promote-Hire'],
                      'legend_location': 'top_right',
-                     'height_': 800,
-                     'width_': 800,
+                     'height_': height,
+                     'width_': width,
 
                      }
     show(c.plot_comparison_overall_chart(**plot_settings))

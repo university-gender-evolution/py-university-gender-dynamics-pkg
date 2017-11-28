@@ -6,6 +6,7 @@ from bokeh.layouts import gridplot
 from operator import add, sub
 from .ColumnSpecs import MODEL_RUN_COLUMNS, EXPORT_COLUMNS_FOR_CSV
 import datetime
+from .DataManagement import DataManagement
 
 
 height = 700
@@ -33,7 +34,7 @@ class Comparison():
                            width_=width,
                            height_=height,
                            transparency = 0.25,
-                           linecolor=['#008000', '#0004ff', '#e66101'],
+                           linecolor=['#008000', '#0004ff', '#e66101', 'green'],
                            target_plot=False,
                            legend_location='top_right',
                            color_target='#ca0020',
@@ -58,7 +59,9 @@ class Comparison():
                            number_of_steps = 0,
                            vertical_line_label = 'Original Value',
                            vertical_line_width = 2,
-                           vertical_line_color = ['black']
+                           vertical_line_color = ['black'],
+                           data_line_color = ['green'],
+                           data_line_legend_label = 'management data'
                            ):
 
 
@@ -66,6 +69,8 @@ class Comparison():
         # plots. If the plot is a parameter sweep, then it will run the
         # Models.run_parameter_sweep() function. If this is not a parameter
         # sweep, then the block will run the Models.run_multiple() function.
+
+
 
         # BEGIN BLOCK
         if plottype in ['parameter sweep percentage',
@@ -124,6 +129,8 @@ class Comparison():
 
             yval = [m.results_matrix['mean_gendprop'] for m in self.mlist]
 
+            dval = self.mlist[0].mgmt_data.get_field('gender_proportion_dept')
+
         if plottype == 'gender numbers':
             pass
 
@@ -133,6 +140,8 @@ class Comparison():
 
         if plottype == 'department size':
             yval = [m.results_matrix['mean_dept_size'] for m in self.mlist]
+
+            dval = self.mlist[0].mgmt_data.get_field('department_size')
 
         if plottype == 'male female numbers':
 
@@ -336,6 +345,12 @@ class Comparison():
                    legend=percent_legend_label,
                    line_width=percent_linewidth,
                    line_dash=[2, 2])
+
+        p.line(xval, dval,
+                line_color = data_line_color[0],
+                legend = data_line_legend_label,
+                line_width = line_width,
+                line_dash = [4,4])
 
         return(p)
 
