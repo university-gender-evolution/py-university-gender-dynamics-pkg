@@ -421,7 +421,8 @@ class Comparison():
                          number_of_steps=0,
                          vertical_line_label='Original Value',
                          vertical_line_width = 2,
-                         vertical_line_color = ['black', 'purple']
+                         vertical_line_color = ['black', 'purple'],
+                         data_plot = False
                          ):
 
         # Choose plot type. This block will initialize the data for the
@@ -474,6 +475,8 @@ class Comparison():
             yval_m1 = [m.probability_by_level['pm1'] for m in self.mlist]
             yval_m2 = [m.probability_by_level['pm2'] for m in self.mlist]
             yval_m3 = [m.probability_by_level['pm3'] for m in self.mlist]
+
+            data_plot = False
 
         if plottype == 'gender proportion':
 
@@ -532,6 +535,7 @@ class Comparison():
             yval_m2 = [m['mpct_m2'] for m in female_sweep_matrices]
             yval_m3 = [m['mpct_m3'] for m in female_sweep_matrices]
 
+            data_plot = False
         if plottype == 'parameter sweep number':
 
             female_sweep_matrices = [m.parameter_sweep_results for m in
@@ -544,7 +548,10 @@ class Comparison():
             yval_m2 = [m['mean_m2'] for m in female_sweep_matrices]
             yval_m3 = [m['mean_m3'] for m in female_sweep_matrices]
 
+            data_plot = False
+
         if plottype == 'parameter sweep probability':
+            data_plot = False
             pass
 
         #END BLOCK

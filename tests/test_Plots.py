@@ -239,7 +239,7 @@ def test_plot_overall_unfilled_vacancies(mgmt_data):
                      # Main plot settings
                      'xlabel': 'Years',
                      'ylabel': 'Unfilled Vacancies',
-                     'title': 'Figure 4.1.3a: Change in Proportion Women, Model 1',
+                     'title': 'Unfilled Vacancies',
                      'line_width': 2,
                      'transparency': 0.25,
                      'model_legend_label': ['New Model',
@@ -275,6 +275,6 @@ def test_plot_overall_mf_numbers(mgmt_data):
                      'legend_location': 'top_right',
                      'height_': height,
                      'width_': width,
-
+                     'male_female_numbers_plot':True
                      }
     show(c.plot_comparison_overall_chart(**plot_settings))
