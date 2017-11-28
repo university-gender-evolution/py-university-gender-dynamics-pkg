@@ -18,6 +18,7 @@ def test_bokeh_comparison_plot_overall_one_model(mgmt_data):
     modlist = list([Model2GenderDiversity(**mgmt_data)])
     # modlist = list([Model2GenderDiversity(**mgmt_data),
     #                 Mod_Stoch_FBPH(**mgmt_data)])
+    modlist[0].init_default_hiring_rate()
     c = Comparison(modlist)
 
     plot_settings = {'plottype': 'gender proportion',
@@ -30,6 +31,35 @@ def test_bokeh_comparison_plot_overall_one_model(mgmt_data):
                      'xlabel': 'Years',
                      'ylabel': 'Proportion Women',
                      'title': 'Figure 4.1.3a: Change in Proportion Women, Model 1',
+                     'line_width': 2,
+                     'transparency': 0.25,
+                     'model_legend_label': ['New Model',
+                                            'Mode 2, Promote-Hire'],
+                     'legend_location': 'top_right',
+                     'height_': height,
+                     'width_': width,
+
+                     }
+    show(c.plot_comparison_overall_chart(**plot_settings))
+
+
+def test_bokeh_comparison_plot_dept_size_overall(mgmt_data):
+    modlist = list([Model2GenderDiversity(**mgmt_data)])
+    # modlist = list([Model2GenderDiversity(**mgmt_data),
+    #                 Mod_Stoch_FBPH(**mgmt_data)])
+    modlist[0].init_default_hiring_rate()
+    c = Comparison(modlist)
+
+    plot_settings = {'plottype': 'department size',
+                     'intervals': 'empirical',
+                     'number_of_runs': 100,
+                     # number simulations to average over
+                     'target': 0.25,
+                     # target percentage of women in the department
+                     # Main plot settings
+                     'xlabel': 'Years',
+                     'ylabel': 'Department Size',
+                     'title': 'Department Size',
                      'line_width': 2,
                      'transparency': 0.25,
                      'model_legend_label': ['New Model',
@@ -192,3 +222,59 @@ def test_bokeh_comparison_plot_sweep_bylevel(mgmt_data):
                      }
 
     show(c.plot_comparison_level_chart(**plot_settings))
+
+def test_plot_overall_unfilled_vacancies(mgmt_data):
+    modlist = list([Model2GenderDiversity(**mgmt_data)])
+    # modlist = list([Model2GenderDiversity(**mgmt_data),
+    #                 Mod_Stoch_FBPH(**mgmt_data)])
+    modlist[0].init_default_hiring_rate()
+    c = Comparison(modlist)
+
+    plot_settings = {'plottype': 'unfilled vacancies',
+                     'intervals': 'empirical',
+                     'number_of_runs': 100,
+                     # number simulations to average over
+                     'target': 0.25,
+                     # target percentage of women in the department
+                     # Main plot settings
+                     'xlabel': 'Years',
+                     'ylabel': 'Unfilled Vacancies',
+                     'title': 'Figure 4.1.3a: Change in Proportion Women, Model 1',
+                     'line_width': 2,
+                     'transparency': 0.25,
+                     'model_legend_label': ['New Model',
+                                            'Mode 2, Promote-Hire'],
+                     'legend_location': 'top_right',
+                     'height_': height,
+                     'width_': width,
+
+                     }
+    show(c.plot_comparison_overall_chart(**plot_settings))
+
+def test_plot_overall_mf_numbers(mgmt_data):
+    modlist = list([Model2GenderDiversity(**mgmt_data)])
+    # modlist = list([Model2GenderDiversity(**mgmt_data),
+    #                 Mod_Stoch_FBPH(**mgmt_data)])
+    modlist[0].init_default_hiring_rate()
+    c = Comparison(modlist)
+
+    plot_settings = {'plottype': 'male female numbers',
+                     'intervals': 'empirical',
+                     'number_of_runs': 100,
+                     # number simulations to average over
+                     'target': 0.25,
+                     # target percentage of women in the department
+                     # Main plot settings
+                     'xlabel': 'Years',
+                     'ylabel': 'Proportion Women',
+                     'title': 'Figure 4.1.3a: Change in Proportion Women, Model 1',
+                     'line_width': 2,
+                     'transparency': 0.25,
+                     'model_legend_label': ['New Model',
+                                            'Mode 2, Promote-Hire'],
+                     'legend_location': 'top_right',
+                     'height_': height,
+                     'width_': width,
+
+                     }
+    show(c.plot_comparison_overall_chart(**plot_settings))

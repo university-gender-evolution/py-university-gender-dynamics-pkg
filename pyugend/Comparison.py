@@ -53,6 +53,9 @@ class Comparison():
                            mf_target_label=['Target 1', 'Target 2'],
                            mf_male_linewidth=2,
                            mf_target_linewidth=2,
+                           mf_data_color = ['green'],
+                           mf_data_label = ['Female Faculty Data', 'Male Faculty Data'],
+                           mf_data_linewidth = [2],
                            parameter_sweep_param = None,
                            parameter_ubound = 0,
                            parameter_lbound = 0,
@@ -60,6 +63,7 @@ class Comparison():
                            vertical_line_label = 'Original Value',
                            vertical_line_width = 2,
                            vertical_line_color = ['black'],
+                           data_plot = True,
                            data_line_color = ['green'],
                            data_line_legend_label = 'management data'
                            ):
@@ -125,6 +129,8 @@ class Comparison():
 
             yval = [m.probability_matrix['Probability'] for m in self.mlist]
 
+            data_plot = False
+
         if plottype == 'gender proportion':
 
             yval = [m.results_matrix['mean_gendprop'] for m in self.mlist]
@@ -132,11 +138,13 @@ class Comparison():
             dval = self.mlist[0].mgmt_data.get_field('gender_proportion_dept')
 
         if plottype == 'gender numbers':
+            data_plot = False
             pass
 
         if plottype == 'unfilled vacancies':
             yval = [m.results_matrix['mean_unfilled'] for m in self.mlist]
 
+            dval = self.mlist[0].mgmt_data.get_field('excess_hires')
 
         if plottype == 'department size':
             yval = [m.results_matrix['mean_dept_size'] for m in self.mlist]
@@ -165,10 +173,15 @@ class Comparison():
 
             yval3 = [np.round(target * dept) for dept in total_faculty]
 
+            dval_male = self.mlist[0].mgmt_data.get_field('total_males_dept')
+            dval_female = self.mlist[0].mgmt_data.get_field('total_females_dept')
+
         if plottype == 'parameter sweep percentage':
 
             yval = [m.parameter_sweep_results['mean_gendprop'] for m in
                     self.mlist]
+
+            data_plot = False
 
         if plottype == 'parameter sweep probability':
 
@@ -184,6 +197,7 @@ class Comparison():
                     self.mlist]
 
 
+            data_plot = False
         # Set confidence bounds using empirical results
 
         if intervals == 'empirical':
@@ -269,6 +283,7 @@ class Comparison():
                 upper_band = yval
                 lower_band = yval
 
+
             if plottype == 'parameter sweep percentage':
 
                 fill_matrix = [m.parameter_sweep_results['std_gendprop'] for m in
@@ -332,6 +347,7 @@ class Comparison():
                        line_width=mf_target_linewidth,
                        line_dash=[6,6])
 
+
         if target_plot:
             p.line(xval, target,
                    line_color=color_target,
@@ -346,11 +362,28 @@ class Comparison():
                    line_width=percent_linewidth,
                    line_dash=[2, 2])
 
-        p.line(xval, dval,
-                line_color = data_line_color[0],
-                legend = data_line_legend_label,
-                line_width = line_width,
-                line_dash = [4,4])
+        if data_plot and plottype != 'male female numbers':
+            p.line(xval, dval,
+                    line_color = data_line_color[0],
+                    legend = data_line_legend_label,
+                    line_width = line_width,
+                    line_dash = [4,4])
+
+        if data_plot and plottype == 'male female numbers':
+            p.line(xval,
+                   dval_female,
+                   line_color=mf_data_color[0],
+                   legend=mf_data_label[0],
+                   line_width=mf_data_linewidth[0],
+                   line_dash=[4, 4])
+
+            p.line(xval,
+                   dval_male,
+                   line_color=mf_data_color[0],
+                   legend=mf_data_label[1],
+                   line_width=mf_data_linewidth[0],
+                   line_dash=[4,4])
+
 
         return(p)
 
