@@ -30,7 +30,7 @@ def test_bokeh_comparison_plot_overall_one_model(mgmt_data):
                      # Main plot settings
                      'xlabel': 'Years',
                      'ylabel': 'Proportion Women',
-                     'title': 'Figure 4.1.3a: Change in Proportion Women, Model 1',
+                     'title': 'Change in Proportion Women',
                      'line_width': 2,
                      'transparency': 0.25,
                      'model_legend_label': ['New Model',
@@ -88,7 +88,7 @@ def test_bokeh_comparison_plot_overall_multiple_models(mgmt_data):
                      # Main plot settings
                      'xlabel': 'Years',
                      'ylabel': 'Proportion Women',
-                     'title': 'Figure 4.1.3a: Change in Proportion Women, Compare Models 1 and 2',
+                     'title': 'Change in Proportion Women by Level',
                      'transparency': 0.25,
                      'model_legend_label': ['New Model',
                                             'Model 2, Promote-Hire']
@@ -155,7 +155,7 @@ def test_bokeh_sweep_plot_overall(mgmt_data):
                      'target': 0.25,
                      'xlabel': 'Years',
                      'ylabel': 'Proportion Women',
-                     'title': 'Figure 4.1.3a: Change in Proportion Women, Model 1',
+                     'title': 'Parameter Sweep Gender Percentage',
                      'model_legend_label': ['New Model',
                                             'Model '
                                             '2, '

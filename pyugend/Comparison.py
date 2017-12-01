@@ -526,21 +526,21 @@ class Comparison():
             dval_m2 = self.mlist[0].mgmt_data.get_field('number_m2')
             dval_m3 = self.mlist[0].mgmt_data.get_field('number_m3')
 
-            target_f1 = [sum(list([m.results_matrix['mean_f1'],
+            total_1 = [sum(list([m.results_matrix['mean_f1'],
                                    m.results_matrix['mean_m1']])) for m in
                          self.mlist]
-            target_f2 = [sum(list([m.results_matrix['mean_f2'],
+            total_2 = [sum(list([m.results_matrix['mean_f2'],
                                    m.results_matrix['mean_m2']])) for m in
                          self.mlist]
-            target_f3 = [sum(list([m.results_matrix['mean_f3'],
+            total_3 = [sum(list([m.results_matrix['mean_f3'],
                                m.results_matrix['mean_m3']])) for m in
                         self.mlist]
-            target_f1 = [np.round(target * level) for level in target_f1]
-            target_f2 = [np.round(target * level) for level in target_f2]
-            target_f3 = [np.round(target * level) for level in target_f3]
-            target_m1 = [np.round((1-target) * level) for level in target_f1]
-            target_m2 = [np.round((1-target) * level) for level in target_f2]
-            target_m3 = [np.round((1-target) * level) for level in target_f3]
+            target_f1 = [np.round(target * level) for level in total_1]
+            target_f2 = [np.round(target * level) for level in total_2]
+            target_f3 = [np.round(target * level) for level in total_3]
+            target_m1 = [np.round((1-target) * level) for level in total_1]
+            target_m2 = [np.round((1-target) * level) for level in total_2]
+            target_m3 = [np.round((1-target) * level) for level in total_3]
 
             num_targets = [target_f1,
                            target_f2,
