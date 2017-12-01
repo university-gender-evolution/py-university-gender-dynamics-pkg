@@ -75,6 +75,8 @@ def test_bokeh_comparison_plot_dept_size_overall(mgmt_data):
 def test_bokeh_comparison_plot_overall_multiple_models(mgmt_data):
     modlist = list([Model2GenderDiversity(**mgmt_data),
                     Mod_Stoch_FBPH(**mgmt_data)])
+    modlist[0].init_default_hiring_rate()
+
     c = Comparison(modlist)
 
     plot_settings = {'plottype': 'gender proportion',
@@ -99,6 +101,8 @@ def test_bokeh_comparison_plot_bylevel(mgmt_data):
     modlist = list([Model2GenderDiversity(**mgmt_data)])
     # modlist = list([Model2GenderDiversity(**mgmt_data),
     #                 Mod_Stoch_FBPH(**mgmt_data)])
+    modlist[0].init_default_hiring_rate()
+
     c = Comparison(modlist)
 
     plot_settings = {'plottype': 'gender number',
@@ -114,9 +118,9 @@ def test_bokeh_comparison_plot_bylevel(mgmt_data):
                      # main plot axis labels
                      'xlabels': ['Years', 'Years', 'Years', 'Years',
                                  'Years', 'Years'],
-                     'ylabels': ['Proportion Women', 'Proportion Women',
-                                 'Proportion Women', 'Proportion Men',
-                                 'Proportion Men', 'Proportion Momen'],
+                     'ylabels': ['Number of Women', 'Number of Women',
+                                 'Number of Women', 'Number of Men',
+                                 'Number of Men', 'Number of Men'],
                      'titles': ['f1', 'f2', 'f3', 'm1', 'm2', 'm3'],
 
                      # target plot settings
@@ -140,6 +144,8 @@ def test_bokeh_sweep_plot_overall(mgmt_data):
     modlist = list([Model2GenderDiversity(**mgmt_data)])
     # modlist = list([Model2GenderDiversity(**mgmt_data),
     #                 Mod_Stoch_FBPH(**mgmt_data)])
+    modlist[0].init_default_hiring_rate()
+
     c = Comparison(modlist)
 
     plot_settings = {'plottype': 'parameter sweep percentage',
@@ -166,6 +172,8 @@ def test_bokeh_comparison_plot_probability_bylevel(mgmt_data):
     modlist = list([Model2GenderDiversity(**mgmt_data)])
     # modlist = list([Model2GenderDiversity(**mgmt_data),
     #                 Mod_Stoch_FBPH(**mgmt_data)])
+    modlist[0].init_default_hiring_rate()
+
     c = Comparison(modlist)
 
     plot_settings = {'plottype': 'probability proportion',
@@ -181,10 +189,12 @@ def test_bokeh_comparison_plot_probability_bylevel(mgmt_data):
                      # main plot axis labels
                      'xlabels': ['Years', 'Years', 'Years', 'Years',
                                  'Years', 'Years'],
-                     'ylabels': ['Percentage of Women',
-                                 'Percentage of Women',
-                                 'Percentage of Women', 'Percentage of Men',
-                                 'Percentage of Men', 'Percentage of Men'],
+                     'ylabels': ['Probability of Target',
+                                 'Probability of Target',
+                                 'Probability of Target',
+                                 'Probability of Target',
+                                 'Probability of Target',
+                                 'Probability of Target'],
                      'titles': ['f1', 'f2', 'f3', 'm1', 'm2', 'm3'],
                      }
 
@@ -195,6 +205,7 @@ def test_bokeh_comparison_plot_sweep_bylevel(mgmt_data):
 
     # modlist = list([Model2GenderDiversity(**mgmt_data),
     #                 Mod_Stoch_FBPH(**mgmt_data)])
+    modlist[0].init_default_hiring_rate()
     c = Comparison(modlist)
 
     plot_settings = {'plottype': 'parameter sweep percentage',
@@ -267,7 +278,7 @@ def test_plot_overall_mf_numbers(mgmt_data):
                      # Main plot settings
                      'xlabel': 'Years',
                      'ylabel': 'Proportion Women',
-                     'title': 'Figure 4.1.3a: Change in Proportion Women, Model 1',
+                     'title': 'Male Female numbers plot',
                      'line_width': 2,
                      'transparency': 0.25,
                      'model_legend_label': ['New Model',

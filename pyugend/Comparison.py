@@ -422,7 +422,9 @@ class Comparison():
                          vertical_line_label='Original Value',
                          vertical_line_width = 2,
                          vertical_line_color = ['black', 'purple'],
-                         data_plot = False
+                         data_plot=True,
+                         data_line_color=['green'],
+                         data_line_legend_label=['management data']
                          ):
 
         # Choose plot type. This block will initialize the data for the
@@ -462,6 +464,13 @@ class Comparison():
         # convert it to the appropriate y-variables for the plot.
         # BEGIN BLOCK
 
+        dval_f1 = 0
+        dval_f2 = 0
+        dval_f3 = 0
+        dval_m1 = 0
+        dval_m2 = 0
+        dval_m3 = 0
+
         if plottype == 'probability proportion':
             for mod in self.mlist:
                 mod.run_probability_analysis_gender_by_level(number_of_runs,
@@ -489,6 +498,16 @@ class Comparison():
             yval_m2 = [m['mpct_m2'] for m in female_pct_matrices]
             yval_m3 = [m['mpct_m3'] for m in female_pct_matrices]
 
+            dval_f1 = self.mlist[0].mgmt_data.get_field('gender_proportion_1')
+            dval_f2 = self.mlist[0].mgmt_data.get_field('gender_proportion_2')
+            dval_f3 = self.mlist[0].mgmt_data.get_field('gender_proportion_3')
+            dval_m1 = 1 - self.mlist[0].mgmt_data.get_field(
+                            'gender_proportion_1')
+            dval_m2 = 1 - self.mlist[0].mgmt_data.get_field(
+                            'gender_proportion_2')
+            dval_m3 = 1 - self.mlist[0].mgmt_data.get_field(
+                            'gender_proportion_3')
+
         if plottype == 'gender number':
 
             mean_matrices = [m.results_matrix.loc[:,'mean_f1':'mean_m3'] for
@@ -500,7 +519,13 @@ class Comparison():
             yval_m2 = [m['mean_m2'] for m in mean_matrices]
             yval_m3 = [m['mean_m3'] for m in mean_matrices]
 
-        if plottype == 'gender number':
+            dval_f1 = self.mlist[0].mgmt_data.get_field('number_f1')
+            dval_f2 = self.mlist[0].mgmt_data.get_field('number_f2')
+            dval_f3 = self.mlist[0].mgmt_data.get_field('number_f3')
+            dval_m1 = self.mlist[0].mgmt_data.get_field('number_m1')
+            dval_m2 = self.mlist[0].mgmt_data.get_field('number_m2')
+            dval_m3 = self.mlist[0].mgmt_data.get_field('number_m3')
+
             target_f1 = [sum(list([m.results_matrix['mean_f1'],
                                    m.results_matrix['mean_m1']])) for m in
                          self.mlist]
@@ -817,6 +842,7 @@ class Comparison():
 
         levels = ['f1', 'f2', 'f3', 'm1', 'm2', 'm3']
         yvals = [yval_f1, yval_f2, yval_f3, yval_m1, yval_m2, yval_m3]
+        dvals = [dval_f1, dval_f2, dval_f3, dval_m1, dval_m2, dval_m3]
         upper_fill = [upper_f1, upper_f2, upper_f3, upper_m1, upper_m2,
                       upper_m3]
         lower_fill = [lower_f1, lower_f2, lower_f3, lower_m1, lower_m2,
@@ -863,7 +889,7 @@ class Comparison():
                            legend = vertical_line_label,
                            line_dash=[6,6])
 
-        if target_plot is True and plottype != 'gender number':
+        if target_plot and plottype != 'gender number':
 
             for i, p in enumerate(plots):
 
@@ -874,7 +900,7 @@ class Comparison():
                        legend=target_plot_legend_label,
                        line_dash=[6,6])
 
-        if target_plot is True and plottype == 'gender number':
+        if target_plot and plottype == 'gender number':
             for k, v in enumerate(self.mlist):
                 for i, p in enumerate(plots):
                     p.line(xval,
@@ -885,7 +911,7 @@ class Comparison():
                            line_dash=[6, 6]
                            )
 
-        if percent_line_plot == True:
+        if percent_line_plot:
 
             for i, p in enumerate(plots):
                 p.line(xval, percent_line_value,
@@ -893,6 +919,17 @@ class Comparison():
                        line_width=percent_linewidth,
                        line_dash=[2,2],
                        legend=percent_legend_label)
+
+
+        if data_plot:
+
+            for i, p in enumerate(plots):
+                p.line(xval, dvals[i],
+                       line_color=data_line_color[0],
+                       line_width=line_width,
+                       line_dash=[4,4],
+                       legend=data_line_legend_label[0])
+
 
         grid = gridplot([[plots[0], plots[1], plots[2]],
                          [plots[3], plots[4], plots[5]]])
