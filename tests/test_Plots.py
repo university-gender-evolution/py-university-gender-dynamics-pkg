@@ -110,7 +110,7 @@ def test_bokeh_comparison_plot_bylevel(mgmt_data):
                      'number_of_runs': 100,
                      'target': 0.25,
                      'line_width': 2,
-                     'model_legend_label': ['new model', 'model2'],
+                     'model_legend_label': ['Model 3'],
                      'transparency': 0.25,
                      'legend_location': 'top right',
                      'height_': 400,
@@ -127,7 +127,7 @@ def test_bokeh_comparison_plot_bylevel(mgmt_data):
                      'target_plot': True,
                      'target_color': 'red',
                      'target_plot_linewidth': 2,
-                     'target_plot_legend_label': 'target',
+                     'target_number_labels': ['Target Model 3'],
 
                      # percent plot settings
                      'percent_line_plot': False,
@@ -277,15 +277,17 @@ def test_plot_overall_mf_numbers(mgmt_data):
                      # target percentage of women in the department
                      # Main plot settings
                      'xlabel': 'Years',
-                     'ylabel': 'Proportion Women',
+                     'ylabel': 'Number of Professors',
                      'title': 'Male Female numbers plot',
                      'line_width': 2,
                      'transparency': 0.25,
-                     'model_legend_label': ['New Model',
+                     'model_legend_label': ['Model 3',
                                             'Mode 2, Promote-Hire'],
                      'legend_location': 'top_right',
                      'height_': height,
                      'width_': width,
-                     'male_female_numbers_plot':True
+                     'male_female_numbers_plot':True,
+                     'mf_male_label':['Male Model 3','Female Model 3'],
+                     'mf_target_label':['Target 3']
                      }
     show(c.plot_comparison_overall_chart(**plot_settings))

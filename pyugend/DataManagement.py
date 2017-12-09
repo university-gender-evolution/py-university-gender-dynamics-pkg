@@ -12,7 +12,7 @@ class DataManagement(abcDepartmentData):
         self.data = self.load_data()
 
     def load_data(self):
-        a = pd.read_csv('/media/krishnab/jaimini1/development/gender_equity/university_gender_dynamics/py_package_ugend/pyugend/pyugend/data/mgmt_data.csv')
+        a = pd.read_csv('/media/krishnab/lakshmi/development/gender_diversity/py-university-gender-dynamics-pkg/pyugend/data/mgmt_data.csv')
         return a
 
     def get_data(self):

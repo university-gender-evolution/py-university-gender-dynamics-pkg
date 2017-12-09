@@ -424,7 +424,7 @@ class Comparison():
                          vertical_line_color = ['black', 'purple'],
                          data_plot=True,
                          data_line_color=['green'],
-                         data_line_legend_label=['management data']
+                         data_line_legend_label=['Management data']
                          ):
 
         # Choose plot type. This block will initialize the data for the
