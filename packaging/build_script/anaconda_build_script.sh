@@ -18,7 +18,7 @@ cd ../conda_pyugend
 ## check for latest version of conda-build
 conda update -n root conda-build
 
-anaconda remove krishnab75/pyugend/0.6/linux-64/pyugend-0.6-py35_0.tar.bz2
+anaconda remove krishnab75/pyugend/0.6/linux-64/pyugend-0.6-py36_0.tar.bz2
 conda build .
 
 echo "Finally, I will uninstall and reinstall the pyugend package."
