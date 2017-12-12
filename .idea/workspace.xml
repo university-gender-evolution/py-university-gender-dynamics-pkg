@@ -66,7 +66,7 @@
               <entry file="file://$PROJECT_DIR$/pyugend/Models.py">
                 <provider selected="true" editor-type-id="text-editor">
                   <state relative-caret-position="209">
-                    <caret line="17" column="12" lean-forward="false" selection-start-line="17" selection-start-column="12" selection-end-line="17" selection-end-column="12" />
+                    <caret line="17" column="11" lean-forward="false" selection-start-line="17" selection-start-column="11" selection-end-line="17" selection-end-column="11" />
                     <folding>
                       <element signature="e#0#248#1" expanded="false" />
                     </folding>
@@ -822,13 +822,6 @@
       <option name="presentableId" value="Default" />
       <updated>1461126958316</updated>
     </task>
-    <task id="LOCAL-00023" summary="setup the Bounded models to vary within range. The only outstanding issue is to make sure the size of the department is not larger or smaller than the bound.">
-      <created>1462088651086</created>
-      <option name="number" value="00023" />
-      <option name="presentableId" value="LOCAL-00023" />
-      <option name="project" value="LOCAL" />
-      <updated>1462088651086</updated>
-    </task>
     <task id="LOCAL-00024" summary="setup the Bounded models to vary within range. The only outstanding issue is to make sure the size of the department is not larger or smaller than the bound.">
       <created>1462226518142</created>
       <option name="number" value="00024" />
@@ -1165,7 +1158,14 @@
       <option name="project" value="LOCAL" />
       <updated>1513113613045</updated>
     </task>
-    <option name="localTasksCounter" value="72" />
+    <task id="LOCAL-00072" summary="moved the DataManager classes to the data directory. Hopefully this will resolve the path problem.">
+      <created>1513113763163</created>
+      <option name="number" value="00072" />
+      <option name="presentableId" value="LOCAL-00072" />
+      <option name="project" value="LOCAL" />
+      <updated>1513113763163</updated>
+    </task>
+    <option name="localTasksCounter" value="73" />
     <servers />
   </component>
   <component name="TestHistory">
