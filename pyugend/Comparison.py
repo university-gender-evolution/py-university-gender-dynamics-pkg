@@ -6,7 +6,7 @@ from bokeh.layouts import gridplot
 from operator import add, sub
 from .ColumnSpecs import MODEL_RUN_COLUMNS, EXPORT_COLUMNS_FOR_CSV
 import datetime
-from .DataManagement import DataManagement
+from .data.DataManagement import DataManagement
 
 
 height = 700
