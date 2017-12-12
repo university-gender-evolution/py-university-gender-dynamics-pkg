@@ -12,7 +12,7 @@ class DataManagement(abcDepartmentData):
         self.data = self.load_data()
 
     def load_data(self):
-        a = pd.read_csv('mgmt_data.csv')
+        a = pd.read_csv('./data/mgmt_data.csv')
         return a
 
     def get_data(self):
