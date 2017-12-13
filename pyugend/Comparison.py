@@ -67,7 +67,7 @@ class Comparison():
                            vertical_line_color = ['black'],
                            data_plot = True,
                            data_line_color = ['green'],
-                           data_line_legend_label = 'management data'
+                           data_line_legend_label = 'Management data'
                            ):
 
 
@@ -503,12 +503,9 @@ class Comparison():
             dval_f1 = self.mlist[0].mgmt_data.get_field('gender_proportion_1')
             dval_f2 = self.mlist[0].mgmt_data.get_field('gender_proportion_2')
             dval_f3 = self.mlist[0].mgmt_data.get_field('gender_proportion_3')
-            dval_m1 = 1 - self.mlist[0].mgmt_data.get_field(
-                            'gender_proportion_1')
-            dval_m2 = 1 - self.mlist[0].mgmt_data.get_field(
-                            'gender_proportion_2')
-            dval_m3 = 1 - self.mlist[0].mgmt_data.get_field(
-                            'gender_proportion_3')
+            dval_m1 = [1 - x for x in self.mlist[0].mgmt_data.get_field('gender_proportion_1')]
+            dval_m2 = [1 - x for x in self.mlist[0].mgmt_data.get_field('gender_proportion_2')]
+            dval_m3 = [1 - x for x in self.mlist[0].mgmt_data.get_field('gender_proportion_3')]
 
         if plottype == 'gender number':
 
