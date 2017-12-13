@@ -32,32 +32,25 @@ from .abcPlotBuilder import abcPlotBuilder
 
 class BuilderAttritionPlot(abcPlotBuilder):
 
-    def __init__(self):
-        self.request = None
 
 
-    @abc.abstractmethod
     def create_plot(self):
-        pass
 
+        self.plot.title = self.settings
 
-    @abc.abstractmethod
     def draw_lines(self):
         pass
 
 
-    @abc.abstractmethod
     def draw_error_intervals(self):
         pass
 
 
-    @abc.abstractmethod
     def draw_target(self):
         pass
 
 
 
-    @abc.abstractmethod
     def draw_misc(self):
         pass
 

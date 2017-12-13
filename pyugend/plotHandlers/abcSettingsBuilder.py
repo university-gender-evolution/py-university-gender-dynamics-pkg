@@ -3,7 +3,7 @@
 
 """
 
-Abstract Base Class for building plots
+Plot Settings class
 
 """
 
@@ -18,53 +18,49 @@ Abstract Base Class for building plots
 
 
 __author__ = 'krishna bhogaonker'
-__copyright__ = 'copyright '
+__copyright__ = 'copyright 2017'
 __credits__ = ['krishna bhogaonker']
 __license__ = "MIT"
-__version__ = ''
+__version__ = '0.1.0'
 __maintainer__ = 'krishna bhogaonker'
 __email__ = 'cyclotomiq@gmail.com'
-__status__ = ''
-
-
+__status__ = 'pre-alpha'
 
 import abc
-from bokeh.plotting import figure, output_file, show
+from .PlotSettings import PlotSettings
 
+class abcPlotSettingsBuilder(metaclass=abc.ABCMeta):
 
-
-class abcOverallPlotBuilder(metaclass=abc.ABCMeta):
-
-    def __init__(self):
-        self.plot = None
-
+    def __init__(self, settings=None):
+        self.plot = PlotSettings()
+        self.settings = settings
 
     @abc.abstractmethod
-    def create_plot(self):
+    def set_global_settings(self):
+        pass
+
+    @abc.abstractmethod
+    def set_line_settings(self):
+        pass
+
+    @abc.abstractmethod
+    def set_interval_settings(self):
+        pass
+
+    @abc.abstractmethod
+    def set_target_settings(self):
+        pass
+
+    @abc.abstractmethod
+    def set_percent_settings(self):
+        pass
+
+    @abc.abstractmethod
+    def set_mf_plot(self):
+        pass
+
+    @abc.abstractmethod
+    def set_parameter_sweep_settings(self):
         pass
 
 
-    @abc.abstractmethod
-    def draw_lines(self):
-        pass
-
-
-    @abc.abstractmethod
-    def draw_error_intervals(self):
-        pass
-
-
-    @abc.abstractmethod
-    def draw_target(self):
-        pass
-
-
-
-    @abc.abstractmethod
-    def draw_misc(self):
-        pass
-
-
-
-if __name__ == "__main__":
-    print('This is an abstract base class for building plots')

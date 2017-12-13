@@ -1,9 +1,10 @@
 
+
 #!/usr/bin/python
 
 """
 
-Director class for plotting 
+Plot Settings class
 
 """
 
@@ -26,20 +27,7 @@ __maintainer__ = 'krishna bhogaonker'
 __email__ = 'cyclotomiq@gmail.com'
 __status__ = 'pre-alpha'
 
-from abcDirector import abcDirector
+class PlotSettings():
 
-class PlotDirector(abcDirector):
-
-    def construct(self, builder, settings):
-        self.builder = builder(settings)
-        self.builder.create_plot()
-        self.builder.draw_lines()
-        self.builder.draw_error_intervals()
-        self.builder.draw_target()
-        self.builder.draw_misc()
-
-
-
-
-if __name__ == "__main__":
-    print('This is a plot director class')
+    def __init__(self):
+        pass
