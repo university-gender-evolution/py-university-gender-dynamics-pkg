@@ -7,6 +7,8 @@ from operator import add, sub
 from .ColumnSpecs import MODEL_RUN_COLUMNS, EXPORT_COLUMNS_FOR_CSV
 import datetime
 from .DataManagement import DataManagement
+from .plotHandlers.BuilderAttritionPlot import BuilderAttritionPlot
+from .plotHandlers.PlotDirector import PlotDirector
 
 
 height = 700
@@ -981,3 +983,17 @@ class Comparison():
 
         self.mlist[0].pct_female_matrix.astype(float).round(3).to_csv(
             filename3, index=False)
+
+
+    def plot_attrition_overall(self, settings):
+
+        builder = BuilderAttritionPlot(settings)
+        director = PlotDirector()
+        show(director(builder))
+
+
+
+
+
+
+

@@ -29,6 +29,8 @@ __status__ = ''
 
 
 from .abcPlotBuilder import abcPlotBuilder
+from .abcSettingsBuilder import abcPlotSettingsBuilder
+
 
 class BuilderAttritionPlot(abcPlotBuilder):
 
@@ -53,6 +55,12 @@ class BuilderAttritionPlot(abcPlotBuilder):
 
     def draw_misc(self):
         pass
+
+
+
+class BuilderSettingsAttritionPlot(abcPlotSettingsBuilder):
+
+
 
 
 

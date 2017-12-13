@@ -27,7 +27,54 @@ __maintainer__ = 'krishna bhogaonker'
 __email__ = 'cyclotomiq@gmail.com'
 __status__ = 'pre-alpha'
 
+from bokeh.models.annotations import Title
+
+
 class PlotSettings():
 
-    def __init__(self):
-        pass
+    def __init__(self, settings):
+
+        self.title = None
+        self.plottype = None
+        self.intervals = None
+        self.number_of_runs = None
+        self.target = None
+        self.xlabel = None
+        self.ylabel = None
+        self.title = None
+        self.line_width = None
+        self.width_= None
+        self.height_ = None
+        self.transparency = None
+        self.linecolor  = None
+        self.target_plot= None
+        self.legend_location=None,
+        self.color_target = None
+        self.percent_line_plot = None
+        self.percent_line_value = None
+        self.color_percent_line = None
+        self.target_plot_linewidth = None
+        self.percent_linewidth= None
+        self.model_legend_label= None
+        self.target_plot_legend_label = None
+        self.percent_legend_label= None
+        self.male_female_numbers_plot = None
+        self.mf_male_color= None
+        self.mf_target_color = None
+        self.mf_male_label = None
+        self.mf_target_label = None
+        self.mf_male_linewidth = None
+        self.mf_target_linewidth = None
+        self.mf_data_color = None
+        self.mf_data_label = None
+        self.mf_data_linewidth = None
+        self.parameter_sweep_param = None
+        self.parameter_ubound = None
+        self.parameter_lbound = None
+        self.number_of_steps = None
+        self.vertical_line_label = None
+        self.vertical_line_width = None
+        self.vertical_line_color = None
+        self.data_plot = None
+        self.data_line_color = None
+        self.data_line_legend_label = None
