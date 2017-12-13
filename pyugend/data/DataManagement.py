@@ -20,4 +20,4 @@ class DataManagement(abcDepartmentData):
 
     def get_field(self, field):
         return self.data.loc[:, field].tolist()
- 
+
