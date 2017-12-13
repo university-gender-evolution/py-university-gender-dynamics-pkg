@@ -2,8 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="db3b48aa-1b4d-4f09-96e2-54f1ff5c70d7" name="Default" comment="">
+      <change beforePath="" afterPath="$PROJECT_DIR$/pyugend/BuilderAttritionPlot.py" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/pyugend/PlotDirector.py" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/pyugend/PlotSettings.py" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/pyugend/abcPlotBuilder.py" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/pyugend/abcSettingsBuilder.py" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/pyugend/plotHandlers/PlotDirector.py" afterPath="$PROJECT_DIR$/pyugend/plotHandlers/PlotDirector.py" />
+      <change beforePath="$PROJECT_DIR$/pyugend/plotHandlers/BuilderAttritionPlot.py" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/pyugend/plotHandlers/PlotDirector.py" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/pyugend/plotHandlers/PlotSettings.py" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/pyugend/plotHandlers/abcPlotBuilder.py" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/pyugend/plotHandlers/abcSettingsBuilder.py" afterPath="" />
     </list>
     <ignored path="pyugend.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -63,7 +72,7 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Comparison.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Comparison.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/pyugend/Comparison.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="249">
@@ -71,28 +80,6 @@
               <folding>
                 <element signature="e#24#42#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="abcPlotBuilder.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/pyugend/plotHandlers/abcPlotBuilder.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="458">
-              <caret line="38" column="5" lean-forward="false" selection-start-line="38" selection-start-column="5" selection-end-line="38" selection-end-column="5" />
-              <folding>
-                <element signature="e#1396#1406#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="PlotDirector.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/pyugend/plotHandlers/PlotDirector.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="146">
-              <caret line="28" column="43" lean-forward="false" selection-start-line="28" selection-start-column="43" selection-end-line="28" selection-end-column="43" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -239,12 +226,6 @@
               <item name="py-university-gender-dynamics-pkg" type="462c0819:PsiDirectoryNode" />
               <item name="pyugend" type="462c0819:PsiDirectoryNode" />
               <item name="data" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="pyugend" type="b2602c69:ProjectViewProjectNode" />
-              <item name="py-university-gender-dynamics-pkg" type="462c0819:PsiDirectoryNode" />
-              <item name="pyugend" type="462c0819:PsiDirectoryNode" />
-              <item name="plotHandlers" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="pyugend" type="b2602c69:ProjectViewProjectNode" />
@@ -800,13 +781,6 @@
       <option name="presentableId" value="Default" />
       <updated>1461126958316</updated>
     </task>
-    <task id="LOCAL-00037" summary="fixed error in the multiple runs detail function.">
-      <created>1464057732812</created>
-      <option name="number" value="00037" />
-      <option name="presentableId" value="LOCAL-00037" />
-      <option name="project" value="LOCAL" />
-      <updated>1464057732812</updated>
-    </task>
     <task id="LOCAL-00038" summary="fixed error in the multiple runs detail function.">
       <created>1464135463672</created>
       <option name="number" value="00038" />
@@ -1143,7 +1117,14 @@
       <option name="project" value="LOCAL" />
       <updated>1513206505934</updated>
     </task>
-    <option name="localTasksCounter" value="86" />
+    <task id="LOCAL-00086" summary="creating the plot settings builder and the plot builder classes. Added files abcPlotBuilder and PlotDirector files.">
+      <created>1513206640248</created>
+      <option name="number" value="00086" />
+      <option name="presentableId" value="LOCAL-00086" />
+      <option name="project" value="LOCAL" />
+      <updated>1513206640248</updated>
+    </task>
+    <option name="localTasksCounter" value="87" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -1507,23 +1488,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pyugend/Comparison.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="249">
-          <caret line="989" column="45" lean-forward="false" selection-start-line="989" selection-start-column="45" selection-end-line="989" selection-end-column="45" />
-          <folding>
-            <element signature="e#24#42#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/pyugend/plotHandlers/abcSettingsBuilder.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-10">
           <caret line="30" column="0" lean-forward="false" selection-start-line="30" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
-          <folding>
-            <element signature="e#1393#1403#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1531,9 +1500,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="390">
           <caret line="34" column="33" lean-forward="false" selection-start-line="34" selection-start-column="33" selection-end-line="34" selection-end-column="33" />
-          <folding>
-            <element signature="e#1390#1439#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1549,9 +1516,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="458">
           <caret line="38" column="5" lean-forward="false" selection-start-line="38" selection-start-column="5" selection-end-line="38" selection-end-column="5" />
-          <folding>
-            <element signature="e#1396#1406#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1568,6 +1533,16 @@
         <state relative-caret-position="146">
           <caret line="28" column="43" lean-forward="false" selection-start-line="28" selection-start-column="43" selection-end-line="28" selection-end-column="43" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pyugend/Comparison.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="249">
+          <caret line="989" column="45" lean-forward="false" selection-start-line="989" selection-start-column="45" selection-end-line="989" selection-end-column="45" />
+          <folding>
+            <element signature="e#24#42#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
