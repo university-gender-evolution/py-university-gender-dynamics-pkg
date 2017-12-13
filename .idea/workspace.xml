@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="db3b48aa-1b4d-4f09-96e2-54f1ff5c70d7" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/pyugend/Comparison.py" afterPath="$PROJECT_DIR$/pyugend/Comparison.py" />
     </list>
     <ignored path="pyugend.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -783,13 +782,6 @@
       <option name="presentableId" value="Default" />
       <updated>1461126958316</updated>
     </task>
-    <task id="LOCAL-00039" summary="adding function to compute the percentage of women at each professor level. Also started to write plotting function for this data.">
-      <created>1464362220110</created>
-      <option name="number" value="00039" />
-      <option name="presentableId" value="LOCAL-00039" />
-      <option name="project" value="LOCAL" />
-      <updated>1464362220110</updated>
-    </task>
     <task id="LOCAL-00040" summary="added anaconda packaging script to packaging directory.">
       <created>1465307352061</created>
       <option name="number" value="00040" />
@@ -1126,7 +1118,14 @@
       <option name="project" value="LOCAL" />
       <updated>1513207431472</updated>
     </task>
-    <option name="localTasksCounter" value="88" />
+    <task id="LOCAL-00088" summary="fixing proportion chart.">
+      <created>1513208724068</created>
+      <option name="number" value="00088" />
+      <option name="presentableId" value="LOCAL-00088" />
+      <option name="project" value="LOCAL" />
+      <updated>1513208724068</updated>
+    </task>
+    <option name="localTasksCounter" value="89" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -1239,7 +1238,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="created the probability by level plot. set it up with removal of titles so barbara can configure them:&#10;&#10;This closes #10" />
     <MESSAGE value="created the probability by level plot. set it up with removal of titles so barbara can configure them:&#10;&#10;This closes https://github.com/university-gender-evolution/notebooks-univ-gender/issues/10" />
     <MESSAGE value="Updated the run_multiple() function to use a copy rather than view of the pandas dataframe. This should close the warning message.&#10;&#10;This closes https://github.com/university-gender-evolution/notebooks-univ-gender/issues/2" />
     <MESSAGE value="update plot titles for matrix plot 4.4.3 on the comparison.py plot_comparison_detail() function.&#10;&#10;Fixes: https://github.com/university-gender-evolution/notebooks-univ-gender/issues/5" />
@@ -1264,7 +1262,8 @@
     <MESSAGE value="creating the plot settings builder and the plot builder classes." />
     <MESSAGE value="creating the plot settings builder and the plot builder classes. Added files abcPlotBuilder and PlotDirector files." />
     <MESSAGE value="moved files to the main source folder and fixed links." />
-    <option name="LAST_COMMIT_MESSAGE" value="moved files to the main source folder and fixed links." />
+    <MESSAGE value="fixing proportion chart." />
+    <option name="LAST_COMMIT_MESSAGE" value="fixing proportion chart." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
