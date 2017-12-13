@@ -16,8 +16,6 @@ from .Mod_Stoch_FBPH import Mod_Stoch_FBPH
 from .Mod_Validate_Sweep import Mod_Validate_Sweep
 from .ModelGenderDiversity import Model2GenderDiversity
 from .Comparison import Comparison
-from .data.DataManagement import DataManagement
-from .data.abcDepartmentData import abcDepartmentData
 
 
 
