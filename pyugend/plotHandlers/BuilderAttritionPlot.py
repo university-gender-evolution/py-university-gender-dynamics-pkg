@@ -28,11 +28,11 @@ __email__ = 'cyclotomiq@gmail.com'
 __status__ = ''
 
 
-from .abcPlotBuilder import abcPlotBuilder
+from .abcPlotBuilder import abcOverallPlotBuilder
 from .abcSettingsBuilder import abcPlotSettingsBuilder
 
 
-class BuilderAttritionPlot(abcPlotBuilder):
+class BuilderAttritionPlotOverall(abcOverallPlotBuilder):
 
 
 
@@ -60,7 +60,8 @@ class BuilderAttritionPlot(abcPlotBuilder):
 
 class BuilderSettingsAttritionPlot(abcPlotSettingsBuilder):
 
-
+    def __init__(self):
+        pass
 
 
 

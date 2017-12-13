@@ -7,7 +7,7 @@ from operator import add, sub
 from .ColumnSpecs import MODEL_RUN_COLUMNS, EXPORT_COLUMNS_FOR_CSV
 import datetime
 from .DataManagement import DataManagement
-from .plotHandlers.BuilderAttritionPlot import BuilderAttritionPlot
+from .plotHandlers.BuilderAttritionPlot import BuilderAttritionPlotOverall
 from .plotHandlers.PlotDirector import PlotDirector
 
 
@@ -987,7 +987,7 @@ class Comparison():
 
     def plot_attrition_overall(self, settings):
 
-        builder = BuilderAttritionPlot(settings)
+        builder = BuilderAttritionPlotOverall(settings)
         director = PlotDirector()
         show(director(builder))
 
