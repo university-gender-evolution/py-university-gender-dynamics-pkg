@@ -7,8 +7,8 @@ from operator import add, sub
 from .ColumnSpecs import MODEL_RUN_COLUMNS, EXPORT_COLUMNS_FOR_CSV
 import datetime
 from .DataManagement import DataManagement
-from .plotHandlers.BuilderAttritionPlot import BuilderAttritionPlotOverall
-from .plotHandlers.PlotDirector import PlotDirector
+from .BuilderOverallAttritionPlot import BuilderOverallAttritionPlot
+from .PlotDirector import PlotDirector
 
 
 height = 700

@@ -32,7 +32,7 @@ from .abcPlotBuilder import abcOverallPlotBuilder
 from .abcSettingsBuilder import abcPlotSettingsBuilder
 
 
-class BuilderAttritionPlotOverall(abcOverallPlotBuilder):
+class BuilderOverallAttritionPlot(abcOverallPlotBuilder):
 
 
 
