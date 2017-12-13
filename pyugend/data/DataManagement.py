@@ -1,9 +1,9 @@
 
-
 from .abcDepartmentData import abcDepartmentData
 import pandas as pd
-
-
+from . import dirFinder
+import os
+data_dir = os.path.dirname(os.path.abspath(dirFinder.__file__))
 
 class DataManagement(abcDepartmentData):
 
@@ -12,8 +12,9 @@ class DataManagement(abcDepartmentData):
         self.data = self.load_data()
 
     def load_data(self):
-        a = pd.read_csv('mgmt_data.csv')
-        return a
+
+        return pd.read_csv(data_dir+'/mgmt_data.csv')
+
 
     def get_data(self):
         return self.data

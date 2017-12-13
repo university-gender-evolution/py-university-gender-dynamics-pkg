@@ -2,8 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="db3b48aa-1b4d-4f09-96e2-54f1ff5c70d7" name="Default" comment="">
+      <change beforePath="" afterPath="$PROJECT_DIR$/pyugend/data/dirFinder.py" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/pyugend/__init__.py" afterPath="$PROJECT_DIR$/pyugend/__init__.py" />
+      <change beforePath="$PROJECT_DIR$/pyugend/data/DataManagement.py" afterPath="$PROJECT_DIR$/pyugend/data/DataManagement.py" />
       <change beforePath="$PROJECT_DIR$/setup.py" afterPath="$PROJECT_DIR$/setup.py" />
     </list>
     <ignored path="pyugend.iws" />
@@ -29,7 +30,7 @@
     <SUITE FILE_PATH="coverage/pyugend$py_test_in_test_plot_empirical_probability_gender_proportion.coverage" NAME="py.test in test_plot_empirical_probability_gender_proportion Coverage Results" MODIFIED="1468193652625" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
     <SUITE FILE_PATH="coverage/pyugend$py_test_in_test_FBPH_alt_plot_unfilled.coverage" NAME="py.test in test_FBPH_alt_plot_unfilled Coverage Results" MODIFIED="1462667695847" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
     <SUITE FILE_PATH="coverage/pyugend$py_test_in_test_FBPH_plot_pct_gender_detail.coverage" NAME="py.test in test_FBPH_plot_pct_gender_detail Coverage Results" MODIFIED="1465524876974" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
-    <SUITE FILE_PATH="coverage/pyugend$py_test_for_test_Plots_test_bokeh_comparison_plot_overall_one_model.coverage" NAME="py.test for test_Plots.test_bokeh_comparison_plot_overall_one_model Coverage Results" MODIFIED="1513128007558" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
+    <SUITE FILE_PATH="coverage/pyugend$py_test_for_test_Plots_test_bokeh_comparison_plot_overall_one_model.coverage" NAME="py.test for test_Plots.test_bokeh_comparison_plot_overall_one_model Coverage Results" MODIFIED="1513135231808" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
     <SUITE FILE_PATH="coverage/pyugend$py_test_in_test_FBPH_alt_plot_gender_proportion.coverage" NAME="py.test in test_FBPH_alt_plot_gender_proportion Coverage Results" MODIFIED="1462687813203" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
     <SUITE FILE_PATH="coverage/pyugend$py_test_in_test_FBHP_model_run.coverage" NAME="py.test in test_FBHP_model_run Coverage Results" MODIFIED="1462419437693" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
     <SUITE FILE_PATH="coverage/pyugend$py_test_in_test_plot_dept_size_over_time_shrinking.coverage" NAME="py.test in test_plot_dept_size_over_time_shrinking Coverage Results" MODIFIED="1462428043365" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
@@ -64,18 +65,6 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Comparison.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/pyugend/Comparison.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="475">
-              <caret line="25" column="36" lean-forward="false" selection-start-line="25" selection-start-column="36" selection-end-line="25" selection-end-column="36" />
-              <folding>
-                <element signature="e#24#42#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="test_Plots.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/tests/test_Plots.py">
           <provider selected="true" editor-type-id="text-editor">
@@ -100,58 +89,24 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="DataManagement.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="DataManagement.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/pyugend/data/DataManagement.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="266">
-              <caret line="14" column="38" lean-forward="false" selection-start-line="14" selection-start-column="38" selection-end-line="14" selection-end-column="38" />
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding>
-                <element signature="e#2#50#0" expanded="true" />
+                <element signature="e#1#49#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="setup.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="setup.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/setup.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="218">
-              <caret line="38" column="18" lean-forward="false" selection-start-line="38" selection-start-column="18" selection-end-line="38" selection-end-column="18" />
+            <state relative-caret-position="268">
+              <caret line="40" column="4" lean-forward="true" selection-start-line="40" selection-start-column="4" selection-end-line="40" selection-end-column="4" />
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="__init__.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/pyugend/data/__init__.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="95">
-              <caret line="5" column="48" lean-forward="false" selection-start-line="5" selection-start-column="48" selection-end-line="5" selection-end-column="48" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="__init__.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/pyugend/__init__.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="342">
-              <caret line="18" column="0" lean-forward="false" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
-              <folding>
-                <element signature="e#234#264#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Models.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/pyugend/Models.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="209">
-              <caret line="17" column="25" lean-forward="false" selection-start-line="17" selection-start-column="25" selection-end-line="17" selection-end-column="25" />
-              <folding>
-                <element signature="e#0#248#1" expanded="false" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -201,8 +156,9 @@
         <option value="$PROJECT_DIR$/pyugend/data/__init__.py" />
         <option value="$PROJECT_DIR$/pyugend/Models.py" />
         <option value="$PROJECT_DIR$/pyugend/__init__.py" />
-        <option value="$PROJECT_DIR$/pyugend/data/DataManagement.py" />
         <option value="$PROJECT_DIR$/setup.py" />
+        <option value="$PROJECT_DIR$/pyugend/data/dirFinder.py" />
+        <option value="$PROJECT_DIR$/pyugend/data/DataManagement.py" />
       </list>
     </option>
   </component>
@@ -836,13 +792,6 @@
       <option name="presentableId" value="Default" />
       <updated>1461126958316</updated>
     </task>
-    <task id="LOCAL-00027" summary="updated for build of version 0.1.0">
-      <created>1462866302334</created>
-      <option name="number" value="00027" />
-      <option name="presentableId" value="LOCAL-00027" />
-      <option name="project" value="LOCAL" />
-      <updated>1462866302334</updated>
-    </task>
     <task id="LOCAL-00028" summary="added the Comparison object to __init__.py">
       <created>1462870383094</created>
       <option name="number" value="00028" />
@@ -1179,39 +1128,46 @@
       <option name="project" value="LOCAL" />
       <updated>1513127712641</updated>
     </task>
-    <option name="localTasksCounter" value="76" />
+    <task id="LOCAL-00076" summary="trying to fix import of data into package.">
+      <created>1513128035991</created>
+      <option name="number" value="00076" />
+      <option name="presentableId" value="LOCAL-00076" />
+      <option name="project" value="LOCAL" />
+      <updated>1513128035991</updated>
+    </task>
+    <option name="localTasksCounter" value="77" />
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="py_test_for_test_Plots_test_bokeh_comparison_plot_overall_one_model - 2017.12.12 at 13h 29m 24s.xml">
+    <history-entry file="py_test_for_test_Plots_test_bokeh_comparison_plot_overall_one_model - 2017.12.12 at 17h 21m 14s.xml">
       <configuration name="py.test for test_Plots.test_bokeh_comparison_plot_overall_one_model" configurationId="tests" />
     </history-entry>
-    <history-entry file="py_test_for_test_Plots_test_bokeh_comparison_plot_overall_one_model - 2017.12.12 at 13h 32m 04s.xml">
+    <history-entry file="py_test_for_test_Plots_test_bokeh_comparison_plot_overall_one_model - 2017.12.12 at 17h 21m 21s.xml">
       <configuration name="py.test for test_Plots.test_bokeh_comparison_plot_overall_one_model" configurationId="tests" />
     </history-entry>
-    <history-entry file="py_test_for_test_Plots_test_bokeh_comparison_plot_overall_one_model - 2017.12.12 at 13h 32m 35s.xml">
+    <history-entry file="py_test_for_test_Plots_test_bokeh_comparison_plot_overall_one_model - 2017.12.12 at 17h 21m 45s.xml">
       <configuration name="py.test for test_Plots.test_bokeh_comparison_plot_overall_one_model" configurationId="tests" />
     </history-entry>
-    <history-entry file="py_test_for_test_Plots_test_bokeh_comparison_plot_overall_one_model - 2017.12.12 at 17h 17m 28s.xml">
+    <history-entry file="py_test_for_test_Plots_test_bokeh_comparison_plot_overall_one_model - 2017.12.12 at 17h 23m 43s.xml">
       <configuration name="py.test for test_Plots.test_bokeh_comparison_plot_overall_one_model" configurationId="tests" />
     </history-entry>
-    <history-entry file="py_test_for_test_Plots_test_bokeh_comparison_plot_overall_one_model - 2017.12.12 at 17h 18m 47s.xml">
+    <history-entry file="py_test_for_test_Plots_test_bokeh_comparison_plot_overall_one_model - 2017.12.12 at 17h 27m 47s.xml">
       <configuration name="py.test for test_Plots.test_bokeh_comparison_plot_overall_one_model" configurationId="tests" />
     </history-entry>
-    <history-entry file="py_test_for_test_Plots_test_bokeh_comparison_plot_overall_one_model - 2017.12.12 at 17h 20m 08s.xml">
+    <history-entry file="py_test_for_test_Plots_test_bokeh_comparison_plot_overall_one_model - 2017.12.12 at 17h 49m 14s.xml">
       <configuration name="py.test for test_Plots.test_bokeh_comparison_plot_overall_one_model" configurationId="tests" />
     </history-entry>
-    <history-entry file="py_test_in_test_plot_overall_probability_proportion - 2016.08.23 at 20h 27m 13s.xml">
-      <configuration name="py.test in test_plot_overall_probability_proportion" configurationId="tests" />
+    <history-entry file="py_test_for_test_Plots_test_bokeh_comparison_plot_overall_one_model - 2017.12.12 at 19h 18m 31s.xml">
+      <configuration name="py.test for test_Plots.test_bokeh_comparison_plot_overall_one_model" configurationId="tests" />
     </history-entry>
-    <history-entry file="py_test_in_test_plot_overall_probability_proportion - 2016.08.23 at 20h 29m 07s.xml">
-      <configuration name="py.test in test_plot_overall_probability_proportion" configurationId="tests" />
+    <history-entry file="py_test_for_test_Plots_test_bokeh_comparison_plot_overall_one_model - 2017.12.12 at 19h 18m 43s.xml">
+      <configuration name="py.test for test_Plots.test_bokeh_comparison_plot_overall_one_model" configurationId="tests" />
     </history-entry>
-    <history-entry file="py_test_in_test_plot_overall_probability_proportion - 2017.12.12 at 13h 27m 15s.xml">
-      <configuration name="py.test in test_plot_overall_probability_proportion" configurationId="tests" />
+    <history-entry file="py_test_for_test_Plots_test_bokeh_comparison_plot_overall_one_model - 2017.12.12 at 19h 19m 02s.xml">
+      <configuration name="py.test for test_Plots.test_bokeh_comparison_plot_overall_one_model" configurationId="tests" />
     </history-entry>
-    <history-entry file="py_test_in_test_plot_overall_probability_proportion - 2017.12.12 at 13h 28m 32s.xml">
-      <configuration name="py.test in test_plot_overall_probability_proportion" configurationId="tests" />
+    <history-entry file="py_test_for_test_Plots_test_bokeh_comparison_plot_overall_one_model - 2017.12.12 at 19h 20m 34s.xml">
+      <configuration name="py.test for test_Plots.test_bokeh_comparison_plot_overall_one_model" configurationId="tests" />
     </history-entry>
   </component>
   <component name="TodoView">
@@ -1232,8 +1188,8 @@
       <window_info id="Documentation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32992464" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" x="0" y="0" width="430" height="859" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32855567" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32768363" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.33559322" sideWeight="0.4956943" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32855567" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.33559322" sideWeight="0.4956943" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32768363" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20452099" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -1308,23 +1264,6 @@
     </watches-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/pyugend/Models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="483">
-          <caret line="23" column="22" lean-forward="false" selection-start-line="23" selection-start-column="22" selection-end-line="23" selection-end-column="22" />
-          <folding>
-            <element signature="e#0#248#1" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pyugend/__init__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/pyugend/__init__.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -1478,13 +1417,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/packaging/conda_pyugend/meta.yaml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="46">
-          <caret line="2" column="16" lean-forward="false" selection-start-line="2" selection-start-column="16" selection-end-line="2" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/pyugend/Mod_Stoch_FBHP.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="212">
@@ -1542,13 +1474,19 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pyugend/Models.py">
+    <entry file="file://$PROJECT_DIR$/MANIFEST.in">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="209">
-          <caret line="17" column="25" lean-forward="false" selection-start-line="17" selection-start-column="25" selection-end-line="17" selection-end-column="25" />
-          <folding>
-            <element signature="e#0#248#1" expanded="false" />
-          </folding>
+        <state relative-caret-position="95">
+          <caret line="5" column="33" lean-forward="false" selection-start-line="5" selection-start-column="33" selection-end-line="5" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/packaging/conda_pyugend/meta.yaml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="247">
+          <caret line="36" column="0" lean-forward="true" selection-start-line="36" selection-start-column="0" selection-end-line="36" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1570,21 +1508,39 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pyugend/data/DataManagement.py">
+    <entry file="file://$PROJECT_DIR$/pyugend/Models.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="266">
-          <caret line="14" column="38" lean-forward="false" selection-start-line="14" selection-start-column="38" selection-end-line="14" selection-end-column="38" />
+        <state relative-caret-position="209">
+          <caret line="17" column="25" lean-forward="false" selection-start-line="17" selection-start-column="25" selection-end-line="17" selection-end-column="25" />
           <folding>
-            <element signature="e#2#50#0" expanded="true" />
+            <element signature="e#0#248#1" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pyugend/data/dirFinder.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="19">
+          <caret line="1" column="0" lean-forward="true" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/setup.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="218">
-          <caret line="38" column="18" lean-forward="false" selection-start-line="38" selection-start-column="18" selection-end-line="38" selection-end-column="18" />
+        <state relative-caret-position="268">
+          <caret line="40" column="4" lean-forward="true" selection-start-line="40" selection-start-column="4" selection-end-line="40" selection-end-column="4" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pyugend/data/DataManagement.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#1#49#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

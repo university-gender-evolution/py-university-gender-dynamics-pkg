@@ -36,7 +36,7 @@ setup(
     package_dir={'pyugend':
                  'pyugend'},
     package_data={
-      'mydata': ['data/*.csv'],
+      'mydata': ['pyugend/data/*.csv'],
    },
     include_package_data=True,
     install_requires=requirements,
