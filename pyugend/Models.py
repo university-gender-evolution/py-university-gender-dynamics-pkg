@@ -15,7 +15,7 @@ import datetime
 from operator import neg
 from .ColumnSpecs import MODEL_RUN_COLUMNS, EXPORT_COLUMNS_FOR_CSV
 from .ColumnSpecs import RESULTS_COLUMNS, FEMALE_MATRIX_COLUMNS
-from DataManagement import DataManagement
+from .DataManagement import DataManagement
 
 
 ## Initialize Constants
