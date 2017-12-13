@@ -35,9 +35,6 @@ setup(
     ],
     package_dir={'pyugend':
                  'pyugend'},
-    package_data={
-      'mydata': ['pyugend/data/*.csv'],
-   },
     include_package_data=True,
     install_requires=requirements,
     license="ISCL",
