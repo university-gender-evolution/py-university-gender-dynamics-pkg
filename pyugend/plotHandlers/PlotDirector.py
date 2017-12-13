@@ -3,7 +3,7 @@
 
 """
 
-Director class for plotting 
+Director class for plotting
 
 """
 
@@ -26,7 +26,7 @@ __maintainer__ = 'krishna bhogaonker'
 __email__ = 'cyclotomiq@gmail.com'
 __status__ = 'pre-alpha'
 
-from abcDirector import abcDirector
+from pyugend.abcDirector import abcDirector
 
 class PlotDirector(abcDirector):
 
