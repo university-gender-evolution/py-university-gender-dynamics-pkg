@@ -17,6 +17,8 @@ import numpy as np
 import pandas as pd
 from numpy.random import binomial, multinomial
 from .Models import Base_model
+from .ModelGenderDiversity import Model2GenderDiversity
+
 
 MODEL_RUN_COLUMNS = list(['number_f1',
                           'number_f2',
@@ -70,37 +72,14 @@ EXPORT_COLUMNS_FOR_CSV = list(['hiring_rate_women_1',
                                'duration'])
 
 
-class Model2GenderDiversity(Base_model):
+class ModelGendDiversityLinearGrowth(Model2GenderDiversity):
     def __init__(self, **kwds):
         Base_model.__init__(self, **kwds)
-        self.name = "model-3-baseline"
-        self.label = "model-3-baseline"
+        self.name = "model-3-linear-growth"
+        self.label = "model-3-linear-growth"
 
-
-    def init_hiring_rates(self,
-                          _hiring_rate_f1,
-                          _hiring_rate_f2,
-                          _hiring_rate_f3,
-                          _hiring_rate_m1,
-                          _hiring_rate_m2,
-                          _hiring_rate_m3):
-
-        self.hiring_rate_f1 = _hiring_rate_f1
-        self.hiring_rate_f2 = _hiring_rate_f2
-        self.hiring_rate_f3 = _hiring_rate_f3
-        self.hiring_rate_m1 = _hiring_rate_m1
-        self.hiring_rate_m2 = _hiring_rate_m2
-        self.hiring_rate_m3 = _hiring_rate_m3
-
-    def init_default_hiring_rate(self):
-
-        self.hiring_rate_f1 = 5/40
-        self.hiring_rate_f2 = 2/40
-        self.hiring_rate_f3 = 1/40
-        self.hiring_rate_m1 = 24/40
-        self.hiring_rate_m2 = 3/40
-        self.hiring_rate_m3 = 5/40
-
+    def init_growth_rate(self, candidate):
+        self.growth_rate = candidate
 
     def run_model(self):
 
@@ -300,24 +279,23 @@ class Model2GenderDiversity(Base_model):
             while flag == False:
 
                 changes = np.random.choice([-1, 0, 1], variation_range)
-
-                # [-1, -1, 0] gains/losses -- where to apply these?
-                # levels {1,2,3}, pick randomly from this set
-                # [1,1,2]
+                department_growth = round(department_size*self.growth_rate)
+                department_size_upper_bound = department_size_upper_bound + department_growth
+                department_size_lower_bound = department_size_lower_bound + department_growth
                 # matching wise [(-1, 1), (-1, 1), (0, 2)]
-
-                if (department_size + changes.sum() <=
-                        department_size_upper_bound and department_size +
+                new_department_size = department_size + department_growth
+                if (new_department_size + changes.sum() <=
+                        department_size_upper_bound and new_department_size +
                     changes.sum() >= department_size_lower_bound):
-                    extra_vacancies = changes.sum()
+                    extra_vacancies = department_growth + changes.sum()
                     flag = True
 
-                if (department_size > department_size_upper_bound):
+                if (new_department_size > department_size_upper_bound):
                     extra_vacancies = 0
                     flag = True
 
                 if department_size < department_size_lower_bound:
-                    extra_vacancies = variation_range
+                    extra_vacancies = department_growth+variation_range
                     flag = True
 
         df_ = pd.DataFrame(self.res)
