@@ -277,6 +277,9 @@ class Comparison():
                 lower_band = list(map(sub, [y for y in yval],[1.96*f for f in
                                                          fill_matrix]))
 
+            if plottype == 'gender numbers':
+                pass
+
             if plottype == 'unfilled vacancies':
                 fill_matrix = [m.results_matrix['std_unfilled'] for m in
                                self.mlist]
