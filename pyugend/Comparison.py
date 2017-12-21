@@ -439,7 +439,7 @@ class Comparison():
                          legend_location='top right',
                          model_legend_label=['model1', 'model2'],
                          transparency = 0.25,
-                         linecolor=['blue', 'green', 'purple', 'blue'],
+                         linecolor=['green', 'purple', 'blue', 'blue'],
                          target_plot=False,
                          target_color='#ca0020',
                          target_number_color = ['red', 'orange','purple'],
@@ -461,7 +461,7 @@ class Comparison():
                          vertical_line_color = ['black', 'purple'],
                          data_plot=True,
                          data_line_color=['blue'],
-                         data_line_legend_label=['Management data']
+                         data_line_legend_label=['Management Data']
                          ):
 
         # Choose plot type. This block will initialize the data for the
