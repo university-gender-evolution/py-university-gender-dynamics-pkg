@@ -66,8 +66,8 @@
       <file leaf-file-name="Comparison.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/pyugend/Comparison.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="363">
-              <caret line="371" column="40" lean-forward="false" selection-start-line="371" selection-start-column="40" selection-end-line="371" selection-end-column="40" />
+            <state relative-caret-position="627">
+              <caret line="145" column="0" lean-forward="true" selection-start-line="145" selection-start-column="0" selection-end-line="145" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -88,8 +88,8 @@
       <file leaf-file-name="ModelGenderDiversity.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/pyugend/ModelGenderDiversity.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2409">
-              <caret line="76" column="29" lean-forward="false" selection-start-line="76" selection-start-column="29" selection-end-line="76" selection-end-column="29" />
+            <state relative-caret-position="-1584">
+              <caret line="24" column="12" lean-forward="true" selection-start-line="24" selection-start-column="12" selection-end-line="24" selection-end-column="12" />
               <folding>
                 <element signature="e#253#271#0" expanded="true" />
               </folding>
@@ -781,13 +781,6 @@
       <option name="presentableId" value="Default" />
       <updated>1461126958316</updated>
     </task>
-    <task id="LOCAL-00043" summary="fixing the caption locations for plots.">
-      <created>1465312973657</created>
-      <option name="number" value="00043" />
-      <option name="presentableId" value="LOCAL-00043" />
-      <option name="project" value="LOCAL" />
-      <updated>1465312973657</updated>
-    </task>
     <task id="LOCAL-00044" summary="adding captions to model and comparison plots.">
       <created>1465314880287</created>
       <option name="number" value="00044" />
@@ -1124,7 +1117,14 @@
       <option name="project" value="LOCAL" />
       <updated>1513894426866</updated>
     </task>
-    <option name="localTasksCounter" value="92" />
+    <task id="LOCAL-00092" summary="cleaning up formatting of overall plots. Changed line dash style of data plots.">
+      <created>1513895173552</created>
+      <option name="number" value="00092" />
+      <option name="presentableId" value="LOCAL-00092" />
+      <option name="project" value="LOCAL" />
+      <updated>1513895173552</updated>
+    </task>
+    <option name="localTasksCounter" value="93" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -1237,7 +1237,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="update plot titles for matrix plot 4.4.3 on the comparison.py plot_comparison_detail() function.&#10;&#10;Fixes: https://github.com/university-gender-evolution/notebooks-univ-gender/issues/5" />
     <MESSAGE value="update probability by level chart to make some changes to sequence of argument to facilitate unpacking." />
     <MESSAGE value="fixed extra comma error in plot_empirical_probability_by_level() function." />
     <MESSAGE value="update Model.py plot_multiple_runs_detail_percentage function to allow for user config of plot titles and axis labels.&#10;&#10;Fixes: https://github.com/university-gender-evolution/notebooks-univ-gender/issues/9" />
@@ -1262,7 +1261,8 @@
     <MESSAGE value="fixing proportion chart." />
     <MESSAGE value="incorporated simple growth into the ModelGenderDiversityLinearGrowth" />
     <MESSAGE value="cleaning up formatting of overall plots." />
-    <option name="LAST_COMMIT_MESSAGE" value="cleaning up formatting of overall plots." />
+    <MESSAGE value="cleaning up formatting of overall plots. Changed line dash style of data plots." />
+    <option name="LAST_COMMIT_MESSAGE" value="cleaning up formatting of overall plots. Changed line dash style of data plots." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1482,16 +1482,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pyugend/ModelGenderDiversity.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2409">
-          <caret line="76" column="29" lean-forward="false" selection-start-line="76" selection-start-column="29" selection-end-line="76" selection-end-column="29" />
-          <folding>
-            <element signature="e#253#271#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/pyugend/ModelGendDiversityLinearGrowth.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="297">
@@ -1502,10 +1492,20 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/pyugend/ModelGenderDiversity.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1584">
+          <caret line="24" column="12" lean-forward="true" selection-start-line="24" selection-start-column="12" selection-end-line="24" selection-end-column="12" />
+          <folding>
+            <element signature="e#253#271#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/pyugend/Comparison.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="363">
-          <caret line="371" column="40" lean-forward="false" selection-start-line="371" selection-start-column="40" selection-end-line="371" selection-end-column="40" />
+        <state relative-caret-position="627">
+          <caret line="145" column="0" lean-forward="true" selection-start-line="145" selection-start-column="0" selection-end-line="145" selection-end-column="0" />
           <folding />
         </state>
       </provider>

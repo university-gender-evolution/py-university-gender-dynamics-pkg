@@ -140,6 +140,10 @@ class Comparison():
             dval = self.mlist[0].mgmt_data.get_field('gender_proportion_dept')
 
         if plottype == 'gender numbers':
+            yval = [sum(list([m.results_matrix['mean_f1'],
+                              m.results_matrix['mean_f2'],
+                              m.results_matrix['mean_f3']])) for m in self.mlist]
+
             data_plot = False
             pass
 
