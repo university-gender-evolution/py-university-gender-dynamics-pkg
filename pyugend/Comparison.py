@@ -220,6 +220,15 @@ class Comparison():
                 lower_band = [m.results_matrix['gendprop_025'] for m in
                               self.mlist]
 
+            if plottype == 'gender numbers':
+                upper_band = [sum(list([m.results_matrix['f1_975'],
+                             m.results_matrix['f2_975'],
+                             m.results_matrix['f3_975']])) for m in self.mlist]
+
+                lower_band = [sum(list([m.results_matrix['f1_025'],
+                             m.results_matrix['f2_025'],
+                             m.results_matrix['f3_025']])) for m in self.mlist]
+
             if plottype == 'unfilled vacancies':
                 upper_band = [m.results_matrix['unfilled_975'] for m in
                               self.mlist]

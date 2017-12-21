@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="db3b48aa-1b4d-4f09-96e2-54f1ff5c70d7" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change beforePath="$PROJECT_DIR$/packaging/build_script/anaconda_build_script.sh" afterPath="$PROJECT_DIR$/packaging/build_script/anaconda_build_script.sh" />
       <change beforePath="$PROJECT_DIR$/pyugend/Comparison.py" afterPath="$PROJECT_DIR$/pyugend/Comparison.py" />
     </list>
     <ignored path="pyugend.iws" />
@@ -66,8 +67,8 @@
       <file leaf-file-name="Comparison.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/pyugend/Comparison.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="627">
-              <caret line="145" column="0" lean-forward="true" selection-start-line="145" selection-start-column="0" selection-end-line="145" selection-end-column="0" />
+            <state relative-caret-position="396">
+              <caret line="225" column="53" lean-forward="false" selection-start-line="225" selection-start-column="53" selection-end-line="225" selection-end-column="53" />
               <folding />
             </state>
           </provider>
@@ -88,11 +89,21 @@
       <file leaf-file-name="ModelGenderDiversity.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/pyugend/ModelGenderDiversity.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1584">
-              <caret line="24" column="12" lean-forward="true" selection-start-line="24" selection-start-column="12" selection-end-line="24" selection-end-column="12" />
+            <state relative-caret-position="-891">
+              <caret line="24" column="12" lean-forward="false" selection-start-line="24" selection-start-column="12" selection-end-line="24" selection-end-column="12" />
               <folding>
                 <element signature="e#253#271#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ColumnSpecs.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/pyugend/ColumnSpecs.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="594">
+              <caret line="81" column="31" lean-forward="false" selection-start-line="81" selection-start-column="25" selection-end-line="81" selection-end-column="31" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -781,13 +792,6 @@
       <option name="presentableId" value="Default" />
       <updated>1461126958316</updated>
     </task>
-    <task id="LOCAL-00044" summary="adding captions to model and comparison plots.">
-      <created>1465314880287</created>
-      <option name="number" value="00044" />
-      <option name="presentableId" value="LOCAL-00044" />
-      <option name="project" value="LOCAL" />
-      <updated>1465314880287</updated>
-    </task>
     <task id="LOCAL-00045" summary="adding captions to model and comparison plots.">
       <created>1465514651437</created>
       <option name="number" value="00045" />
@@ -1124,7 +1128,14 @@
       <option name="project" value="LOCAL" />
       <updated>1513895173552</updated>
     </task>
-    <option name="localTasksCounter" value="93" />
+    <task id="LOCAL-00093" summary="created gender numbers overall plot. set the info settings in the Comparison object.">
+      <created>1513896395592</created>
+      <option name="number" value="00093" />
+      <option name="presentableId" value="LOCAL-00093" />
+      <option name="project" value="LOCAL" />
+      <updated>1513896395593</updated>
+    </task>
+    <option name="localTasksCounter" value="94" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -1237,7 +1248,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="update probability by level chart to make some changes to sequence of argument to facilitate unpacking." />
     <MESSAGE value="fixed extra comma error in plot_empirical_probability_by_level() function." />
     <MESSAGE value="update Model.py plot_multiple_runs_detail_percentage function to allow for user config of plot titles and axis labels.&#10;&#10;Fixes: https://github.com/university-gender-evolution/notebooks-univ-gender/issues/9" />
     <MESSAGE value="update Model.py plot_multiple_runs_detail_percentage function to allow for user config of plot titles and axis labels. Fixed an error in variable name for number_of_runs.&#10;" />
@@ -1262,14 +1272,15 @@
     <MESSAGE value="incorporated simple growth into the ModelGenderDiversityLinearGrowth" />
     <MESSAGE value="cleaning up formatting of overall plots." />
     <MESSAGE value="cleaning up formatting of overall plots. Changed line dash style of data plots." />
-    <option name="LAST_COMMIT_MESSAGE" value="cleaning up formatting of overall plots. Changed line dash style of data plots." />
+    <MESSAGE value="created gender numbers overall plot. set the info settings in the Comparison object." />
+    <option name="LAST_COMMIT_MESSAGE" value="created gender numbers overall plot. set the info settings in the Comparison object." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints-dialog>
         <breakpoints-dialog />
       </breakpoints-dialog>
-      <option name="time" value="36" />
+      <option name="time" value="37" />
     </breakpoint-manager>
     <watches-manager>
       <configuration name="tests">
@@ -1278,13 +1289,6 @@
     </watches-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/docs/conf.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="861">
-          <caret line="42" column="75" lean-forward="false" selection-start-line="42" selection-start-column="74" selection-end-line="42" selection-end-column="75" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/docs/readme.rst">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -1494,18 +1498,26 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/pyugend/ModelGenderDiversity.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1584">
-          <caret line="24" column="12" lean-forward="true" selection-start-line="24" selection-start-column="12" selection-end-line="24" selection-end-column="12" />
+        <state relative-caret-position="-891">
+          <caret line="24" column="12" lean-forward="false" selection-start-line="24" selection-start-column="12" selection-end-line="24" selection-end-column="12" />
           <folding>
             <element signature="e#253#271#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/pyugend/ColumnSpecs.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="594">
+          <caret line="81" column="31" lean-forward="false" selection-start-line="81" selection-start-column="25" selection-end-line="81" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/pyugend/Comparison.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="627">
-          <caret line="145" column="0" lean-forward="true" selection-start-line="145" selection-start-column="0" selection-end-line="145" selection-end-column="0" />
+        <state relative-caret-position="396">
+          <caret line="225" column="53" lean-forward="false" selection-start-line="225" selection-start-column="53" selection-end-line="225" selection-end-column="53" />
           <folding />
         </state>
       </provider>
