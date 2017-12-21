@@ -23,10 +23,10 @@ yes | conda build .
 
 echo "Finally, I will uninstall and reinstall the pyugend package."
 
-conda uninstall -y pyugend
+yes | conda uninstall -y pyugend
 
-conda remove pyugend
+yes | conda remove pyugend
 
-conda install -c krishnab75 pyugend=0.6 --force
+yes | conda install -c krishnab75 pyugend=0.6 --force
 
 

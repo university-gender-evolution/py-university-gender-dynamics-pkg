@@ -144,7 +144,18 @@ class Comparison():
                               m.results_matrix['mean_f2'],
                               m.results_matrix['mean_f3']])) for m in self.mlist]
 
-            data_plot = False
+            total_faculty = [sum(list([m.results_matrix['mean_m1'],
+                                       m.results_matrix['mean_m2'],
+                                       m.results_matrix['mean_m3'],
+                                       m.results_matrix['mean_f1'],
+                                       m.results_matrix['mean_f2'],
+                                       m.results_matrix['mean_f3']])) for m in self.mlist]
+
+            number_dynamic_target = [np.round(target * dept) for dept in total_faculty]
+
+            dval_female = self.mlist[0].mgmt_data.get_field('total_females_dept')
+
+
             pass
 
         if plottype == 'unfilled vacancies':
@@ -401,6 +412,14 @@ class Comparison():
                    legend=mf_data_label[1],
                    line_width=mf_data_linewidth[0],
                    line_dash=[4,4])
+
+        if plottype == 'gender numbers':
+            p.line(xval,
+                   number_dynamic_target[k],
+                   line_color=color_target,
+                   legend=target_plot_legend_label,
+                   line_width=target_plot_linewidth,
+                   line_dash=[6, 6])
 
 
         return(p)

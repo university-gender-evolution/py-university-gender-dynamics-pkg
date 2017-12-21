@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="db3b48aa-1b4d-4f09-96e2-54f1ff5c70d7" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change beforePath="$PROJECT_DIR$/packaging/build_script/anaconda_build_script.sh" afterPath="$PROJECT_DIR$/packaging/build_script/anaconda_build_script.sh" />
       <change beforePath="$PROJECT_DIR$/pyugend/Comparison.py" afterPath="$PROJECT_DIR$/pyugend/Comparison.py" />
     </list>
     <ignored path="pyugend.iws" />
@@ -66,8 +67,8 @@
       <file leaf-file-name="Comparison.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/pyugend/Comparison.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="282">
-              <caret line="280" column="20" lean-forward="false" selection-start-line="280" selection-start-column="20" selection-end-line="280" selection-end-column="20" />
+            <state relative-caret-position="9258">
+              <caret line="420" column="51" lean-forward="false" selection-start-line="420" selection-start-column="51" selection-end-line="420" selection-end-column="51" />
               <folding />
             </state>
           </provider>
@@ -791,13 +792,6 @@
       <option name="presentableId" value="Default" />
       <updated>1461126958316</updated>
     </task>
-    <task id="LOCAL-00046" summary="added plots to show the numbers of men and women for individual models and for the comparison between models.">
-      <created>1465535783467</created>
-      <option name="number" value="00046" />
-      <option name="presentableId" value="LOCAL-00046" />
-      <option name="project" value="LOCAL" />
-      <updated>1465535783467</updated>
-    </task>
     <task id="LOCAL-00047" summary="getting the package to work">
       <created>1465717479732</created>
       <option name="number" value="00047" />
@@ -1134,7 +1128,14 @@
       <option name="project" value="LOCAL" />
       <updated>1513896920415</updated>
     </task>
-    <option name="localTasksCounter" value="95" />
+    <task id="LOCAL-00095" summary="created gender numbers overall plot. set the info settings in the Comparison object. set pass for standard intervals. Need to figure that out later.">
+      <created>1513897021218</created>
+      <option name="number" value="00095" />
+      <option name="presentableId" value="LOCAL-00095" />
+      <option name="project" value="LOCAL" />
+      <updated>1513897021218</updated>
+    </task>
+    <option name="localTasksCounter" value="96" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -1247,7 +1248,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="update Model.py plot_multiple_runs_detail_percentage function to allow for user config of plot titles and axis labels.&#10;&#10;Fixes: https://github.com/university-gender-evolution/notebooks-univ-gender/issues/9" />
     <MESSAGE value="update Model.py plot_multiple_runs_detail_percentage function to allow for user config of plot titles and axis labels. Fixed an error in variable name for number_of_runs.&#10;" />
     <MESSAGE value="added function plot_comparison_percentage_women_by_level to Comparison object." />
     <MESSAGE value="added function plot_comparison_empirical_probability_proportion_by_level to Comparison object." />
@@ -1272,7 +1272,8 @@
     <MESSAGE value="cleaning up formatting of overall plots. Changed line dash style of data plots." />
     <MESSAGE value="created gender numbers overall plot. set the info settings in the Comparison object." />
     <MESSAGE value="created gender numbers overall plot. set the info settings in the Comparison object. set up empirical intervals." />
-    <option name="LAST_COMMIT_MESSAGE" value="created gender numbers overall plot. set the info settings in the Comparison object. set up empirical intervals." />
+    <MESSAGE value="created gender numbers overall plot. set the info settings in the Comparison object. set pass for standard intervals. Need to figure that out later." />
+    <option name="LAST_COMMIT_MESSAGE" value="created gender numbers overall plot. set the info settings in the Comparison object. set pass for standard intervals. Need to figure that out later." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1515,8 +1516,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/pyugend/Comparison.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="282">
-          <caret line="280" column="20" lean-forward="false" selection-start-line="280" selection-start-column="20" selection-end-line="280" selection-end-column="20" />
+        <state relative-caret-position="9258">
+          <caret line="420" column="51" lean-forward="false" selection-start-line="420" selection-start-column="51" selection-end-line="420" selection-end-column="51" />
           <folding />
         </state>
       </provider>
