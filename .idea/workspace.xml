@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="db3b48aa-1b4d-4f09-96e2-54f1ff5c70d7" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/packaging/build_script/anaconda_build_script.sh" afterPath="$PROJECT_DIR$/packaging/build_script/anaconda_build_script.sh" />
       <change beforePath="$PROJECT_DIR$/pyugend/Comparison.py" afterPath="$PROJECT_DIR$/pyugend/Comparison.py" />
     </list>
     <ignored path="pyugend.iws" />
@@ -67,8 +66,8 @@
       <file leaf-file-name="Comparison.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/pyugend/Comparison.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="9258">
-              <caret line="420" column="51" lean-forward="false" selection-start-line="420" selection-start-column="51" selection-end-line="420" selection-end-column="51" />
+            <state relative-caret-position="513">
+              <caret line="155" column="16" lean-forward="true" selection-start-line="155" selection-start-column="16" selection-end-line="155" selection-end-column="16" />
               <folding />
             </state>
           </provider>
@@ -792,13 +791,6 @@
       <option name="presentableId" value="Default" />
       <updated>1461126958316</updated>
     </task>
-    <task id="LOCAL-00047" summary="getting the package to work">
-      <created>1465717479732</created>
-      <option name="number" value="00047" />
-      <option name="presentableId" value="LOCAL-00047" />
-      <option name="project" value="LOCAL" />
-      <updated>1465717479732</updated>
-    </task>
     <task id="LOCAL-00048" summary="updated some charts to make interface more consistent.">
       <created>1466524922597</created>
       <option name="number" value="00048" />
@@ -1135,7 +1127,14 @@
       <option name="project" value="LOCAL" />
       <updated>1513897021218</updated>
     </task>
-    <option name="localTasksCounter" value="96" />
+    <task id="LOCAL-00096" summary="getting number plot set up overall.">
+      <created>1513897655766</created>
+      <option name="number" value="00096" />
+      <option name="presentableId" value="LOCAL-00096" />
+      <option name="project" value="LOCAL" />
+      <updated>1513897655766</updated>
+    </task>
+    <option name="localTasksCounter" value="97" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -1248,7 +1247,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="update Model.py plot_multiple_runs_detail_percentage function to allow for user config of plot titles and axis labels. Fixed an error in variable name for number_of_runs.&#10;" />
     <MESSAGE value="added function plot_comparison_percentage_women_by_level to Comparison object." />
     <MESSAGE value="added function plot_comparison_empirical_probability_proportion_by_level to Comparison object." />
     <MESSAGE value="Working on getting the printing functionality fixed. Having trouble with writing NaNs to the dataframe in the export function, line 1367. I think it has to do with improper indexing of the pandas dataframe." />
@@ -1273,7 +1271,8 @@
     <MESSAGE value="created gender numbers overall plot. set the info settings in the Comparison object." />
     <MESSAGE value="created gender numbers overall plot. set the info settings in the Comparison object. set up empirical intervals." />
     <MESSAGE value="created gender numbers overall plot. set the info settings in the Comparison object. set pass for standard intervals. Need to figure that out later." />
-    <option name="LAST_COMMIT_MESSAGE" value="created gender numbers overall plot. set the info settings in the Comparison object. set pass for standard intervals. Need to figure that out later." />
+    <MESSAGE value="getting number plot set up overall." />
+    <option name="LAST_COMMIT_MESSAGE" value="getting number plot set up overall." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1516,8 +1515,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/pyugend/Comparison.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="9258">
-          <caret line="420" column="51" lean-forward="false" selection-start-line="420" selection-start-column="51" selection-end-line="420" selection-end-column="51" />
+        <state relative-caret-position="513">
+          <caret line="155" column="16" lean-forward="true" selection-start-line="155" selection-start-column="16" selection-end-line="155" selection-end-column="16" />
           <folding />
         </state>
       </provider>

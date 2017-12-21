@@ -153,7 +153,7 @@ class Comparison():
 
             number_dynamic_target = [np.round(target * dept) for dept in total_faculty]
 
-            dval_female = self.mlist[0].mgmt_data.get_field('total_females_dept')
+            dval = self.mlist[0].mgmt_data.get_field('total_females_dept')
 
 
             pass
