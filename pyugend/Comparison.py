@@ -36,7 +36,7 @@ class Comparison():
                            width_=width,
                            height_=height,
                            transparency = 0.25,
-                           linecolor=['green', 'orange', 'blue', 'blue'],
+                           linecolor=['blue', 'green', 'purple', 'blue'],
                            target_plot=False,
                            legend_location='top_right',
                            color_target='#ca0020',
@@ -67,7 +67,7 @@ class Comparison():
                            vertical_line_color = ['black'],
                            data_plot = True,
                            data_line_color = ['blue'],
-                           data_line_legend_label = 'Management data'
+                           data_line_legend_label = 'Management Data'
                            ):
 
 
@@ -369,7 +369,7 @@ class Comparison():
                     line_color = data_line_color[0],
                     legend = data_line_legend_label,
                     line_width = line_width,
-                    line_dash = [6,2])
+                    line_dash = [6,1])
 
         if data_plot and plottype == 'male female numbers':
             p.line(xval,
