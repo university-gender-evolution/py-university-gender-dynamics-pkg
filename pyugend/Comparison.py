@@ -369,7 +369,7 @@ class Comparison():
                     line_color = data_line_color[0],
                     legend = data_line_legend_label,
                     line_width = line_width,
-                    line_dash = [6,1])
+                    line_dash = 'dashdot')
 
         if data_plot and plottype == 'male female numbers':
             p.line(xval,

@@ -67,7 +67,7 @@
         <entry file="file://$PROJECT_DIR$/pyugend/Comparison.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="363">
-              <caret line="371" column="36" lean-forward="false" selection-start-line="371" selection-start-column="36" selection-end-line="371" selection-end-column="36" />
+              <caret line="371" column="40" lean-forward="false" selection-start-line="371" selection-start-column="40" selection-end-line="371" selection-end-column="40" />
               <folding />
             </state>
           </provider>
@@ -781,13 +781,6 @@
       <option name="presentableId" value="Default" />
       <updated>1461126958316</updated>
     </task>
-    <task id="LOCAL-00042" summary="added the captions to the gender proportion chart.">
-      <created>1465312192231</created>
-      <option name="number" value="00042" />
-      <option name="presentableId" value="LOCAL-00042" />
-      <option name="project" value="LOCAL" />
-      <updated>1465312192231</updated>
-    </task>
     <task id="LOCAL-00043" summary="fixing the caption locations for plots.">
       <created>1465312973657</created>
       <option name="number" value="00043" />
@@ -1124,7 +1117,14 @@
       <option name="project" value="LOCAL" />
       <updated>1513886009478</updated>
     </task>
-    <option name="localTasksCounter" value="91" />
+    <task id="LOCAL-00091" summary="cleaning up formatting of overall plots.">
+      <created>1513894426866</created>
+      <option name="number" value="00091" />
+      <option name="presentableId" value="LOCAL-00091" />
+      <option name="project" value="LOCAL" />
+      <updated>1513894426866</updated>
+    </task>
+    <option name="localTasksCounter" value="92" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -1237,7 +1237,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Updated the run_multiple() function to use a copy rather than view of the pandas dataframe. This should close the warning message.&#10;&#10;This closes https://github.com/university-gender-evolution/notebooks-univ-gender/issues/2" />
     <MESSAGE value="update plot titles for matrix plot 4.4.3 on the comparison.py plot_comparison_detail() function.&#10;&#10;Fixes: https://github.com/university-gender-evolution/notebooks-univ-gender/issues/5" />
     <MESSAGE value="update probability by level chart to make some changes to sequence of argument to facilitate unpacking." />
     <MESSAGE value="fixed extra comma error in plot_empirical_probability_by_level() function." />
@@ -1262,7 +1261,8 @@
     <MESSAGE value="moved files to the main source folder and fixed links." />
     <MESSAGE value="fixing proportion chart." />
     <MESSAGE value="incorporated simple growth into the ModelGenderDiversityLinearGrowth" />
-    <option name="LAST_COMMIT_MESSAGE" value="incorporated simple growth into the ModelGenderDiversityLinearGrowth" />
+    <MESSAGE value="cleaning up formatting of overall plots." />
+    <option name="LAST_COMMIT_MESSAGE" value="cleaning up formatting of overall plots." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1505,7 +1505,7 @@
     <entry file="file://$PROJECT_DIR$/pyugend/Comparison.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="363">
-          <caret line="371" column="36" lean-forward="false" selection-start-line="371" selection-start-column="36" selection-end-line="371" selection-end-column="36" />
+          <caret line="371" column="40" lean-forward="false" selection-start-line="371" selection-start-column="40" selection-end-line="371" selection-end-column="40" />
           <folding />
         </state>
       </provider>
