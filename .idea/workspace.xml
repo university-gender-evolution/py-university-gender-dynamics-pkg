@@ -66,8 +66,8 @@
       <file leaf-file-name="Comparison.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/pyugend/Comparison.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="149">
-              <caret line="441" column="68" lean-forward="false" selection-start-line="441" selection-start-column="68" selection-end-line="441" selection-end-column="68" />
+            <state relative-caret-position="545">
+              <caret line="447" column="63" lean-forward="false" selection-start-line="447" selection-start-column="63" selection-end-line="447" selection-end-column="63" />
               <folding />
             </state>
           </provider>
@@ -745,13 +745,6 @@
       <option name="presentableId" value="Default" />
       <updated>1461126958316</updated>
     </task>
-    <task id="LOCAL-00050" summary="updated version in setup.py file">
-      <created>1467476335159</created>
-      <option name="number" value="00050" />
-      <option name="presentableId" value="LOCAL-00050" />
-      <option name="project" value="LOCAL" />
-      <updated>1467476335160</updated>
-    </task>
     <task id="LOCAL-00051" summary="created the probability by level plot. set it up with removal of titles so barbara can configure them:&#10;&#10;This closes #10">
       <created>1468189730067</created>
       <option name="number" value="00051" />
@@ -1088,7 +1081,14 @@
       <option name="project" value="LOCAL" />
       <updated>1513899840769</updated>
     </task>
-    <option name="localTasksCounter" value="99" />
+    <task id="LOCAL-00099" summary="Updated colors for level plots.">
+      <created>1513900529604</created>
+      <option name="number" value="00099" />
+      <option name="presentableId" value="LOCAL-00099" />
+      <option name="project" value="LOCAL" />
+      <updated>1513900529604</updated>
+    </task>
+    <option name="localTasksCounter" value="100" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -1201,7 +1201,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="added function plot_comparison_empirical_probability_proportion_by_level to Comparison object." />
     <MESSAGE value="Working on getting the printing functionality fixed. Having trouble with writing NaNs to the dataframe in the export function, line 1367. I think it has to do with improper indexing of the pandas dataframe." />
     <MESSAGE value="Still working to fix printing functionality. Not working yet." />
     <MESSAGE value="added colors to parameter sweep gender proportion function." />
@@ -1226,7 +1225,8 @@
     <MESSAGE value="created gender numbers overall plot. set the info settings in the Comparison object. set pass for standard intervals. Need to figure that out later." />
     <MESSAGE value="getting number plot set up overall." />
     <MESSAGE value="changed default line color in level plots." />
-    <option name="LAST_COMMIT_MESSAGE" value="changed default line color in level plots." />
+    <MESSAGE value="Updated colors for level plots." />
+    <option name="LAST_COMMIT_MESSAGE" value="Updated colors for level plots." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1469,8 +1469,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/pyugend/Comparison.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="149">
-          <caret line="441" column="68" lean-forward="false" selection-start-line="441" selection-start-column="68" selection-end-line="441" selection-end-column="68" />
+        <state relative-caret-position="545">
+          <caret line="447" column="63" lean-forward="false" selection-start-line="447" selection-start-column="63" selection-end-line="447" selection-end-column="63" />
           <folding />
         </state>
       </provider>
