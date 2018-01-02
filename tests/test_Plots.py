@@ -5,8 +5,8 @@ from pyugend.ModelGenderDiversity import Model2GenderDiversity
 from pyugend.Mod_Validate_Sweep import Mod_Validate_Sweep
 from pyugend.Comparison import Comparison
 from bokeh.plotting import figure, output_file, show
-
-
+from pyugend.ModelGenderDiversityGrowthForecast import ModelGendDiversityGrowthForecast
+from pyugend.ModelGendDiversityLinearGrowth import ModelGendDiversityLinearGrowth
 height = 800
 width = 800
 
@@ -38,18 +38,21 @@ def test_bokeh_comparison_plot_overall_one_model(mgmt_data):
                      'legend_location': 'top_right',
                      'height_': height,
                      'width_': width,
-
                      }
     show(c.plot_comparison_overall_chart(**plot_settings))
 
 
 def test_bokeh_comparison_plot_dept_size_overall(mgmt_data):
-    modlist = list([Model2GenderDiversity(**mgmt_data)])
-    # modlist = list([Model2GenderDiversity(**mgmt_data),
-    #                 Mod_Stoch_FBPH(**mgmt_data)])
+    modlist = list([Model2GenderDiversity(**mgmt_data),
+                    ModelGendDiversityLinearGrowth(**mgmt_data),
+                    ModelGendDiversityGrowthForecast(**mgmt_data)])
     modlist[0].init_default_hiring_rate()
-    c = Comparison(modlist)
+    modlist[1].init_default_hiring_rate()
+    modlist[1].init_growth_rate(0.01)
+    modlist[2].init_default_hiring_rate()
+    modlist[2].init_growth_rate([73, 78, 83, 88])
 
+    c = Comparison(modlist)
     plot_settings = {'plottype': 'department size',
                      'intervals': 'empirical',
                      'number_of_runs': 100,
@@ -62,8 +65,9 @@ def test_bokeh_comparison_plot_dept_size_overall(mgmt_data):
                      'title': 'Department Size',
                      'line_width': 2,
                      'transparency': 0.25,
-                     'model_legend_label': ['New Model',
-                                            'Mode 2, Promote-Hire'],
+                     'model_legend_label': ['Model 3 No Growth',
+                                            'Model 3 Lin Growth(1%/year)',
+                                            'Model 3 Forecast(+5/5 year)'],
                      'legend_location': 'top_right',
                      'height_': height,
                      'width_': width,
@@ -74,8 +78,13 @@ def test_bokeh_comparison_plot_dept_size_overall(mgmt_data):
 
 def test_bokeh_comparison_plot_overall_multiple_models(mgmt_data):
     modlist = list([Model2GenderDiversity(**mgmt_data),
-                    Mod_Stoch_FBPH(**mgmt_data)])
+                    ModelGendDiversityLinearGrowth(**mgmt_data),
+                    ModelGendDiversityGrowthForecast(**mgmt_data)])
     modlist[0].init_default_hiring_rate()
+    modlist[1].init_default_hiring_rate()
+    modlist[1].init_growth_rate(0.05)
+    modlist[2].init_default_hiring_rate()
+    modlist[2].init_growth_rate([73, 78, 83, 88])
 
     c = Comparison(modlist)
 
@@ -88,29 +97,35 @@ def test_bokeh_comparison_plot_overall_multiple_models(mgmt_data):
                      # Main plot settings
                      'xlabel': 'Years',
                      'ylabel': 'Proportion Women',
-                     'title': 'Change in Proportion Women by Level',
+                     'title': 'Change in Proportion Women Overall',
                      'transparency': 0.25,
-                     'model_legend_label': ['New Model',
-                                            'Model 2, Promote-Hire']
+                     'model_legend_label': ['Model 3 No Growth',
+                                          'Model 3 Lin Growth',
+                                          'Model 3 Forecast']
 
                      }
     show(c.plot_comparison_overall_chart(**plot_settings))
 
 
 def test_bokeh_comparison_plot_bylevel(mgmt_data):
-    modlist = list([Model2GenderDiversity(**mgmt_data)])
-    # modlist = list([Model2GenderDiversity(**mgmt_data),
-    #                 Mod_Stoch_FBPH(**mgmt_data)])
+    modlist = list([Model2GenderDiversity(**mgmt_data),
+                    ModelGendDiversityLinearGrowth(**mgmt_data),
+                    ModelGendDiversityGrowthForecast(**mgmt_data)])
     modlist[0].init_default_hiring_rate()
+    modlist[1].init_default_hiring_rate()
+    modlist[1].init_growth_rate(0.05)
+    modlist[2].init_default_hiring_rate()
+    modlist[2].init_growth_rate([73, 78, 83, 88])
 
     c = Comparison(modlist)
-
     plot_settings = {'plottype': 'gender number',
                      'intervals': 'empirical',
                      'number_of_runs': 100,
                      'target': 0.25,
                      'line_width': 2,
-                     'model_legend_label': ['Model 3'],
+                     'model_legend_label': ['Model 3 No Growth',
+                                            'Model 3 Lin Growth',
+                                            'Model 3 Forecast'],
                      'transparency': 0.25,
                      'legend_location': 'top right',
                      'height_': 400,
@@ -127,7 +142,9 @@ def test_bokeh_comparison_plot_bylevel(mgmt_data):
                      'target_plot': True,
                      'target_color': 'red',
                      'target_plot_linewidth': 2,
-                     'target_number_labels': ['Target Model 3'],
+                     'target_number_labels': ['Target Model 3 NG',
+                                            'Target Model 3 LG',
+                                            'Target Model 3 FG'],
 
                      # percent plot settings
                      'percent_line_plot': False,
