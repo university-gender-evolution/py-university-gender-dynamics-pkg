@@ -5,8 +5,8 @@ from pyugend.ModelGenderDiversity import Model3GenderDiversity
 from pyugend.Mod_Validate_Sweep import Mod_Validate_Sweep
 from pyugend.Comparison import Comparison
 from bokeh.plotting import figure, output_file, show
-from pyugend.ModelGenderDiversityGrowthForecast import ModelGendDiversityGrowthForecast
-from pyugend.ModelGendDiversityLinearGrowth import ModelGendDiversityLinearGrowth
+from pyugend.ModelGenderDiversityGrowthForecast import ModelGenderDiversityGrowthForecast
+from pyugend.ModelGenderDiversityLinearGrowth import ModelGenderDiversityLinearGrowth
 height = 800
 width = 800
 
@@ -44,8 +44,8 @@ def test_bokeh_comparison_plot_overall_one_model(mgmt_data):
 
 def test_bokeh_comparison_plot_dept_size_overall(mgmt_data):
     modlist = list([Model3GenderDiversity(**mgmt_data),
-                    ModelGendDiversityLinearGrowth(**mgmt_data),
-                    ModelGendDiversityGrowthForecast(**mgmt_data)])
+                    ModelGenderDiversityLinearGrowth(**mgmt_data),
+                    ModelGenderDiversityGrowthForecast(**mgmt_data)])
     modlist[0].init_default_hiring_rate()
     modlist[1].init_default_hiring_rate()
     modlist[1].init_growth_rate(0.01)

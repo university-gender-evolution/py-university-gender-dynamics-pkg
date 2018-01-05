@@ -16,9 +16,9 @@ from .Mod_Stoch_FBPH import Mod_Stoch_FBPH
 from .Mod_Validate_Sweep import Mod_Validate_Sweep
 from .ModelGenderDiversity import Model3GenderDiversity
 from .Comparison import Comparison
-from .ModelGendDiversityLinearGrowth import ModelGendDiversityLinearGrowth
+from .ModelGenderDiversityLinearGrowth import ModelGenderDiversityLinearGrowth
 from .ModelGenderDiversityGrowthForecast import ModelGenderDiversityGrowthForecast
-from .ModelGenderDiversityGrowthForecastIncrementalChange import ModelGendDiversityGrowthForecastIncremental
+from .ModelGenderDiversityGrowthForecastIncrementalChange import ModelGenderDiversityGrowthForecastIncremental
 
 
 
