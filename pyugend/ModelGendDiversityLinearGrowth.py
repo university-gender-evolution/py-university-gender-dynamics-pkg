@@ -17,7 +17,7 @@ import numpy as np
 import pandas as pd
 from numpy.random import binomial, multinomial
 from .Models import Base_model
-from .ModelGenderDiversity import Model2GenderDiversity
+from .ModelGenderDiversity import Model3GenderDiversity
 
 
 MODEL_RUN_COLUMNS = list(['number_f1',
@@ -72,7 +72,7 @@ EXPORT_COLUMNS_FOR_CSV = list(['hiring_rate_women_1',
                                'duration'])
 
 
-class ModelGendDiversityLinearGrowth(Model2GenderDiversity):
+class ModelGenderDiversityLinearGrowth(Model3GenderDiversity):
     def __init__(self, **kwds):
         Base_model.__init__(self, **kwds)
         self.name = "model-3-linear-growth"

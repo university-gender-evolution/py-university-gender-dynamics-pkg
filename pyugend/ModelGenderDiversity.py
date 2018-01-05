@@ -70,7 +70,7 @@ EXPORT_COLUMNS_FOR_CSV = list(['hiring_rate_women_1',
                                'duration'])
 
 
-class Model2GenderDiversity(Base_model):
+class Model3GenderDiversity(Base_model):
     def __init__(self, **kwds):
         Base_model.__init__(self, **kwds)
         self.name = "model-3-baseline"

@@ -17,7 +17,7 @@ import numpy as np
 import pandas as pd
 from numpy.random import binomial, multinomial
 from .Models import Base_model
-from .ModelGenderDiversity import Model2GenderDiversity
+from .ModelGenderDiversity import Model3GenderDiversity
 import itertools
 import math
 
@@ -73,7 +73,7 @@ EXPORT_COLUMNS_FOR_CSV = list(['hiring_rate_women_1',
                                'duration'])
 
 
-class ModelGendDiversityGrowthForecast(Model2GenderDiversity):
+class ModelGenderDiversityGrowthForecast(Model3GenderDiversity):
     def __init__(self, **kwds):
         Base_model.__init__(self, **kwds)
         self.name = "model-3-5-year-growth-forecast"

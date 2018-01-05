@@ -1,7 +1,7 @@
 import pytest
 from pyugend.Mod_Stoch_FBHP import Mod_Stoch_FBHP
 from pyugend.Mod_Stoch_FBPH import Mod_Stoch_FBPH
-from pyugend.ModelGenderDiversity import Model2GenderDiversity
+from pyugend.ModelGenderDiversity import Model3GenderDiversity
 from pyugend.Mod_Validate_Sweep import Mod_Validate_Sweep
 from pyugend.Comparison import Comparison
 from bokeh.plotting import figure, output_file, show
@@ -15,7 +15,7 @@ width = 800
 @pytest.mark.usefixtures('mock_data')
 
 def test_bokeh_comparison_plot_overall_one_model(mgmt_data):
-    modlist = list([Model2GenderDiversity(**mgmt_data)])
+    modlist = list([Model3GenderDiversity(**mgmt_data)])
     # modlist = list([Model2GenderDiversity(**mgmt_data),
     #                 Mod_Stoch_FBPH(**mgmt_data)])
     modlist[0].init_default_hiring_rate()
@@ -43,7 +43,7 @@ def test_bokeh_comparison_plot_overall_one_model(mgmt_data):
 
 
 def test_bokeh_comparison_plot_dept_size_overall(mgmt_data):
-    modlist = list([Model2GenderDiversity(**mgmt_data),
+    modlist = list([Model3GenderDiversity(**mgmt_data),
                     ModelGendDiversityLinearGrowth(**mgmt_data),
                     ModelGendDiversityGrowthForecast(**mgmt_data)])
     modlist[0].init_default_hiring_rate()
@@ -77,7 +77,7 @@ def test_bokeh_comparison_plot_dept_size_overall(mgmt_data):
 
 
 def test_bokeh_comparison_plot_overall_multiple_models(mgmt_data):
-    modlist = list([Model2GenderDiversity(**mgmt_data),
+    modlist = list([Model3GenderDiversity(**mgmt_data),
                     ModelGendDiversityLinearGrowth(**mgmt_data),
                     ModelGendDiversityGrowthForecast(**mgmt_data)])
     modlist[0].init_default_hiring_rate()
@@ -108,7 +108,7 @@ def test_bokeh_comparison_plot_overall_multiple_models(mgmt_data):
 
 
 def test_bokeh_comparison_plot_bylevel(mgmt_data):
-    modlist = list([Model2GenderDiversity(**mgmt_data),
+    modlist = list([Model3GenderDiversity(**mgmt_data),
                     ModelGendDiversityLinearGrowth(**mgmt_data),
                     ModelGendDiversityGrowthForecast(**mgmt_data)])
     modlist[0].init_default_hiring_rate()
@@ -158,7 +158,7 @@ def test_bokeh_comparison_plot_bylevel(mgmt_data):
 
 
 def test_bokeh_sweep_plot_overall(mgmt_data):
-    modlist = list([Model2GenderDiversity(**mgmt_data)])
+    modlist = list([Model3GenderDiversity(**mgmt_data)])
     # modlist = list([Model2GenderDiversity(**mgmt_data),
     #                 Mod_Stoch_FBPH(**mgmt_data)])
     modlist[0].init_default_hiring_rate()
@@ -186,7 +186,7 @@ def test_bokeh_sweep_plot_overall(mgmt_data):
 
 
 def test_bokeh_comparison_plot_probability_bylevel(mgmt_data):
-    modlist = list([Model2GenderDiversity(**mgmt_data)])
+    modlist = list([Model3GenderDiversity(**mgmt_data)])
     # modlist = list([Model2GenderDiversity(**mgmt_data),
     #                 Mod_Stoch_FBPH(**mgmt_data)])
     modlist[0].init_default_hiring_rate()
@@ -218,7 +218,7 @@ def test_bokeh_comparison_plot_probability_bylevel(mgmt_data):
     show(c.plot_comparison_level_chart(**plot_settings))
 
 def test_bokeh_comparison_plot_sweep_bylevel(mgmt_data):
-    modlist = list([Model2GenderDiversity(**mgmt_data)])
+    modlist = list([Model3GenderDiversity(**mgmt_data)])
 
     # modlist = list([Model2GenderDiversity(**mgmt_data),
     #                 Mod_Stoch_FBPH(**mgmt_data)])
@@ -252,7 +252,7 @@ def test_bokeh_comparison_plot_sweep_bylevel(mgmt_data):
     show(c.plot_comparison_level_chart(**plot_settings))
 
 def test_plot_overall_unfilled_vacancies(mgmt_data):
-    modlist = list([Model2GenderDiversity(**mgmt_data)])
+    modlist = list([Model3GenderDiversity(**mgmt_data)])
     # modlist = list([Model2GenderDiversity(**mgmt_data),
     #                 Mod_Stoch_FBPH(**mgmt_data)])
     modlist[0].init_default_hiring_rate()
@@ -280,7 +280,7 @@ def test_plot_overall_unfilled_vacancies(mgmt_data):
     show(c.plot_comparison_overall_chart(**plot_settings))
 
 def test_plot_overall_mf_numbers(mgmt_data):
-    modlist = list([Model2GenderDiversity(**mgmt_data)])
+    modlist = list([Model3GenderDiversity(**mgmt_data)])
     # modlist = list([Model2GenderDiversity(**mgmt_data),
     #                 Mod_Stoch_FBPH(**mgmt_data)])
     modlist[0].init_default_hiring_rate()
