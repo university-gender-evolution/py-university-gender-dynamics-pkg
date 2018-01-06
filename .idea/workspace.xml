@@ -3,9 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="db3b48aa-1b4d-4f09-96e2-54f1ff5c70d7" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/pyugend/ModelGendDiversityLinearGrowth.py" afterPath="$PROJECT_DIR$/pyugend/ModelGenderDiversityLinearGrowth.py" />
-      <change beforePath="$PROJECT_DIR$/pyugend/__init__.py" afterPath="$PROJECT_DIR$/pyugend/__init__.py" />
-      <change beforePath="$PROJECT_DIR$/tests/test_Plots.py" afterPath="$PROJECT_DIR$/tests/test_Plots.py" />
     </list>
     <ignored path="pyugend.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -126,7 +123,7 @@
         <entry file="file://$PROJECT_DIR$/tests/test_Plots.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="195">
-              <caret line="44" column="18" lean-forward="true" selection-start-line="44" selection-start-column="18" selection-end-line="44" selection-end-column="18" />
+              <caret line="44" column="18" lean-forward="false" selection-start-line="44" selection-start-column="18" selection-end-line="44" selection-end-column="18" />
               <folding>
                 <element signature="e#0#13#0" expanded="true" />
               </folding>
@@ -138,7 +135,7 @@
         <entry file="file://$PROJECT_DIR$/pyugend/__init__.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="289">
-              <caret line="17" column="34" lean-forward="true" selection-start-line="17" selection-start-column="34" selection-end-line="17" selection-end-column="34" />
+              <caret line="17" column="34" lean-forward="false" selection-start-line="17" selection-start-column="34" selection-end-line="17" selection-end-column="34" />
               <folding />
             </state>
           </provider>
@@ -754,13 +751,6 @@
       <option name="presentableId" value="Default" />
       <updated>1461126958316</updated>
     </task>
-    <task id="LOCAL-00054" summary="update plot titles for matrix plot 4.4.3 on the comparison.py plot_comparison_detail() function.&#10;&#10;Fixes: https://github.com/university-gender-evolution/notebooks-univ-gender/issues/5">
-      <created>1468355007982</created>
-      <option name="number" value="00054" />
-      <option name="presentableId" value="LOCAL-00054" />
-      <option name="project" value="LOCAL" />
-      <updated>1468355007982</updated>
-    </task>
     <task id="LOCAL-00055" summary="update probability by level chart to make some changes to sequence of argument to facilitate unpacking.">
       <created>1468358065689</created>
       <option name="number" value="00055" />
@@ -1097,7 +1087,14 @@
       <option name="project" value="LOCAL" />
       <updated>1515196538851</updated>
     </task>
-    <option name="localTasksCounter" value="103" />
+    <task id="LOCAL-00103" summary="making names consistent across files.">
+      <created>1515196729643</created>
+      <option name="number" value="00103" />
+      <option name="presentableId" value="LOCAL-00103" />
+      <option name="project" value="LOCAL" />
+      <updated>1515196729643</updated>
+    </task>
+    <option name="localTasksCounter" value="104" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -1474,7 +1471,7 @@
     <entry file="file://$PROJECT_DIR$/pyugend/__init__.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="289">
-          <caret line="17" column="34" lean-forward="true" selection-start-line="17" selection-start-column="34" selection-end-line="17" selection-end-column="34" />
+          <caret line="17" column="34" lean-forward="false" selection-start-line="17" selection-start-column="34" selection-end-line="17" selection-end-column="34" />
           <folding />
         </state>
       </provider>
@@ -1482,7 +1479,7 @@
     <entry file="file://$PROJECT_DIR$/tests/test_Plots.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="195">
-          <caret line="44" column="18" lean-forward="true" selection-start-line="44" selection-start-column="18" selection-end-line="44" selection-end-column="18" />
+          <caret line="44" column="18" lean-forward="false" selection-start-line="44" selection-start-column="18" selection-end-line="44" selection-end-column="18" />
           <folding>
             <element signature="e#0#13#0" expanded="true" />
           </folding>
