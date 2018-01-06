@@ -69,8 +69,8 @@
       <file leaf-file-name="Comparison.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/pyugend/Comparison.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="273">
-              <caret line="444" column="83" lean-forward="false" selection-start-line="444" selection-start-column="83" selection-end-line="444" selection-end-column="83" />
+            <state relative-caret-position="78">
+              <caret line="52" column="80" lean-forward="false" selection-start-line="52" selection-start-column="80" selection-end-line="52" selection-end-column="80" />
               <folding>
                 <element signature="e#24#42#0" expanded="true" />
               </folding>
@@ -732,13 +732,6 @@
       <option name="presentableId" value="Default" />
       <updated>1461126958316</updated>
     </task>
-    <task id="LOCAL-00056" summary="fixed extra comma error in plot_empirical_probability_by_level() function.">
-      <created>1468361533984</created>
-      <option name="number" value="00056" />
-      <option name="presentableId" value="LOCAL-00056" />
-      <option name="project" value="LOCAL" />
-      <updated>1468361533984</updated>
-    </task>
     <task id="LOCAL-00057" summary="fixed extra comma error in plot_empirical_probability_by_level() function.">
       <created>1468363150113</created>
       <option name="number" value="00057" />
@@ -1075,7 +1068,14 @@
       <option name="project" value="LOCAL" />
       <updated>1515197002714</updated>
     </task>
-    <option name="localTasksCounter" value="105" />
+    <task id="LOCAL-00105" summary="adjusting color palate.">
+      <created>1515197529442</created>
+      <option name="number" value="00105" />
+      <option name="presentableId" value="LOCAL-00105" />
+      <option name="project" value="LOCAL" />
+      <updated>1515197529442</updated>
+    </task>
+    <option name="localTasksCounter" value="106" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -1188,7 +1188,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Got the printing functionality to work. So that is a closed item :)." />
     <MESSAGE value="created new functions to plot the overall and by level functions. Still need to test them.&#10;" />
     <MESSAGE value="added ability to set line thickness for target and fifty percent plots. also added ability to set the labels for the legend." />
     <MESSAGE value="updated plot specifications." />
@@ -1213,7 +1212,8 @@
     <MESSAGE value="implemented the forecast growth model." />
     <MESSAGE value="updated init file with latest files imports." />
     <MESSAGE value="making names consistent across files." />
-    <option name="LAST_COMMIT_MESSAGE" value="making names consistent across files." />
+    <MESSAGE value="adjusting color palate." />
+    <option name="LAST_COMMIT_MESSAGE" value="adjusting color palate." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1440,7 +1440,7 @@
         <state relative-caret-position="64">
           <caret line="75" column="17" lean-forward="false" selection-start-line="75" selection-start-column="17" selection-end-line="75" selection-end-column="17" />
           <folding>
-            <element signature="e#291#309#0" expanded="true" />
+            <element signature="e#291#309#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1463,8 +1463,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/pyugend/Comparison.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="273">
-          <caret line="444" column="83" lean-forward="false" selection-start-line="444" selection-start-column="83" selection-end-line="444" selection-end-column="83" />
+        <state relative-caret-position="78">
+          <caret line="52" column="80" lean-forward="false" selection-start-line="52" selection-start-column="80" selection-end-line="52" selection-end-column="80" />
           <folding>
             <element signature="e#24#42#0" expanded="true" />
           </folding>
