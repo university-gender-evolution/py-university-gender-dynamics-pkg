@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="db3b48aa-1b4d-4f09-96e2-54f1ff5c70d7" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change beforePath="$PROJECT_DIR$/pyugend/data/mgmt_data.ods" afterPath="$PROJECT_DIR$/pyugend/data/mgmt_data.ods" />
     </list>
     <ignored path="pyugend.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -65,11 +66,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Comparison.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Comparison.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/pyugend/Comparison.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="780">
-              <caret line="52" column="80" lean-forward="false" selection-start-line="52" selection-start-column="80" selection-end-line="52" selection-end-column="80" />
+            <state relative-caret-position="144">
+              <caret line="1004" column="49" lean-forward="false" selection-start-line="1004" selection-start-column="37" selection-end-line="1004" selection-end-column="49" />
               <folding>
                 <element signature="e#24#42#0" expanded="true" />
               </folding>
@@ -80,7 +81,7 @@
       <file leaf-file-name="ModelGenderDiversity.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/pyugend/ModelGenderDiversity.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="39">
+            <state relative-caret-position="2691">
               <caret line="72" column="15" lean-forward="false" selection-start-line="72" selection-start-column="15" selection-end-line="72" selection-end-column="15" />
               <folding />
             </state>
@@ -90,18 +91,18 @@
       <file leaf-file-name="ModelGenderDiversityGrowthForecastIncrementalChange.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/pyugend/ModelGenderDiversityGrowthForecastIncrementalChange.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1521">
+            <state relative-caret-position="2691">
               <caret line="75" column="17" lean-forward="false" selection-start-line="75" selection-start-column="17" selection-end-line="75" selection-end-column="17" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="test_Plots.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="test_Plots.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/tests/test_Plots.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="312">
-              <caret line="56" column="6" lean-forward="true" selection-start-line="55" selection-start-column="1" selection-end-line="75" selection-end-column="58" />
+            <state relative-caret-position="-117">
+              <caret line="57" column="39" lean-forward="false" selection-start-line="57" selection-start-column="39" selection-end-line="57" selection-end-column="39" />
               <folding>
                 <element signature="e#0#13#0" expanded="true" />
               </folding>
@@ -112,7 +113,7 @@
       <file leaf-file-name="__init__.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/pyugend/__init__.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="119">
+            <state relative-caret-position="429">
               <caret line="20" column="110" lean-forward="false" selection-start-line="20" selection-start-column="110" selection-end-line="20" selection-end-column="110" />
               <folding>
                 <element signature="e#234#264#0" expanded="true" />
@@ -129,6 +130,11 @@
         <option value="Python Script" />
       </list>
     </option>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>model_choice</find>
+    </findStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -192,6 +198,7 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds">
+    <option name="x" value="1920" />
     <option name="width" value="1920" />
     <option name="height" value="1059" />
   </component>
@@ -1119,7 +1126,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="0" width="1920" height="1059" extended-state="0" />
+    <frame x="1920" y="0" width="1920" height="1059" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32768363" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -1127,13 +1134,13 @@
       <window_info id="Documentation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32938644" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" x="0" y="0" width="430" height="859" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32855567" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32768363" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.33446327" sideWeight="0.4956943" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33446327" sideWeight="0.4956943" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32768363" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2093649" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.21259418" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="SciView" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32992464" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.16630785" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16630785" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.38257992" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -1402,7 +1409,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="741">
           <caret line="34" column="20" lean-forward="false" selection-start-line="34" selection-start-column="20" selection-end-line="34" selection-end-column="20" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1416,7 +1422,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/pyugend/__init__.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
+        <state relative-caret-position="429">
           <caret line="20" column="110" lean-forward="false" selection-start-line="20" selection-start-column="110" selection-end-line="20" selection-end-column="110" />
           <folding>
             <element signature="e#234#264#0" expanded="true" />
@@ -1436,7 +1442,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/pyugend/ModelGenderDiversityGrowthForecastIncrementalChange.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1521">
+        <state relative-caret-position="2691">
           <caret line="75" column="17" lean-forward="false" selection-start-line="75" selection-start-column="17" selection-end-line="75" selection-end-column="17" />
           <folding />
         </state>
@@ -1444,28 +1450,28 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/pyugend/ModelGenderDiversity.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="39">
+        <state relative-caret-position="2691">
           <caret line="72" column="15" lean-forward="false" selection-start-line="72" selection-start-column="15" selection-end-line="72" selection-end-column="15" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pyugend/Comparison.py">
+    <entry file="file://$PROJECT_DIR$/tests/test_Plots.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="780">
-          <caret line="52" column="80" lean-forward="false" selection-start-line="52" selection-start-column="80" selection-end-line="52" selection-end-column="80" />
+        <state relative-caret-position="-117">
+          <caret line="57" column="39" lean-forward="false" selection-start-line="57" selection-start-column="39" selection-end-line="57" selection-end-column="39" />
           <folding>
-            <element signature="e#24#42#0" expanded="true" />
+            <element signature="e#0#13#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tests/test_Plots.py">
+    <entry file="file://$PROJECT_DIR$/pyugend/Comparison.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="312">
-          <caret line="56" column="6" lean-forward="true" selection-start-line="55" selection-start-column="1" selection-end-line="75" selection-end-column="58" />
+        <state relative-caret-position="144">
+          <caret line="1004" column="49" lean-forward="false" selection-start-line="1004" selection-start-column="37" selection-end-line="1004" selection-end-column="49" />
           <folding>
-            <element signature="e#0#13#0" expanded="true" />
+            <element signature="e#24#42#0" expanded="true" />
           </folding>
         </state>
       </provider>
