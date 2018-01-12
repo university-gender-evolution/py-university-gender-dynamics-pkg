@@ -85,11 +85,34 @@ class ModelGenderDiversityGrowthForecastIncremental(Model3GenderDiversity):
     def calculate_yearly_dept_size_targets(self):
 
         repeat_interval = self.__calculate_forecast_interval()
-        return list(itertools.chain.from_iterable(itertools.repeat(x, repeat_interval) for x in self.growth_forecasts))
+        result = list(itertools.chain.from_iterable(itertools.repeat(x, repeat_interval) for x in self.growth_forecasts))
+        return result
 
     def __calculate_forecast_interval(self):
 
         return math.ceil(self.duration/len(self.growth_forecasts))
+
+    def __calculate_dept_size_forecast_vector(self, initial_dept_size, forecast_interval):
+
+        dept_size_vector = [initial_dept_size]
+
+        for k,v in enumerate(forecast_interval):
+            dept_size_vector.append(math.ceil(dept_size_vector[k]*(1+forecast_interval[k])))
+        return dept_size_vector
+
+    def __calculate_upperbound_vector(self, dept_size_vector):
+        dept_upper_bound = [self.upperbound]
+        department_change = [y-x for x,y in zip(dept_size_vector, dept_size_vector[1:])]
+        for k,v in enumerate(department_change):
+            dept_upper_bound.append(dept_upper_bound[k] + department_change[k])
+        return dept_upper_bound
+
+    def __calculate_lowerbound_vector(self, dept_size_vector):
+        dept_lower_bound = [self.lowerbound]
+        department_change = [y-x for x,y in zip(dept_size_vector, dept_size_vector[1:])]
+        for k,v in enumerate(department_change):
+            dept_lower_bound.append(dept_lower_bound[k] + department_change[k])
+        return dept_lower_bound
 
     def run_model(self):
 
@@ -114,6 +137,7 @@ class ModelGenderDiversityGrowthForecastIncremental(Model3GenderDiversity):
         self.res[0, 12] = 0
         self.res[0, 13] = self.res[0, 0:6].sum()
         self.res[0, 14:] = 0
+        initial_department_size = self.res[0, 0:6].sum()
 
         # I assign the state variables to temporary variables. That way I
         # don't have to worry about overwriting the original state variables.
@@ -133,7 +157,11 @@ class ModelGenderDiversityGrowthForecastIncremental(Model3GenderDiversity):
         variation_range = self.variation_range
         unfilled_vacanies = 0
         extra_vacancies=0
-        dept_size_forecasts = self.calculate_yearly_dept_size_targets()
+        department_size_forecasts = self.calculate_yearly_dept_size_targets()
+        department_size_target = self.__calculate_dept_size_forecast_vector(initial_department_size,
+                                                                department_size_forecasts)
+        dept_upperbound = self.__calculate_upperbound_vector(department_size_target)
+        dept_lowerbound = self.__calculate_lowerbound_vector(department_size_target)
 
         for i in range(1, self.duration):
             # initialize variables for this iteration
@@ -286,15 +314,12 @@ class ModelGenderDiversityGrowthForecastIncremental(Model3GenderDiversity):
             # turn this into something like [2,-1,0]. That means randomly
             # assigning the values in the array to levels.
 
-            department_size_target = dept_size_forecasts[i]
-
             flag = False
             while flag == False:
-
                 changes = np.random.choice([-1, 0, 1], variation_range)
-                department_growth = department_size_target - department_size
-                department_size_upper_bound = department_size_upper_bound + department_growth
-                department_size_lower_bound = department_size_lower_bound + department_growth
+                department_growth = department_size_target[i] - department_size
+                department_size_upper_bound = dept_upperbound[i] + department_growth
+                department_size_lower_bound = dept_lowerbound[i] + department_growth
                 # matching wise [(-1, 1), (-1, 1), (0, 2)]
                 new_department_size = department_size + department_growth
                 if (new_department_size + changes.sum() <=

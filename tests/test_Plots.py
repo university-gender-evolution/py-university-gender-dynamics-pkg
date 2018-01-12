@@ -7,6 +7,7 @@ from pyugend.Comparison import Comparison
 from bokeh.plotting import figure, output_file, show
 from pyugend.ModelGenderDiversityGrowthForecast import ModelGenderDiversityGrowthForecast
 from pyugend.ModelGenderDiversityLinearGrowth import ModelGenderDiversityLinearGrowth
+from pyugend.ModelGenderDiversityGrowthForecastIncrementalChange import ModelGenderDiversityGrowthForecastIncremental
 height = 800
 width = 800
 
@@ -15,11 +16,14 @@ width = 800
 @pytest.mark.usefixtures('mock_data')
 
 def test_bokeh_comparison_plot_overall_one_model(mgmt_data):
-    modlist = list([Model3GenderDiversity(**mgmt_data)])
+    modlist = list([ModelGenderDiversityGrowthForecastIncremental(**mgmt_data)])
     # modlist = list([Model2GenderDiversity(**mgmt_data),
     #                 Mod_Stoch_FBPH(**mgmt_data)])
     modlist[0].init_default_hiring_rate()
+    modlist[0].init_growth_rate([0.02, 0.01, 0.10, 0.05])
     c = Comparison(modlist)
+
+    #print(modlist[0].calculate_yearly_dept_size_targets())
 
     plot_settings = {'plottype': 'gender proportion',
                      'intervals': 'empirical',
