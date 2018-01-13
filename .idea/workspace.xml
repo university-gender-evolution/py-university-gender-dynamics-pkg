@@ -1,11 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="db3b48aa-1b4d-4f09-96e2-54f1ff5c70d7" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/pyugend/data/mgmt_data.ods" afterPath="$PROJECT_DIR$/pyugend/data/mgmt_data.ods" />
-      <change beforePath="$PROJECT_DIR$/pyugend/mgmt_data.csv" afterPath="$PROJECT_DIR$/pyugend/mgmt_data.csv" />
-    </list>
+    <list default="true" id="db3b48aa-1b4d-4f09-96e2-54f1ff5c70d7" name="Default" comment="" />
     <ignored path="pyugend.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path=".idea/dataSources.local.xml" />
@@ -77,10 +73,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="DataManagement.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="DataManagement.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/pyugend/DataManagement.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-351">
+            <state relative-caret-position="-117">
               <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
             </state>
@@ -99,10 +95,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ModelGenderDiversityGrowthForecastIncrementalChange.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="ModelGenderDiversityGrowthForecastIncrementalChange.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/pyugend/ModelGenderDiversityGrowthForecastIncrementalChange.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2385">
+            <state relative-caret-position="8469">
               <caret line="321" column="61" lean-forward="false" selection-start-line="321" selection-start-column="61" selection-end-line="321" selection-end-column="61" />
               <folding>
                 <element signature="e#291#309#0" expanded="true" />
@@ -1436,16 +1432,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pyugend/ModelGenderDiversityGrowthForecastIncrementalChange.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2385">
-          <caret line="321" column="61" lean-forward="false" selection-start-line="321" selection-start-column="61" selection-end-line="321" selection-end-column="61" />
-          <folding>
-            <element signature="e#291#309#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/tests/test_Plots.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="199">
@@ -1484,9 +1470,19 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/pyugend/DataManagement.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-351">
+        <state relative-caret-position="-117">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pyugend/ModelGenderDiversityGrowthForecastIncrementalChange.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="8469">
+          <caret line="321" column="61" lean-forward="false" selection-start-line="321" selection-start-column="61" selection-end-line="321" selection-end-column="61" />
+          <folding>
+            <element signature="e#291#309#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
