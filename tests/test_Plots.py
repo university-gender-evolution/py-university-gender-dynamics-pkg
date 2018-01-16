@@ -42,6 +42,7 @@ def test_bokeh_comparison_plot_overall_one_model(mgmt_data):
                      'legend_location': 'top_right',
                      'height_': height,
                      'width_': width,
+                     'year_offset': 0
                      }
     show(c.plot_comparison_overall_chart(**plot_settings))
 

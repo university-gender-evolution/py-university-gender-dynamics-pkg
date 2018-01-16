@@ -94,14 +94,14 @@ class Comparison():
             vertLineForSweepPlot = getattr(self.mlist[0], parameter_sweep_param)
 
             xval = self.mlist[0].parameter_sweep_results.loc[:,
-                           'increment'][year_offset:]
+                           'increment']
 
         else:
 
             for mod in self.mlist:
                 mod.run_multiple(number_of_runs)
 
-            xval = list(range(min([m.duration for m in self.mlist])))
+            xval = list(range(min([m.duration for m in self.mlist])))[year_offset:]
 
         # END OF BLOCK
 
