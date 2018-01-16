@@ -10,6 +10,8 @@ from pyugend.ModelGenderDiversityLinearGrowth import ModelGenderDiversityLinearG
 from pyugend.ModelGenderDiversityGrowthForecastIncrementalChange import ModelGenderDiversityGrowthForecastIncremental
 height = 800
 width = 800
+if __name__ == '__main__':
+
 
 
 @pytest.mark.usefixtures('mgmt_data')
