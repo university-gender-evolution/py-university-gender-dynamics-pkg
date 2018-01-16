@@ -67,7 +67,8 @@ class Comparison():
                            vertical_line_color = ['black'],
                            data_plot = True,
                            data_line_color = ['blue'],
-                           data_line_legend_label = 'Management Data'
+                           data_line_legend_label = 'Management Data',
+                           year_offset = 0
                            ):
 
 
@@ -93,7 +94,7 @@ class Comparison():
             vertLineForSweepPlot = getattr(self.mlist[0], parameter_sweep_param)
 
             xval = self.mlist[0].parameter_sweep_results.loc[:,
-                           'increment']
+                           'increment'][year_offset:]
 
         else:
 
