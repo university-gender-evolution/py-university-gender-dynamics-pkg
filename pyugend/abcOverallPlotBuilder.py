@@ -35,8 +35,9 @@ from bokeh.plotting import figure, output_file, show
 
 class abcOverallPlotBuilder(metaclass=abc.ABCMeta):
 
-    def __init__(self, settings=None):
+    def __init__(self, coordinates, settings=None):
         self.plot = figure()
+        self.coordinates = coordinates
         self.settings = settings
 
     @abc.abstractmethod

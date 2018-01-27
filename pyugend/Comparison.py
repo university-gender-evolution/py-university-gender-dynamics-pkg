@@ -1021,7 +1021,7 @@ class Comparison():
 
     def plot_attrition_overall(self, settings):
 
-        builder = BuilderAttritionPlotOverall(settings)
+        builder = BuilderAttritionPlotOverall(self, settings)
         director = PlotDirector()
         show(director(builder))
 

@@ -1,10 +1,8 @@
-
-
 #!/usr/bin/python
 
 """
 
-Builder Class for attrition plot
+Abstract Base Class for building plots
 
 """
 
@@ -28,42 +26,42 @@ __email__ = 'cyclotomiq@gmail.com'
 __status__ = ''
 
 
-from .abcOverallPlotBuilder import abcOverallPlotBuilder
-from .abcSettingsBuilder import abcPlotSettingsBuilder
+
+import abc
+from bokeh.plotting import figure, output_file, show
+import pytest
+
+height = 800
+width = 800
 
 
-class BuilderOverallAttritionPlot(abcOverallPlotBuilder):
 
 
 
-    def create_plot(self):
+class abcComparisonPlot(metaclass=abc.ABCMeta):
 
-        self.plot.title = self.settings
 
-    def draw_lines(self):
+    def __init__(self, comparison, settings=None):
+        self.plot = None
+        self.settings = settings
+        self.comparison = comparison
+        self.coordinates = {}
+    @abc.abstractmethod
+    def helper_overall_data(self):
         pass
 
-
-    def draw_error_intervals(self):
+    @abc.abstractmethod
+    def helper_level_data(self):
         pass
 
-
-    def draw_target(self):
+    @abc.abstractmethod
+    def execute_plot(self):
         pass
 
+    def helper_duration(self):
+        xval = list(range(min([m.duration for m in self.comparison.mlist])))[self.settings['year_offset']:]
+        return xval
 
-
-    def draw_misc(self):
-        pass
-
-
-
-class BuilderSettingsAttritionPlot(abcPlotSettingsBuilder):
-
-    def __init__(self):
-        pass
-
-
-
-if __name__ == "__main__":
-    print('This is an abstract base class for building plots')
+    def helper_original_data_mgmt(self, field):
+        dval = self.comparison.mlist[0].mgmt_data.get_field(field)
+        return dval
