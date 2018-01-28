@@ -30,20 +30,20 @@ __status__ = ''
 
 import abc
 from bokeh.plotting import figure, output_file, show
-
-
+from bokeh.models.annotations import Title
 
 class abcOverallPlotBuilder(metaclass=abc.ABCMeta):
 
-    def __init__(self, coordinates, settings=None):
-        self.plot = figure()
+    def __init__(self, coordinates, settings):
         self.coordinates = coordinates
         self.settings = settings
 
-    @abc.abstractmethod
     def create_plot(self):
-        pass
-
+        self.plot = figure(title=self.settings['title'],
+                   x_axis_label=self.settings['xlabel'],
+                   y_axis_label=self.settings['ylabel'],
+                   width=self.settings['width_'],
+                   height=self.settings['height_'])
 
     @abc.abstractmethod
     def draw_lines(self):
@@ -66,6 +66,8 @@ class abcOverallPlotBuilder(metaclass=abc.ABCMeta):
         pass
 
 
+    def return_plot(self):
+        return self.plot
 
 if __name__ == "__main__":
     print('This is an abstract base class for building plots')

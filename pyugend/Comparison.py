@@ -9,7 +9,7 @@ import datetime
 from .DataManagement import DataManagement
 from .BuilderOverallAttritionPlot import BuilderOverallAttritionPlot
 from .PlotDirector import PlotDirector
-
+from .ComparisonPlotOverallAttrition import ComparisonPlotOverallAttrition
 
 height = 700
 width = 700
@@ -1021,9 +1021,9 @@ class Comparison():
 
     def plot_attrition_overall(self, settings):
 
-        builder = BuilderAttritionPlotOverall(self, settings)
-        director = PlotDirector()
-        show(director(builder))
+        return ComparisonPlotOverallAttrition(self.mlist, settings)
+
+
 
 
 

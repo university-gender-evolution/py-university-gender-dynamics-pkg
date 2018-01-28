@@ -30,10 +30,10 @@ __status__ = ''
 import pytest
 from bokeh.plotting import figure, output_file, show
 from .abcComparisonPlot import abcComparisonPlot
-from pyugend.ModelGenderDiversityGrowthForecast import ModelGenderDiversityGrowthForecast
-from pyugend.ModelGenderDiversityLinearGrowth import ModelGenderDiversityLinearGrowth
-from pyugend.ModelGenderDiversityGrowthForecastIncrementalChange import ModelGenderDiversityGrowthForecastIncremental
-from pyugend.Comparison import Comparison
+from .ModelGenderDiversityGrowthForecast import ModelGenderDiversityGrowthForecast
+from .ModelGenderDiversityLinearGrowth import ModelGenderDiversityLinearGrowth
+from .ModelGenderDiversityGrowthForecastIncrementalChange import ModelGenderDiversityGrowthForecastIncremental
+from .Comparison import Comparison
 from .BuilderOverallAttritionPlot import BuilderOverallAttritionPlot
 from .PlotDirector import PlotDirector
 
@@ -61,48 +61,54 @@ height = 800
 width = 800
 
 
-class ComparisonPlotAttrition(abcComparisonPlot):
+class ComparisonPlotOverallAttrition(abcComparisonPlot):
 
     def helper_overall_data(self):
 
         fields = FIELDS # so that no mutation happens
         yval = [m.results_matrix[[fields]].sum(axis=1)
-                          for m in self.comparison.mlist]
+                          for m in self.comparison]
         self.coordinates['yval'] = yval
 
     def helper_overall_empirical_upper_bound(self):
         fields = EMPFIELDS_UPPER # so that no mutation happens
         empirical_upper_bound = [m.results_matrix[[fields]].sum(axis=1)
-                          for m in self.comparison.mlist]
+                          for m in self.comparison]
         self.coordinates['empirical_upper_bound'] = empirical_upper_bound
 
     def helper_overall_empirical_lower_bound(self):
         fields = EMPFIELDS_LOWER # so that no mutation happens
         empirical_lower_bound = [m.results_matrix[[fields]].sum(axis=1)
-                          for m in self.comparison.mlist]
+                          for m in self.comparison]
         self.coordinates['empirical_lower_bound'] = empirical_lower_bound
 
     def helper_ground_truth_mgmt(self):
         self.coordinates['ground_truth'] = self.helper_original_data(GROUNDTRUTH)
 
-    def help_build_overall_plot_coordinates(self):
+    def helper_indicate_number_of_models(self):
+
+        self.coordinates['number_of_models'] = len(self.comparison)
+
+    def helper_build_overall_plot_coordinates(self):
 
         # This will build the data dictionary for the plot
         self.helper_overall_data()
         self.helper_overall_empirical_upper_bound()
         self.helper_overall_empirical_lower_bound()
         self.helper_ground_truth_mgmt()
+        self.helper_indicate_number_of_models()
 
     def helper_level_data(self):
         pass
 
 
     def execute_plot(self):
-        builder = BuilderAttritionPlotOverall(self,
-                                          self.coordinates,
+
+        self.helper_build_overall_plot_coordinates()
+        builder = BuilderAttritionPlotOverall(self.coordinates,
                                           self.settings)
         director = PlotDirector()
-        return director(builder)
+        return director.construct(builder)
 
 
 # test cases
@@ -118,8 +124,6 @@ class TestClass(object):
         modlist[0].init_default_hiring_rate()
         modlist[0].init_growth_rate([0.02, 0.01, 0.10, 0.05])
         c = Comparison(modlist)
-
-        # print(modlist[0].calculate_yearly_dept_size_targets())
 
         plot_settings = {'plottype': 'gender proportion',
                          'intervals': 'empirical',
@@ -140,4 +144,4 @@ class TestClass(object):
                          'width_': width,
                          'year_offset': 0
                          }
-        show(c.plot_comparison_overall_chart(**plot_settings))
+        show(c.plot_attrition_overall(plot_settings))

@@ -36,16 +36,26 @@ class BuilderOverallAttritionPlot(abcOverallPlotBuilder):
 
 
 
-    def create_plot(self):
-
-        self.plot.title = self.settings
-
     def draw_lines(self):
-        pass
-
+        for k in range(self.coordinates['number_of_models']):
+            self.plot.line(self.coordinates['xval'],
+                           self.coordinates['yval'][k],
+                           line_width = self.settings['line_width'][k],
+                           line_color = self.settings['linecolor'][k])
+            self.plot.circle(self.coordinates['xval'],
+                           self.coordinates['yval'][k],
+                           size = 3)
 
     def draw_error_intervals(self):
-        pass
+        for k in range(self.coordinates['number_of_models']):
+            x_data = np.asarray(self.coordinates['xval'])
+            band_x = np.append(x_data, x_data[::-1])
+            band_y = np.append(lower_band[k], upper_band[k][::-1])
+
+            self.plot.patch(band_x,
+                    band_y,
+                    color=self.settings['linecolor'][k],
+                    fill_alpha=transparency)
 
 
     def draw_target(self):

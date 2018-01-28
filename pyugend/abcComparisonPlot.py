@@ -59,7 +59,7 @@ class abcComparisonPlot(metaclass=abc.ABCMeta):
         pass
 
     def helper_duration(self):
-        xval = list(range(min([m.duration for m in self.comparison.mlist])))[self.settings['year_offset']:]
+        xval = list(range(min([m.duration for m in self.comparison])))[self.settings['year_offset']:]
         return xval
 
     def helper_original_data_mgmt(self, field):
