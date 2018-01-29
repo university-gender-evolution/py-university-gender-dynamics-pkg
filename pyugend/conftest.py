@@ -1,4 +1,9 @@
 import pytest
+from .Comparison import Comparison
+from .ModelGenderDiversityGrowthForecast import ModelGenderDiversityGrowthForecast
+from .ModelGenderDiversityLinearGrowth import ModelGenderDiversityLinearGrowth
+from .ModelGenderDiversityGrowthForecastIncrementalChange import ModelGenderDiversityGrowthForecastIncremental
+from .ModelGenderDiversity import Model3GenderDiversity
 
 @pytest.fixture(scope="module")
 def mock_data():
@@ -63,4 +68,17 @@ def mgmt_data():
              'upperbound': 90,
              'lowerbound': 70,
              'variation_range': 3,
-             'duration': 20})
+             'duration': 13})
+
+@pytest.fixture(scope="module")
+def one_model(mgmt_data):
+    modlist = list([Model3GenderDiversity(**mgmt_data),
+                    ModelGenderDiversityLinearGrowth(**mgmt_data),
+                    ModelGenderDiversityGrowthForecast(**mgmt_data)])
+    modlist[0].init_default_hiring_rate()
+    modlist[1].init_default_hiring_rate()
+    modlist[1].init_growth_rate(0.01)
+    modlist[2].init_default_hiring_rate()
+    modlist[2].init_growth_rate([73, 78, 83, 88])
+    return Comparison(modlist)
+

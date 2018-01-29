@@ -29,7 +29,8 @@ __status__ = ''
 
 import abc
 from bokeh.plotting import figure, output_file, show
-import pytest
+from .PlotSettings import PlotSettings
+
 
 height = 800
 width = 800
@@ -41,11 +42,12 @@ width = 800
 class abcComparisonPlot(metaclass=abc.ABCMeta):
 
 
-    def __init__(self, comparison, settings=None):
+    def __init__(self, model_results, settings=None):
         self.plot = None
         self.settings = settings
-        self.comparison = comparison
+        self.comparison = model_results
         self.coordinates = {}
+
     @abc.abstractmethod
     def helper_overall_data(self):
         pass
@@ -63,5 +65,5 @@ class abcComparisonPlot(metaclass=abc.ABCMeta):
         return xval
 
     def helper_original_data_mgmt(self, field):
-        dval = self.comparison.mlist[0].mgmt_data.get_field(field)
+        dval = self.comparison[0].mgmt_data.get_field(field)
         return dval

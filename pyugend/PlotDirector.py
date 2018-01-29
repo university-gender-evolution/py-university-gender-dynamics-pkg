@@ -34,6 +34,7 @@ class PlotDirector(abcDirector):
         self.builder = builder
         self.builder.create_plot()
         self.builder.draw_lines()
+        self.builder.draw_data_lines()
         self.builder.draw_error_intervals()
         self.builder.draw_target()
         self.builder.draw_misc()

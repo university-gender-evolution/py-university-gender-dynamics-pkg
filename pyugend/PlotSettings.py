@@ -27,54 +27,50 @@ __maintainer__ = 'krishna bhogaonker'
 __email__ = 'cyclotomiq@gmail.com'
 __status__ = 'pre-alpha'
 
-from bokeh.models.annotations import Title
 
 
 class PlotSettings():
 
-    def __init__(self, settings):
+    @staticmethod
+    def get_overall_plot_settings():
 
-        self.title = None
-        self.plottype = None
-        self.intervals = None
-        self.number_of_runs = None
-        self.target = None
-        self.xlabel = None
-        self.ylabel = None
-        self.title = None
-        self.line_width = None
-        self.width_= None
-        self.height_ = None
-        self.transparency = None
-        self.linecolor  = None
-        self.target_plot= None
-        self.legend_location=None,
-        self.color_target = None
-        self.percent_line_plot = None
-        self.percent_line_value = None
-        self.color_percent_line = None
-        self.target_plot_linewidth = None
-        self.percent_linewidth= None
-        self.model_legend_label= None
-        self.target_plot_legend_label = None
-        self.percent_legend_label= None
-        self.male_female_numbers_plot = None
-        self.mf_male_color= None
-        self.mf_target_color = None
-        self.mf_male_label = None
-        self.mf_target_label = None
-        self.mf_male_linewidth = None
-        self.mf_target_linewidth = None
-        self.mf_data_color = None
-        self.mf_data_label = None
-        self.mf_data_linewidth = None
-        self.parameter_sweep_param = None
-        self.parameter_ubound = None
-        self.parameter_lbound = None
-        self.number_of_steps = None
-        self.vertical_line_label = None
-        self.vertical_line_width = None
-        self.vertical_line_color = None
-        self.data_plot = None
-        self.data_line_color = None
-        self.data_line_legend_label = None
+        defaults_overall = {'line_width' : 2,
+        'width_' : 800,
+        'height_' : 800,
+        'transparency' : 0.25,
+        'linecolor' : ['blue', 'green', 'purple', 'brown'],
+        'target_plot ': False,
+        'legend_location ': 'top_right',
+        'color_target ': '#ca0020',
+        'percent_line_plot': False,
+        'percent_line_value' : 0.5,
+        'color_percent_line' : '#ca0020',
+        'target_plot_linewidth' : 2,
+        'percent_linewidth' : 2,
+        'model_legend_label' : ['model'],
+        'target_plot_legend_label' : 'target',
+        'percent_legend_label' : 'percent',
+        'male_female_numbers_plot' : False,
+        'mf_male_color' : ['#0004ff', '#2c7bb6'],
+        'mf_target_color' : ['red', 'orange', 'deeppink', 'darkred'],
+        'mf_male_label' : ['Male model 1', 'Male model 2'],
+        'mf_target_label' : ['Target 1', 'Target 2'],
+        'mf_male_linewidth' : 2,
+        'mf_target_linewidth' : 2,
+        'mf_data_color' : ['blue'],
+        'mf_data_label' : ['Female Faculty Data', 'Male Faculty Data'],
+        'mf_data_linewidth' : [2],
+        'parameter_sweep_param' : None,
+        'parameter_ubound' : 0,
+        'parameter_lbound' : 0,
+        'number_of_steps' : 0,
+        'vertical_line_label' : 'Original Value',
+        'vertical_line_width' : 2,
+        'vertical_line_color' : ['black'],
+        'data_plot' : True,
+        'data_line_color' : ['blue'],
+        'data_line_legend_label' : 'Management Data',
+        'year_offset' : 0,
+        'data_line_style': 'dashdot'}
+
+        return defaults_overall

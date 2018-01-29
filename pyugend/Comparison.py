@@ -5,11 +5,9 @@ from bokeh.plotting import figure, output_file, show
 from bokeh.layouts import gridplot
 from operator import add, sub
 from .ColumnSpecs import MODEL_RUN_COLUMNS, EXPORT_COLUMNS_FOR_CSV
-import datetime
-from .DataManagement import DataManagement
-from .BuilderOverallAttritionPlot import BuilderOverallAttritionPlot
-from .PlotDirector import PlotDirector
 from .ComparisonPlotOverallAttrition import ComparisonPlotOverallAttrition
+import datetime
+
 
 height = 700
 width = 700
@@ -23,6 +21,9 @@ class Comparison():
         self.label = 'All Models'
         self.mlist = model_list
 
+    def run_all_models(self, number_of_runs):
+        for mod in self.mlist:
+            mod.run_multiple(number_of_runs)
 
     def plot_comparison_overall_chart(self,
                            plottype,
@@ -1020,8 +1021,8 @@ class Comparison():
 
 
     def plot_attrition_overall(self, settings):
-
-        return ComparisonPlotOverallAttrition(self.mlist, settings)
+        self.run_all_models(settings['number_of_runs'])
+        return ComparisonPlotOverallAttrition(self.mlist, settings).execute_plot()
 
 
 

@@ -26,17 +26,15 @@ __maintainer__ = 'krishna bhogaonker'
 __email__ = 'cyclotomiq@gmail.com'
 __status__ = ''
 
-
-
 import abc
 from bokeh.plotting import figure, output_file, show
-from bokeh.models.annotations import Title
+from .PlotSettings import PlotSettings
 
 class abcOverallPlotBuilder(metaclass=abc.ABCMeta):
 
     def __init__(self, coordinates, settings):
         self.coordinates = coordinates
-        self.settings = settings
+        self.settings = {**PlotSettings.get_overall_plot_settings(), **settings}
 
     def create_plot(self):
         self.plot = figure(title=self.settings['title'],
@@ -49,6 +47,9 @@ class abcOverallPlotBuilder(metaclass=abc.ABCMeta):
     def draw_lines(self):
         pass
 
+    @abc.abstractmethod
+    def draw_data_lines(self):
+        pass
 
     @abc.abstractmethod
     def draw_error_intervals(self):

@@ -10,13 +10,9 @@ from pyugend.ModelGenderDiversityLinearGrowth import ModelGenderDiversityLinearG
 from pyugend.ModelGenderDiversityGrowthForecastIncrementalChange import ModelGenderDiversityGrowthForecastIncremental
 height = 800
 width = 800
-if __name__ == '__main__':
-
-
 
 @pytest.mark.usefixtures('mgmt_data')
 @pytest.mark.usefixtures('mock_data')
-
 def test_bokeh_comparison_plot_overall_one_model(mgmt_data):
     modlist = list([ModelGenderDiversityGrowthForecastIncremental(**mgmt_data)])
     # modlist = list([Model2GenderDiversity(**mgmt_data),

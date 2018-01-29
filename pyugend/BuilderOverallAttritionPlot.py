@@ -30,7 +30,7 @@ __status__ = ''
 
 from .abcOverallPlotBuilder import abcOverallPlotBuilder
 from .abcSettingsBuilder import abcPlotSettingsBuilder
-
+import numpy as np
 
 class BuilderOverallAttritionPlot(abcOverallPlotBuilder):
 
@@ -40,7 +40,8 @@ class BuilderOverallAttritionPlot(abcOverallPlotBuilder):
         for k in range(self.coordinates['number_of_models']):
             self.plot.line(self.coordinates['xval'],
                            self.coordinates['yval'][k],
-                           line_width = self.settings['line_width'][k],
+                           line_width = self.settings['line_width'],
+                           legend = self.settings['model_legend_label'][k],
                            line_color = self.settings['linecolor'][k])
             self.plot.circle(self.coordinates['xval'],
                            self.coordinates['yval'][k],
@@ -50,13 +51,21 @@ class BuilderOverallAttritionPlot(abcOverallPlotBuilder):
         for k in range(self.coordinates['number_of_models']):
             x_data = np.asarray(self.coordinates['xval'])
             band_x = np.append(x_data, x_data[::-1])
-            band_y = np.append(lower_band[k], upper_band[k][::-1])
+            band_y = np.append(self.coordinates['empirical_lower_bound'][k],
+                             self.coordinates['empirical_upper_bound'][k][::-1])
 
             self.plot.patch(band_x,
                     band_y,
-                    color=self.settings['linecolor'][k],
-                    fill_alpha=transparency)
+                    color= self.settings['linecolor'][k],
+                    fill_alpha= self.settings['transparency'])
 
+    def draw_data_lines(self):
+        self.plot.line(self.coordinates['xval'],
+                     self.coordinates['ground_truth'],
+                     line_color=self.settings['data_line_color'][0],
+                     legend=self.settings['data_line_legend_label'],
+                     line_width=self.settings['line_width'],
+                     line_dash=self.settings['data_line_style'])
 
     def draw_target(self):
         pass
