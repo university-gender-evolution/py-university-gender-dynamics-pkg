@@ -6,6 +6,7 @@ from bokeh.layouts import gridplot
 from operator import add, sub
 from .ColumnSpecs import MODEL_RUN_COLUMNS, EXPORT_COLUMNS_FOR_CSV
 from .ComparisonPlotOverallAttrition import ComparisonPlotOverallAttrition
+from .ComparisonPlotOverallMFHiring import ComparisonPlotOverallMFHiring
 import datetime
 
 
@@ -1024,6 +1025,9 @@ class Comparison():
         self.run_all_models(settings['number_of_runs'])
         return ComparisonPlotOverallAttrition(self.mlist, settings).execute_plot()
 
+    def plot_hiring_mf_overall(self, settings):
+        self.run_all_models(settings['number_of_runs'])
+        return ComparisonPlotOverallMFHiring(self.mlist, settings).execute_plot()
 
 
 

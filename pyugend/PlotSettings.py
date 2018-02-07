@@ -68,7 +68,7 @@ class PlotSettings():
         'vertical_line_width' : 2,
         'vertical_line_color' : ['black'],
         'data_plot' : True,
-        'data_line_color' : ['blue'],
+        'data_line_color' : ['blue', 'green'],
         'data_line_legend_label' : 'Management Data',
         'year_offset' : 0,
         'data_line_style': 'dashdot'}

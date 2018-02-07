@@ -4,7 +4,7 @@
 
 """
 
-Builder Class for attrition plot
+Builder Class for Promotion plot
 
 """
 
@@ -56,7 +56,7 @@ height = 800
 width = 800
 
 
-class ComparisonPlotOverallAttrition(abcComparisonPlot):
+class ComparisonPlotOverallPromotion(abcComparisonPlot):
 
     def helper_overall_data(self):
         yval = [m.results_matrix[FIELDS].sum(1) for m in self.comparison]
@@ -109,11 +109,11 @@ class ComparisonPlotOverallAttrition(abcComparisonPlot):
 
 
 # content of test_class.py
-@pytest.mark.usefixtures('mgmt_data', 'mock_data', 'one_model', 'multi_model')
+@pytest.mark.usefixtures('mgmt_data', 'mock_data', 'one_model')
 class TestClass(object):
 
     def test_plot_attrition(self, one_model):
-        plot_settings = {'plottype': 'attrition',
+        plot_settings = {'plottype': 'promotion',
                          'intervals': 'empirical',
                          'number_of_runs': 100,
                          # number simulations to average over
@@ -121,8 +121,8 @@ class TestClass(object):
                          # target percentage of women in the department
                          # Main plot settings
                          'xlabel': 'Years',
-                         'ylabel': 'Number of Attritions',
-                         'title': 'Attrition Plot',
+                         'ylabel': 'Number of Promotion',
+                         'title': 'Overall Promotion Plot',
                          'line_width': 2,
                          'transparency': 0.25,
                          'model_legend_label': ['Model 3 No Growth',
