@@ -150,12 +150,9 @@ class TestClass(object):
                          'xlabel': 'Years',
                          'ylabel': 'Number of Attritions',
                          'title': 'MF Hiring Plot',
-                         'line_width': 2,
-                         'transparency': 0.25,
                          'model_legend_label': ['Model 3 No Growth',
                                                 'Model 3 Linear Growth',
                                                 'Model 3 Moving Average'],
-                         'legend_location': 'top_right',
                          'height_': height,
                          'width_': width,
                          'year_offset': 0

@@ -21,10 +21,10 @@ __author__ = 'krishna bhogaonker'
 __copyright__ = 'copyright '
 __credits__ = ['krishna bhogaonker']
 __license__ = "MIT"
-__version__ = ''
+__version__ = '0.1.0'
 __maintainer__ = 'krishna bhogaonker'
 __email__ = 'cyclotomiq@gmail.com'
-__status__ = ''
+__status__ = 'pre-alpha'
 
 import abc
 from bokeh.plotting import figure, output_file, show

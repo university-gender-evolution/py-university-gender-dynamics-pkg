@@ -4,7 +4,7 @@
 
 """
 
-Builder Class for attrition plot
+Builder Class generic Male-Female comparison plot
 
 """
 
@@ -40,8 +40,8 @@ class BuilderGenericOverallMFPlot(abcOverallPlotBuilder):
             self.plot.line(self.coordinates['xval'],
                            self.coordinates['male_yval'][k],
                            line_width = self.settings['line_width'],
-                           legend = self.settings['model_legend_label'][k],
-                           line_color = self.settings['linecolor'][k])
+                           legend = "Male " + self.settings['model_legend_label'][k],
+                           line_color = self.settings['linecolor'][2*k])
             self.plot.circle(self.coordinates['xval'],
                            self.coordinates['male_yval'][k],
                            size = 3)
@@ -49,8 +49,8 @@ class BuilderGenericOverallMFPlot(abcOverallPlotBuilder):
             self.plot.line(self.coordinates['xval'],
                            self.coordinates['female_yval'][k],
                            line_width = self.settings['line_width'],
-                           legend = self.settings['model_legend_label'][k],
-                           line_color = self.settings['linecolor'][k])
+                           legend = "Female "+ self.settings['model_legend_label'][k],
+                           line_color = self.settings['linecolor'][2*k+1])
             self.plot.circle(self.coordinates['xval'],
                            self.coordinates['female_yval'][k],
                            size = 3)
@@ -67,12 +67,12 @@ class BuilderGenericOverallMFPlot(abcOverallPlotBuilder):
 
             self.plot.patch(band_x,
                     m_band_y,
-                    color= self.settings['linecolor'][k],
+                    color= self.settings['linecolor'][2*k],
                     fill_alpha= self.settings['transparency'])
 
             self.plot.patch(band_x,
                     f_band_y,
-                    color= self.settings['linecolor'][k],
+                    color= self.settings['linecolor'][2*k+1],
                     fill_alpha= self.settings['transparency'])
 
 
