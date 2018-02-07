@@ -2,17 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="db3b48aa-1b4d-4f09-96e2-54f1ff5c70d7" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/pyugend/BuilderGenericOverallMFPlot.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/pyugend/ComparisonPlotOverallMFHiring.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/pyugend/ComparisonPlotOverallPromotion.py" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/pyugend/BuilderOverallAttritionPlot.py" afterPath="$PROJECT_DIR$/pyugend/BuilderGenericOverallPlot.py" />
-      <change beforePath="$PROJECT_DIR$/pyugend/Comparison.py" afterPath="$PROJECT_DIR$/pyugend/Comparison.py" />
-      <change beforePath="$PROJECT_DIR$/pyugend/ComparisonPlotOverallAttrition.py" afterPath="$PROJECT_DIR$/pyugend/ComparisonPlotOverallAttrition.py" />
-      <change beforePath="$PROJECT_DIR$/pyugend/PlotSettings.py" afterPath="$PROJECT_DIR$/pyugend/PlotSettings.py" />
-      <change beforePath="$PROJECT_DIR$/pyugend/conftest.py" afterPath="$PROJECT_DIR$/pyugend/conftest.py" />
-      <change beforePath="$PROJECT_DIR$/pyugend/data/mgmt_data.ods" afterPath="$PROJECT_DIR$/pyugend/data/mgmt_data.ods" />
-      <change beforePath="$PROJECT_DIR$/pyugend/mgmt_data.csv" afterPath="$PROJECT_DIR$/pyugend/mgmt_data.csv" />
     </list>
     <ignored path="pyugend.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -65,7 +55,7 @@
     <SUITE FILE_PATH="coverage/pyugend$py_test_in_test_plot_dept_size_over_time.coverage" NAME="py.test in test_plot_dept_size_over_time Coverage Results" MODIFIED="1462427999395" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
     <SUITE FILE_PATH="coverage/pyugend$py_test_in_test_plot_overall_gender_proportion.coverage" NAME="py.test in test_plot_overall_gender_proportion Coverage Results" MODIFIED="1471545168564" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
     <SUITE FILE_PATH="coverage/pyugend$py_test_in_test_base_model_plot_multiple_runs_detail.coverage" NAME="py.test in test_base_model_plot_multiple_runs_detail Coverage Results" MODIFIED="1464319048392" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
-    <SUITE FILE_PATH="coverage/pyugend$py_test_for_pyugend_ComparisonPlotOverallMFHiring_TestClass_test_plot_mfhiring.coverage" NAME="py.test for pyugend.ComparisonPlotOverallMFHiring.TestClass.test_plot_mfhiring Coverage Results" MODIFIED="1517273989075" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/pyugend$py_test_for_pyugend_ComparisonPlotOverallMFHiring_TestClass_test_plot_mfhiring.coverage" NAME="py.test for pyugend.ComparisonPlotOverallMFHiring.TestClass.test_plot_mfhiring Coverage Results" MODIFIED="1518029012679" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/pyugend$py_test_for_test_Plots_test_bokeh_comparison_plot_dept_size_overall.coverage" NAME="py.test for test_Plots.test_bokeh_comparison_plot_dept_size_overall Coverage Results" MODIFIED="1515196707778" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
     <SUITE FILE_PATH="coverage/pyugend$py_test_in_test_base_model_plot_multiple_runs_percentage.coverage" NAME="py.test in test_base_model_plot_multiple_runs_percentage Coverage Results" MODIFIED="1468367400689" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
     <SUITE FILE_PATH="coverage/pyugend$py_test_in_test_FBHP_alt_plot_gend_proportion.coverage" NAME="py.test in test_FBHP_alt_plot_gend_proportion Coverage Results" MODIFIED="1462895179625" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
@@ -84,7 +74,7 @@
       <file leaf-file-name="Comparison.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/pyugend/Comparison.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1078">
+            <state relative-caret-position="33759">
               <caret line="1031" column="0" lean-forward="false" selection-start-line="1031" selection-start-column="0" selection-end-line="1031" selection-end-column="0" />
               <folding>
                 <element signature="e#24#42#0" expanded="true" />
@@ -96,8 +86,8 @@
       <file leaf-file-name="BuilderGenericOverallMFPlot.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/pyugend/BuilderGenericOverallMFPlot.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1241">
-              <caret line="57" column="21" lean-forward="false" selection-start-line="57" selection-start-column="21" selection-end-line="57" selection-end-column="21" />
+            <state relative-caret-position="330">
+              <caret line="42" column="73" lean-forward="true" selection-start-line="42" selection-start-column="73" selection-end-line="42" selection-end-column="73" />
               <folding />
             </state>
           </provider>
@@ -106,7 +96,7 @@
       <file leaf-file-name="PlotSettings.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/pyugend/PlotSettings.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2310">
+            <state relative-caret-position="924">
               <caret line="70" column="43" lean-forward="false" selection-start-line="70" selection-start-column="43" selection-end-line="70" selection-end-column="43" />
               <folding />
             </state>
@@ -116,7 +106,7 @@
       <file leaf-file-name="ComparisonPlotOverallMFHiring.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/pyugend/ComparisonPlotOverallMFHiring.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1762">
+            <state relative-caret-position="3049">
               <caret line="162" column="16" lean-forward="false" selection-start-line="162" selection-start-column="16" selection-end-line="162" selection-end-column="16" />
               <folding>
                 <element signature="e#1385#1398#0" expanded="true" />
@@ -275,7 +265,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -297,6 +286,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
       <pane id="Scratches" />
     </panes>
   </component>
@@ -754,13 +744,6 @@
       <option name="presentableId" value="Default" />
       <updated>1461126958316</updated>
     </task>
-    <task id="LOCAL-00067" summary="created new functions to plot the overall and by level functions. Still need to test them.&#10;">
-      <created>1471295736019</created>
-      <option name="number" value="00067" />
-      <option name="presentableId" value="LOCAL-00067" />
-      <option name="project" value="LOCAL" />
-      <updated>1471295736019</updated>
-    </task>
     <task id="LOCAL-00068" summary="created new functions to plot the overall and by level functions. Still need to test them.&#10;">
       <created>1471975069683</created>
       <option name="number" value="00068" />
@@ -1097,13 +1080,17 @@
       <option name="project" value="LOCAL" />
       <updated>1517258302791</updated>
     </task>
-    <option name="localTasksCounter" value="116" />
+    <task id="LOCAL-00116" summary="Creating new plot structure.&#10;Created overall plot abc and attrition plot classes and builder. - completed.">
+      <created>1518022629046</created>
+      <option name="number" value="00116" />
+      <option name="presentableId" value="LOCAL-00116" />
+      <option name="project" value="LOCAL" />
+      <updated>1518022629047</updated>
+    </task>
+    <option name="localTasksCounter" value="117" />
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="py_test_for_pyugend_ComparisonPlotOverallAttrition_TestClass_test_plot_attrition - 2018.01.28 at 00h 10m 51s.xml">
-      <configuration name="py.test for pyugend.ComparisonPlotOverallAttrition.TestClass.test_plot_attrition" configurationId="tests" />
-    </history-entry>
     <history-entry file="py_test_for_pyugend_ComparisonPlotOverallAttrition_TestClass_test_plot_attrition - 2018.01.29 at 12h 41m 01s.xml">
       <configuration name="py.test for pyugend.ComparisonPlotOverallAttrition.TestClass.test_plot_attrition" configurationId="tests" />
     </history-entry>
@@ -1131,6 +1118,9 @@
     <history-entry file="py_test_for_pyugend_ComparisonPlotOverallMFHiring_TestClass_test_plot_mfhiring - 2018.01.29 at 16h 59m 51s.xml">
       <configuration name="py.test for pyugend.ComparisonPlotOverallMFHiring.TestClass.test_plot_mfhiring" configurationId="tests" />
     </history-entry>
+    <history-entry file="py_test_for_pyugend_ComparisonPlotOverallMFHiring_TestClass_test_plot_mfhiring - 2018.02.07 at 10h 43m 35s.xml">
+      <configuration name="py.test for pyugend.ComparisonPlotOverallMFHiring.TestClass.test_plot_mfhiring" configurationId="tests" />
+    </history-entry>
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1152,7 +1142,7 @@
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32768363" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3762712" sideWeight="0.4956943" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32768363" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.34284177" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3476857" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="SciView" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32992464" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -1491,7 +1481,6 @@ son</expression-string>
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="462">
           <caret line="14" column="0" lean-forward="false" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1554,17 +1543,6 @@ son</expression-string>
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="222">
           <caret line="114" column="45" lean-forward="true" selection-start-line="114" selection-start-column="45" selection-end-line="114" selection-end-column="45" />
-          <folding>
-            <element signature="e#1389#1402#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pyugend/PlotSettings.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2310">
-          <caret line="70" column="43" lean-forward="false" selection-start-line="70" selection-start-column="43" selection-end-line="70" selection-end-column="43" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1572,13 +1550,12 @@ son</expression-string>
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1534">
           <caret line="75" column="55" lean-forward="true" selection-start-line="75" selection-start-column="40" selection-end-line="75" selection-end-column="55" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/pyugend/Comparison.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1078">
+        <state relative-caret-position="33759">
           <caret line="1031" column="0" lean-forward="false" selection-start-line="1031" selection-start-column="0" selection-end-line="1031" selection-end-column="0" />
           <folding>
             <element signature="e#24#42#0" expanded="true" />
@@ -1588,7 +1565,7 @@ son</expression-string>
     </entry>
     <entry file="file://$PROJECT_DIR$/pyugend/ComparisonPlotOverallMFHiring.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1762">
+        <state relative-caret-position="3049">
           <caret line="162" column="16" lean-forward="false" selection-start-line="162" selection-start-column="16" selection-end-line="162" selection-end-column="16" />
           <folding>
             <element signature="e#1385#1398#0" expanded="true" />
@@ -1596,10 +1573,18 @@ son</expression-string>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/pyugend/PlotSettings.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="924">
+          <caret line="70" column="43" lean-forward="false" selection-start-line="70" selection-start-column="43" selection-end-line="70" selection-end-column="43" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/pyugend/BuilderGenericOverallMFPlot.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1241">
-          <caret line="57" column="21" lean-forward="false" selection-start-line="57" selection-start-column="21" selection-end-line="57" selection-end-column="21" />
+        <state relative-caret-position="330">
+          <caret line="42" column="73" lean-forward="true" selection-start-line="42" selection-start-column="73" selection-end-line="42" selection-end-column="73" />
           <folding />
         </state>
       </provider>
