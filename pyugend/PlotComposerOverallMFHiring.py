@@ -1,10 +1,8 @@
-
-
-#!/usr/bin/python
+# !/usr/bin/python
 
 """
 
-Builder Class for attrition plot
+Builder Class for Hiring plot
 
 """
 
@@ -32,57 +30,94 @@ from bokeh.plotting import show
 from .abcComparisonPlot import abcComparisonPlot
 from .BuilderGenericOverallPlot import BuilderGenericOverallPlot
 from .PlotDirector import PlotDirector
+from .BuilderGenericOverallMFPlot import BuilderGenericOverallMFPlot
+from .PlotSettingsOverallMF import PlotSettingsOverallMF
+
 
 # Set constants
 # These are the fields involves in this plot.
-FIELDS = ['mean_vac_3',
-         'mean_vac_2',
-         'mean_vac_1']
+MFIELDS = ['mean_m_hire_3',
+           'mean_m_hire_2',
+           'mean_m_hire_1']
 
-EMPFIELDS_UPPER = ['vac_3_975',
-                'vac_2_975',
-                'vac_1_975']
+FFIELDS = ['mean_f_hire_3',
+           'mean_f_hire_2',
+           'mean_f_hire_1']
 
-EMPFIELDS_LOWER = ['vac_3_025',
-                'vac_2_025',
-                'vac_1_025']
+M_EMPFIELDS_UPPER = ['m_hire_3_975',
+                     'm_hire_2_975',
+                     'm_hire_1_975']
 
-SDFIELDS = ['std_vac_3',
-          'std_vac_2',
-          'std_vac_1']
+F_EMPFIELDS_UPPER = ['f_hire_3_975',
+                     'f_hire_2_975',
+                     'f_hire_1_975']
 
-GROUNDTRUTH = 'total_attrition'
+M_EMPFIELDS_LOWER = ['m_hire_3_025',
+                     'm_hire_2_025',
+                     'm_hire_1_025']
+
+F_EMPFIELDS_LOWER = ['f_hire_3_025',
+                     'f_hire_2_025',
+                     'f_hire_1_025']
+
+M_SDFIELDS = ['std_m_hire_3',
+              'std_m_hire_2',
+              'std_m_hire_1']
+
+F_SDFIELDS = ['std_m_hire_3',
+              'std_m_hire_2',
+              'std_m_hire_1']
+
+M_GROUNDTRUTH = 'total_male_hiring'
+
+F_GROUNDTRUTH = 'total_female_hiring'
 height = 800
 width = 800
 
 
-class ComparisonPlotOverallAttrition(abcComparisonPlot):
+class PlotComposerOverallMFHiring(abcComparisonPlot):
 
     def helper_overall_data(self):
-        yval = [m.results_matrix[FIELDS].sum(1) for m in self.comparison]
-        self.coordinates['yval'] = yval
+        male_yval = [m.results_matrix[MFIELDS].sum(1) for m in self.comparison]
+        self.coordinates['male_yval'] = male_yval
+
+        female_yval = [m.results_matrix[FFIELDS].sum(1) for m in self.comparison]
+        self.coordinates['female_yval'] = female_yval
 
     def helper_overall_empirical_upper_bound(self):
-        empirical_upper_bound = [m.results_matrix[EMPFIELDS_UPPER].sum(axis=1)
-                          for m in self.comparison]
-        self.coordinates['empirical_upper_bound'] = empirical_upper_bound
+        male_empirical_upper_bound = [m.results_matrix[M_EMPFIELDS_UPPER].sum(axis=1)
+                                 for m in self.comparison]
+        self.coordinates['male_empirical_upper_bound'] = male_empirical_upper_bound
+
+        female_empirical_upper_bound = [m.results_matrix[F_EMPFIELDS_UPPER].sum(axis=1)
+                                 for m in self.comparison]
+        self.coordinates['female_empirical_upper_bound'] = female_empirical_upper_bound
+
 
     def helper_overall_empirical_lower_bound(self):
-        empirical_lower_bound = [m.results_matrix[EMPFIELDS_LOWER].sum(axis=1)
-                          for m in self.comparison]
-        self.coordinates['empirical_lower_bound'] = empirical_lower_bound
+
+        male_empirical_lower_bound = [m.results_matrix[M_EMPFIELDS_LOWER].sum(axis=1)
+                                 for m in self.comparison]
+        self.coordinates['male_empirical_lower_bound'] = male_empirical_lower_bound
+
+        female_empirical_lower_bound = [m.results_matrix[F_EMPFIELDS_LOWER].sum(axis=1)
+                                 for m in self.comparison]
+        self.coordinates['female_empirical_lower_bound'] = female_empirical_lower_bound
 
     def helper_ground_truth_mgmt(self):
-        self.coordinates['ground_truth'] = self.helper_original_data_mgmt(GROUNDTRUTH)
+        self.coordinates['male_ground_truth'] = self.helper_original_data_mgmt(M_GROUNDTRUTH)
+        self.coordinates['female_ground_truth'] = self.helper_original_data_mgmt(F_GROUNDTRUTH)
 
     def helper_indicate_number_of_models(self):
-
         self.coordinates['number_of_models'] = len(self.comparison)
+
     def helper_year_duration(self):
         self.coordinates['xval'] = self.helper_duration()
 
-    def helper_build_overall_plot_coordinates(self):
+    def helper_build_settings(self):
+        self.settings = {**PlotSettingsOverallMF.get_settings(), **self.settings}
 
+    def helper_build_overall_plot_coordinates(self):
         # This will build the data dictionary for the plot
         self.helper_indicate_number_of_models()
         self.helper_overall_data()
@@ -90,16 +125,14 @@ class ComparisonPlotOverallAttrition(abcComparisonPlot):
         self.helper_overall_empirical_upper_bound()
         self.helper_overall_empirical_lower_bound()
         self.helper_ground_truth_mgmt()
-
+        self.helper_build_settings()
 
     def helper_level_data(self):
         pass
 
-
     def execute_plot(self):
-
         self.helper_build_overall_plot_coordinates()
-        builder = BuilderGenericOverallPlot(self.coordinates,
+        builder = BuilderGenericOverallMFPlot(self.coordinates,
                                             self.settings)
         director = PlotDirector()
         return director.construct(builder)
@@ -112,25 +145,22 @@ class ComparisonPlotOverallAttrition(abcComparisonPlot):
 @pytest.mark.usefixtures('mgmt_data', 'mock_data', 'one_model', 'multi_model')
 class TestClass(object):
 
-    def test_plot_attrition(self, one_model):
-        plot_settings = {'plottype': 'attrition',
+    def test_plot_mfhiring(self, one_model):
+        plot_settings = {'plottype': 'hiring',
                          'intervals': 'empirical',
                          'number_of_runs': 100,
                          # number simulations to average over
                          'target': 0.25,
                          # target percentage of women in the department
                          # Main plot settings
-                         'xlabel': 'Years',
-                         'ylabel': 'Number of Attritions',
-                         'title': 'Attrition Plot',
-                         'line_width': 2,
-                         'transparency': 0.25,
+                         'xlabel': 'Year',
+                         'ylabel': 'Number of Hires',
+                         'title': 'MF Hiring Plot',
                          'model_legend_label': ['Model 3 No Growth',
-                                              'Model 3 Linear Growth',
-                                              'Model 3 Moving Average'],
-                         'legend_location': 'top_right',
+                                                'Model 3 Linear Growth',
+                                                'Model 3 Moving Average'],
                          'height_': height,
                          'width_': width,
                          'year_offset': 0
                          }
-        show(one_model.plot_attrition_overall(plot_settings))
+        show(one_model.plot_hiring_mf_overall(plot_settings))

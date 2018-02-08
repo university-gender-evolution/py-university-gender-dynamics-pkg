@@ -27,12 +27,12 @@ __email__ = 'cyclotomiq@gmail.com'
 __status__ = 'pre-alpha'
 
 import abc
-from .PlotSettings import PlotSettings
+from .PlotSettingsOverall import PlotSettingsOverall
 
 class abcPlotSettingsBuilder(metaclass=abc.ABCMeta):
 
     def __init__(self, settings=None):
-        self.plot = PlotSettings()
+        self.plot = PlotSettingsOverall()
         self.settings = settings
 
     @abc.abstractmethod

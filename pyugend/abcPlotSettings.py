@@ -1,9 +1,9 @@
+
 #!/usr/bin/python
 
 """
 
-Abstract Base Class for building plots
-
+Plot Settings abc
 """
 
 ## MIT License
@@ -17,57 +17,19 @@ Abstract Base Class for building plots
 
 
 __author__ = 'krishna bhogaonker'
-__copyright__ = 'copyright '
+__copyright__ = 'copyright 2017'
 __credits__ = ['krishna bhogaonker']
 __license__ = "MIT"
-__version__ = ''
+__version__ = '0.1.0'
 __maintainer__ = 'krishna bhogaonker'
 __email__ = 'cyclotomiq@gmail.com'
-__status__ = ''
-
-
+__status__ = 'pre-alpha'
 
 import abc
-from bokeh.plotting import figure, output_file, show
-from .PlotSettingsOverall import PlotSettingsOverall
 
+class abcPlotSettings(metaclass=abc.ABCMeta):
 
-height = 800
-width = 800
-
-
-
-
-
-class abcComparisonPlot(metaclass=abc.ABCMeta):
-
-
-    def __init__(self, model_results, settings=None):
-        self.plot = None
-        self.settings = settings
-        self.comparison = model_results
-        self.coordinates = {}
 
     @abc.abstractmethod
-    def helper_overall_data(self):
+    def get_settings(self):
         pass
-
-    @abc.abstractmethod
-    def helper_level_data(self):
-        pass
-
-    @abc.abstractmethod
-    def execute_plot(self):
-        pass
-
-    @abc.abstractmethod
-    def helper_build_settings(self):
-        pass
-
-    def helper_duration(self):
-        xval = list(range(min([m.duration for m in self.comparison])))[self.settings['year_offset']:]
-        return xval
-
-    def helper_original_data_mgmt(self, field):
-        dval = self.comparison[0].mgmt_data.get_field(field)
-        return dval

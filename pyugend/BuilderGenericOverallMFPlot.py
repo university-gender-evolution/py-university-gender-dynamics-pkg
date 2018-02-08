@@ -44,7 +44,8 @@ class BuilderGenericOverallMFPlot(abcOverallPlotBuilder):
                            line_color = self.settings['linecolor'][2*k])
             self.plot.circle(self.coordinates['xval'],
                            self.coordinates['male_yval'][k],
-                           size = 3)
+                           size = 3,
+                           legend="Male " + self.settings['model_legend_label'][k])
 
             self.plot.line(self.coordinates['xval'],
                            self.coordinates['female_yval'][k],
@@ -53,7 +54,8 @@ class BuilderGenericOverallMFPlot(abcOverallPlotBuilder):
                            line_color = self.settings['linecolor'][2*k+1])
             self.plot.circle(self.coordinates['xval'],
                            self.coordinates['female_yval'][k],
-                           size = 3)
+                           size = 3,
+                           legend="Female " + self.settings['model_legend_label'][k])
 
             self.plot.legend.click_policy = "hide"
     def draw_error_intervals(self):

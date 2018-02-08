@@ -28,13 +28,14 @@ __status__ = 'pre-alpha'
 
 import abc
 from bokeh.plotting import figure, output_file, show
-from .PlotSettings import PlotSettings
+from .PlotSettingsOverall import PlotSettingsOverall
 
 class abcOverallPlotBuilder(metaclass=abc.ABCMeta):
 
+
     def __init__(self, coordinates, settings):
         self.coordinates = coordinates
-        self.settings = {**PlotSettings.get_overall_plot_settings(), **settings}
+        self.settings = settings
 
     def create_plot(self):
         self.plot = figure(title=self.settings['title'],
@@ -43,6 +44,7 @@ class abcOverallPlotBuilder(metaclass=abc.ABCMeta):
                    width=self.settings['width_'],
                    height=self.settings['height_'])
 
+        self.plot.legend.click_policy = 'hide'
     @abc.abstractmethod
     def draw_lines(self):
         pass

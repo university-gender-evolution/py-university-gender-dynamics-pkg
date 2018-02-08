@@ -4,7 +4,7 @@
 
 """
 
-Builder Class for Promotion plot
+Builder Class for attrition plot
 
 """
 
@@ -32,6 +32,8 @@ from bokeh.plotting import show
 from .abcComparisonPlot import abcComparisonPlot
 from .BuilderGenericOverallPlot import BuilderGenericOverallPlot
 from .PlotDirector import PlotDirector
+from .PlotSettingsOverall import PlotSettingsOverall
+
 
 # Set constants
 # These are the fields involves in this plot.
@@ -56,7 +58,7 @@ height = 800
 width = 800
 
 
-class ComparisonPlotOverallPromotion(abcComparisonPlot):
+class PlotComposerOverallAttrition(abcComparisonPlot):
 
     def helper_overall_data(self):
         yval = [m.results_matrix[FIELDS].sum(1) for m in self.comparison]
@@ -90,11 +92,13 @@ class ComparisonPlotOverallPromotion(abcComparisonPlot):
         self.helper_overall_empirical_upper_bound()
         self.helper_overall_empirical_lower_bound()
         self.helper_ground_truth_mgmt()
-
+        self.helper_build_settings()
 
     def helper_level_data(self):
         pass
 
+    def helper_build_settings(self):
+        self.settings = {**PlotSettingsOverall.get_settings(), **self.settings}
 
     def execute_plot(self):
 
@@ -109,11 +113,11 @@ class ComparisonPlotOverallPromotion(abcComparisonPlot):
 
 
 # content of test_class.py
-@pytest.mark.usefixtures('mgmt_data', 'mock_data', 'one_model')
+@pytest.mark.usefixtures('mgmt_data', 'mock_data', 'one_model', 'multi_model')
 class TestClass(object):
 
     def test_plot_attrition(self, one_model):
-        plot_settings = {'plottype': 'promotion',
+        plot_settings = {'plottype': 'attrition',
                          'intervals': 'empirical',
                          'number_of_runs': 100,
                          # number simulations to average over
@@ -121,8 +125,8 @@ class TestClass(object):
                          # target percentage of women in the department
                          # Main plot settings
                          'xlabel': 'Years',
-                         'ylabel': 'Number of Promotion',
-                         'title': 'Overall Promotion Plot',
+                         'ylabel': 'Number of Attritions',
+                         'title': 'Attrition Plot',
                          'line_width': 2,
                          'transparency': 0.25,
                          'model_legend_label': ['Model 3 No Growth',

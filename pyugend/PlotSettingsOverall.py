@@ -27,12 +27,12 @@ __maintainer__ = 'krishna bhogaonker'
 __email__ = 'cyclotomiq@gmail.com'
 __status__ = 'pre-alpha'
 
+from .abcPlotSettings import abcPlotSettings
 
-
-class PlotSettings():
+class PlotSettingsOverall(abcPlotSettings):
 
     @staticmethod
-    def get_overall_plot_settings():
+    def get_settings():
 
         defaults_overall = {'line_width' : 2,
         'width_' : 800,

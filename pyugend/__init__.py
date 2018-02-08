@@ -19,7 +19,7 @@ from .Comparison import Comparison
 from .ModelGenderDiversityLinearGrowth import ModelGenderDiversityLinearGrowth
 from .ModelGenderDiversityGrowthForecast import ModelGenderDiversityGrowthForecast
 from .ModelGenderDiversityGrowthForecastIncrementalChange import ModelGenderDiversityGrowthForecastIncremental
-from .ComparisonPlotOverallAttrition import ComparisonPlotOverallAttrition
+from .PlotComposerOverallAttrition import PlotComposerOverallAttrition
 from .abcComparisonPlot import abcComparisonPlot
 from .abcDirector import abcDirector
 from .abcOverallPlotBuilder import abcOverallPlotBuilder
