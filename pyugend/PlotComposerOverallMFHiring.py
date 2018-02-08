@@ -164,3 +164,4 @@ class TestClass(object):
                          'year_offset': 0
                          }
         show(one_model.plot_hiring_mf_overall(plot_settings))
+

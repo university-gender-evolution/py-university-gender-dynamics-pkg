@@ -112,8 +112,8 @@ def test_bokeh_comparison_plot_overall_multiple_models(mgmt_data):
 
 def test_bokeh_comparison_plot_bylevel(mgmt_data):
     modlist = list([Model3GenderDiversity(**mgmt_data),
-                    ModelGendDiversityLinearGrowth(**mgmt_data),
-                    ModelGendDiversityGrowthForecast(**mgmt_data)])
+                    ModelGenderDiversityLinearGrowth(**mgmt_data),
+                    ModelGenderDiversityGrowthForecast(**mgmt_data)])
     modlist[0].init_default_hiring_rate()
     modlist[1].init_default_hiring_rate()
     modlist[1].init_growth_rate(0.05)

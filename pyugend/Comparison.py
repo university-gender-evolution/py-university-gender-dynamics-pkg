@@ -971,7 +971,8 @@ class Comparison():
 
         grid = gridplot([[plots[0], plots[1], plots[2]],
                          [plots[3], plots[4], plots[5]]])
-        return(grid)
+
+
 
 
     def export_model_run(self, model_label, model_choice, number_of_runs):

@@ -4,7 +4,7 @@
 
 """
 
-Builder Class generic Male-Female comparison plot
+Builder Class for Basic Autocorrelation plot
 
 """
 
@@ -32,67 +32,38 @@ from .abcOverallPlotBuilder import abcOverallPlotBuilder
 from .abcSettingsBuilder import abcPlotSettingsBuilder
 import numpy as np
 
-class BuilderGenericOverallMFPlot(abcOverallPlotBuilder):
+class BuilderGenericOverallPlot(abcOverallPlotBuilder):
+
 
 
     def draw_lines(self):
         for k in range(self.coordinates['number_of_models']):
             self.plot.line(self.coordinates['xval'],
-                           self.coordinates['male_yval'][k],
+                           self.coordinates['yval'][k],
                            line_width = self.settings['line_width'],
-                           legend = "Male " + self.settings['model_legend_label'][k],
-                           line_color = self.settings['linecolor'][2*k])
+                           legend = self.settings['model_legend_label'][k],
+                           line_color = self.settings['linecolor'][k])
             self.plot.circle(self.coordinates['xval'],
-                           self.coordinates['male_yval'][k],
-                           size = 3,
-                           legend="Male " + self.settings['model_legend_label'][k])
+                           self.coordinates['yval'][k],
+                           size = 3)
 
-            self.plot.line(self.coordinates['xval'],
-                           self.coordinates['female_yval'][k],
-                           line_width = self.settings['line_width'],
-                           legend = "Female "+ self.settings['model_legend_label'][k],
-                           line_color = self.settings['linecolor'][2*k+1])
-            self.plot.circle(self.coordinates['xval'],
-                           self.coordinates['female_yval'][k],
-                           size = 3,
-                           legend="Female " + self.settings['model_legend_label'][k])
-
-            self.plot.legend.click_policy = "hide"
     def draw_error_intervals(self):
         for k in range(self.coordinates['number_of_models']):
             x_data = np.asarray(self.coordinates['xval'])
             band_x = np.append(x_data, x_data[::-1])
-            m_band_y = np.append(self.coordinates['male_empirical_lower_bound'][k],
-                             self.coordinates['male_empirical_upper_bound'][k][::-1])
-            f_band_y = np.append(self.coordinates['female_empirical_lower_bound'][k],
-                             self.coordinates['female_empirical_upper_bound'][k][::-1])
+            band_y = np.append(self.coordinates['empirical_lower_bound'][k],
+                             self.coordinates['empirical_upper_bound'][k][::-1])
 
             self.plot.patch(band_x,
-                    m_band_y,
-                    color= self.settings['linecolor'][2*k],
-                    legend="Male " + self.settings['model_legend_label'][k],
+                    band_y,
+                    color= self.settings['linecolor'][k],
                     fill_alpha= self.settings['transparency'])
-
-            self.plot.patch(band_x,
-                    f_band_y,
-                    color= self.settings['linecolor'][2*k+1],
-                    legend="Female " + self.settings['model_legend_label'][k],
-                    fill_alpha= self.settings['transparency'])
-
 
     def draw_data_lines(self):
         self.plot.line(self.coordinates['xval'],
-                     self.coordinates['male_ground_truth'],
+                     self.coordinates['ground_truth'],
                      line_color=self.settings['data_line_color'][0],
-                     legend="Male " + self.settings['data_line_legend_label'],
-                     line_width=self.settings['line_width'],
-                     line_dash=self.settings['data_line_style'])
-
-
-        self.plot.line(self.coordinates['xval'],
-                     self.coordinates['female_ground_truth'],
-                     line_color=self.settings['data_line_color'][1],
-                     legend="Female " + self.settings['data_line_legend_label'],
+                     legend=self.settings['data_line_legend_label'],
                      line_width=self.settings['line_width'],
                      line_dash=self.settings['data_line_style'])
 
