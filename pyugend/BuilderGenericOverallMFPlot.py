@@ -40,22 +40,24 @@ class BuilderGenericOverallMFPlot(abcOverallPlotBuilder):
             self.plot.line(self.coordinates['xval'],
                            self.coordinates['male_yval'][k],
                            line_width = self.settings['line_width'],
-                           legend = "Male " + self.settings['model_legend_label'][k],
-                           line_color = self.settings['linecolor'][2*k])
+                           legend = self.settings['mf_male_label'][k],
+                           line_color = self.settings['mf_male_color'][k])
             self.plot.circle(self.coordinates['xval'],
                            self.coordinates['male_yval'][k],
                            size = 3,
-                           legend="Male " + self.settings['model_legend_label'][k])
+                           line_color= self.settings['mf_male_color'][k],
+                           legend= self.settings['mf_male_label'][k])
 
             self.plot.line(self.coordinates['xval'],
                            self.coordinates['female_yval'][k],
                            line_width = self.settings['line_width'],
-                           legend = "Female "+ self.settings['model_legend_label'][k],
-                           line_color = self.settings['linecolor'][2*k+1])
+                           legend = self.settings['mf_female_label'][k],
+                           line_color = self.settings['mf_female_color'][k])
             self.plot.circle(self.coordinates['xval'],
                            self.coordinates['female_yval'][k],
                            size = 3,
-                           legend="Female " + self.settings['model_legend_label'][k])
+                           line_color=self.settings['mf_female_color'][k],
+                           legend= self.settings['mf_female_label'][k])
 
             self.plot.legend.click_policy = "hide"
     def draw_error_intervals(self):
@@ -69,30 +71,30 @@ class BuilderGenericOverallMFPlot(abcOverallPlotBuilder):
 
             self.plot.patch(band_x,
                     m_band_y,
-                    color= self.settings['linecolor'][2*k],
-                    legend="Male " + self.settings['model_legend_label'][k],
+                    color= self.settings['mf_male_color'][k],
+                    legend=self.settings['mf_male_label'][k],
                     fill_alpha= self.settings['transparency'])
 
             self.plot.patch(band_x,
                     f_band_y,
-                    color= self.settings['linecolor'][2*k+1],
-                    legend="Female " + self.settings['model_legend_label'][k],
+                    color= self.settings['mf_female_color'][k],
+                    legend=self.settings['mf_female_label'][k],
                     fill_alpha= self.settings['transparency'])
 
 
     def draw_data_lines(self):
         self.plot.line(self.coordinates['xval'],
                      self.coordinates['male_ground_truth'],
-                     line_color=self.settings['data_line_color'][0],
-                     legend="Male " + self.settings['data_line_legend_label'],
+                     line_color=self.settings['mf_male_color'][0],
+                     legend=self.settings['mf_male_data_label'][0],
                      line_width=self.settings['line_width'],
                      line_dash=self.settings['data_line_style'])
 
 
         self.plot.line(self.coordinates['xval'],
                      self.coordinates['female_ground_truth'],
-                     line_color=self.settings['data_line_color'][1],
-                     legend="Female " + self.settings['data_line_legend_label'],
+                     line_color=self.settings['mf_female_color'][0],
+                     legend=self.settings['mf_female_data_label'][0],
                      line_width=self.settings['line_width'],
                      line_dash=self.settings['data_line_style'])
 

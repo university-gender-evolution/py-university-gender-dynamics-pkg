@@ -4,7 +4,7 @@
 
 """
 
-Builder Class for attrition plot
+Builder Class for generic overall plot
 
 """
 
