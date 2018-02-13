@@ -27,12 +27,12 @@ __maintainer__ = 'krishna bhogaonker'
 __email__ = 'cyclotomiq@gmail.com'
 __status__ = ''
 
-
+from bokeh.plotting import lag_
 from .abcOverallPlotBuilder import abcOverallPlotBuilder
 from .abcSettingsBuilder import abcPlotSettingsBuilder
 import numpy as np
 
-class BuilderGenericOverallPlot(abcOverallPlotBuilder):
+class BuilderGenericAutoCorrelationPlot(abcOverallPlotBuilder):
 
 
 
@@ -48,24 +48,10 @@ class BuilderGenericOverallPlot(abcOverallPlotBuilder):
                            size = 3)
 
     def draw_error_intervals(self):
-        for k in range(self.coordinates['number_of_models']):
-            x_data = np.asarray(self.coordinates['xval'])
-            band_x = np.append(x_data, x_data[::-1])
-            band_y = np.append(self.coordinates['empirical_lower_bound'][k],
-                             self.coordinates['empirical_upper_bound'][k][::-1])
-
-            self.plot.patch(band_x,
-                    band_y,
-                    color= self.settings['linecolor'][k],
-                    fill_alpha= self.settings['transparency'])
+        pass
 
     def draw_data_lines(self):
-        self.plot.line(self.coordinates['xval'],
-                     self.coordinates['ground_truth'],
-                     line_color=self.settings['data_line_color'][0],
-                     legend=self.settings['data_line_legend_label'],
-                     line_width=self.settings['line_width'],
-                     line_dash=self.settings['data_line_style'])
+        pass
 
     def draw_target(self):
         pass
