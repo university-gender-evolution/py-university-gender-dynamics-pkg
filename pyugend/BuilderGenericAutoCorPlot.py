@@ -27,7 +27,6 @@ __maintainer__ = 'krishna bhogaonker'
 __email__ = 'cyclotomiq@gmail.com'
 __status__ = ''
 
-from bokeh.plotting import lag_
 from .abcOverallPlotBuilder import abcOverallPlotBuilder
 from .abcSettingsBuilder import abcPlotSettingsBuilder
 import numpy as np
@@ -37,15 +36,10 @@ class BuilderGenericAutoCorrelationPlot(abcOverallPlotBuilder):
 
 
     def draw_lines(self):
-        for k in range(self.coordinates['number_of_models']):
-            self.plot.line(self.coordinates['xval'],
-                           self.coordinates['yval'][k],
-                           line_width = self.settings['line_width'],
-                           legend = self.settings['model_legend_label'][k],
-                           line_color = self.settings['linecolor'][k])
-            self.plot.circle(self.coordinates['xval'],
-                           self.coordinates['yval'][k],
-                           size = 3)
+        self.plot.scatter(self.coordinates['ground_truth'],
+                        self.coordinates['ground_truth'][1:])
+
+
 
     def draw_error_intervals(self):
         pass

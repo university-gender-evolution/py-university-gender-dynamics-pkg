@@ -2,13 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="db3b48aa-1b4d-4f09-96e2-54f1ff5c70d7" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/pyugend/PlotSettingsAutoCorrelation.py" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change beforePath="$PROJECT_DIR$/pyugend/BuilderGenericAutoCorPlot.py" afterPath="$PROJECT_DIR$/pyugend/BuilderGenericAutoCorPlot.py" />
-      <change beforePath="$PROJECT_DIR$/pyugend/Comparison.py" afterPath="$PROJECT_DIR$/pyugend/Comparison.py" />
       <change beforePath="$PROJECT_DIR$/pyugend/PlotComposerAutoCorDeptSize.py" afterPath="$PROJECT_DIR$/pyugend/PlotComposerAutoCorDeptSize.py" />
-      <change beforePath="$PROJECT_DIR$/pyugend/data/mgmt_data.ods" afterPath="$PROJECT_DIR$/pyugend/data/mgmt_data.ods" />
-      <change beforePath="$PROJECT_DIR$/pyugend/mgmt_data.csv" afterPath="$PROJECT_DIR$/pyugend/mgmt_data.csv" />
     </list>
     <ignored path="pyugend.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -47,6 +43,7 @@
     <SUITE FILE_PATH="coverage/pyugend$py_test_in_test_FBPH_model_run.coverage" NAME="py.test in test_FBPH_model_run Coverage Results" MODIFIED="1468185423123" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
     <SUITE FILE_PATH="coverage/pyugend$py_test_in_test_FBHP_plot_dept_size.coverage" NAME="py.test in test_FBHP_plot_dept_size Coverage Results" MODIFIED="1462424596106" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
     <SUITE FILE_PATH="coverage/pyugend$py_test_in_test_comparison_model_param_sweep_detail.coverage" NAME="py.test in test_comparison_model_param_sweep_detail Coverage Results" MODIFIED="1470284836446" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/pyugend$py_test_for_pyugend_PlotComposerAutoCorDeptSize_TestClass_test_plot_autocorrelation.coverage" NAME="py.test for pyugend.PlotComposerAutoCorDeptSize.TestClass.test_plot_autocorrelation Coverage Results" MODIFIED="1518481306591" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/pyugend$py_test_in_test_comparison_plot_percentage_women_by_level.coverage" NAME="py.test in test_comparison_plot_percentage_women_by_level Coverage Results" MODIFIED="1468958881558" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
     <SUITE FILE_PATH="coverage/pyugend$sphinx.coverage" NAME="sphinx Coverage Results" MODIFIED="1465312157526" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
     <SUITE FILE_PATH="coverage/pyugend$py_test_in_test_FBPH_alt_plot_dept_size.coverage" NAME="py.test in test_FBPH_alt_plot_dept_size Coverage Results" MODIFIED="1462728892732" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
@@ -78,18 +75,18 @@
       <file leaf-file-name="PlotSettingsAutoCorrelation.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/pyugend/PlotSettingsAutoCorrelation.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1584">
+            <state relative-caret-position="-561">
               <caret line="0" column="0" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="PlotComposerAutoCorDeptSize.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="PlotComposerAutoCorDeptSize.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/pyugend/PlotComposerAutoCorDeptSize.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1202">
-              <caret line="112" column="45" lean-forward="false" selection-start-line="112" selection-start-column="45" selection-end-line="112" selection-end-column="45" />
+            <state relative-caret-position="297">
+              <caret line="40" column="0" lean-forward="true" selection-start-line="40" selection-start-column="0" selection-end-line="40" selection-end-column="0" />
               <folding>
                 <element signature="e#1420#1433#0" expanded="true" />
               </folding>
@@ -97,12 +94,14 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="BuilderGenericAutoCorPlot.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="BuilderGenericAutoCorPlot.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/pyugend/BuilderGenericAutoCorPlot.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="114">
-              <caret line="29" column="31" lean-forward="false" selection-start-line="29" selection-start-column="31" selection-end-line="29" selection-end-column="31" />
-              <folding />
+            <state relative-caret-position="264">
+              <caret line="39" column="58" lean-forward="true" selection-start-line="39" selection-start-column="58" selection-end-line="39" selection-end-column="58" />
+              <folding>
+                <element signature="e#1401#1457#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -188,8 +187,8 @@
         <option value="$PROJECT_DIR$/pyugend/BuilderGenericOverallMFPlot.py" />
         <option value="$PROJECT_DIR$/pyugend/PlotSettingsOverallMF.py" />
         <option value="$PROJECT_DIR$/pyugend/PlotSettingsAutoCorrelation.py" />
-        <option value="$PROJECT_DIR$/pyugend/PlotComposerAutoCorDeptSize.py" />
         <option value="$PROJECT_DIR$/pyugend/Comparison.py" />
+        <option value="$PROJECT_DIR$/pyugend/PlotComposerAutoCorDeptSize.py" />
         <option value="$PROJECT_DIR$/pyugend/BuilderGenericAutoCorPlot.py" />
       </list>
     </option>
@@ -316,7 +315,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python tests.py.test for pyugend.PlotComposerOverallMFHiring.TestClass.test_plot_mfhiring">
+  <component name="RunManager" selected="Python tests.py.test for pyugend.PlotComposerAutoCorDeptSize.TestClass.test_plot_autocorrelation">
     <configuration default="true" type="PythonConfigurationType" factoryName="Python">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -578,6 +577,22 @@
       <arguments />
       <envs />
     </configuration>
+    <configuration name="py.test for pyugend.PlotComposerAutoCorDeptSize.TestClass.test_plot_autocorrelation" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="pyugend" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
+      <option name="_new_keywords" value="&quot;&quot;" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;pyugend.PlotComposerAutoCorDeptSize.TestClass.test_plot_autocorrelation&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+    </configuration>
     <configuration name="py.test for pyugend.PlotComposerOverallAttrition.TestClass.test_plot_attrition" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -642,22 +657,6 @@
       <option name="_new_target" value="&quot;test_Plots.test_bokeh_comparison_plot_bylevel&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
     </configuration>
-    <configuration name="py.test for test_Plots.test_bokeh_comparison_plot_overall_one_model" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/tests" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="pyugend" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
-      <option name="_new_keywords" value="&quot;&quot;" />
-      <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;test_Plots.test_bokeh_comparison_plot_overall_one_model&quot;" />
-      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
-    </configuration>
     <configuration name="py.test" type="tests" factoryName="py.test">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -699,19 +698,19 @@
     <list size="7">
       <item index="0" class="java.lang.String" itemvalue="Python docs.sphinx" />
       <item index="1" class="java.lang.String" itemvalue="Python tests.py.test" />
-      <item index="2" class="java.lang.String" itemvalue="Python tests.py.test for test_Plots.test_bokeh_comparison_plot_overall_one_model" />
-      <item index="3" class="java.lang.String" itemvalue="Python tests.py.test for test_Plots.test_bokeh_comparison_plot_bylevel" />
-      <item index="4" class="java.lang.String" itemvalue="Python tests.py.test for pyugend.PlotComposerOverallMFHiring.TestClass.test_plot_mfhiring" />
-      <item index="5" class="java.lang.String" itemvalue="Python tests.py.test for pyugend.PlotComposerOverallAttrition.TestClass.test_plot_attrition" />
-      <item index="6" class="java.lang.String" itemvalue="Python tests.py.test for pyugend.PlotComposerOverallMFHiring.TestClass.test_test" />
+      <item index="2" class="java.lang.String" itemvalue="Python tests.py.test for test_Plots.test_bokeh_comparison_plot_bylevel" />
+      <item index="3" class="java.lang.String" itemvalue="Python tests.py.test for pyugend.PlotComposerOverallMFHiring.TestClass.test_plot_mfhiring" />
+      <item index="4" class="java.lang.String" itemvalue="Python tests.py.test for pyugend.PlotComposerOverallAttrition.TestClass.test_plot_attrition" />
+      <item index="5" class="java.lang.String" itemvalue="Python tests.py.test for pyugend.PlotComposerOverallMFHiring.TestClass.test_test" />
+      <item index="6" class="java.lang.String" itemvalue="Python tests.py.test for pyugend.PlotComposerAutoCorDeptSize.TestClass.test_plot_autocorrelation" />
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="Python tests.py.test for pyugend.PlotComposerOverallMFHiring.TestClass.test_plot_mfhiring" />
-        <item index="1" class="java.lang.String" itemvalue="Python tests.py.test for pyugend.PlotComposerOverallMFHiring.TestClass.test_test" />
-        <item index="2" class="java.lang.String" itemvalue="Python tests.py.test for test_Plots.test_bokeh_comparison_plot_bylevel" />
-        <item index="3" class="java.lang.String" itemvalue="Python tests.py.test for pyugend.PlotComposerOverallAttrition.TestClass.test_plot_attrition" />
-        <item index="4" class="java.lang.String" itemvalue="Python tests.py.test for test_Plots.test_bokeh_comparison_plot_overall_one_model" />
+        <item index="0" class="java.lang.String" itemvalue="Python tests.py.test for pyugend.PlotComposerAutoCorDeptSize.TestClass.test_plot_autocorrelation" />
+        <item index="1" class="java.lang.String" itemvalue="Python tests.py.test for pyugend.PlotComposerOverallMFHiring.TestClass.test_plot_mfhiring" />
+        <item index="2" class="java.lang.String" itemvalue="Python tests.py.test for pyugend.PlotComposerOverallMFHiring.TestClass.test_test" />
+        <item index="3" class="java.lang.String" itemvalue="Python tests.py.test for test_Plots.test_bokeh_comparison_plot_bylevel" />
+        <item index="4" class="java.lang.String" itemvalue="Python tests.py.test for pyugend.PlotComposerOverallAttrition.TestClass.test_plot_attrition" />
       </list>
     </recent_temporary>
   </component>
@@ -731,13 +730,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1461126958316</updated>
-    </task>
-    <task id="LOCAL-00067" summary="created new functions to plot the overall and by level functions. Still need to test them.&#10;">
-      <created>1471295736019</created>
-      <option name="number" value="00067" />
-      <option name="presentableId" value="LOCAL-00067" />
-      <option name="project" value="LOCAL" />
-      <updated>1471295736019</updated>
     </task>
     <task id="LOCAL-00068" summary="created new functions to plot the overall and by level functions. Still need to test them.&#10;">
       <created>1471975069683</created>
@@ -1075,21 +1067,37 @@
       <option name="project" value="LOCAL" />
       <updated>1518476178651</updated>
     </task>
-    <option name="localTasksCounter" value="116" />
+    <task id="LOCAL-00116" summary="building up the autocorrelation plots.">
+      <created>1518480005178</created>
+      <option name="number" value="00116" />
+      <option name="presentableId" value="LOCAL-00116" />
+      <option name="project" value="LOCAL" />
+      <updated>1518480005178</updated>
+    </task>
+    <option name="localTasksCounter" value="117" />
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="py_test_for_pyugend_PlotComposerOverallMFHiring_TestClass_test_plot_mfhiring - 2018.02.12 at 14h 26m 21s.xml">
-      <configuration name="py.test for pyugend.PlotComposerOverallMFHiring.TestClass.test_plot_mfhiring" configurationId="tests" />
+    <history-entry file="py_test_for_pyugend_PlotComposerAutoCorDeptSize_TestClass_test_plot_autocorrelation - 2018.02.12 at 16h 17m 41s.xml">
+      <configuration name="py.test for pyugend.PlotComposerAutoCorDeptSize.TestClass.test_plot_autocorrelation" configurationId="tests" />
     </history-entry>
-    <history-entry file="py_test_for_pyugend_PlotComposerOverallMFHiring_TestClass_test_plot_mfhiring - 2018.02.12 at 14h 26m 46s.xml">
-      <configuration name="py.test for pyugend.PlotComposerOverallMFHiring.TestClass.test_plot_mfhiring" configurationId="tests" />
+    <history-entry file="py_test_for_pyugend_PlotComposerAutoCorDeptSize_TestClass_test_plot_autocorrelation - 2018.02.12 at 16h 17m 54s.xml">
+      <configuration name="py.test for pyugend.PlotComposerAutoCorDeptSize.TestClass.test_plot_autocorrelation" configurationId="tests" />
     </history-entry>
-    <history-entry file="py_test_for_pyugend_PlotComposerOverallMFHiring_TestClass_test_plot_mfhiring - 2018.02.12 at 14h 34m 26s.xml">
-      <configuration name="py.test for pyugend.PlotComposerOverallMFHiring.TestClass.test_plot_mfhiring" configurationId="tests" />
+    <history-entry file="py_test_for_pyugend_PlotComposerAutoCorDeptSize_TestClass_test_plot_autocorrelation - 2018.02.12 at 16h 18m 26s.xml">
+      <configuration name="py.test for pyugend.PlotComposerAutoCorDeptSize.TestClass.test_plot_autocorrelation" configurationId="tests" />
     </history-entry>
-    <history-entry file="py_test_for_pyugend_PlotComposerOverallMFHiring_TestClass_test_plot_mfhiring - 2018.02.12 at 14h 36m 36s.xml">
-      <configuration name="py.test for pyugend.PlotComposerOverallMFHiring.TestClass.test_plot_mfhiring" configurationId="tests" />
+    <history-entry file="py_test_for_pyugend_PlotComposerAutoCorDeptSize_TestClass_test_plot_autocorrelation - 2018.02.12 at 16h 19m 28s.xml">
+      <configuration name="py.test for pyugend.PlotComposerAutoCorDeptSize.TestClass.test_plot_autocorrelation" configurationId="tests" />
+    </history-entry>
+    <history-entry file="py_test_for_pyugend_PlotComposerAutoCorDeptSize_TestClass_test_plot_autocorrelation - 2018.02.12 at 16h 19m 47s.xml">
+      <configuration name="py.test for pyugend.PlotComposerAutoCorDeptSize.TestClass.test_plot_autocorrelation" configurationId="tests" />
+    </history-entry>
+    <history-entry file="py_test_for_pyugend_PlotComposerAutoCorDeptSize_TestClass_test_plot_autocorrelation - 2018.02.12 at 16h 20m 22s.xml">
+      <configuration name="py.test for pyugend.PlotComposerAutoCorDeptSize.TestClass.test_plot_autocorrelation" configurationId="tests" />
+    </history-entry>
+    <history-entry file="py_test_for_pyugend_PlotComposerAutoCorDeptSize_TestClass_test_plot_autocorrelation - 2018.02.12 at 16h 21m 47s.xml">
+      <configuration name="py.test for pyugend.PlotComposerAutoCorDeptSize.TestClass.test_plot_autocorrelation" configurationId="tests" />
     </history-entry>
     <history-entry file="py_test_for_pyugend_PlotComposerOverallMFHiring_TestClass_test_plot_mfhiring - 2018.02.12 at 14h 40m 00s.xml">
       <configuration name="py.test for pyugend.PlotComposerOverallMFHiring.TestClass.test_plot_mfhiring" configurationId="tests" />
@@ -1099,15 +1107,6 @@
     </history-entry>
     <history-entry file="py_test_for_pyugend_PlotComposerOverallMFHiring_TestClass_test_plot_mfhiring - 2018.02.12 at 14h 45m 39s.xml">
       <configuration name="py.test for pyugend.PlotComposerOverallMFHiring.TestClass.test_plot_mfhiring" configurationId="tests" />
-    </history-entry>
-    <history-entry file="py_test_for_test_Plots_test_bokeh_comparison_plot_bylevel - 2018.02.07 at 17h 14m 30s.xml">
-      <configuration name="py.test for test_Plots.test_bokeh_comparison_plot_bylevel" configurationId="tests" />
-    </history-entry>
-    <history-entry file="py_test_for_test_Plots_test_bokeh_comparison_plot_bylevel - 2018.02.07 at 17h 15m 52s.xml">
-      <configuration name="py.test for test_Plots.test_bokeh_comparison_plot_bylevel" configurationId="tests" />
-    </history-entry>
-    <history-entry file="py_test_for_test_Plots_test_bokeh_comparison_plot_bylevel - 2018.02.07 at 20h 57m 16s.xml">
-      <configuration name="py.test for test_Plots.test_bokeh_comparison_plot_bylevel" configurationId="tests" />
     </history-entry>
   </component>
   <component name="TodoView">
@@ -1188,7 +1187,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="trying to fix import of data into package." />
     <MESSAGE value="Fixed the issue with relative imports." />
     <MESSAGE value="Trying to fix the import of the data in the package." />
     <MESSAGE value="creating the plot settings builder and the plot builder classes." />
@@ -1213,7 +1211,8 @@
     <MESSAGE value="refactored a lot of the settings code and updated overall and overallMF plots." />
     <MESSAGE value="got the lines and confidence regions to disappear in plots when clicked in the legend." />
     <MESSAGE value="Got the MF plot builder and composer and settings created and tuned." />
-    <option name="LAST_COMMIT_MESSAGE" value="Got the MF plot builder and composer and settings created and tuned." />
+    <MESSAGE value="building up the autocorrelation plots." />
+    <option name="LAST_COMMIT_MESSAGE" value="building up the autocorrelation plots." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1505,16 +1504,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pyugend/PlotComposerAutoCorDeptSize.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1202">
-          <caret line="112" column="45" lean-forward="false" selection-start-line="112" selection-start-column="45" selection-end-line="112" selection-end-column="45" />
-          <folding>
-            <element signature="e#1420#1433#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/pyugend/Comparison.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="363">
@@ -1537,7 +1526,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/pyugend/PlotSettingsAutoCorrelation.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1584">
+        <state relative-caret-position="-561">
           <caret line="0" column="0" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
@@ -1545,9 +1534,21 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/pyugend/BuilderGenericAutoCorPlot.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="114">
-          <caret line="29" column="31" lean-forward="false" selection-start-line="29" selection-start-column="31" selection-end-line="29" selection-end-column="31" />
-          <folding />
+        <state relative-caret-position="264">
+          <caret line="39" column="58" lean-forward="true" selection-start-line="39" selection-start-column="58" selection-end-line="39" selection-end-column="58" />
+          <folding>
+            <element signature="e#1401#1457#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pyugend/PlotComposerAutoCorDeptSize.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="297">
+          <caret line="40" column="0" lean-forward="true" selection-start-line="40" selection-start-column="0" selection-end-line="40" selection-end-column="0" />
+          <folding>
+            <element signature="e#1420#1433#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

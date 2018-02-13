@@ -55,7 +55,7 @@ class PlotComposerAutoCorDeptSize(abcComparisonPlot):
         pass
 
     def helper_ground_truth_mgmt(self):
-        self.coordinates['ground_truth'] = self.helper_original_data_mgmt(M_GROUNDTRUTH)
+        self.coordinates['ground_truth'] = self.helper_original_data_mgmt(GROUNDTRUTH)
 
     def helper_indicate_number_of_models(self):
         pass
