@@ -245,9 +245,9 @@ class Model3GenderDiversity(Base_model):
                 male_attrition_level_1,
                 female_attrition_level_1]))
 
-            # capture female promotion probabilities
-            self.res[i, 9] = 0
-            self.res[i, 10] = 0
+            # Future reserved spaces in the data capture
+            self.res[i, 9] = 'future reserved'
+            self.res[i, 10] = 'future reserved'
 
             # capture gender proportion for department
             self.res[i, 11] = self.res[i, 0:3].sum()/self.res[i,0:6].sum()

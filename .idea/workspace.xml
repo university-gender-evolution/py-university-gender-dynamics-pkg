@@ -85,11 +85,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ModelGenderDiversityGrowthForecast.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="ModelGenderDiversityGrowthForecast.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/pyugend/ModelGenderDiversityGrowthForecast.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="394">
-              <caret line="235" column="31" lean-forward="false" selection-start-line="235" selection-start-column="31" selection-end-line="235" selection-end-column="31" />
+            <state relative-caret-position="262">
+              <caret line="234" column="46" lean-forward="false" selection-start-line="234" selection-start-column="46" selection-end-line="234" selection-end-column="46" />
               <folding />
             </state>
           </provider>
@@ -98,18 +98,18 @@
       <file leaf-file-name="ModelGenderDiversityGrowthForecastIncrementalChange.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/pyugend/ModelGenderDiversityGrowthForecastIncrementalChange.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="310">
-              <caret line="263" column="31" lean-forward="false" selection-start-line="263" selection-start-column="31" selection-end-line="263" selection-end-column="31" />
+            <state relative-caret-position="277">
+              <caret line="262" column="46" lean-forward="false" selection-start-line="262" selection-start-column="46" selection-end-line="262" selection-end-column="46" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ModelGenderDiversityLinearGrowth.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="ModelGenderDiversityLinearGrowth.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/pyugend/ModelGenderDiversityLinearGrowth.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="191">
-              <caret line="224" column="31" lean-forward="false" selection-start-line="224" selection-start-column="31" selection-end-line="224" selection-end-column="31" />
+            <state relative-caret-position="158">
+              <caret line="223" column="46" lean-forward="false" selection-start-line="223" selection-start-column="46" selection-end-line="223" selection-end-column="46" />
               <folding />
             </state>
           </provider>
@@ -216,9 +216,9 @@
         <option value="$PROJECT_DIR$/tests/test_Plots.py" />
         <option value="$PROJECT_DIR$/pyugend/ModelGenderDiversity.py" />
         <option value="$PROJECT_DIR$/pyugend/ColumnSpecs.py" />
-        <option value="$PROJECT_DIR$/pyugend/ModelGenderDiversityLinearGrowth.py" />
-        <option value="$PROJECT_DIR$/pyugend/ModelGenderDiversityGrowthForecastIncrementalChange.py" />
         <option value="$PROJECT_DIR$/pyugend/ModelGenderDiversityGrowthForecast.py" />
+        <option value="$PROJECT_DIR$/pyugend/ModelGenderDiversityGrowthForecastIncrementalChange.py" />
+        <option value="$PROJECT_DIR$/pyugend/ModelGenderDiversityLinearGrowth.py" />
       </list>
     </option>
   </component>
@@ -765,13 +765,6 @@
       <option name="presentableId" value="Default" />
       <updated>1461126958316</updated>
     </task>
-    <task id="LOCAL-00071" summary="moved the DataManager classes to the data directory. Hopefully this will resolve the path problem.">
-      <created>1513113613045</created>
-      <option name="number" value="00071" />
-      <option name="presentableId" value="LOCAL-00071" />
-      <option name="project" value="LOCAL" />
-      <updated>1513113613045</updated>
-    </task>
     <task id="LOCAL-00072" summary="moved the DataManager classes to the data directory. Hopefully this will resolve the path problem.">
       <created>1513113763163</created>
       <option name="number" value="00072" />
@@ -1108,7 +1101,14 @@
       <option name="project" value="LOCAL" />
       <updated>1518721249573</updated>
     </task>
-    <option name="localTasksCounter" value="120" />
+    <task id="LOCAL-00120" summary="Fixed issue #40 from &#10;&#10;https://github.com/university-gender-evolution/notebooks-univ-gender">
+      <created>1518732839818</created>
+      <option name="number" value="00120" />
+      <option name="presentableId" value="LOCAL-00120" />
+      <option name="project" value="LOCAL" />
+      <updated>1518732839818</updated>
+    </task>
+    <option name="localTasksCounter" value="121" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -1221,7 +1221,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="creating the plot settings builder and the plot builder classes." />
     <MESSAGE value="creating the plot settings builder and the plot builder classes. Added files abcPlotBuilder and PlotDirector files." />
     <MESSAGE value="moved files to the main source folder and fixed links." />
     <MESSAGE value="fixing proportion chart." />
@@ -1246,7 +1245,8 @@
     <MESSAGE value="building up the autocorrelation plots." />
     <MESSAGE value="Fixed errors #38 #39. &#10;&#10;This will change the definition of gender proportion to % female. And it will also change the definition of vacancies to purely attrition." />
     <MESSAGE value="closed #38" />
-    <option name="LAST_COMMIT_MESSAGE" value="closed #38" />
+    <MESSAGE value="Fixed issue #40 from &#10;&#10;https://github.com/university-gender-evolution/notebooks-univ-gender" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed issue #40 from &#10;&#10;https://github.com/university-gender-evolution/notebooks-univ-gender" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1576,26 +1576,26 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pyugend/ModelGenderDiversityLinearGrowth.py">
+    <entry file="file://$PROJECT_DIR$/pyugend/ModelGenderDiversityGrowthForecast.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="191">
-          <caret line="224" column="31" lean-forward="false" selection-start-line="224" selection-start-column="31" selection-end-line="224" selection-end-column="31" />
+        <state relative-caret-position="262">
+          <caret line="234" column="46" lean-forward="false" selection-start-line="234" selection-start-column="46" selection-end-line="234" selection-end-column="46" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/pyugend/ModelGenderDiversityGrowthForecastIncrementalChange.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="310">
-          <caret line="263" column="31" lean-forward="false" selection-start-line="263" selection-start-column="31" selection-end-line="263" selection-end-column="31" />
+        <state relative-caret-position="277">
+          <caret line="262" column="46" lean-forward="false" selection-start-line="262" selection-start-column="46" selection-end-line="262" selection-end-column="46" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pyugend/ModelGenderDiversityGrowthForecast.py">
+    <entry file="file://$PROJECT_DIR$/pyugend/ModelGenderDiversityLinearGrowth.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="394">
-          <caret line="235" column="31" lean-forward="false" selection-start-line="235" selection-start-column="31" selection-end-line="235" selection-end-column="31" />
+        <state relative-caret-position="158">
+          <caret line="223" column="46" lean-forward="false" selection-start-line="223" selection-start-column="46" selection-end-line="223" selection-end-column="46" />
           <folding />
         </state>
       </provider>
