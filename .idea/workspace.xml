@@ -3,6 +3,10 @@
   <component name="ChangeListManager">
     <list default="true" id="db3b48aa-1b4d-4f09-96e2-54f1ff5c70d7" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change beforePath="$PROJECT_DIR$/pyugend/ModelGenderDiversity.py" afterPath="$PROJECT_DIR$/pyugend/ModelGenderDiversity.py" />
+      <change beforePath="$PROJECT_DIR$/pyugend/ModelGenderDiversityGrowthForecast.py" afterPath="$PROJECT_DIR$/pyugend/ModelGenderDiversityGrowthForecast.py" />
+      <change beforePath="$PROJECT_DIR$/pyugend/ModelGenderDiversityGrowthForecastIncrementalChange.py" afterPath="$PROJECT_DIR$/pyugend/ModelGenderDiversityGrowthForecastIncrementalChange.py" />
+      <change beforePath="$PROJECT_DIR$/pyugend/ModelGenderDiversityLinearGrowth.py" afterPath="$PROJECT_DIR$/pyugend/ModelGenderDiversityLinearGrowth.py" />
     </list>
     <ignored path="pyugend.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -81,11 +85,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ModelGenderDiversityGrowthForecast.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="ModelGenderDiversityGrowthForecast.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/pyugend/ModelGenderDiversityGrowthForecast.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="295">
-              <caret line="232" column="40" lean-forward="false" selection-start-line="232" selection-start-column="40" selection-end-line="232" selection-end-column="40" />
+            <state relative-caret-position="394">
+              <caret line="235" column="31" lean-forward="false" selection-start-line="235" selection-start-column="31" selection-end-line="235" selection-end-column="31" />
               <folding />
             </state>
           </provider>
@@ -94,18 +98,18 @@
       <file leaf-file-name="ModelGenderDiversityGrowthForecastIncrementalChange.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/pyugend/ModelGenderDiversityGrowthForecastIncrementalChange.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="607">
-              <caret line="260" column="40" lean-forward="false" selection-start-line="260" selection-start-column="40" selection-end-line="260" selection-end-column="40" />
+            <state relative-caret-position="310">
+              <caret line="263" column="31" lean-forward="false" selection-start-line="263" selection-start-column="31" selection-end-line="263" selection-end-column="31" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ModelGenderDiversityLinearGrowth.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="ModelGenderDiversityLinearGrowth.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/pyugend/ModelGenderDiversityLinearGrowth.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="290">
-              <caret line="221" column="40" lean-forward="false" selection-start-line="221" selection-start-column="40" selection-end-line="221" selection-end-column="40" />
+            <state relative-caret-position="191">
+              <caret line="224" column="31" lean-forward="false" selection-start-line="224" selection-start-column="31" selection-end-line="224" selection-end-column="31" />
               <folding />
             </state>
           </provider>
@@ -114,7 +118,7 @@
       <file leaf-file-name="ModelGenderDiversity.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/pyugend/ModelGenderDiversity.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="576">
+            <state relative-caret-position="378">
               <caret line="252" column="65" lean-forward="false" selection-start-line="252" selection-start-column="65" selection-end-line="252" selection-end-column="65" />
               <folding />
             </state>
@@ -211,10 +215,10 @@
         <option value="$PROJECT_DIR$/pyugend/BuilderGenericAutoCorPlot.py" />
         <option value="$PROJECT_DIR$/tests/test_Plots.py" />
         <option value="$PROJECT_DIR$/pyugend/ModelGenderDiversity.py" />
-        <option value="$PROJECT_DIR$/pyugend/ModelGenderDiversityGrowthForecast.py" />
-        <option value="$PROJECT_DIR$/pyugend/ModelGenderDiversityGrowthForecastIncrementalChange.py" />
-        <option value="$PROJECT_DIR$/pyugend/ModelGenderDiversityLinearGrowth.py" />
         <option value="$PROJECT_DIR$/pyugend/ColumnSpecs.py" />
+        <option value="$PROJECT_DIR$/pyugend/ModelGenderDiversityLinearGrowth.py" />
+        <option value="$PROJECT_DIR$/pyugend/ModelGenderDiversityGrowthForecastIncrementalChange.py" />
+        <option value="$PROJECT_DIR$/pyugend/ModelGenderDiversityGrowthForecast.py" />
       </list>
     </option>
   </component>
@@ -761,13 +765,6 @@
       <option name="presentableId" value="Default" />
       <updated>1461126958316</updated>
     </task>
-    <task id="LOCAL-00070" summary="updated plot specifications.">
-      <created>1472009406924</created>
-      <option name="number" value="00070" />
-      <option name="presentableId" value="LOCAL-00070" />
-      <option name="project" value="LOCAL" />
-      <updated>1472009406924</updated>
-    </task>
     <task id="LOCAL-00071" summary="moved the DataManager classes to the data directory. Hopefully this will resolve the path problem.">
       <created>1513113613045</created>
       <option name="number" value="00071" />
@@ -1104,7 +1101,14 @@
       <option name="project" value="LOCAL" />
       <updated>1518721194376</updated>
     </task>
-    <option name="localTasksCounter" value="119" />
+    <task id="LOCAL-00119" summary="closed #38">
+      <created>1518721249573</created>
+      <option name="number" value="00119" />
+      <option name="presentableId" value="LOCAL-00119" />
+      <option name="project" value="LOCAL" />
+      <updated>1518721249573</updated>
+    </task>
+    <option name="localTasksCounter" value="120" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -1217,7 +1221,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Trying to fix the import of the data in the package." />
     <MESSAGE value="creating the plot settings builder and the plot builder classes." />
     <MESSAGE value="creating the plot settings builder and the plot builder classes. Added files abcPlotBuilder and PlotDirector files." />
     <MESSAGE value="moved files to the main source folder and fixed links." />
@@ -1242,7 +1245,8 @@
     <MESSAGE value="Got the MF plot builder and composer and settings created and tuned." />
     <MESSAGE value="building up the autocorrelation plots." />
     <MESSAGE value="Fixed errors #38 #39. &#10;&#10;This will change the definition of gender proportion to % female. And it will also change the definition of vacancies to purely attrition." />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed errors #38 #39. &#10;&#10;This will change the definition of gender proportion to % female. And it will also change the definition of vacancies to purely attrition." />
+    <MESSAGE value="closed #38" />
+    <option name="LAST_COMMIT_MESSAGE" value="closed #38" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1510,14 +1514,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pyugend/ModelGenderDiversity.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="576">
-          <caret line="252" column="65" lean-forward="false" selection-start-line="252" selection-start-column="65" selection-end-line="252" selection-end-column="65" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/tests/test_ExcelExport.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="264">
@@ -1564,14 +1560,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pyugend/ModelGenderDiversityGrowthForecast.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="295">
-          <caret line="232" column="40" lean-forward="false" selection-start-line="232" selection-start-column="40" selection-end-line="232" selection-end-column="40" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/pyugend/ColumnSpecs.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="262">
@@ -1580,18 +1568,34 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pyugend/ModelGenderDiversityGrowthForecastIncrementalChange.py">
+    <entry file="file://$PROJECT_DIR$/pyugend/ModelGenderDiversity.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="607">
-          <caret line="260" column="40" lean-forward="false" selection-start-line="260" selection-start-column="40" selection-end-line="260" selection-end-column="40" />
+        <state relative-caret-position="378">
+          <caret line="252" column="65" lean-forward="false" selection-start-line="252" selection-start-column="65" selection-end-line="252" selection-end-column="65" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/pyugend/ModelGenderDiversityLinearGrowth.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="290">
-          <caret line="221" column="40" lean-forward="false" selection-start-line="221" selection-start-column="40" selection-end-line="221" selection-end-column="40" />
+        <state relative-caret-position="191">
+          <caret line="224" column="31" lean-forward="false" selection-start-line="224" selection-start-column="31" selection-end-line="224" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pyugend/ModelGenderDiversityGrowthForecastIncrementalChange.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="310">
+          <caret line="263" column="31" lean-forward="false" selection-start-line="263" selection-start-column="31" selection-end-line="263" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pyugend/ModelGenderDiversityGrowthForecast.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="394">
+          <caret line="235" column="31" lean-forward="false" selection-start-line="235" selection-start-column="31" selection-end-line="235" selection-end-column="31" />
           <folding />
         </state>
       </provider>

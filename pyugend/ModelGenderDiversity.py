@@ -230,24 +230,24 @@ class Model3GenderDiversity(Base_model):
 
             # fill in summary info for model run
 
-            # capture vacancies level 3
+            # capture attrition level 3
             self.res[i, 6] = sum(list([
                 male_attrition_level_3,
                 female_attrition_level_3]))
 
-            # capture vacancies level 2
+            # capture attrition level 2
             self.res[i, 7] = sum(list([
                 male_attrition_level_2,
                 female_attrition_level_2]))
 
-            # capture vacancies level 1
+            # capture attrition level 1
             self.res[i, 8] = sum(list([
                 male_attrition_level_1,
                 female_attrition_level_1]))
 
             # capture female promotion probabilities
-            self.res[i, 9] = self.female_promotion_probability_1
-            self.res[i, 10] = self.female_promotion_probability_2
+            self.res[i, 9] = 0
+            self.res[i, 10] = 0
 
             # capture gender proportion for department
             self.res[i, 11] = self.res[i, 0:3].sum()/self.res[i,0:6].sum()
@@ -274,7 +274,7 @@ class Model3GenderDiversity(Base_model):
             self.res[i, 19] = hires[3]
 
             # capture promotions for each group. Since we cannot
-            # have promotions into level 1, these are set to
+            # have promotions from level 3 (full professor), these are set to
             # zero by default.
             self.res[i, 20] = 0
             self.res[i, 21] = 0
