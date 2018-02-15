@@ -230,63 +230,96 @@ class Model3GenderDiversity(Base_model):
 
             # fill in summary info for model run
 
+            # capture vacancies level 3
             self.res[i, 6] = sum(list([
                 male_attrition_level_3,
                 female_attrition_level_3]))
 
+            # capture vacancies level 2
             self.res[i, 7] = sum(list([
                 male_attrition_level_2,
-                female_attrition_level_2,
-                promotions_of_females_level_2_3,
-                promotions_of_males_level_2_3]))
+                female_attrition_level_2]))
 
+            # capture vacancies level 1
             self.res[i, 8] = sum(list([
                 male_attrition_level_1,
-                female_attrition_level_1,
-                promotions_of_males_level_1_2,
-                promotions_of_females_level_1_2]))
+                female_attrition_level_1]))
 
+            # capture female promotion probabilities
             self.res[i, 9] = self.female_promotion_probability_1
             self.res[i, 10] = self.female_promotion_probability_2
-            self.res[i, 11] = self.res[i, 0:3].sum()/self.res[i,3:6].sum()
+
+            # capture gender proportion for department
+            self.res[i, 11] = self.res[i, 0:3].sum()/self.res[i,0:6].sum()
+
+            # capture number of unfilled vacancies as the department size in
+            # the last time-step versus the current department size (summing
+            # all professor groups). If there is a difference then some
+            # vacancies were not filled. This is not a good metric to monitor
+            # when using a growth model because the department size is supposed
+            # to change from time-step to timestep.
             unfilled_vacanies = abs(department_size - self.res[i, 0:6].sum())
             self.res[i, 12] = unfilled_vacanies
+
+            # capture the current department size.
             department_size = self.res[i, 0:6].sum()
             self.res[i, 13] = department_size
+
+            # capture the number of hires for each group.
             self.res[i, 14] = hires[2]
             self.res[i, 15] = hires[5]
             self.res[i, 16] = hires[1]
             self.res[i, 17] = hires[4]
             self.res[i, 18] = hires[0]
             self.res[i, 19] = hires[3]
+
+            # capture promotions for each group. Since we cannot
+            # have promotions into level 1, these are set to
+            # zero by default.
             self.res[i, 20] = 0
             self.res[i, 21] = 0
             self.res[i, 22] = promotions_of_females_level_2_3
             self.res[i, 23] = promotions_of_males_level_2_3
             self.res[i, 24] = promotions_of_females_level_1_2
             self.res[i, 25] = promotions_of_males_level_1_2
+
+            # capture the hiring rate parameters for each group
             self.res[i, 26] = self.hiring_rate_f1
             self.res[i, 27] = self.hiring_rate_f2
             self.res[i, 28] = self.hiring_rate_f3
             self.res[i, 29] = self.hiring_rate_m1
             self.res[i, 30] = self.hiring_rate_m2
             self.res[i, 31] = self.hiring_rate_m3
+
+            # capture the attrition rate parameters for each group
             self.res[i, 32] = attrition_rate_female_level_1
             self.res[i, 33] = attrition_rate_female_level_2
             self.res[i, 34] = attrition_rate_female_level_3
             self.res[i, 35] = attrition_rate_male_level_1
             self.res[i, 36] = attrition_rate_male_level_2
             self.res[i, 37] = attrition_rate_male_level_3
+
+            # capture the probability of outside hire
+            # this parameter is not used in the model any more,
+            # however this was something used in the original
+            # simulation. This data is preserved for historical
+            # significance, but otherwise serves no purpose. 
             self.res[i, 38] = 1
             self.res[i, 39] = 1
             self.res[i, 40] = 1
+
+            # capture the promotion probabilities for each group
             self.res[i, 41] = female_promotion_probability_1_2
             self.res[i, 42] = female_promotion_probability_2_3
             self.res[i, 43] = male_promotion_probability_1_2
             self.res[i, 44] = male_promotion_probability_2_3
+
+            # capture the department size bounds and variation ranges. 
             self.res[i, 45] = department_size_upper_bound
             self.res[i, 46] = department_size_lower_bound
             self.res[i, 47] = variation_range
+
+            # capture the model duration, or the number of time-steps
             self.res[i, 48] = self.duration
 
 

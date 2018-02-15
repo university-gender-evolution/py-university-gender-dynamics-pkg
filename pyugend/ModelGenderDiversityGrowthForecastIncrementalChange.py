@@ -254,19 +254,15 @@ class ModelGenderDiversityGrowthForecastIncremental(Model3GenderDiversity):
 
             self.res[i, 7] = sum(list([
                 male_attrition_level_2,
-                female_attrition_level_2,
-                promotions_of_females_level_2_3,
-                promotions_of_males_level_2_3]))
+                female_attrition_level_2]))
 
             self.res[i, 8] = sum(list([
                 male_attrition_level_1,
-                female_attrition_level_1,
-                promotions_of_males_level_1_2,
-                promotions_of_females_level_1_2]))
+                female_attrition_level_1]))
 
             self.res[i, 9] = self.female_promotion_probability_1
             self.res[i, 10] = self.female_promotion_probability_2
-            self.res[i, 11] = self.res[i, 0:3].sum()/self.res[i,3:6].sum()
+            self.res[i, 11] = self.res[i, 0:3].sum()/self.res[i,0:6].sum()
             unfilled_vacanies = abs(department_size - self.res[i, 0:6].sum())
             self.res[i, 12] = unfilled_vacanies
             department_size = self.res[i, 0:6].sum()
