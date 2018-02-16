@@ -221,8 +221,8 @@ class ModelGenderDiversityLinearGrowth(Model3GenderDiversity):
                 male_attrition_level_1,
                 female_attrition_level_1]))
 
-            self.res[i, 9] = 'future reserved'
-            self.res[i, 10] = 'future reserved'
+            self.res[i, 9] = 0
+            self.res[i, 10] = 0
             self.res[i, 11] = self.res[i, 0:3].sum()/self.res[i,0:6].sum()
             unfilled_vacanies = abs(department_size - self.res[i, 0:6].sum())
             self.res[i, 12] = unfilled_vacanies
@@ -252,9 +252,9 @@ class ModelGenderDiversityLinearGrowth(Model3GenderDiversity):
             self.res[i, 35] = attrition_rate_male_level_1
             self.res[i, 36] = attrition_rate_male_level_2
             self.res[i, 37] = attrition_rate_male_level_3
-            self.res[i, 38] = 1
-            self.res[i, 39] = 1
-            self.res[i, 40] = 1
+            self.res[i, 38] = 0
+            self.res[i, 39] = 0
+            self.res[i, 40] = 0
             self.res[i, 41] = female_promotion_probability_1_2
             self.res[i, 42] = female_promotion_probability_2_3
             self.res[i, 43] = male_promotion_probability_1_2
@@ -287,7 +287,7 @@ class ModelGenderDiversityLinearGrowth(Model3GenderDiversity):
                     flag = True
 
                 if (new_department_size > department_size_upper_bound):
-                    extra_vacancies = 0
+                    extra_vacancies = -1*variation_range
                     flag = True
 
                 if department_size < department_size_lower_bound:

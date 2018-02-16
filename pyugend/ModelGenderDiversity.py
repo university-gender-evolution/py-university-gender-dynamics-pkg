@@ -246,8 +246,8 @@ class Model3GenderDiversity(Base_model):
                 female_attrition_level_1]))
 
             # Future reserved spaces in the data capture
-            self.res[i, 9] = 'future reserved'
-            self.res[i, 10] = 'future reserved'
+            self.res[i, 9] = 0
+            self.res[i, 10] = 0
 
             # capture gender proportion for department
             self.res[i, 11] = self.res[i, 0:3].sum()/self.res[i,0:6].sum()
@@ -299,14 +299,15 @@ class Model3GenderDiversity(Base_model):
             self.res[i, 36] = attrition_rate_male_level_2
             self.res[i, 37] = attrition_rate_male_level_3
 
-            # capture the probability of outside hire
-            # this parameter is not used in the model any more,
-            # however this was something used in the original
-            # simulation. This data is preserved for historical
-            # significance, but otherwise serves no purpose. 
-            self.res[i, 38] = 1
-            self.res[i, 39] = 1
-            self.res[i, 40] = 1
+            # Future reserved columns. These used to reference
+            # a parameter for the probability of outside hire.
+            # But we don't use that parameter any more since
+            # promotions and hires no longer compete, hence
+            # we removed these parameter values. So this
+            # section of columns are future reserved.
+            self.res[i, 38] = 0
+            self.res[i, 39] = 0
+            self.res[i, 40] = 0
 
             # capture the promotion probabilities for each group
             self.res[i, 41] = female_promotion_probability_1_2
@@ -314,7 +315,7 @@ class Model3GenderDiversity(Base_model):
             self.res[i, 43] = male_promotion_probability_1_2
             self.res[i, 44] = male_promotion_probability_2_3
 
-            # capture the department size bounds and variation ranges. 
+            # capture the department size bounds and variation ranges.
             self.res[i, 45] = department_size_upper_bound
             self.res[i, 46] = department_size_lower_bound
             self.res[i, 47] = variation_range
@@ -322,33 +323,44 @@ class Model3GenderDiversity(Base_model):
             # capture the model duration, or the number of time-steps
             self.res[i, 48] = self.duration
 
-
-            # this produces an array of values. Then I need to assign the
-            # values to levels. So if I have say a range of variation of 5. I
-            #  will get something like [-1,0,1,-1,0] or something. I need to
-            # turn this into something like [2,-1,0]. That means randomly
-            # assigning the values in the array to levels.
-
+            # Churn process:
+            # Set the flag to False. When an allowable number of extra
+            # FTEs are generated, then the flag will change to True,
+            # and the loop will exit.
             flag = False
             while flag == False:
 
+                # generate a vector of additional FTEs. The number of possible.
+                # additions is based upon the ~variation_range~ variable.
                 changes = np.random.choice([-1, 0, 1], variation_range)
 
-                # [-1, -1, 0] gains/losses -- where to apply these?
-                # levels {1,2,3}, pick randomly from this set
-                # [1,1,2]
-                # matching wise [(-1, 1), (-1, 1), (0, 2)]
+                # Given the new vector, we need to test whether the current
+                # department size plus additional changes will be within
+                # the department upper and lower bound. If the new department
+                # size exceeds the upperbound or falls under the lower bound,
+                # then the random ~changes~ data vector is thrown out and
+                # re-run. This process continues until a suitable value is found,
+                # that keeps the department within the right size.
 
+                # if the number of changes keeps the department within the proper
+                # range, then add the extra changes to the total number of vacancies
+                # for the next timestep of the model.
                 if (department_size + changes.sum() <=
                         department_size_upper_bound and department_size +
                     changes.sum() >= department_size_lower_bound):
                     extra_vacancies = changes.sum()
                     flag = True
 
+                # if the current department size is above the upper bound, then
+                # set the number of extra FTEs to zero and exit the loop.
                 if (department_size > department_size_upper_bound):
-                    extra_vacancies = 0
+                    extra_vacancies = -1*variation_range
                     flag = True
 
+                # if the current department size is below the lower bound, then
+                # set the number of additional FTEs to the ~variation_range~ meaning
+                # the maximum possible number of extra FTEs--in order to bring the
+                # department size quickly back over the lower bound.
                 if department_size < department_size_lower_bound:
                     extra_vacancies = variation_range
                     flag = True
