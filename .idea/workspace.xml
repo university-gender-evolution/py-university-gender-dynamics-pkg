@@ -3,11 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="db3b48aa-1b4d-4f09-96e2-54f1ff5c70d7" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/pyugend/ColumnSpecs.py" afterPath="$PROJECT_DIR$/pyugend/ColumnSpecs.py" />
-      <change beforePath="$PROJECT_DIR$/pyugend/ModelGenderDiversity.py" afterPath="$PROJECT_DIR$/pyugend/ModelGenderDiversity.py" />
-      <change beforePath="$PROJECT_DIR$/pyugend/ModelGenderDiversityGrowthForecast.py" afterPath="$PROJECT_DIR$/pyugend/ModelGenderDiversityGrowthForecast.py" />
-      <change beforePath="$PROJECT_DIR$/pyugend/ModelGenderDiversityGrowthForecastIncrementalChange.py" afterPath="$PROJECT_DIR$/pyugend/ModelGenderDiversityGrowthForecastIncrementalChange.py" />
-      <change beforePath="$PROJECT_DIR$/pyugend/ModelGenderDiversityLinearGrowth.py" afterPath="$PROJECT_DIR$/pyugend/ModelGenderDiversityLinearGrowth.py" />
     </list>
     <ignored path="pyugend.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -758,13 +753,6 @@
       <option name="presentableId" value="Default" />
       <updated>1461126958316</updated>
     </task>
-    <task id="LOCAL-00073" summary="moved the DataManager classes to the data directory. Hopefully this will resolve the path problem.">
-      <created>1513113786694</created>
-      <option name="number" value="00073" />
-      <option name="presentableId" value="LOCAL-00073" />
-      <option name="project" value="LOCAL" />
-      <updated>1513113786694</updated>
-    </task>
     <task id="LOCAL-00074" summary="trying to fix issue with getting data into the package.">
       <created>1513113943097</created>
       <option name="number" value="00074" />
@@ -1101,7 +1089,14 @@
       <option name="project" value="LOCAL" />
       <updated>1518733142972</updated>
     </task>
-    <option name="localTasksCounter" value="122" />
+    <task id="LOCAL-00122" summary="Fixed issue #1 and updated churn process.">
+      <created>1518819332189</created>
+      <option name="number" value="00122" />
+      <option name="presentableId" value="LOCAL-00122" />
+      <option name="project" value="LOCAL" />
+      <updated>1518819332189</updated>
+    </task>
+    <option name="localTasksCounter" value="123" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -1214,7 +1209,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="creating the plot settings builder and the plot builder classes. Added files abcPlotBuilder and PlotDirector files." />
     <MESSAGE value="moved files to the main source folder and fixed links." />
     <MESSAGE value="fixing proportion chart." />
     <MESSAGE value="incorporated simple growth into the ModelGenderDiversityLinearGrowth" />
@@ -1239,7 +1233,8 @@
     <MESSAGE value="Fixed errors #38 #39. &#10;&#10;This will change the definition of gender proportion to % female. And it will also change the definition of vacancies to purely attrition." />
     <MESSAGE value="closed #38" />
     <MESSAGE value="Fixed issue #40 from &#10;&#10;https://github.com/university-gender-evolution/notebooks-univ-gender" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed issue #40 from &#10;&#10;https://github.com/university-gender-evolution/notebooks-univ-gender" />
+    <MESSAGE value="Fixed issue #1 and updated churn process." />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed issue #1 and updated churn process." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
