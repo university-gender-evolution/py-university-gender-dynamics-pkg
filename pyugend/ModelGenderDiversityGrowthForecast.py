@@ -283,16 +283,16 @@ class ModelGenderDiversityGrowthForecast(Model3GenderDiversity):
             # assigning the values in the array to levels.
 
             department_size_target = dept_size_forecasts[i]
+            department_growth = department_size_target - department_size
+            department_size_upper_bound = department_size_upper_bound + department_growth
+            department_size_lower_bound = department_size_lower_bound + department_growth
+            new_department_size = department_size + department_growth
 
             flag = False
             while flag == False:
 
                 changes = np.random.choice([-1, 0, 1], variation_range)
-                department_growth = department_size_target - department_size
-                department_size_upper_bound = department_size_upper_bound + department_growth
-                department_size_lower_bound = department_size_lower_bound + department_growth
-                # matching wise [(-1, 1), (-1, 1), (0, 2)]
-                new_department_size = department_size + department_growth
+
                 if (new_department_size + changes.sum() <=
                     department_size_upper_bound and new_department_size +
                     changes.sum() >= department_size_lower_bound):

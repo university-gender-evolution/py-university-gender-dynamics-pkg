@@ -304,20 +304,16 @@ class ModelGenderDiversityGrowthForecastIncremental(Model3GenderDiversity):
             self.res[i, 48] = self.duration
 
 
-            # this produces an array of values. Then I need to assign the
-            # values to levels. So if I have say a range of variation of 5. I
-            #  will get something like [-1,0,1,-1,0] or something. I need to
-            # turn this into something like [2,-1,0]. That means randomly
-            # assigning the values in the array to levels.
+            department_growth = department_size_target[i] - department_size
+            department_size_upper_bound = dept_upperbound[i] + department_growth
+            department_size_lower_bound = dept_lowerbound[i] + department_growth
+            # matching wise [(-1, 1), (-1, 1), (0, 2)]
+            new_department_size = department_size + department_growth
 
             flag = False
             while flag == False:
                 changes = np.random.choice([-1, 0, 1], variation_range)
-                department_growth = department_size_target[i] - department_size
-                department_size_upper_bound = dept_upperbound[i] + department_growth
-                department_size_lower_bound = dept_lowerbound[i] + department_growth
-                # matching wise [(-1, 1), (-1, 1), (0, 2)]
-                new_department_size = department_size + department_growth
+
                 if (new_department_size + changes.sum() <=
                     department_size_upper_bound and new_department_size +
                     changes.sum() >= department_size_lower_bound):
