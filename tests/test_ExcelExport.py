@@ -14,7 +14,7 @@ def test_excel_export_ph(mgmt_data):
     modlist[0].init_default_hiring_rate()
     c = Comparison(modlist)
     c.export_model_run('new model baseline management', 'new model baseline '
-                                                       'management', 100)
+                                                       'management', 3)
 
 # def test_excel_export_hp(mgmt_data):
 #

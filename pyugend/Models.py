@@ -123,9 +123,9 @@ class Base_model():
         self.nm1 = 11
         self.nm2 = 12
         self.nm3 = 43
-        self.vac3 = 8.31
-        self.vac2 = 5.9
-        self.vac1 = 5.303
+        self.vac3 = 0
+        self.vac2 = 0
+        self.vac1 = 0
         self.bf1 = 0.172
         self.bf2 = 0.4
         self.bf3 = 0.167
