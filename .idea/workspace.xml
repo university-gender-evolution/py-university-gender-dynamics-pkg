@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="db3b48aa-1b4d-4f09-96e2-54f1ff5c70d7" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/pyugend/Comparison.py" afterPath="$PROJECT_DIR$/pyugend/Comparison.py" />
+      <change beforePath="$PROJECT_DIR$/pyugend/__init__.py" afterPath="$PROJECT_DIR$/pyugend/__init__.py" />
     </list>
     <ignored path="pyugend.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -105,7 +105,7 @@
         <entry file="file://$PROJECT_DIR$/tests/test_ExcelExport.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="326">
-              <caret line="17" column="0" lean-forward="true" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
+              <caret line="17" column="0" lean-forward="false" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
               <folding>
                 <element signature="e#0#13#0" expanded="true" />
               </folding>
@@ -117,7 +117,7 @@
         <entry file="file://$PROJECT_DIR$/pyugend/ModelGenderDiversity.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="-5086">
-              <caret line="107" column="46" lean-forward="true" selection-start-line="107" selection-start-column="46" selection-end-line="107" selection-end-column="46" />
+              <caret line="107" column="46" lean-forward="false" selection-start-line="107" selection-start-column="46" selection-end-line="107" selection-end-column="46" />
               <folding>
                 <element signature="e#253#271#0" expanded="true" />
               </folding>
@@ -125,7 +125,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Models.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Models.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/pyugend/Models.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="7656">
@@ -147,6 +147,30 @@
                 <element signature="e#25230#27672#0" expanded="false" />
                 <element signature="e#28149#28153#0" expanded="false" />
                 <element signature="e#28681#30429#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="DataManagement.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/pyugend/DataManagement.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding>
+                <element signature="e#1#49#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="__init__.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/pyugend/__init__.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="458">
+              <caret line="25" column="42" lean-forward="false" selection-start-line="25" selection-start-column="42" selection-end-line="25" selection-end-column="42" />
+              <folding>
+                <element signature="e#234#264#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -244,7 +268,6 @@
         <option value="$PROJECT_DIR$/pyugend/BuilderOverallAttritionPlot.py" />
         <option value="$PROJECT_DIR$/pyugend/ModelGenderDiversity5YearGrowth.py" />
         <option value="$PROJECT_DIR$/pyugend/ModelGendDiversityLinearGrowth.py" />
-        <option value="$PROJECT_DIR$/pyugend/__init__.py" />
         <option value="$PROJECT_DIR$/pyugend/ComparisonPlotOverallMFHiring.py" />
         <option value="$PROJECT_DIR$/pyugend/abcOverallMFPlotBuilder.py" />
         <option value="$PROJECT_DIR$/pyugend/PlotSettings.py" />
@@ -273,6 +296,7 @@
         <option value="$PROJECT_DIR$/tests/test_ExcelExport.py" />
         <option value="$PROJECT_DIR$/tests/test_Plots.py" />
         <option value="$PROJECT_DIR$/pyugend/Comparison.py" />
+        <option value="$PROJECT_DIR$/pyugend/__init__.py" />
       </list>
     </option>
   </component>
@@ -1214,7 +1238,7 @@
       <window_info id="Documentation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3288482" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" x="0" y="0" width="430" height="859" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32855567" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32768363" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.33333334" sideWeight="0.4956943" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.33333334" sideWeight="0.4956943" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32768363" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24004306" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
@@ -1405,13 +1429,6 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/pyugend/plotHandlers/PlotDirector.py" />
     <entry file="file://$PROJECT_DIR$/pyugend/BuilderOverallAttritionPlot.py" />
-    <entry file="file://$PROJECT_DIR$/pyugend/__init__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="429">
-          <caret line="20" column="110" lean-forward="false" selection-start-line="20" selection-start-column="110" selection-end-line="20" selection-end-column="110" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../../../anaconda3/envs/pGendUniv/lib/python3.6/site-packages/_pytest/skipping.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="171">
@@ -1533,14 +1550,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pyugend/DataManagement.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$USER_HOME$/anaconda3/envs/pGendUniv/lib/python3.6/site-packages/numpy/core/records.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="160">
@@ -1562,7 +1571,7 @@
         <state relative-caret-position="-495">
           <caret line="21" column="0" lean-forward="true" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
           <folding>
-            <element signature="e#253#271#0" expanded="true" />
+            <element signature="e#253#271#0" expanded="false" />
             <marker date="1519339086954" expanded="true" signature="2680:9588" ph="..." />
           </folding>
         </state>
@@ -1607,7 +1616,7 @@
     <entry file="file://$PROJECT_DIR$/pyugend/ModelGenderDiversity.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-5086">
-          <caret line="107" column="46" lean-forward="true" selection-start-line="107" selection-start-column="46" selection-end-line="107" selection-end-column="46" />
+          <caret line="107" column="46" lean-forward="false" selection-start-line="107" selection-start-column="46" selection-end-line="107" selection-end-column="46" />
           <folding>
             <element signature="e#253#271#0" expanded="true" />
           </folding>
@@ -1617,7 +1626,7 @@
     <entry file="file://$PROJECT_DIR$/tests/test_ExcelExport.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="326">
-          <caret line="17" column="0" lean-forward="true" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
+          <caret line="17" column="0" lean-forward="false" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
           <folding>
             <element signature="e#0#13#0" expanded="true" />
           </folding>
@@ -1662,6 +1671,26 @@
         <state relative-caret-position="688">
           <caret line="1014" column="43" lean-forward="false" selection-start-line="1014" selection-start-column="43" selection-end-line="1014" selection-end-column="43" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pyugend/DataManagement.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#1#49#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pyugend/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="458">
+          <caret line="25" column="42" lean-forward="false" selection-start-line="25" selection-start-column="42" selection-end-line="25" selection-end-column="42" />
+          <folding>
+            <element signature="e#234#264#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

@@ -23,3 +23,4 @@ from .PlotComposerOverallAttrition import PlotComposerOverallAttrition
 from .abcComparisonPlot import abcComparisonPlot
 from .abcDirector import abcDirector
 from .abcOverallPlotBuilder import abcOverallPlotBuilder
+from .DataManagement import DataManagement
