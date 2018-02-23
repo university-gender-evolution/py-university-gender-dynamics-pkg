@@ -20,57 +20,9 @@ from .Models import Base_model
 from .ModelGenderDiversity import Model3GenderDiversity
 import itertools
 import math
+from .ColumnSpecs import MODEL_RUN_COLUMNS, EXPORT_COLUMNS_FOR_CSV
 
-MODEL_RUN_COLUMNS = list(['number_f1',
-                          'number_f2',
-                          'number_f3',
-                          'number_m1',
-                          'number_m2',
-                          'number_m3',
-                          'vacancies_3',
-                          'vacancies_2',
-                          'vacancies_1',
-                          'prom1',
-                          'prom2',
-                          'gender_proportion_overall',
-                          'unfilled_vacancies',
-                          'department_size',
-                          'f_hire_3',
-                          'm_hire_3',
-                          'f_hire_2',
-                          'm_hire_2',
-                          'f_hire_1',
-                          'm_hire_1',
-                          'f_prom_3',
-                          'm_prom_3',
-                          'f_prom_2',
-                          'm_prom_2',
-                          'f_prom_1',
-                          'm_prom_1'])
 
-EXPORT_COLUMNS_FOR_CSV = list(['hiring_rate_women_1',
-                               'hiring_rate_women_2',
-                               'hiring_rate_women_3',
-                               'hiring_rate_men_1',
-                               'hiring_rate_men_2',
-                               'hiring_rate_men_3',
-                               'attrition_rate_women_1',
-                               'attrition_rate_women_2',
-                               'attrition_rate_women_3',
-                               'attrition_rate_men_1',
-                               'attrition_rate_men_2',
-                               'attrition_rate_men_3',
-                               'probablity_of_outside_hire_1',
-                               'probability_of_outside_hire_2',
-                               'probability_of_outside_hire_3',
-                               'female_promotion_rate_1',
-                               'female_promotion_rate_2',
-                               'male_promotion_rate_1',
-                               'male_promotion_rate_2',
-                               'dept_size_upperbound',
-                               'dept_size_lowerbound',
-                               'dept_size_exogenous_variation_range',
-                               'duration'])
 
 
 class ModelGenderDiversityGrowthForecast(Model3GenderDiversity):

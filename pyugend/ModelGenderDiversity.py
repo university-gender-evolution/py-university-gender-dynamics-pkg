@@ -17,57 +17,9 @@ import numpy as np
 import pandas as pd
 from numpy.random import binomial, multinomial
 from .Models import Base_model
+from .ColumnSpecs import MODEL_RUN_COLUMNS, EXPORT_COLUMNS_FOR_CSV
 
-MODEL_RUN_COLUMNS = list(['number_f1',
-                          'number_f2',
-                          'number_f3',
-                          'number_m1',
-                          'number_m2',
-                          'number_m3',
-                          'attrition_3',
-                          'attrition_2',
-                          'attrition_1',
-                          'future_reserved_1',
-                          'future_reserved_2',
-                          'gender_proportion_overall',
-                          'unfilled_vacancies',
-                          'department_size',
-                          'f_hire_3',
-                          'm_hire_3',
-                          'f_hire_2',
-                          'm_hire_2',
-                          'f_hire_1',
-                          'm_hire_1',
-                          'f_prom_3',
-                          'm_prom_3',
-                          'f_prom_2',
-                          'm_prom_2',
-                          'f_prom_1',
-                          'm_prom_1'])
 
-EXPORT_COLUMNS_FOR_CSV = list(['hiring_rate_women_1',
-                               'hiring_rate_women_2',
-                               'hiring_rate_women_3',
-                               'hiring_rate_men_1',
-                               'hiring_rate_men_2',
-                               'hiring_rate_men_3',
-                               'attrition_rate_women_1',
-                               'attrition_rate_women_2',
-                               'attrition_rate_women_3',
-                               'attrition_rate_men_1',
-                               'attrition_rate_men_2',
-                               'attrition_rate_men_3',
-                               'probablity_of_outside_hire_1',
-                               'probability_of_outside_hire_2',
-                               'probability_of_outside_hire_3',
-                               'female_promotion_rate_1',
-                               'female_promotion_rate_2',
-                               'male_promotion_rate_1',
-                               'male_promotion_rate_2',
-                               'dept_size_upperbound',
-                               'dept_size_lowerbound',
-                               'dept_size_exogenous_variation_range',
-                               'duration'])
 
 
 class Model3GenderDiversity(Base_model):
@@ -75,7 +27,7 @@ class Model3GenderDiversity(Base_model):
         Base_model.__init__(self, **kwds)
         self.name = "model-3-baseline"
         self.label = "model-3-baseline"
-
+        self.init_default_hiring_rate()
 
     def init_hiring_rates(self,
                           _hiring_rate_f1,
@@ -119,13 +71,39 @@ class Model3GenderDiversity(Base_model):
         self.res[0, 6] = self.vac3
         self.res[0, 7] = self.vac2
         self.res[0, 8] = self.vac1
-        self.res[0, 9] = self.female_promotion_probability_1
-        self.res[0, 10] = self.female_promotion_probability_2
+        self.res[0, 9] = 0
+        self.res[0, 10] = 0
         self.res[0, 11] = self.res[0, 0:3].sum()/self.res[0, 0:6].sum()
         self.res[0, 12] = 0
         self.res[0, 13] = self.res[0, 0:6].sum()
         self.res[0, 14:] = 0
-
+        self.res[0, 26] = self.hiring_rate_f1
+        self.res[0, 27] = self.hiring_rate_f2
+        self.res[0, 28] = self.hiring_rate_f3
+        self.res[0, 29] = self.hiring_rate_m1
+        self.res[0, 30] = self.hiring_rate_m2
+        self.res[0, 31] = self.hiring_rate_m3
+        self.res[0, 32] = self.df1
+        self.res[0, 33] = self.df2
+        self.res[0, 34] = self.df3
+        self.res[0, 35] = self.dm1
+        self.res[0, 36] = self.dm2
+        self.res[0, 37] = self.dm3
+        # Future reserved columns.
+        self.res[0, 38] = 0
+        self.res[0, 39] = 0
+        self.res[0, 40] = 0
+        # capture the promotion probabilities for each group
+        self.res[0, 41] = self.female_promotion_probability_1
+        self.res[0, 42] = self.female_promotion_probability_2
+        self.res[0, 43] = self.male_promotion_probability_1
+        self.res[0, 44] = self.male_promotion_probability_2
+        # capture the department size bounds and variation ranges.
+        self.res[0, 45] = self.upperbound
+        self.res[0, 46] = self.lowerbound
+        self.res[0, 47] = self.variation_range
+        # capture the model duration, or the number of time-steps
+        self.res[0, 48] = self.duration
         # I assign the state variables to temporary variables. That way I
         # don't have to worry about overwriting the original state variables.
 
