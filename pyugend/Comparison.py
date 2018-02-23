@@ -987,7 +987,7 @@ class Comparison():
         # to appending to a dataframe.
 
         columnnames = ['run', 'year'] + MODEL_RUN_COLUMNS + \
-                      EXPORT_COLUMNS_FOR_CSV + ['model_name', 'date_created']
+                      EXPORT_COLUMNS_FOR_CSV + ['model_name', 'date_generated']
 
         print_array = np.zeros([self.mlist[0].duration * number_of_runs,
                                 len(columnnames)])
@@ -1008,21 +1008,12 @@ class Comparison():
         df_print_array.iloc[:,-1] = str(datetime.datetime.now())
         df_print_array.to_csv(filename, index=False)
 
-        filename2 = model_label + "_iter" + str(number_of_runs) + "_number_summary.csv"
-        self.mlist[0].results_matrix['year'] = range(self.mlist[0].duration)
-        self.mlist[0].results_matrix.iloc[:, 0:-1].round(2).to_csv(filename2,
-                                                          index=False)
-
-        filename3 = model_label + "_iter" \
-                   + str(number_of_runs) + "_percentage_summary.csv"
-
-        self.mlist[0].pct_female_matrix.astype(float).round(3).to_csv(
-            filename3, index=False)
-
-        filename4 = model_label + "_iter" + str(number_of_runs) + "_all_summary.csv"
-
-        pd.concat([self.mlist[0].results_matrix.iloc[:, 0:-1].round(2),
-                   self.mlist[0].pct_female_matrix.iloc[:, 1:].astype(float).round(3)], axis=1).to_csv(filename4, index=False)
+        filename = model_label + "_iter" + str(number_of_runs) + "_all_summary.csv"
+        results = pd.concat([self.mlist[0].results_matrix.iloc[:, 0:-1].round(2),
+                   self.mlist[0].pct_female_matrix.iloc[:, 1:].astype(float).round(3)], axis=1)
+        results['date_generated'] = str(datetime.datetime.now())
+        results['model_name'] = model_label
+        results.to_csv(filename, index=False)
 
     def plot_attrition_overall(self, settings):
         self.run_all_models(settings['number_of_runs'])
