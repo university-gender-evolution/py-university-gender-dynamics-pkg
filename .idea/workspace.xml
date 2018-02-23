@@ -3,12 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="db3b48aa-1b4d-4f09-96e2-54f1ff5c70d7" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/pyugend/ColumnSpecs.py" afterPath="$PROJECT_DIR$/pyugend/ColumnSpecs.py" />
-      <change beforePath="$PROJECT_DIR$/pyugend/ModelGenderDiversity.py" afterPath="$PROJECT_DIR$/pyugend/ModelGenderDiversity.py" />
-      <change beforePath="$PROJECT_DIR$/pyugend/ModelGenderDiversityGrowthForecast.py" afterPath="$PROJECT_DIR$/pyugend/ModelGenderDiversityGrowthForecast.py" />
-      <change beforePath="$PROJECT_DIR$/pyugend/ModelGenderDiversityGrowthForecastIncrementalChange.py" afterPath="$PROJECT_DIR$/pyugend/ModelGenderDiversityGrowthForecastIncrementalChange.py" />
-      <change beforePath="$PROJECT_DIR$/pyugend/ModelGenderDiversityLinearGrowth.py" afterPath="$PROJECT_DIR$/pyugend/ModelGenderDiversityLinearGrowth.py" />
-      <change beforePath="$PROJECT_DIR$/pyugend/conftest.py" afterPath="$PROJECT_DIR$/pyugend/conftest.py" />
     </list>
     <ignored path="pyugend.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -799,13 +793,6 @@
       <option name="presentableId" value="Default" />
       <updated>1461126958316</updated>
     </task>
-    <task id="LOCAL-00077" summary="Fixed the issue with relative imports.">
-      <created>1513135432872</created>
-      <option name="number" value="00077" />
-      <option name="presentableId" value="LOCAL-00077" />
-      <option name="project" value="LOCAL" />
-      <updated>1513135432872</updated>
-    </task>
     <task id="LOCAL-00078" summary="Fixed the issue with relative imports.">
       <created>1513136184717</created>
       <option name="number" value="00078" />
@@ -1142,7 +1129,14 @@
       <option name="project" value="LOCAL" />
       <updated>1519334987874</updated>
     </task>
-    <option name="localTasksCounter" value="126" />
+    <task id="LOCAL-00126" summary="fixed the initial values of the data in the export files.">
+      <created>1519351882007</created>
+      <option name="number" value="00126" />
+      <option name="presentableId" value="LOCAL-00126" />
+      <option name="project" value="LOCAL" />
+      <updated>1519351882007</updated>
+    </task>
+    <option name="localTasksCounter" value="127" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -1255,7 +1249,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="cleaning up formatting of overall plots." />
     <MESSAGE value="cleaning up formatting of overall plots. Changed line dash style of data plots." />
     <MESSAGE value="created gender numbers overall plot. set the info settings in the Comparison object." />
     <MESSAGE value="created gender numbers overall plot. set the info settings in the Comparison object. set up empirical intervals." />
@@ -1280,7 +1273,8 @@
     <MESSAGE value="Fixed issue #1 and updated churn process.&#10;Closed #1" />
     <MESSAGE value="cleaning up code." />
     <MESSAGE value="fixed issue with the column names not matching. So now it all works." />
-    <option name="LAST_COMMIT_MESSAGE" value="fixed issue with the column names not matching. So now it all works." />
+    <MESSAGE value="fixed the initial values of the data in the export files." />
+    <option name="LAST_COMMIT_MESSAGE" value="fixed the initial values of the data in the export files." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
