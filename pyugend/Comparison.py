@@ -987,41 +987,42 @@ class Comparison():
         # to appending to a dataframe.
 
         columnnames = ['run', 'year'] + MODEL_RUN_COLUMNS + \
-                      EXPORT_COLUMNS_FOR_CSV + ['model_name']
+                      EXPORT_COLUMNS_FOR_CSV + ['model_name', 'date_created']
 
         print_array = np.zeros([self.mlist[0].duration * number_of_runs,
                                 len(columnnames)])
 
         for idx in range(number_of_runs):
             print_array[(idx * self.mlist[0].duration):(idx * self.mlist[0].
-                duration +
-                                               self.mlist[0].duration), 0] = idx
+                duration + self.mlist[0].duration), 0] = idx
 
             print_array[(idx * self.mlist[0].duration):(idx * self.mlist[0].
-                duration +
-                                               self.mlist[0].duration),
-            1:-1] = pd.DataFrame(self.mlist[0].res_array['run'][idx])
+                duration + self.mlist[0].duration),
+                1:-2] = pd.DataFrame(self.mlist[0].res_array['run'][idx])
 
 
-        filename = model_label + "_" + str(datetime.datetime.now()) + "_iter" \
-                   + str(number_of_runs) + ".csv"
+        filename = model_label + "_iter" + str(number_of_runs) + ".csv"
 
         df_print_array = pd.DataFrame(print_array, columns=columnnames).round(2)
-        df_print_array.iloc[:, -1] = model_choice
+        df_print_array.iloc[:, -2] = model_choice
+        df_print_array.iloc[:,-1] = str(datetime.datetime.now())
         df_print_array.to_csv(filename, index=False)
 
-        filename2 = model_label + "_" + str(datetime.datetime.now()) + "_iter" \
-                   + str(number_of_runs) + "_number_summary.csv"
+        filename2 = model_label + "_iter" + str(number_of_runs) + "_number_summary.csv"
         self.mlist[0].results_matrix['year'] = range(self.mlist[0].duration)
         self.mlist[0].results_matrix.iloc[:, 0:-1].round(2).to_csv(filename2,
                                                           index=False)
 
-        filename3 = model_label + "_" + str(datetime.datetime.now()) + "_iter" \
+        filename3 = model_label + "_iter" \
                    + str(number_of_runs) + "_percentage_summary.csv"
 
         self.mlist[0].pct_female_matrix.astype(float).round(3).to_csv(
             filename3, index=False)
 
+        filename4 = model_label + "_iter" + str(number_of_runs) + "_all_summary.csv"
+
+        pd.concat([self.mlist[0].results_matrix.iloc[:, 0:-1].round(2),
+                   self.mlist[0].pct_female_matrix.iloc[:, 1:].astype(float).round(3)], axis=1).to_csv(filename4, index=False)
 
     def plot_attrition_overall(self, settings):
         self.run_all_models(settings['number_of_runs'])

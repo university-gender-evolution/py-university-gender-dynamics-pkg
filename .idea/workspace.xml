@@ -2,7 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="db3b48aa-1b4d-4f09-96e2-54f1ff5c70d7" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change beforePath="$PROJECT_DIR$/pyugend/Comparison.py" afterPath="$PROJECT_DIR$/pyugend/Comparison.py" />
+      <change beforePath="$PROJECT_DIR$/tests/test_ExcelExport.py" afterPath="$PROJECT_DIR$/tests/test_ExcelExport.py" />
+      <change beforePath="$PROJECT_DIR$/tests/test_Plots.py" afterPath="$PROJECT_DIR$/tests/test_Plots.py" />
     </list>
     <ignored path="pyugend.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -28,9 +30,9 @@
     <SUITE FILE_PATH="coverage/pyugend$py_test_in_test_plot_empirical_probability_gender_proportion.coverage" NAME="py.test in test_plot_empirical_probability_gender_proportion Coverage Results" MODIFIED="1468193652625" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
     <SUITE FILE_PATH="coverage/pyugend$py_test_for_test_Plots_test_bokeh_comparison_plot_bylevel.coverage" NAME="py.test for test_Plots.test_bokeh_comparison_plot_bylevel Coverage Results" MODIFIED="1518052569290" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
     <SUITE FILE_PATH="coverage/pyugend$py_test_in_test_FBPH_alt_plot_unfilled.coverage" NAME="py.test in test_FBPH_alt_plot_unfilled Coverage Results" MODIFIED="1462667695847" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
-    <SUITE FILE_PATH="coverage/pyugend$py_test_for_test_ExcelExport_test_excel_export_ph.coverage" NAME="py.test for test_ExcelExport.test_excel_export_ph Coverage Results" MODIFIED="1519351508750" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
+    <SUITE FILE_PATH="coverage/pyugend$py_test_for_test_ExcelExport_test_excel_export_ph.coverage" NAME="py.test for test_ExcelExport.test_excel_export_ph Coverage Results" MODIFIED="1519357198566" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
     <SUITE FILE_PATH="coverage/pyugend$py_test_in_test_FBPH_plot_pct_gender_detail.coverage" NAME="py.test in test_FBPH_plot_pct_gender_detail Coverage Results" MODIFIED="1465524876974" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
-    <SUITE FILE_PATH="coverage/pyugend$py_test_for_test_Plots_test_bokeh_comparison_plot_overall_one_model.coverage" NAME="py.test for test_Plots.test_bokeh_comparison_plot_overall_one_model Coverage Results" MODIFIED="1516137741583" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
+    <SUITE FILE_PATH="coverage/pyugend$py_test_for_test_Plots_test_bokeh_comparison_plot_overall_one_model.coverage" NAME="py.test for test_Plots.test_bokeh_comparison_plot_overall_one_model Coverage Results" MODIFIED="1519354182541" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
     <SUITE FILE_PATH="coverage/pyugend$py_test_in_test_FBPH_alt_plot_gender_proportion.coverage" NAME="py.test in test_FBPH_alt_plot_gender_proportion Coverage Results" MODIFIED="1462687813203" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
     <SUITE FILE_PATH="coverage/pyugend$py_test_in_test_FBHP_model_run.coverage" NAME="py.test in test_FBHP_model_run Coverage Results" MODIFIED="1462419437693" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
     <SUITE FILE_PATH="coverage/pyugend$py_test_for_pyugend_PlotComposerOverallAttrition_TestClass_test_plot_attrition.coverage" NAME="py.test for pyugend.PlotComposerOverallAttrition.TestClass.test_plot_attrition Coverage Results" MODIFIED="1518048932561" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
@@ -67,53 +69,16 @@
     <option name="PATCH_PATH" value="" />
   </component>
   <component name="DockManager">
-    <window id="1">
+    <window id="3">
       <content type="file-editors">
         <state>
           <leaf>
-            <file leaf-file-name="ColumnSpecs.py" pinned="false" current-in-tab="true">
-              <entry file="file://$PROJECT_DIR$/pyugend/ColumnSpecs.py">
+            <file leaf-file-name="Comparison.py" pinned="false" current-in-tab="true">
+              <entry file="file://$PROJECT_DIR$/pyugend/Comparison.py">
                 <provider selected="true" editor-type-id="text-editor">
-                  <state relative-caret-position="290">
-                    <caret line="14" column="39" lean-forward="false" selection-start-line="14" selection-start-column="36" selection-end-line="14" selection-end-column="39" />
+                  <state relative-caret-position="721">
+                    <caret line="1024" column="61" lean-forward="false" selection-start-line="1024" selection-start-column="61" selection-end-line="1024" selection-end-column="61" />
                     <folding />
-                  </state>
-                </provider>
-              </entry>
-            </file>
-          </leaf>
-        </state>
-      </content>
-    </window>
-    <window id="2">
-      <content type="file-editors">
-        <state>
-          <leaf>
-            <file leaf-file-name="Models.py" pinned="false" current-in-tab="true">
-              <entry file="file://$PROJECT_DIR$/pyugend/Models.py">
-                <provider selected="true" editor-type-id="text-editor">
-                  <state relative-caret-position="985">
-                    <caret line="109" column="0" lean-forward="true" selection-start-line="109" selection-start-column="0" selection-end-line="109" selection-end-column="0" />
-                    <folding>
-                      <element signature="e#297#315#0" expanded="true" />
-                      <element signature="e#3868#4995#0" expanded="false" />
-                      <element signature="e#5046#6095#0" expanded="false" />
-                      <element signature="e#6151#7208#0" expanded="false" />
-                      <element signature="e#7260#8312#0" expanded="false" />
-                      <element signature="e#8364#9402#0" expanded="false" />
-                      <element signature="e#9456#10506#0" expanded="false" />
-                      <element signature="e#10565#11619#0" expanded="false" />
-                      <element signature="e#11674#12728#0" expanded="false" />
-                      <element signature="e#17585#20452#0" expanded="false" />
-                      <element signature="e#20863#23375#0" expanded="false" />
-                      <element signature="e#20863#21743#1" expanded="false" />
-                      <element signature="e#23462#25145#0" expanded="false" />
-                      <element signature="e#25230#27672#0" expanded="false" />
-                      <element signature="e#28149#28153#0" expanded="false" />
-                      <element signature="e#28681#30429#0" expanded="false" />
-                      <element signature="e#30515#31934#0" expanded="false" />
-                      <element signature="e#32046#32131#0" expanded="false" />
-                    </folding>
                   </state>
                 </provider>
               </entry>
@@ -128,10 +93,32 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="ModelGenderDiversity.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="test_Plots.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/tests/test_Plots.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="198">
+              <caret line="23" column="5" lean-forward="false" selection-start-line="23" selection-start-column="5" selection-end-line="23" selection-end-column="5" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="test_ExcelExport.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/tests/test_ExcelExport.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="326">
+              <caret line="17" column="0" lean-forward="true" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
+              <folding>
+                <element signature="e#0#13#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ModelGenderDiversity.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/pyugend/ModelGenderDiversity.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-235">
+            <state relative-caret-position="-5086">
               <caret line="107" column="46" lean-forward="true" selection-start-line="107" selection-start-column="46" selection-end-line="107" selection-end-column="46" />
               <folding>
                 <element signature="e#253#271#0" expanded="true" />
@@ -146,6 +133,18 @@
             <state relative-caret-position="227">
               <caret line="17" column="47" lean-forward="false" selection-start-line="17" selection-start-column="47" selection-end-line="17" selection-end-column="47" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ModelGenderDiversityGrowthForecastIncrementalChange.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/pyugend/ModelGenderDiversityGrowthForecastIncrementalChange.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="165">
+              <caret line="39" column="0" lean-forward="false" selection-start-line="39" selection-start-column="0" selection-end-line="39" selection-end-column="0" />
+              <folding>
+                <element signature="e#291#309#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -186,6 +185,7 @@
       <find>settings</find>
       <find>vacancies</find>
       <find>vac</find>
+      <find>to_csv</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -236,18 +236,18 @@
         <option value="$PROJECT_DIR$/pyugend/BuilderGenericOverallMFPlot.py" />
         <option value="$PROJECT_DIR$/pyugend/PlotSettingsOverallMF.py" />
         <option value="$PROJECT_DIR$/pyugend/PlotSettingsAutoCorrelation.py" />
-        <option value="$PROJECT_DIR$/pyugend/Comparison.py" />
         <option value="$PROJECT_DIR$/pyugend/PlotComposerAutoCorDeptSize.py" />
         <option value="$PROJECT_DIR$/pyugend/BuilderGenericAutoCorPlot.py" />
-        <option value="$PROJECT_DIR$/tests/test_Plots.py" />
         <option value="$PROJECT_DIR$/pyugend/Models.py" />
-        <option value="$PROJECT_DIR$/tests/test_ExcelExport.py" />
         <option value="$PROJECT_DIR$/pyugend/ModelGenderDiversityLinearGrowth.py" />
         <option value="$PROJECT_DIR$/pyugend/ModelGenderDiversityGrowthForecastIncrementalChange.py" />
         <option value="$PROJECT_DIR$/pyugend/conftest.py" />
         <option value="$PROJECT_DIR$/pyugend/ModelGenderDiversityGrowthForecast.py" />
         <option value="$PROJECT_DIR$/pyugend/ModelGenderDiversity.py" />
         <option value="$PROJECT_DIR$/pyugend/ColumnSpecs.py" />
+        <option value="$PROJECT_DIR$/tests/test_ExcelExport.py" />
+        <option value="$PROJECT_DIR$/tests/test_Plots.py" />
+        <option value="$PROJECT_DIR$/pyugend/Comparison.py" />
       </list>
     </option>
   </component>
@@ -671,22 +671,6 @@
       <option name="_new_target" value="&quot;pyugend.PlotComposerOverallMFHiring.TestClass.test_plot_mfhiring&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
     </configuration>
-    <configuration name="py.test for pyugend.PlotComposerOverallMFHiring.TestClass.test_test" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="pyugend" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
-      <option name="_new_keywords" value="&quot;&quot;" />
-      <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;pyugend.PlotComposerOverallMFHiring.TestClass.test_test&quot;" />
-      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
-    </configuration>
     <configuration name="py.test for test_ExcelExport.test_excel_export_ph" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -717,6 +701,22 @@
       <option name="_new_keywords" value="&quot;&quot;" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
       <option name="_new_target" value="&quot;test_Plots.test_bokeh_comparison_plot_overall_multiple_models&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+    </configuration>
+    <configuration name="py.test for test_Plots.test_bokeh_comparison_plot_overall_one_model" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/tests" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="pyugend" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
+      <option name="_new_keywords" value="&quot;&quot;" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;test_Plots.test_bokeh_comparison_plot_overall_one_model&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
     </configuration>
     <configuration name="py.test" type="tests" factoryName="py.test">
@@ -761,18 +761,18 @@
       <item index="0" class="java.lang.String" itemvalue="Python docs.sphinx" />
       <item index="1" class="java.lang.String" itemvalue="Python tests.py.test" />
       <item index="2" class="java.lang.String" itemvalue="Python tests.py.test for pyugend.PlotComposerOverallMFHiring.TestClass.test_plot_mfhiring" />
-      <item index="3" class="java.lang.String" itemvalue="Python tests.py.test for pyugend.PlotComposerOverallMFHiring.TestClass.test_test" />
-      <item index="4" class="java.lang.String" itemvalue="Python tests.py.test for pyugend.PlotComposerAutoCorDeptSize.TestClass.test_plot_autocorrelation" />
-      <item index="5" class="java.lang.String" itemvalue="Python tests.py.test for test_Plots.test_bokeh_comparison_plot_overall_multiple_models" />
-      <item index="6" class="java.lang.String" itemvalue="Python tests.py.test for test_ExcelExport.test_excel_export_ph" />
+      <item index="3" class="java.lang.String" itemvalue="Python tests.py.test for pyugend.PlotComposerAutoCorDeptSize.TestClass.test_plot_autocorrelation" />
+      <item index="4" class="java.lang.String" itemvalue="Python tests.py.test for test_Plots.test_bokeh_comparison_plot_overall_multiple_models" />
+      <item index="5" class="java.lang.String" itemvalue="Python tests.py.test for test_ExcelExport.test_excel_export_ph" />
+      <item index="6" class="java.lang.String" itemvalue="Python tests.py.test for test_Plots.test_bokeh_comparison_plot_overall_one_model" />
     </list>
     <recent_temporary>
       <list size="5">
         <item index="0" class="java.lang.String" itemvalue="Python tests.py.test for test_ExcelExport.test_excel_export_ph" />
-        <item index="1" class="java.lang.String" itemvalue="Python tests.py.test for test_Plots.test_bokeh_comparison_plot_overall_multiple_models" />
-        <item index="2" class="java.lang.String" itemvalue="Python tests.py.test for pyugend.PlotComposerAutoCorDeptSize.TestClass.test_plot_autocorrelation" />
-        <item index="3" class="java.lang.String" itemvalue="Python tests.py.test for pyugend.PlotComposerOverallMFHiring.TestClass.test_plot_mfhiring" />
-        <item index="4" class="java.lang.String" itemvalue="Python tests.py.test for pyugend.PlotComposerOverallMFHiring.TestClass.test_test" />
+        <item index="1" class="java.lang.String" itemvalue="Python tests.py.test for test_Plots.test_bokeh_comparison_plot_overall_one_model" />
+        <item index="2" class="java.lang.String" itemvalue="Python tests.py.test for test_Plots.test_bokeh_comparison_plot_overall_multiple_models" />
+        <item index="3" class="java.lang.String" itemvalue="Python tests.py.test for pyugend.PlotComposerAutoCorDeptSize.TestClass.test_plot_autocorrelation" />
+        <item index="4" class="java.lang.String" itemvalue="Python tests.py.test for pyugend.PlotComposerOverallMFHiring.TestClass.test_plot_mfhiring" />
       </list>
     </recent_temporary>
   </component>
@@ -1140,35 +1140,35 @@
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="py_test_for_test_ExcelExport_test_excel_export_ph - 2018.02.22 at 11h 39m 03s.xml">
+    <history-entry file="py_test_for_test_ExcelExport_test_excel_export_ph - 2018.02.22 at 19h 19m 40s.xml">
       <configuration name="py.test for test_ExcelExport.test_excel_export_ph" configurationId="tests" />
     </history-entry>
-    <history-entry file="py_test_for_test_ExcelExport_test_excel_export_ph - 2018.02.22 at 11h 41m 46s.xml">
+    <history-entry file="py_test_for_test_ExcelExport_test_excel_export_ph - 2018.02.22 at 19h 25m 13s.xml">
       <configuration name="py.test for test_ExcelExport.test_excel_export_ph" configurationId="tests" />
     </history-entry>
-    <history-entry file="py_test_for_test_ExcelExport_test_excel_export_ph - 2018.02.22 at 11h 41m 51s.xml">
+    <history-entry file="py_test_for_test_ExcelExport_test_excel_export_ph - 2018.02.22 at 19h 26m 00s.xml">
       <configuration name="py.test for test_ExcelExport.test_excel_export_ph" configurationId="tests" />
     </history-entry>
-    <history-entry file="py_test_for_test_ExcelExport_test_excel_export_ph - 2018.02.22 at 14h 37m 07s.xml">
+    <history-entry file="py_test_for_test_ExcelExport_test_excel_export_ph - 2018.02.22 at 19h 26m 17s.xml">
       <configuration name="py.test for test_ExcelExport.test_excel_export_ph" configurationId="tests" />
     </history-entry>
-    <history-entry file="py_test_for_test_ExcelExport_test_excel_export_ph - 2018.02.22 at 14h 47m 59s.xml">
+    <history-entry file="py_test_for_test_ExcelExport_test_excel_export_ph - 2018.02.22 at 19h 35m 15s.xml">
       <configuration name="py.test for test_ExcelExport.test_excel_export_ph" configurationId="tests" />
     </history-entry>
-    <history-entry file="py_test_for_test_ExcelExport_test_excel_export_ph - 2018.02.22 at 14h 56m 26s.xml">
+    <history-entry file="py_test_for_test_ExcelExport_test_excel_export_ph - 2018.02.22 at 19h 35m 18s.xml">
       <configuration name="py.test for test_ExcelExport.test_excel_export_ph" configurationId="tests" />
     </history-entry>
-    <history-entry file="py_test_for_test_ExcelExport_test_excel_export_ph - 2018.02.22 at 17h 58m 39s.xml">
+    <history-entry file="py_test_for_test_ExcelExport_test_excel_export_ph - 2018.02.22 at 19h 35m 51s.xml">
       <configuration name="py.test for test_ExcelExport.test_excel_export_ph" configurationId="tests" />
     </history-entry>
-    <history-entry file="py_test_for_test_ExcelExport_test_excel_export_ph - 2018.02.22 at 17h 59m 04s.xml">
+    <history-entry file="py_test_for_test_ExcelExport_test_excel_export_ph - 2018.02.22 at 19h 37m 35s.xml">
       <configuration name="py.test for test_ExcelExport.test_excel_export_ph" configurationId="tests" />
     </history-entry>
-    <history-entry file="py_test_for_test_ExcelExport_test_excel_export_ph - 2018.02.22 at 18h 05m 10s.xml">
+    <history-entry file="py_test_for_test_ExcelExport_test_excel_export_ph - 2018.02.22 at 19h 38m 33s.xml">
       <configuration name="py.test for test_ExcelExport.test_excel_export_ph" configurationId="tests" />
     </history-entry>
-    <history-entry file="py_test_for_test_Plots_test_bokeh_comparison_plot_overall_multiple_models - 2018.02.22 at 14h 38m 44s.xml">
-      <configuration name="py.test for test_Plots.test_bokeh_comparison_plot_overall_multiple_models" configurationId="tests" />
+    <history-entry file="py_test_for_test_ExcelExport_test_excel_export_ph - 2018.02.22 at 19h 39m 59s.xml">
+      <configuration name="py.test for test_ExcelExport.test_excel_export_ph" configurationId="tests" />
     </history-entry>
   </component>
   <component name="TodoView">
@@ -1281,7 +1281,7 @@
       <breakpoints-dialog>
         <breakpoints-dialog />
       </breakpoints-dialog>
-      <option name="time" value="44" />
+      <option name="time" value="48" />
     </breakpoint-manager>
     <watches-manager>
       <configuration name="tests">
@@ -1508,13 +1508,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pyugend/Comparison.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="372">
-          <caret line="143" column="1" lean-forward="false" selection-start-line="143" selection-start-column="1" selection-end-line="143" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/pyugend/DataManagement.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -1539,10 +1532,21 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pyugend/ModelGenderDiversityGrowthForecastIncrementalChange.py">
+    <entry file="file://$PROJECT_DIR$/pyugend/ModelGenderDiversityLinearGrowth.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="23" column="0" lean-forward="true" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
+        <state relative-caret-position="-495">
+          <caret line="21" column="0" lean-forward="true" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
+          <folding>
+            <element signature="e#253#271#0" expanded="true" />
+            <marker date="1519339086954" expanded="true" signature="2680:9588" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pyugend/ModelGenderDiversityGrowthForecast.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="266">
+          <caret line="32" column="0" lean-forward="false" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
           <folding>
             <element signature="e#291#309#0" expanded="true" />
           </folding>
@@ -1557,49 +1561,48 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pyugend/ModelGenderDiversityLinearGrowth.py">
+    <entry file="file://$PROJECT_DIR$/pyugend/ModelGenderDiversityGrowthForecastIncrementalChange.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-495">
-          <caret line="21" column="0" lean-forward="true" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
-          <folding>
-            <element signature="e#253#271#0" expanded="true" />
-            <marker date="1519339086954" expanded="true" signature="2680:9588" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tests/test_ExcelExport.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="194">
-          <caret line="11" column="18" lean-forward="true" selection-start-line="11" selection-start-column="18" selection-end-line="11" selection-end-column="18" />
-          <folding>
-            <element signature="e#0#13#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tests/test_Plots.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2079">
-          <caret line="81" column="39" lean-forward="false" selection-start-line="81" selection-start-column="39" selection-end-line="81" selection-end-column="39" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pyugend/ModelGenderDiversityGrowthForecast.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="266">
-          <caret line="32" column="0" lean-forward="false" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
+        <state relative-caret-position="165">
+          <caret line="39" column="0" lean-forward="false" selection-start-line="39" selection-start-column="0" selection-end-line="39" selection-end-column="0" />
           <folding>
             <element signature="e#291#309#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/pyugend/ColumnSpecs.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="290">
+          <caret line="14" column="39" lean-forward="false" selection-start-line="14" selection-start-column="36" selection-end-line="14" selection-end-column="39" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pyugend/ModelGenderDiversity.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-5086">
+          <caret line="107" column="46" lean-forward="true" selection-start-line="107" selection-start-column="46" selection-end-line="107" selection-end-column="46" />
+          <folding>
+            <element signature="e#253#271#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/test_ExcelExport.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="326">
+          <caret line="17" column="0" lean-forward="true" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#13#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/pyugend/Models.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="985">
-          <caret line="109" column="0" lean-forward="true" selection-start-line="109" selection-start-column="0" selection-end-line="109" selection-end-column="0" />
+        <state relative-caret-position="1060">
+          <caret line="837" column="0" lean-forward="false" selection-start-line="837" selection-start-column="0" selection-end-line="837" selection-end-column="0" />
           <folding>
             <element signature="e#297#315#0" expanded="true" />
             <element signature="e#3868#4995#0" expanded="false" />
@@ -1617,27 +1620,23 @@
             <element signature="e#25230#27672#0" expanded="false" />
             <element signature="e#28149#28153#0" expanded="false" />
             <element signature="e#28681#30429#0" expanded="false" />
-            <element signature="e#30515#31934#0" expanded="false" />
-            <element signature="e#32046#32131#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pyugend/ColumnSpecs.py">
+    <entry file="file://$PROJECT_DIR$/pyugend/Comparison.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="290">
-          <caret line="14" column="39" lean-forward="false" selection-start-line="14" selection-start-column="36" selection-end-line="14" selection-end-column="39" />
+        <state relative-caret-position="721">
+          <caret line="1024" column="61" lean-forward="false" selection-start-line="1024" selection-start-column="61" selection-end-line="1024" selection-end-column="61" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pyugend/ModelGenderDiversity.py">
+    <entry file="file://$PROJECT_DIR$/tests/test_Plots.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-235">
-          <caret line="107" column="46" lean-forward="true" selection-start-line="107" selection-start-column="46" selection-end-line="107" selection-end-column="46" />
-          <folding>
-            <element signature="e#253#271#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="198">
+          <caret line="23" column="5" lean-forward="false" selection-start-line="23" selection-start-column="5" selection-end-line="23" selection-end-column="5" />
+          <folding />
         </state>
       </provider>
     </entry>
