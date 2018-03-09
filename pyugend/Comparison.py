@@ -1013,6 +1013,7 @@ class Comparison():
                    self.mlist[0].pct_female_matrix.iloc[:, 1:].astype(float).round(3)], axis=1)
         results['date_generated'] = str(datetime.datetime.now())
         results['model_name'] = model_label
+        results['year'] = np.arange(self.mlist[0].duration)
         results.to_csv(filename, index=False)
 
     def plot_attrition_overall(self, settings):
