@@ -57,6 +57,22 @@ class abcComparisonPlot(metaclass=abc.ABCMeta):
         pass
 
     @abc.abstractmethod
+    def helper_overall_empirical_upper_bound(self):
+        pass
+
+    @abc.abstractmethod
+    def helper_overall_empirical_lower_bound(self):
+        pass
+
+    @abc.abstractmethod
+    def helper_ground_truth_mgmt(self):
+        pass
+
+    @abc.abstractmethod
+    def helper_build_overall_plot_coordinates(self):
+        pass
+
+    @abc.abstractmethod
     def execute_plot(self):
         pass
 
@@ -71,3 +87,9 @@ class abcComparisonPlot(metaclass=abc.ABCMeta):
     def helper_original_data_mgmt(self, field):
         dval = self.comparison[0].mgmt_data.get_field(field)
         return dval
+
+    def helper_indicate_number_of_models(self):
+        self.coordinates['number_of_models'] = len(self.comparison)
+
+    def helper_year_duration(self):
+        self.coordinates['xval'] = self.helper_duration()
