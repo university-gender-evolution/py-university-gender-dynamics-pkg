@@ -23,8 +23,8 @@ from .ColumnSpecs import MODEL_RUN_COLUMNS, EXPORT_COLUMNS_FOR_CSV
 
 
 class Model3GenderDiversity(Base_model):
-    def __init__(self, **kwds):
-        Base_model.__init__(self, **kwds)
+    def __init__(self, argsdict):
+        Base_model.__init__(self, argsdict)
         self.name = "model-3-baseline"
         self.label = "model-3-baseline"
         self.init_default_hiring_rate()
