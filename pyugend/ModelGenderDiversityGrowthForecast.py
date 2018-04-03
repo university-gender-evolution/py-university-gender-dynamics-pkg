@@ -26,8 +26,8 @@ from .ColumnSpecs import MODEL_RUN_COLUMNS, EXPORT_COLUMNS_FOR_CSV
 
 
 class ModelGenderDiversityGrowthForecast(Model3GenderDiversity):
-    def __init__(self, **kwds):
-        Base_model.__init__(self, **kwds)
+    def __init__(self, argsdict):
+        Base_model.__init__(self,  argsdict)
         self.name = "model-3-5-year-growth-forecast"
         self.label = "model-3-5-year-growth-forecast"
 
