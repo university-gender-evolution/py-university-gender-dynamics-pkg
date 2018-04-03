@@ -29,7 +29,6 @@ __status__ = ''
 
 
 from .abcOverallPlotBuilder import abcOverallPlotBuilder
-from .abcSettingsBuilder import abcPlotSettingsBuilder
 import numpy as np
 
 class BuilderGenericOverallMFPlot(abcOverallPlotBuilder):
@@ -106,12 +105,6 @@ class BuilderGenericOverallMFPlot(abcOverallPlotBuilder):
     def draw_misc(self):
         pass
 
-
-
-class BuilderSettingsAttritionPlot(abcPlotSettingsBuilder):
-
-    def __init__(self):
-        pass
 
 
 

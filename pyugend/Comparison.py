@@ -8,6 +8,7 @@ from .ColumnSpecs import MODEL_RUN_COLUMNS, EXPORT_COLUMNS_FOR_CSV
 from .PlotComposerOverallAttrition import PlotComposerOverallAttrition
 from .PlotComposerOverallMFHiring import PlotComposerOverallMFHiring
 from .PlotComposerAutoCorDeptSize import PlotComposerAutoCorDeptSize
+from .PlotComposerLevelHiring import PlotComposerLevelHiring
 import datetime
 
 
@@ -1028,8 +1029,9 @@ class Comparison():
         #self.run_all_models(settings['number_of_runs'])
         return PlotComposerAutoCorDeptSize(self.mlist, settings).execute_plot()
 
-
-
+    def plot_hiring_bylevel(self, settings):
+        self.run_all_models(settings['number_of_runs'])
+        return PlotComposerLevelHiring(self.mlist, settings).execute_plot()
 
 
 

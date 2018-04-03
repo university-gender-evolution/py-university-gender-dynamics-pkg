@@ -29,8 +29,8 @@ import pytest
 from bokeh.plotting import show
 from .abcComparisonPlot import abcComparisonPlot
 from .PlotDirector import PlotDirector
-from .PlotSettingsOverallMF import PlotSettingsOverallMF
-
+from .PlotSettingsLevelHiring import PlotSettingsLevelHiring
+from .BuilderGenericLevelPlot import BuilderGenericLevelPlot
 
 # Set constants
 # These are the fields involves in this plot.
@@ -72,8 +72,8 @@ GROUNDTRUTH =  ['hiring_f1',
 
 NUMBEROFLEVELS = 3
 
-height = 800
-width = 800
+height = 600
+width = 600
 
 
 class PlotComposerLevelHiring(abcComparisonPlot):
@@ -83,30 +83,30 @@ class PlotComposerLevelHiring(abcComparisonPlot):
         pass
 
     def helper_level_data(self):
-        for lev in range(NUMBEROFLEVELS):
+        for lev in range(1,NUMBEROFLEVELS + 1):
             self.coordinates['yval_f' + str(lev)] = [m.results_matrix['mean_f_hire_' + str(lev)] for m in self.comparison]
             self.coordinates['yval_m' + str(lev)] = [m.results_matrix['mean_m_hire_' + str(lev)] for m in self.comparison]
 
     def helper_overall_empirical_upper_bound(self):
-        for lev in range(NUMBEROFLEVELS):
-            self.coordinates['emp_ub_f_' + str(lev)] = [m.results_matrix['f_hire_' + str(lev) + '_975'] for m in self.comparison]
-            self.coordinates['emp_ub_m_' + str(lev)] = [m.results_matrix['m_hire_' + str(lev) + '_975'] for m in self.comparison]
+        for lev in range(1, NUMBEROFLEVELS + 1):
+            self.coordinates['empirical_upperbound_f' + str(lev)] = [m.results_matrix['f_hire_' + str(lev) + '_975'] for m in self.comparison]
+            self.coordinates['empirical_upperbound_m' + str(lev)] = [m.results_matrix['m_hire_' + str(lev) + '_975'] for m in self.comparison]
 
     def helper_overall_empirical_lower_bound(self):
-        for lev in range(NUMBEROFLEVELS):
-            self.coordinates['emp_lb_f_' + str(lev)] = [m.results_matrix['f_hire_' + str(lev) + '_025'] for m in
+        for lev in range(1, NUMBEROFLEVELS + 1):
+            self.coordinates['empirical_lowerbound_f' + str(lev)] = [m.results_matrix['f_hire_' + str(lev) + '_025'] for m in
                                                         self.comparison]
-            self.coordinates['emp_lb_m_' + str(lev)] = [m.results_matrix['m_hire_' + str(lev) + '_025'] for m in
+            self.coordinates['empirical_lowerbound_m' + str(lev)] = [m.results_matrix['m_hire_' + str(lev) + '_025'] for m in
                                                         self.comparison]
 
     def helper_ground_truth_mgmt(self):
-        for lev in range(NUMBEROFLEVELS):
-            self.coordinates['truth_f_' + str(lev)] = self.helper_original_data_mgmt('hiring_f' + str(lev))
-            self.coordinates['truth_m_' + str(lev)] = self.helper_original_data_mgmt('hiring_m' + str(lev))
+        for lev in range(1, NUMBEROFLEVELS + 1):
+            self.coordinates['truth_f' + str(lev)] = self.helper_original_data_mgmt('hiring_f' + str(lev))
+            self.coordinates['truth_m' + str(lev)] = self.helper_original_data_mgmt('hiring_m' + str(lev))
 
     def helper_build_overall_plot_coordinates(self):
         self.helper_indicate_number_of_models()
-        self.helper_overall_data()
+        self.helper_level_data()
         self.helper_year_duration()
         self.helper_overall_empirical_upper_bound()
         self.helper_overall_empirical_lower_bound()
@@ -114,9 +114,33 @@ class PlotComposerLevelHiring(abcComparisonPlot):
         self.helper_build_settings()
 
     def helper_build_settings(self):
-        self.settings = {**PlotSettingsOverallMF.get_settings(), **self.settings}
-
+        self.settings = {**PlotSettingsLevelHiring.get_settings(), **self.settings}
 
     def execute_plot(self):
-        pass
+        self.helper_build_overall_plot_coordinates()
+        builder = BuilderGenericLevelPlot(self.coordinates,
+                                      self.settings)
+        director = PlotDirector()
+        return director.construct(builder)
 
+
+# test cases
+
+@pytest.mark.usefixtures('mgmt_data', 'mock_data', 'one_model', 'multi_model')
+class TestClass(object):
+
+    def test_plot_level_hiring(self, one_model):
+        plot_settings = { 'intervals': 'empirical',
+                         'number_of_runs': 100,
+                         'target': 0.25,
+                         'model_legend_label': ['model 1',
+                                              'model 2',
+                                              'model 3'],
+                         'height_': height,
+                         'width_': width,
+                         'year_offset': 0
+                         }
+        show(one_model.plot_hiring_bylevel(plot_settings))
+
+    def test_plot_level_hiring_multiple_models(self, multi_model):
+        pass

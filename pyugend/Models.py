@@ -40,66 +40,38 @@ np.seterr(divide='ignore', invalid='ignore')
 
 
 class Base_model():
-    def __init__(self, number_of_females_1,
-                 number_of_females_2,
-                 number_of_females_3,
-                 number_of_males_1,
-                 number_of_males_2,
-                 number_of_males_3,
-                 number_of_initial_vacancies_1,
-                 number_of_initial_vacancies_2,
-                 number_of_initial_vacancies_3,
-                 hiring_rate_women_1,
-                 hiring_rate_women_2,
-                 hiring_rate_women_3,
-                 attrition_rate_women_1,
-                 attrition_rate_women_2,
-                 attrition_rate_women_3,
-                 attrition_rate_men_1,
-                 attrition_rate_men_2,
-                 attrition_rate_men_3,
-                 probability_of_outside_hire_1,
-                 probability_of_outside_hire_2,
-                 probability_of_outside_hire_3,
-                 duration,
-                 female_promotion_probability_1,
-                 female_promotion_probability_2,
-                 male_promotion_probability_1,
-                 male_promotion_probability_2,
-                 upperbound,
-                 lowerbound,
-                 variation_range):
+    def __init__(self, argsdict):
         self.name = 'replication m'
         self.label = 'replication m'
-        self.nf1 = number_of_females_1
-        self.nf2 = number_of_females_2
-        self.nf3 = number_of_females_3
-        self.nm1 = number_of_males_1
-        self.nm2 = number_of_males_2
-        self.nm3 = number_of_males_3
-        self.vac3 = number_of_initial_vacancies_3
-        self.vac2 = number_of_initial_vacancies_2
-        self.vac1 = number_of_initial_vacancies_1
-        self.bf1 = hiring_rate_women_1
-        self.bf2 = hiring_rate_women_2
-        self.bf3 = hiring_rate_women_3
-        self.df1 = attrition_rate_women_1
-        self.df2 = attrition_rate_women_2
-        self.df3 = attrition_rate_women_3
-        self.dm1 = attrition_rate_men_1
-        self.dm2 = attrition_rate_men_2
-        self.dm3 = attrition_rate_men_3
-        self.phire1 = probability_of_outside_hire_1
-        self.phire2 = probability_of_outside_hire_2
-        self.phire3 = probability_of_outside_hire_3
-        self.duration = duration
-        self.female_promotion_probability_1 = female_promotion_probability_1
-        self.female_promotion_probability_2 = female_promotion_probability_2
-        self.male_promotion_probability_1 = male_promotion_probability_1
-        self.male_promotion_probability_2 = male_promotion_probability_2
-        self.upperbound = upperbound
-        self.lowerbound = lowerbound
-        self.variation_range = variation_range
+        self.nf1 = argsdict['number_of_females_1']
+        self.nf2 = argsdict['number_of_females_2']
+        self.nf3 = argsdict['number_of_females_3']
+        self.nm1 = argsdict['number_of_males_1']
+        self.nm2 = argsdict['number_of_males_2']
+        self.nm3 = argsdict['number_of_males_3']
+        self.vac3 = argsdict['number_of_initial_vacancies_3']
+        self.vac2 = argsdict['number_of_initial_vacancies_2']
+        self.vac1 = argsdict['number_of_initial_vacancies_1']
+        self.bf1 = argsdict['hiring_rate_women_1']
+        self.bf2 = argsdict['hiring_rate_women_2']
+        self.bf3 = argsdict['hiring_rate_women_3']
+        self.df1 = argsdict['attrition_rate_women_1']
+        self.df2 = argsdict['attrition_rate_women_2']
+        self.df3 = argsdict['attrition_rate_women_3']
+        self.dm1 = argsdict['attrition_rate_men_1']
+        self.dm2 = argsdict['attrition_rate_men_2']
+        self.dm3 = argsdict['attrition_rate_men_3']
+        self.phire1 = argsdict['probability_of_outside_hire_1']
+        self.phire2 = argsdict['probability_of_outside_hire_2']
+        self.phire3 = argsdict['probability_of_outside_hire_3']
+        self.duration = argsdict['duration']
+        self.female_promotion_probability_1 = argsdict['female_promotion_probability_1']
+        self.female_promotion_probability_2 = argsdict['female_promotion_probability_2']
+        self.male_promotion_probability_1 = argsdict['male_promotion_probability_1']
+        self.male_promotion_probability_2 = argsdict['male_promotion_probability_2']
+        self.upperbound = argsdict['upperbound']
+        self.lowerbound = argsdict['lowerbound']
+        self.variation_range = argsdict['variation_range']
         self.run = 0
         self.runarray = 0
         self.pd_last_row_data = 0

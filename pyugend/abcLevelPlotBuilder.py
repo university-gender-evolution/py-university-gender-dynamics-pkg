@@ -3,7 +3,7 @@
 
 """
 
-Abstract Base Class for building overall plots
+Abstract Base Class for building level plots
 
 """
 
@@ -27,24 +27,36 @@ __email__ = 'cyclotomiq@gmail.com'
 __status__ = 'pre-alpha'
 
 import abc
-from bokeh.plotting import figure, output_file, show
-from .PlotSettingsOverall import PlotSettingsOverall
+from bokeh.plotting import figure
+from bokeh.layouts import gridplot
 
-class abcOverallPlotBuilder(metaclass=abc.ABCMeta):
+NUMBEROFPLOTS = 3
+
+class abcLevelPlotBuilder(metaclass=abc.ABCMeta):
 
 
     def __init__(self, coordinates, settings):
         self.coordinates = coordinates
         self.settings = settings
-
+        self.plots = {}
     def create_plot(self):
-        self.plot = figure(title=self.settings['title'],
-                   x_axis_label=self.settings['xlabel'],
-                   y_axis_label=self.settings['ylabel'],
-                   width=self.settings['width_'],
-                   height=self.settings['height_'])
 
-        self.plot.legend.click_policy = 'hide'
+        for p in range(1, NUMBEROFPLOTS+1):
+            self.plots['plotf_' + str(p)] = figure(title=self.settings['titles']['title_f' + str(p)],
+                                  x_axis_label = self.settings['xlabel'],
+                                  y_axis_label = self.settings['ylabels']['ylabel_f' + str(p)],
+                                  width = self.settings['width_'],
+                                  height = self.settings['height_'])
+
+            self.plots['plotm_' + str(p)] = figure(title=self.settings['titles']['title_m' + str(p)],
+                                 x_axis_label=self.settings['xlabel'],
+                                 y_axis_label=self.settings['ylabels']['ylabel_m' + str(p)],
+                                 width=self.settings['width_'],
+                                 height=self.settings['height_'])
+
+            self.plots['plotf_' + str(p)].legend.click_policy = 'hide'
+            self.plots['plotm_' + str(p)].legend.click_policy = 'hide'
+
     @abc.abstractmethod
     def draw_lines(self):
         pass
@@ -70,7 +82,13 @@ class abcOverallPlotBuilder(metaclass=abc.ABCMeta):
 
 
     def return_plot(self):
-        return self.plot
+        grid = gridplot([[self.plots['plotf_1'],
+                        self.plots['plotf_2'],
+                        self.plots['plotf_3']],
+                         [self.plots['plotm_1'],
+                          self.plots['plotm_2'],
+                          self.plots['plotm_3']]])
+        return grid
 
 if __name__ == "__main__":
     print('This is an abstract base class for building plots')
