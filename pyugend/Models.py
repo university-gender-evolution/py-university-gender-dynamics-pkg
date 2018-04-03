@@ -49,9 +49,9 @@ class Base_model():
         self.nm1 = argsdict['number_of_males_1']
         self.nm2 = argsdict['number_of_males_2']
         self.nm3 = argsdict['number_of_males_3']
-        self.vac3 = argsdict['number_of_initial_vacancies_3']
-        self.vac2 = argsdict['number_of_initial_vacancies_2']
-        self.vac1 = argsdict['number_of_initial_vacancies_1']
+        self.vac3 = 0
+        self.vac2 = 0
+        self.vac1 = 0
         self.bf1 = argsdict['hiring_rate_women_1']
         self.bf2 = argsdict['hiring_rate_women_2']
         self.bf3 = argsdict['hiring_rate_women_3']
