@@ -61,9 +61,9 @@ class Base_model():
         self.dm1 = argsdict['attrition_rate_men_1']
         self.dm2 = argsdict['attrition_rate_men_2']
         self.dm3 = argsdict['attrition_rate_men_3']
-        self.phire1 = argsdict['probability_of_outside_hire_1']
-        self.phire2 = argsdict['probability_of_outside_hire_2']
-        self.phire3 = argsdict['probability_of_outside_hire_3']
+        self.phire1 = 1
+        self.phire2 = 1
+        self.phire3 = 1
         self.duration = argsdict['duration']
         self.female_promotion_probability_1 = argsdict['female_promotion_probability_1']
         self.female_promotion_probability_2 = argsdict['female_promotion_probability_2']
